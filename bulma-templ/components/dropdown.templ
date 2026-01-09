@@ -1,0 +1,123 @@
+package components
+
+// Dropdown renders a Bulma `.dropdown` component.
+// Atomic level: ORGANISM
+//
+// Dropdown is a composite UI component used to display
+// contextual menus. It does not manage state or behavior;
+// state must be controlled externally (e.g. via Alpine.js).
+type DropdownProps struct {
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Hoverable enables hover-based activation (`is-hoverable`).
+	Hoverable bool
+
+	// Right aligns the dropdown menu to the right (`is-right`).
+	Right bool
+
+	// Up opens the dropdown upwards (`is-up`).
+	Up bool
+
+	// Attr contains additional HTML attributes
+	// for the `.dropdown` container.
+	Attr templ.Attributes
+}
+
+// Dropdown renders the root `.dropdown` container.
+templ Dropdown(props DropdownProps, content templ.Component) {
+	<div
+		class={
+			"dropdown",
+			templ.KV("is-active", props.Active),
+			templ.KV("is-hoverable", props.Hoverable),
+			templ.KV("is-right", props.Right),
+			templ.KV("is-up", props.Up),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}
+
+
+// DropdownTrigger renders `.dropdown-trigger`.
+// Atomic level: MOLECULE
+//
+// DropdownTrigger is used to render the trigger element
+// (button, link, etc.) that controls the dropdown state.
+type DropdownTriggerProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.dropdown-trigger` container.
+	Attr templ.Attributes
+}
+
+// DropdownTrigger renders a Bulma `.dropdown-trigger`.
+templ DropdownTrigger(props DropdownTriggerProps, content templ.Component) {
+	<div class="dropdown-trigger" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// DropdownMenu renders `.dropdown-menu` and `.dropdown-content`.
+// Atomic level: MOLECULE
+//
+// DropdownMenu wraps dropdown items and does not manage state.
+type DropdownMenuProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.dropdown-menu` container.
+	Attr templ.Attributes
+}
+
+// DropdownMenu renders a Bulma dropdown menu container.
+templ DropdownMenu(props DropdownMenuProps, content templ.Component) {
+	<div class="dropdown-menu" { props.Attr... }>
+		<div class="dropdown-content">
+			@content
+		</div>
+	</div>
+}
+// DropdownDivider renders a Bulma `.dropdown-divider`.
+// Atomic level: ATOM
+//
+// Used to visually separate dropdown items.
+templ DropdownDivider() {
+	<hr class="dropdown-divider" />
+}
+
+
+// DropdownItem renders a Bulma `.dropdown-item`.
+// Atomic level: ATOM
+//
+// DropdownItem is always rendered as an <a> element.
+// If Href is nil, the item is treated as an action item
+// and can be handled via JS/Alpine.
+type DropdownItemProps struct {
+	// Href defines the link URL.
+	// If nil, the item is treated as an action item.
+	Href *string
+
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the item element.
+	Attr templ.Attributes
+}
+
+// DropdownItem renders a Bulma `.dropdown-item`.
+templ DropdownItem(props DropdownItemProps, content templ.Component) {
+	<a
+		class={
+			"dropdown-item",
+			templ.KV("is-active", props.Active),
+		}
+		if props.Href != nil {
+			href={ *props.Href }
+		}
+		{ props.Attr... }
+	>
+		@content
+	</a>
+}

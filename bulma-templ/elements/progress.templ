@@ -1,0 +1,52 @@
+package elements
+
+// Progress — Bulma progress bar.
+// Atomic level: ATOM
+//
+// Progress is a thin wrapper around the native <progress> element
+// styled with Bulma classes.
+//
+// This component does NOT compute or format progress values.
+// Any content rendered inside <progress> is fully controlled
+// by the caller, exactly as allowed by Bulma.
+type ProgressProps struct {
+	// Value defines the current progress value.
+	// When nil, the progress bar is rendered in indeterminate mode.
+	Value *int
+
+	// Max defines the maximum progress value.
+	// When nil, the default browser value is used (typically 100).
+	Max *int
+
+	// Color defines the Bulma color modifier
+	// (is-primary, is-link, is-info, is-success, etc.).
+	Color string
+
+	// Size defines the Bulma size modifier
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Attr contains additional HTML attributes
+	// for the <progress> element.
+	Attr templ.Attributes
+}
+
+// Progress renders a Bulma progress bar.
+templ Progress(props ProgressProps, content templ.Component) {
+	<progress
+		class={
+			"progress",
+			props.Color,
+			props.Size,
+		}
+		{ props.Attr... }
+		if props.Value != nil {
+			value={ *props.Value }
+		}
+		if props.Max != nil {
+			max={ *props.Max }
+		}
+	>
+		@content
+	</progress>
+}

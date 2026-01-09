@@ -1,0 +1,94 @@
+package layout
+
+// Hero — Bulma hero layout component.
+// Atomic level: ORGANISM
+//
+// Hero is a large layout wrapper used for prominent
+// page sections such as headers and promotional blocks.
+//
+// This component is structural only and does NOT manage
+// content, behavior, or internal composition.
+type HeroProps struct {
+	// Color defines the Bulma color modifier
+	// (is-primary, is-link, is-dark, etc.).
+	Color string
+
+	// Size defines the Bulma size modifier
+	// (is-small, is-medium, is-large, is-fullheight).
+	Size string
+
+	// Attr contains additional HTML attributes
+	// for the `.hero` container.
+	Attr templ.Attributes
+}
+
+// Hero renders a Bulma `.hero` container.
+templ Hero(props HeroProps, content templ.Component) {
+	<section
+		class={
+			"hero",
+			props.Color,
+			props.Size,
+		}
+		{ props.Attr... }
+	>
+		@content
+	</section>
+}
+
+
+// HeroHead — top section of Hero.
+// Atomic level: MOLECULE
+//
+// HeroHead is typically used to place a Navbar
+// or auxiliary content above the main Hero body.
+type HeroHeadProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.hero-head` container.
+	Attr templ.Attributes
+}
+
+// HeroHead renders a Bulma `.hero-head` container.
+templ HeroHead(props HeroHeadProps, content templ.Component) {
+	<div class="hero-head" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// HeroBody — main content section of Hero.
+// Atomic level: MOLECULE
+//
+// HeroBody defines the primary area for titles, subtitles,
+// forms, or other main Hero content.
+type HeroBodyProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.hero-body` container.
+	Attr templ.Attributes
+}
+
+// HeroBody renders a Bulma `.hero-body` container.
+templ HeroBody(props HeroBodyProps, content templ.Component) {
+	<div class="hero-body" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// HeroFoot — bottom section of Hero.
+// Atomic level: MOLECULE
+//
+// HeroFoot is used for secondary navigation
+// or additional actions below the Hero body.
+type HeroFootProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.hero-foot` container.
+	Attr templ.Attributes
+}
+
+// HeroFoot renders a Bulma `.hero-foot` container.
+templ HeroFoot(props HeroFootProps, content templ.Component) {
+	<div class="hero-foot" { props.Attr... }>
+		@content
+	</div>
+}

@@ -1,0 +1,84 @@
+package form
+
+// Checkbox — Bulma checkbox form control.
+// Atomic level: ATOM
+//
+// Checkbox renders a Bulma `.checkbox` label together with
+// the native `<input type="checkbox">` element inside.
+//
+// IMPORTANT:
+// This component intentionally exposes two attribute sets:
+//
+//   - WrapperAttr applies to the `<label class="checkbox">` element
+//   - Attr applies to the native `<input>` element
+//
+// Use WrapperAttr for layout, spacing and JS hooks.
+// Use Attr for form-related attributes (name, value, checked, etc.).
+type CheckboxProps struct {
+	// Checked controls the checked state of the checkbox.
+	Checked bool
+
+	// Disabled disables the native checkbox input.
+	Disabled bool
+
+	// Attr contains additional HTML attributes
+	// for the native <input type="checkbox"> element.
+	//
+	// Use this for:
+	//   - name
+	//   - value
+	//   - data-*
+	//   - x-model
+	//   - aria-*
+	Attr templ.Attributes
+
+	// WrapperAttr contains additional HTML attributes
+	// for the <label class="checkbox"> wrapper.
+	//
+	// Use this for:
+	//   - layout-related classes
+	//   - spacing helpers
+	//   - Alpine.js directives
+	WrapperAttr templ.Attributes
+}
+
+// Checkbox renders a Bulma checkbox control.
+//
+// The checkbox label text must be provided
+// via the component content.
+templ Checkbox(props CheckboxProps, content templ.Component) {
+	<label class="checkbox" { props.WrapperAttr... }>
+		<input
+			type="checkbox"
+			checked={ props.Checked }
+			disabled={ props.Disabled }
+			{ props.Attr... }
+		/>
+		@content
+	</label>
+}
+
+
+// Checkboxes — Bulma checkboxes container.
+// Atomic level: MOLECULE
+//
+// Checkboxes renders the Bulma `.checkboxes` wrapper,
+// which groups multiple Checkbox components
+// into a single list.
+//
+// This component provides structural grouping only
+// and does not manage checkbox state.
+type CheckboxesProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.checkboxes` container.
+	Attr templ.Attributes
+}
+
+// Checkboxes renders a Bulma `.checkboxes` container.
+//
+// Checkbox components must be provided via content.
+templ Checkboxes(props CheckboxesProps, content templ.Component) {
+	<div class="checkboxes" { props.Attr... }>
+		@content
+	</div>
+}

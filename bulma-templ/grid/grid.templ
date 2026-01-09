@@ -1,0 +1,54 @@
+package grid
+
+// Grid — Bulma Smart Grid container.
+// Atomic level: ORGANISM
+//
+// Grid renders the Bulma `.grid` container,
+// which is based on CSS Grid and provides
+// automatic responsive behavior.
+//
+// Grid does not define column sizes explicitly.
+// All layout configuration is done via Bulma
+// utility classes passed through Attr.
+type GridProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.grid` container.
+	//
+	// Use this for:
+	//   - grid modifiers (is-col-min-*, is-gap-*)
+	//   - responsive classes
+	//   - layout helpers
+	Attr templ.Attributes
+}
+
+// Grid renders a Bulma `.grid` container.
+templ Grid(props GridProps, content templ.Component) {
+	<div class="grid" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// Cell — Bulma Smart Grid cell.
+// Atomic level: MOLECULE
+//
+// Cell renders the Bulma `.cell` element,
+// which represents a single grid item
+// inside a Grid container.
+type CellProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.cell` element.
+	//
+	// Use this for:
+	//   - cell span modifiers
+	//   - alignment helpers
+	//   - responsive behavior
+	Attr templ.Attributes
+}
+
+// Cell renders a Bulma `.cell` element.
+templ Cell(props CellProps, content templ.Component) {
+	<div class="cell" { props.Attr... }>
+		@content
+	</div>
+}

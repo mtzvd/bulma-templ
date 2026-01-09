@@ -1,0 +1,106 @@
+package components
+
+// Card — Bulma card component.
+// Atomic level: ORGANISM
+//
+// Card is a composite UI component used to display
+// grouped content such as articles, previews, or actions.
+//
+// Card does not impose internal structure and must be
+// composed explicitly using its subcomponents.
+type CardProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card` container.
+	Attr templ.Attributes
+}
+
+// Card renders a Bulma `.card` container.
+templ Card(props CardProps, content templ.Component) {
+	<div class="card" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// CardHeader — header section of Card.
+// Atomic level: MOLECULE
+type CardHeaderProps struct {
+	Attr templ.Attributes
+}
+
+// CardHeader renders a Bulma `.card-header`.
+templ CardHeader(props CardHeaderProps, content templ.Component) {
+	<header class="card-header" { props.Attr... }>
+		@content
+	</header>
+}
+
+
+// CardHeaderTitle — title inside CardHeader.
+// Atomic level: MOLECULE
+type CardHeaderTitleProps struct {
+	Attr templ.Attributes
+}
+
+// CardHeaderTitle renders `.card-header-title`.
+templ CardHeaderTitle(props CardHeaderTitleProps, content templ.Component) {
+	<p class="card-header-title" { props.Attr... }>
+		@content
+	</p>
+}
+
+
+// CardHeaderIcon — icon/action inside CardHeader.
+// Atomic level: ATOM
+type CardHeaderIconProps struct {
+	Attr templ.Attributes
+}
+
+// CardHeaderIcon renders `.card-header-icon`.
+templ CardHeaderIcon(props CardHeaderIconProps, content templ.Component) {
+	<a class="card-header-icon" { props.Attr... }>
+		@content
+	</a>
+}
+
+
+// CardContent — main content area of Card.
+// Atomic level: MOLECULE
+type CardContentProps struct {
+	Attr templ.Attributes
+}
+
+// CardContent renders `.card-content`.
+templ CardContent(props CardContentProps, content templ.Component) {
+	<div class="card-content" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// CardFooter — footer section of Card.
+// Atomic level: MOLECULE
+type CardFooterProps struct {
+	Attr templ.Attributes
+}
+
+// CardFooter renders `.card-footer`.
+templ CardFooter(props CardFooterProps, content templ.Component) {
+	<footer class="card-footer" { props.Attr... }>
+		@content
+	</footer>
+}
+
+
+// CardFooterItem — item inside CardFooter.
+// Atomic level: MOLECULE
+type CardFooterItemProps struct {
+	Attr templ.Attributes
+}
+
+// CardFooterItem renders `.card-footer-item`.
+templ CardFooterItem(props CardFooterItemProps, content templ.Component) {
+	<a class="card-footer-item" { props.Attr... }>
+		@content
+	</a>
+}

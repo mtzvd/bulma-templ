@@ -1,0 +1,42 @@
+package elements
+
+// Icon — Bulma icon element.
+// Atomic level: ATOM
+//
+// Icon renders a Bulma `.icon` wrapper with a nested <i> element.
+// This component is intentionally minimal and does not manage text
+// or layout composition.
+//
+// For icon + text combinations, use explicit composition with
+// the Bulma `.icon-text` pattern.
+type IconProps struct {
+	// IconClass defines the icon CSS classes
+	// (e.g. "fas fa-home").
+	IconClass string
+
+	// Size defines the icon size modifier
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Color defines the text color helper
+	// (has-text-primary, has-text-danger, etc.).
+	Color string
+
+	// Attr contains additional HTML attributes
+	// for the `.icon` wrapper.
+	Attr templ.Attributes
+}
+
+// Icon renders a Bulma icon.
+templ Icon(props IconProps) {
+	<span
+		class={
+			"icon",
+			props.Size,
+			props.Color,
+		}
+		{ props.Attr... }
+	>
+		<i class={ props.IconClass }></i>
+	</span>
+}

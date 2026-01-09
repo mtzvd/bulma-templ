@@ -1,0 +1,37 @@
+package form
+
+// Field — Bulma form field wrapper.
+// Atomic level: MOLECULE
+//
+// Field is responsible for grouping related form elements
+// such as Label, Control and Help into a single logical block.
+// It defines the base structure for vertical and horizontal
+// form layouts, but does not manage form state or validation.
+type FieldProps struct {
+	// Grouped adds the is-grouped modifier.
+	Grouped bool
+
+	// Horizontal adds the is-horizontal modifier.
+	Horizontal bool
+
+	// Attr contains additional HTML attributes
+	// for the `.field` container.
+	Attr templ.Attributes
+}
+
+// Field renders the Bulma `.field` container.
+//
+// This component acts purely as a layout wrapper and
+// must not contain any business logic or validation rules.
+templ Field(props FieldProps, content templ.Component) {
+	<div
+		class={
+			"field",
+			templ.KV("is-grouped", props.Grouped),
+			templ.KV("is-horizontal", props.Horizontal),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}

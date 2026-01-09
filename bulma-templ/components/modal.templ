@@ -1,0 +1,166 @@
+package components
+
+// Modal renders a Bulma `.modal` component.
+// Atomic level: ORGANISM
+//
+// Modal defines the root container for modal dialogs.
+// It is responsible only for structure and CSS modifiers.
+// Open / close state must be managed externally.
+type ModalProps struct {
+	// Active applies the `is-active` modifier.
+	// Useful for server-side controlled modals.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the `.modal` container.
+	// Commonly used for x-data, x-show, aria-*, data-*.
+	Attr templ.Attributes
+}
+
+// Modal renders the root `.modal` container.
+templ Modal(props ModalProps, content templ.Component) {
+	<div
+		class={
+			"modal",
+			templ.KV("is-active", props.Active),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}
+
+
+// ModalBackground renders `.modal-background`.
+// Atomic level: MOLECULE
+//
+// ModalBackground is typically used to darken the background
+// and capture click events to close the modal.
+type ModalBackgroundProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.modal-background` element.
+	Attr templ.Attributes
+}
+
+// ModalBackground renders the modal backdrop.
+templ ModalBackground(props ModalBackgroundProps) {
+	<div class="modal-background" { props.Attr... }></div>
+}
+
+
+// ModalContent renders `.modal-content`.
+// Atomic level: MOLECULE
+//
+// ModalContent is used in the simple (non-card) modal variant.
+type ModalContentProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.modal-content` container.
+	Attr templ.Attributes
+}
+
+// ModalContent renders a Bulma `.modal-content`.
+templ ModalContent(props ModalContentProps, content templ.Component) {
+	<div class="modal-content" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// ModalClose renders `.modal-close` button.
+// Atomic level: MOLECULE
+//
+// ModalClose is used in the simple modal variant.
+// Closing behavior must be implemented externally.
+type ModalCloseProps struct {
+	// Size defines the close button size
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Attr contains additional HTML attributes
+	// for the close button.
+	Attr templ.Attributes
+}
+
+// ModalClose renders a modal close button.
+templ ModalClose(props ModalCloseProps) {
+	<button
+		class={
+			"modal-close",
+			props.Size,
+		}
+		aria-label="close"
+		{ props.Attr... }
+	></button>
+}
+
+
+// ModalCard renders `.modal-card`.
+// Atomic level: MOLECULE
+//
+// ModalCard is used for the card-style modal layout.
+type ModalCardProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.modal-card` container.
+	Attr templ.Attributes
+}
+
+// ModalCard renders a Bulma `.modal-card`.
+templ ModalCard(props ModalCardProps, content templ.Component) {
+	<div class="modal-card" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// ModalCardHead renders `.modal-card-head`.
+// Atomic level: MOLECULE
+//
+// Typically contains the title and close button.
+type ModalCardHeadProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.modal-card-head` container.
+	Attr templ.Attributes
+}
+
+// ModalCardHead renders the card modal header.
+templ ModalCardHead(props ModalCardHeadProps, content templ.Component) {
+	<header class="modal-card-head" { props.Attr... }>
+		@content
+	</header>
+}
+
+
+// ModalCardBody renders `.modal-card-body`.
+// Atomic level: MOLECULE
+//
+// Used for the main content of a card-style modal.
+type ModalCardBodyProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.modal-card-body` container.
+	Attr templ.Attributes
+}
+
+// ModalCardBody renders the card modal body.
+templ ModalCardBody(props ModalCardBodyProps, content templ.Component) {
+	<section class="modal-card-body" { props.Attr... }>
+		@content
+	</section>
+}
+
+
+// ModalCardFoot renders `.modal-card-foot`.
+// Atomic level: MOLECULE
+//
+// Typically contains action buttons.
+type ModalCardFootProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.modal-card-foot` container.
+	Attr templ.Attributes
+}
+
+// ModalCardFoot renders the card modal footer.
+templ ModalCardFoot(props ModalCardFootProps, content templ.Component) {
+	<footer class="modal-card-foot" { props.Attr... }>
+		@content
+	</footer>
+}

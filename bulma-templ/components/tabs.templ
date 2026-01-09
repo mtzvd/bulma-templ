@@ -1,0 +1,124 @@
+package components
+
+// Tabs renders a Bulma `.tabs` component.
+// Atomic level: ORGANISM
+//
+// Tabs is used for navigation between sections.
+// It is a structural component and does not manage active state.
+type TabsProps struct {
+	// Centered applies the `is-centered` modifier.
+	Centered bool
+
+	// Right applies the `is-right` modifier.
+	Right bool
+
+	// Boxed applies the `is-boxed` modifier.
+	Boxed bool
+
+	// Toggle applies the `is-toggle` modifier.
+	Toggle bool
+
+	// ToggleRounded applies the `is-toggle-rounded` modifier.
+	ToggleRounded bool
+
+	// Fullwidth applies the `is-fullwidth` modifier.
+	Fullwidth bool
+
+	// Size defines the tabs size
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Attr contains additional HTML attributes
+	// for the `.tabs` container.
+	Attr templ.Attributes
+}
+
+// Tabs renders the root `.tabs` container.
+templ Tabs(props TabsProps, content templ.Component) {
+	<div
+		class={
+			"tabs",
+			props.Size,
+			templ.KV("is-centered", props.Centered),
+			templ.KV("is-right", props.Right),
+			templ.KV("is-boxed", props.Boxed),
+			templ.KV("is-toggle", props.Toggle),
+			templ.KV("is-toggle-rounded", props.ToggleRounded),
+			templ.KV("is-fullwidth", props.Fullwidth),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}
+
+
+// TabsList renders the list of tabs.
+// Atomic level: MOLECULE
+//
+// TabsList is always rendered as <ul> inside Tabs.
+type TabsListProps struct {
+	// Attr contains additional HTML attributes
+	// for the <ul> element.
+	Attr templ.Attributes
+}
+
+// TabsList renders the tabs list container.
+templ TabsList(props TabsListProps, content templ.Component) {
+	<ul { props.Attr... }>
+		@content
+	</ul>
+}
+
+
+// TabsItem renders a single tab item.
+// Atomic level: MOLECULE
+//
+// Active state is applied on the <li> element
+// according to Bulma conventions.
+type TabsItemProps struct {
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the <li> element.
+	Attr templ.Attributes
+}
+
+// TabsItem renders a tab item.
+templ TabsItem(props TabsItemProps, content templ.Component) {
+	<li
+		class={ templ.KV("is-active", props.Active) }
+		{ props.Attr... }
+	>
+		@content
+	</li>
+}
+
+// TabsLink renders an interactive tab link.
+// Atomic level: ATOM
+//
+// TabsLink is used inside TabsItem to provide
+// correct UX (cursor, hover, focus) as per Bulma docs.
+// It does not manage tab state.
+type TabsLinkProps struct {
+	// Href defines the tab link URL.
+	// If nil, TabsLink is rendered as a non-navigational interactive element.
+	Href *string
+
+	// Attr contains additional HTML attributes
+	// for the <a> element.
+	Attr templ.Attributes
+}
+
+// TabsLink renders a clickable tab element.
+templ TabsLink(props TabsLinkProps, content templ.Component) {
+	<a
+		if props.Href != nil {
+			href={ *props.Href }
+		}
+		{ props.Attr... }
+	>
+		@content
+	</a>
+}

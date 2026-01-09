@@ -1,0 +1,102 @@
+package elements
+
+// Button — Bulma button component.
+// Atomic level: ATOM
+//
+// Button renders either a <button> or <a> element
+// depending on whether Href is provided.
+//
+// This component is content-based and does not
+// manage icons internally. Icons must be composed
+// explicitly via the Icon component.
+type ButtonProps struct {
+	// Href, when provided, renders the button as <a>.
+	// When nil, a native <button> is rendered.
+	Href *string
+
+	// Type defines the button type attribute.
+	// Applicable only when rendering <button>.
+	// (button | submit | reset)
+	Type string
+
+	// Bulma modifiers
+	Color string
+	Size  string
+	State string
+
+	// Layout modifiers
+	FullWidth bool
+
+	// State
+	Disabled bool
+
+	// Attr contains additional HTML attributes.
+	Attr templ.Attributes
+}
+
+// Button renders a Bulma button.
+templ Button(props ButtonProps, content templ.Component) {
+	if props.Href != nil {
+		<a
+			class={
+				"button",
+				props.Color,
+				props.Size,
+				props.State,
+				templ.KV("is-fullwidth", props.FullWidth),
+				templ.KV("is-disabled", props.Disabled),
+			}
+			href={ templ.SafeURL(*props.Href) }
+			{ props.Attr... }
+		>
+			@content
+		</a>
+	} else {
+		<button
+			class={
+				"button",
+				props.Color,
+				props.Size,
+				props.State,
+				templ.KV("is-fullwidth", props.FullWidth),
+			}
+			type={ props.Type }
+			disabled={ props.Disabled }
+			{ props.Attr... }
+		>
+			@content
+		</button>
+	}
+}
+
+
+// Buttons — Bulma buttons container.
+// Atomic level: MOLECULE
+//
+// Buttons renders a `.buttons` wrapper used
+// to group multiple Button components.
+type ButtonsProps struct {
+	// HasAddons applies the `has-addons` modifier.
+	HasAddons bool
+
+	// Align defines alignment modifier
+	// (is-centered, is-right).
+	Align string
+
+	// Attr contains additional HTML attributes.
+	Attr templ.Attributes
+}
+
+// Buttons renders a Bulma buttons container.
+templ Buttons(props ButtonsProps, content templ.Component) {
+	<div
+		class={
+			"buttons",
+			props.Align,
+			templ.KV("has-addons", props.HasAddons),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}

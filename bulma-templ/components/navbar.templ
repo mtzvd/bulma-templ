@@ -1,0 +1,181 @@
+package components
+
+// Navbar — Bulma navbar layout component.
+// Atomic level: ORGANISM
+//
+// Navbar provides the main site navigation structure.
+// It does NOT manage state, burger behavior, or dropdown logic.
+type NavbarProps struct {
+	// Color defines the Bulma color modifier
+	// (is-primary, is-dark, is-light, etc.).
+	Color string
+
+	// Transparent applies the `is-transparent` modifier.
+	Transparent bool
+
+	// Fixed defines fixed positioning
+	// (is-fixed-top or is-fixed-bottom).
+	Fixed string
+
+	// Attr contains additional HTML attributes
+	// for the `.navbar` container.
+	Attr templ.Attributes
+}
+
+// Navbar renders a Bulma `.navbar` container.
+templ Navbar(props NavbarProps, content templ.Component) {
+	<nav
+		class={
+			"navbar",
+			props.Color,
+			props.Fixed,
+			templ.KV("is-transparent", props.Transparent),
+		}
+		role="navigation"
+		aria-label="main navigation"
+		{ props.Attr... }
+	>
+		@content
+	</nav>
+}
+
+
+// NavbarBrand — brand section of Navbar.
+// Atomic level: MOLECULE
+//
+// NavbarBrand typically contains the logo and burger button.
+type NavbarBrandProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.navbar-brand` container.
+	Attr templ.Attributes
+}
+
+// NavbarBrand renders a Bulma `.navbar-brand` container.
+templ NavbarBrand(props NavbarBrandProps, content templ.Component) {
+	<div class="navbar-brand" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// NavbarBurger — burger button for mobile navigation.
+// Atomic level: MOLECULE
+//
+// NavbarBurger controls the visibility of NavbarMenu.
+// Behavior must be implemented externally.
+type NavbarBurgerProps struct {
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the `.navbar-burger` element.
+	Attr templ.Attributes
+}
+
+// NavbarBurger renders a Bulma `.navbar-burger` button.
+templ NavbarBurger(props NavbarBurgerProps) {
+	<a
+		role="button"
+		class={
+			"navbar-burger",
+			templ.KV("is-active", props.Active),
+		}
+		aria-label="menu"
+		aria-expanded={ templ.Bool(props.Active) }
+		{ props.Attr... }
+	>
+		<span aria-hidden="true"></span>
+		<span aria-hidden="true"></span>
+		<span aria-hidden="true"></span>
+	</a>
+}
+
+
+// NavbarMenu — collapsible menu section.
+// Atomic level: MOLECULE
+type NavbarMenuProps struct {
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the `.navbar-menu` container.
+	Attr templ.Attributes
+}
+
+// NavbarMenu renders a Bulma `.navbar-menu` container.
+templ NavbarMenu(props NavbarMenuProps, content templ.Component) {
+	<div
+		class={
+			"navbar-menu",
+			templ.KV("is-active", props.Active),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}
+
+
+// NavbarStart — left-aligned menu section.
+// Atomic level: MOLECULE
+type NavbarStartProps struct {
+	Attr templ.Attributes
+}
+
+// NavbarStart renders a Bulma `.navbar-start` container.
+templ NavbarStart(props NavbarStartProps, content templ.Component) {
+	<div class="navbar-start" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// NavbarEnd — right-aligned menu section.
+// Atomic level: MOLECULE
+type NavbarEndProps struct {
+	Attr templ.Attributes
+}
+
+// NavbarEnd renders a Bulma `.navbar-end` container.
+templ NavbarEnd(props NavbarEndProps, content templ.Component) {
+	<div class="navbar-end" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// NavbarDropdown — dropdown menu inside Navbar.
+// Atomic level: MOLECULE
+type NavbarDropdownProps struct {
+	// Right applies the `is-right` modifier.
+	Right bool
+
+	// Attr contains additional HTML attributes
+	// for the `.navbar-dropdown` container.
+	Attr templ.Attributes
+}
+
+// NavbarDropdown renders a Bulma `.navbar-dropdown` container.
+templ NavbarDropdown(props NavbarDropdownProps, content templ.Component) {
+	<div
+		class={
+			"navbar-dropdown",
+			templ.KV("is-right", props.Right),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}
+
+
+// NavbarDivider — visual divider inside NavbarDropdown.
+// Atomic level: MOLECULE
+type NavbarDividerProps struct {
+	Attr templ.Attributes
+}
+
+// NavbarDivider renders a Bulma `.navbar-divider`.
+templ NavbarDivider(props NavbarDividerProps) {
+	<hr class="navbar-divider" { props.Attr... } />
+}

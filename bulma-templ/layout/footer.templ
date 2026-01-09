@@ -1,0 +1,22 @@
+package layout
+
+// Footer — Bulma footer layout component.
+// Atomic level: ORGANISM
+//
+// Footer represents the bottom section of a page
+// using the Bulma `.footer` class.
+//
+// This component is purely structural and does NOT
+// impose any internal layout or content structure.
+type FooterProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.footer` element.
+	Attr templ.Attributes
+}
+
+// Footer renders a Bulma `.footer` element.
+templ Footer(props FooterProps, content templ.Component) {
+	<footer class="footer" { props.Attr... }>
+		@content
+	</footer>
+}

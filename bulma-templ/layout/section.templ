@@ -1,0 +1,32 @@
+package layout
+
+// Section — Bulma section layout wrapper.
+// Atomic level: ORGANISM
+//
+// Section provides vertical spacing between page sections
+// using the Bulma `.section` class.
+//
+// This component does NOT constrain content width.
+// To limit horizontal width, compose it with Container explicitly.
+type SectionProps struct {
+	// Size defines the section size modifier
+	// (is-medium, is-large).
+	Size string
+
+	// Attr contains additional HTML attributes
+	// for the `.section` element.
+	Attr templ.Attributes
+}
+
+// Section renders a Bulma `.section` element.
+templ Section(props SectionProps, content templ.Component) {
+	<section
+		class={
+			"section",
+			props.Size,
+		}
+		{ props.Attr... }
+	>
+		@content
+	</section>
+}

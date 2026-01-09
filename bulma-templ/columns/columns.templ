@@ -1,0 +1,80 @@
+package columns
+
+// Columns — Bulma columns layout container.
+// Atomic level: ORGANISM
+//
+// Columns defines a flexbox-based layout system
+// for arranging content in horizontal columns.
+// It does not impose any content structure and
+// serves purely as a layout mechanism.
+type ColumnsProps struct {
+	// Multiline allows columns to wrap onto multiple lines.
+	Multiline bool
+
+	// Centered centers the columns horizontally.
+	Centered bool
+
+	// Gapless removes the gap between columns.
+	Gapless bool
+
+	// Variable enables variable gap sizes.
+	Variable bool
+
+	// Attr contains additional HTML attributes
+	// for the `.columns` container.
+	Attr templ.Attributes
+}
+
+// Columns renders a Bulma `.columns` container.
+templ Columns(props ColumnsProps, content templ.Component) {
+	<div
+		class={
+			"columns",
+			templ.KV("is-multiline", props.Multiline),
+			templ.KV("is-centered", props.Centered),
+			templ.KV("is-gapless", props.Gapless),
+			templ.KV("is-variable", props.Variable),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}
+
+
+// Column — Bulma column element.
+// Atomic level: MOLECULE
+//
+// Column represents a single column inside a Columns container.
+// It controls width, offset and responsiveness.
+type ColumnProps struct {
+	// Size defines the column width
+	// (e.g. is-half, is-one-third).
+	Size string
+
+	// Narrow makes the column only as wide as its content.
+	Narrow bool
+
+	// Offset defines column offset
+	// (e.g. is-offset-one-quarter).
+	Offset string
+
+	// Attr contains additional HTML attributes
+	// for the `.column` element.
+	Attr templ.Attributes
+}
+
+// Column renders a Bulma `.column` element.
+templ Column(props ColumnProps, content templ.Component) {
+	<div
+		class={
+			"column",
+			props.Size,
+			props.Offset,
+			templ.KV("is-narrow", props.Narrow),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}

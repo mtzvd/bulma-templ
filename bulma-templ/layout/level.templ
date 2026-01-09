@@ -1,0 +1,88 @@
+package layout
+
+// Level — Bulma level layout component.
+// Atomic level: ORGANISM
+//
+// Level is used to horizontally align elements
+// to the left, right, or center using the Bulma `.level` pattern.
+//
+// This component does NOT manage content behavior or state.
+type LevelProps struct {
+	// Mobile applies the `is-mobile` modifier,
+	// preventing collapsing on mobile devices.
+	Mobile bool
+
+	// Attr contains additional HTML attributes
+	// for the `.level` container.
+	Attr templ.Attributes
+}
+
+// Level renders a Bulma `.level` container.
+templ Level(props LevelProps, content templ.Component) {
+	<nav
+		class={
+			"level",
+			templ.KV("is-mobile", props.Mobile),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</nav>
+}
+
+
+// LevelLeft — left-aligned section of Level.
+// Atomic level: MOLECULE
+//
+// LevelLeft groups items aligned to the left side
+// of the Level container.
+type LevelLeftProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.level-left` container.
+	Attr templ.Attributes
+}
+
+// LevelLeft renders a Bulma `.level-left` container.
+templ LevelLeft(props LevelLeftProps, content templ.Component) {
+	<div class="level-left" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// LevelRight — right-aligned section of Level.
+// Atomic level: MOLECULE
+//
+// LevelRight groups items aligned to the right side
+// of the Level container.
+type LevelRightProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.level-right` container.
+	Attr templ.Attributes
+}
+
+// LevelRight renders a Bulma `.level-right` container.
+templ LevelRight(props LevelRightProps, content templ.Component) {
+	<div class="level-right" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// LevelItem — individual item inside Level.
+// Atomic level: MOLECULE
+//
+// LevelItem wraps a single element inside Level
+// and applies proper alignment and spacing.
+type LevelItemProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.level-item` wrapper.
+	Attr templ.Attributes
+}
+
+// LevelItem renders a Bulma `.level-item`.
+templ LevelItem(props LevelItemProps, content templ.Component) {
+	<div class="level-item" { props.Attr... }>
+		@content
+	</div>
+}

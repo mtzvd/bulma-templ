@@ -1,0 +1,58 @@
+package elements
+
+// Image — Bulma image component.
+// Atomic level: MOLECULE
+//
+// Image renders a Bulma `.image` wrapper with a nested `<img>` element.
+// It supports fixed sizes, aspect ratios, and rounded images.
+//
+// This component is layout-oriented and always renders a <figure>
+// element as required by Bulma.
+type ImageProps struct {
+	// Src defines the image source URL.
+	// This field is required.
+	Src string
+
+	// Alt defines the alternative text for accessibility.
+	// This field is required.
+	Alt string
+
+	// Ratio defines the aspect ratio modifier
+	// (is-square, is-16by9, is-4by3, etc.).
+	Ratio string
+
+	// Size defines the fixed image size
+	// (is-16x16, is-32x32, is-64x64, etc.).
+	Size string
+
+	// Rounded applies the `is-rounded` modifier
+	// to the <img> element.
+	Rounded bool
+
+	// Attr contains additional HTML attributes
+	// for the <img> element.
+	Attr templ.Attributes
+
+	// FigureAttr contains additional HTML attributes
+	// for the <figure> wrapper.
+	FigureAttr templ.Attributes
+}
+
+// Image renders a Bulma image component.
+templ Image(props ImageProps) {
+	<figure
+		class={
+			"image",
+			props.Ratio,
+			props.Size,
+		}
+		{ props.FigureAttr... }
+	>
+		<img
+			src={ props.Src }
+			alt={ props.Alt }
+			class={ templ.KV("is-rounded", props.Rounded) }
+			{ props.Attr... }
+		/>
+	</figure>
+}

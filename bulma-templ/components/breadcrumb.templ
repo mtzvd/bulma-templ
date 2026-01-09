@@ -1,0 +1,90 @@
+package components
+
+import "github.com/mtzvd/faqgeo/internal/web/bulma/elements"
+
+// BreadcrumbItem represents a single breadcrumb item.
+//
+// This struct is a UI view-model used exclusively
+// for rendering breadcrumb navigation.
+//
+// The order of items defines the navigation hierarchy.
+// The last item is considered the current page.
+type BreadcrumbItem struct {
+	// Label defines the visible text of the breadcrumb item.
+	Label string
+
+	// Href defines the link URL.
+	// If empty, the item is considered the current page.
+	Href string
+
+	// Icon defines an optional icon rendered before the label.
+	// When nil, no icon is rendered.
+	Icon *elements.IconProps
+
+	// Attr contains additional HTML attributes
+	// for the anchor (<a>) element.
+	Attr templ.Attributes
+}
+
+// BreadcrumbProps defines the properties for Breadcrumb.
+//
+// Breadcrumb is a Bulma component responsible for rendering
+// navigational hierarchy. It does not manage routing,
+// state, or business logic.
+type BreadcrumbProps struct {
+	// Items defines the breadcrumb items ordered
+	// from root to the current page.
+	Items []BreadcrumbItem
+
+	// Separator defines the Bulma separator modifier.
+	// Examples:
+	// has-arrow-separator
+	// has-bullet-separator
+	// has-dot-separator
+	// has-succeeds-separator
+	Separator string
+
+	// Attr contains additional HTML attributes
+	// for the <nav> element.
+	Attr templ.Attributes
+}
+
+// Breadcrumb renders a Bulma `.breadcrumb` component.
+// Atomic level: ORGANISM
+//
+// The active breadcrumb item is determined
+// as the last item in the Items list.
+templ Breadcrumb(props BreadcrumbProps) {
+	<nav
+		class={
+			"breadcrumb",
+			props.Separator,
+		}
+		aria-label="breadcrumbs"
+		{ props.Attr... }
+	>
+		<ul>
+			for i, item := range props.Items {
+				if i == len(props.Items)-1 {
+					<li class="is-active">
+						<a aria-current="page" { item.Attr... }>
+							if item.Icon != nil {
+								@elements.Icon(*item.Icon)
+							}
+							<span>{ item.Label }</span>
+						</a>
+					</li>
+				} else {
+					<li>
+						<a href={ item.Href } { item.Attr... }>
+							if item.Icon != nil {
+								@elements.Icon(*item.Icon)
+							}
+							<span>{ item.Label }</span>
+						</a>
+					</li>
+				}
+			}
+		</ul>
+	</nav>
+}

@@ -1,0 +1,100 @@
+package components
+
+// Panel renders a Bulma `.panel` component.
+// Atomic level: ORGANISM
+//
+// Panel is used to group related content and actions.
+// It is a structural component and does not manage state.
+type PanelProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.panel` container.
+	Attr templ.Attributes
+}
+
+// Panel renders the root `.panel` container.
+templ Panel(props PanelProps, content templ.Component) {
+	<nav class="panel" { props.Attr... }>
+		@content
+	</nav>
+}
+
+
+// PanelHeading renders a Bulma `.panel-heading`.
+// Atomic level: MOLECULE
+//
+// PanelHeading is used to display the panel title.
+type PanelHeadingProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.panel-heading` element.
+	Attr templ.Attributes
+}
+
+// PanelHeading renders the panel heading.
+templ PanelHeading(props PanelHeadingProps, content templ.Component) {
+	<p class="panel-heading" { props.Attr... }>
+		@content
+	</p>
+}
+
+
+// PanelTabs renders Bulma `.panel-tabs`.
+// Atomic level: MOLECULE
+//
+// PanelTabs is used to display tab navigation inside Panel.
+type PanelTabsProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.panel-tabs` container.
+	Attr templ.Attributes
+}
+
+// PanelTabs renders panel tabs.
+templ PanelTabs(props PanelTabsProps, content templ.Component) {
+	<p class="panel-tabs" { props.Attr... }>
+		@content
+	</p>
+}
+
+
+// PanelBlock renders Bulma `.panel-block`.
+// Atomic level: MOLECULE
+//
+// PanelBlock can be rendered as a link (<a>) or
+// as a container (<div>) depending on the presence of Href.
+type PanelBlockProps struct {
+	// Href defines the link URL.
+	// If nil, the block is rendered as a <div>.
+	Href *string
+
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the `.panel-block` element.
+	Attr templ.Attributes
+}
+
+// PanelBlock renders a panel block.
+templ PanelBlock(props PanelBlockProps, content templ.Component) {
+	if props.Href != nil {
+		<a
+			class={
+				"panel-block",
+				templ.KV("is-active", props.Active),
+			}
+			href={ *props.Href }
+			{ props.Attr... }
+		>
+			@content
+		</a>
+	} else {
+		<div
+			class={
+				"panel-block",
+				templ.KV("is-active", props.Active),
+			}
+			{ props.Attr... }
+		>
+			@content
+		</div>
+	}
+}

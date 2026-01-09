@@ -1,0 +1,67 @@
+package components
+
+// Message renders a Bulma `.message` component.
+// Atomic level: ORGANISM
+//
+// Message is used to display informational,
+// success, warning, or error messages.
+// It does not manage state or closing behavior.
+type MessageProps struct {
+	// Color defines the Bulma color modifier
+	// (is-info, is-success, is-warning, is-danger).
+	Color string
+
+	// Attr contains additional HTML attributes
+	// for the `.message` container.
+	Attr templ.Attributes
+}
+
+// Message renders the root `.message` container.
+templ Message(props MessageProps, content templ.Component) {
+	<article
+		class={
+			"message",
+			props.Color,
+		}
+		{ props.Attr... }
+	>
+		@content
+	</article>
+}
+
+
+// MessageHeader renders the header section of Message.
+// Atomic level: MOLECULE
+//
+// MessageHeader is used to display the message title
+// and optional controls (e.g. delete button).
+type MessageHeaderProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.message-header` container.
+	Attr templ.Attributes
+}
+
+// MessageHeader renders a Bulma `.message-header`.
+templ MessageHeader(props MessageHeaderProps, content templ.Component) {
+	<div class="message-header" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// MessageBody renders the body section of Message.
+// Atomic level: MOLECULE
+//
+// MessageBody is used to display the main message content.
+type MessageBodyProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.message-body` container.
+	Attr templ.Attributes
+}
+
+// MessageBody renders a Bulma `.message-body`.
+templ MessageBody(props MessageBodyProps, content templ.Component) {
+	<div class="message-body" { props.Attr... }>
+		@content
+	</div>
+}

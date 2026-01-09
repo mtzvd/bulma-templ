@@ -1,0 +1,162 @@
+package form
+
+// File — Bulma file upload component.
+// Atomic level: MOLECULE
+//
+// File renders the Bulma `.file` wrapper.
+// It provides visual styling and layout for
+// file input controls and related UI elements.
+type FileProps struct {
+	// Color defines the file color modifier
+	// (e.g. is-primary, is-danger).
+	Color string
+
+	// Size defines the file size modifier
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// FullWidth adds the is-fullwidth modifier.
+	FullWidth bool
+
+	// Boxed adds the is-boxed modifier.
+	Boxed bool
+
+	// HasName adds the has-name modifier.
+	HasName bool
+
+	// Align defines alignment modifier
+	// (is-centered, is-right).
+	Align string
+
+	// WrapperAttr contains additional HTML attributes
+	// for the `.file` wrapper.
+	WrapperAttr templ.Attributes
+}
+
+// File renders the Bulma `.file` container.
+//
+// FileLabel must be provided via content.
+templ File(props FileProps, content templ.Component) {
+	<div
+		class={
+			"file",
+			props.Color,
+			props.Size,
+			props.Align,
+			templ.KV("is-fullwidth", props.FullWidth),
+			templ.KV("is-boxed", props.Boxed),
+			templ.KV("has-name", props.HasName),
+		}
+		{ props.WrapperAttr... }
+	>
+		@content
+	</div>
+}
+
+
+// FileLabel — Bulma file label wrapper.
+// Atomic level: ATOM
+//
+// FileLabel wraps the native file input
+// and all visual file UI elements.
+type FileLabelProps struct {
+	// WrapperAttr contains additional HTML attributes
+	// for the `.file-label` element.
+	WrapperAttr templ.Attributes
+}
+
+// FileLabel renders a Bulma `.file-label` container.
+templ FileLabel(props FileLabelProps, content templ.Component) {
+	<label class="file-label" { props.WrapperAttr... }>
+		@content
+	</label>
+}
+
+
+// FileInput — native file input element.
+// Atomic level: ATOM
+//
+// FileInput renders the `<input type=\"file\">` element.
+type FileInputProps struct {
+	// Disabled disables the file input.
+	Disabled bool
+
+	// Attr contains additional HTML attributes
+	// for the <input type="file"> element.
+	//
+	// Use this for:
+	//   - name
+	//   - accept
+	//   - multiple
+	//   - data-*
+	//   - x-on:change
+	Attr templ.Attributes
+}
+
+// FileInput renders the native file input.
+templ FileInput(props FileInputProps) {
+	<input
+		type="file"
+		class="file-input"
+		disabled={ props.Disabled }
+		{ props.Attr... }
+	/>
+}
+
+
+// FileCTA — Bulma file call-to-action.
+// Atomic level: ATOM
+//
+// FileCTA renders the `.file-cta` element
+// containing icon and label.
+type FileCTAProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.file-cta` element.
+	Attr templ.Attributes
+}
+
+// FileCTA renders a Bulma `.file-cta` element.
+templ FileCTA(props FileCTAProps, content templ.Component) {
+	<span class="file-cta" { props.Attr... }>
+		@content
+	</span>
+}
+
+
+// FileIcon — icon container inside file CTA.
+// Atomic level: ATOM
+type FileIconProps struct {
+	Attr templ.Attributes
+}
+
+templ FileIcon(props FileIconProps, content templ.Component) {
+	<span class="file-icon" { props.Attr... }>
+		@content
+	</span>
+}
+
+
+// FileText — text label inside file CTA.
+// Atomic level: ATOM
+type FileTextProps struct {
+	Attr templ.Attributes
+}
+
+templ FileText(props FileTextProps, content templ.Component) {
+	<span class="file-label" { props.Attr... }>
+		@content
+	</span>
+}
+
+
+// FileName — selected file name display.
+// Atomic level: ATOM
+type FileNameProps struct {
+	Attr templ.Attributes
+}
+
+templ FileName(props FileNameProps, content templ.Component) {
+	<span class="file-name" { props.Attr... }>
+		@content
+	</span>
+}

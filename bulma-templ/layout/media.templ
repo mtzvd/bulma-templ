@@ -1,0 +1,79 @@
+package layout
+
+// Media — Bulma media object layout component.
+// Atomic level: ORGANISM
+//
+// Media is a structural layout pattern used to align
+// images, icons, or avatars next to content.
+//
+// This component is purely structural and does not
+// manage content behavior or state.
+type MediaProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.media` container.
+	Attr templ.Attributes
+}
+
+// Media renders a Bulma `.media` container.
+templ Media(props MediaProps, content templ.Component) {
+	<article class="media" { props.Attr... }>
+		@content
+	</article>
+}
+
+
+// MediaLeft — left section of Media.
+// Atomic level: MOLECULE
+//
+// MediaLeft is typically used for images, icons,
+// or avatars displayed to the left of the content.
+type MediaLeftProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.media-left` container.
+	Attr templ.Attributes
+}
+
+// MediaLeft renders a Bulma `.media-left` container.
+templ MediaLeft(props MediaLeftProps, content templ.Component) {
+	<figure class="media-left" { props.Attr... }>
+		@content
+	</figure>
+}
+
+
+// MediaContent — main content section of Media.
+// Atomic level: MOLECULE
+//
+// MediaContent holds the primary textual or structured
+// content associated with the media object.
+type MediaContentProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.media-content` container.
+	Attr templ.Attributes
+}
+
+// MediaContent renders a Bulma `.media-content` container.
+templ MediaContent(props MediaContentProps, content templ.Component) {
+	<div class="media-content" { props.Attr... }>
+		@content
+	</div>
+}
+
+
+// MediaRight — right section of Media.
+// Atomic level: MOLECULE
+//
+// MediaRight is used for actions such as buttons,
+// icons, or delete controls aligned to the right.
+type MediaRightProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.media-right` container.
+	Attr templ.Attributes
+}
+
+// MediaRight renders a Bulma `.media-right` container.
+templ MediaRight(props MediaRightProps, content templ.Component) {
+	<div class="media-right" { props.Attr... }>
+		@content
+	</div>
+}

@@ -1,0 +1,32 @@
+package elements
+
+// Notification — Bulma notification component.
+// Atomic level: MOLECULE
+//
+// Notification renders a Bulma `.notification` container.
+// It does not manage close buttons, state, or behavior.
+//
+// Any additional elements (such as a delete button)
+// must be composed explicitly by the caller.
+type NotificationProps struct {
+	// Color defines the Bulma color modifier
+	// (is-primary, is-info, is-success, is-warning, is-danger).
+	Color string
+
+	// Attr contains additional HTML attributes
+	// for the `.notification` container.
+	Attr templ.Attributes
+}
+
+// Notification renders a Bulma notification container.
+templ Notification(props NotificationProps, content templ.Component) {
+	<div
+		class={
+			"notification",
+			props.Color,
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}

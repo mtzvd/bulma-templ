@@ -1,0 +1,54 @@
+package form
+
+// Textarea — Bulma textarea form element.
+// Atomic level: ATOM
+//
+// Textarea renders a Bulma `.textarea` form control.
+// It is responsible only for visual appearance and
+// HTML attributes, and does not manage layout,
+// validation logic or state.
+type TextareaProps struct {
+	// Value defines the textarea content.
+	Value string
+
+	// Placeholder defines the textarea placeholder text.
+	Placeholder string
+
+	// Rows defines the visible number of text lines.
+	Rows int
+
+	// Color defines the textarea color modifier
+	// (e.g. is-primary, is-danger).
+	Color string
+
+	// Size defines the textarea size modifier
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Disabled disables the textarea.
+	Disabled bool
+
+	// ReadOnly makes the textarea read-only.
+	ReadOnly bool
+
+	// Attr contains additional HTML attributes
+	// for the <textarea> element.
+	Attr templ.Attributes
+}
+
+// Textarea renders a Bulma `.textarea` element.
+//
+// This component must be wrapped with Control
+// and Field components when used in a form layout.
+templ Textarea(props TextareaProps) {
+	<textarea
+		class={ "textarea", props.Color, props.Size }
+		placeholder={ props.Placeholder }
+		rows={ props.Rows }
+		disabled={ props.Disabled }
+		readonly={ props.ReadOnly }
+		{ props.Attr... }
+	>
+		{ props.Value }
+	</textarea>
+}

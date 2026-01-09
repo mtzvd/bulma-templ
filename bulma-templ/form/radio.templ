@@ -1,0 +1,84 @@
+package form
+
+// Radio — Bulma radio form control.
+// Atomic level: ATOM
+//
+// Radio renders a Bulma `.radio` label together with
+// the native `<input type="radio">` element inside.
+//
+// IMPORTANT:
+// This component intentionally exposes two attribute sets:
+//
+//   - WrapperAttr applies to the `<label class="radio">` element
+//   - Attr applies to the native `<input>` element
+//
+// Use WrapperAttr for layout, spacing and JS hooks.
+// Use Attr for form-related attributes (name, value, checked, etc.).
+type RadioProps struct {
+	// Checked controls the checked state of the radio button.
+	Checked bool
+
+	// Disabled disables the native radio input.
+	Disabled bool
+
+	// Attr contains additional HTML attributes
+	// for the native <input type="radio"> element.
+	//
+	// Use this for:
+	//   - name (REQUIRED for grouping)
+	//   - value
+	//   - data-*
+	//   - x-model
+	//   - aria-*
+	Attr templ.Attributes
+
+	// WrapperAttr contains additional HTML attributes
+	// for the <label class="radio"> wrapper.
+	//
+	// Use this for:
+	//   - layout-related classes
+	//   - spacing helpers
+	//   - Alpine.js directives
+	WrapperAttr templ.Attributes
+}
+
+// Radio renders a Bulma radio control.
+//
+// The radio label text must be provided
+// via the component content.
+templ Radio(props RadioProps, content templ.Component) {
+	<label class="radio" { props.WrapperAttr... }>
+		<input
+			type="radio"
+			checked={ props.Checked }
+			disabled={ props.Disabled }
+			{ props.Attr... }
+		/>
+		@content
+	</label>
+}
+
+
+// Radios — Bulma radios container.
+// Atomic level: MOLECULE
+//
+// Radios renders the Bulma `.radios` wrapper,
+// which groups multiple Radio components
+// into a single logical set.
+//
+// This component provides structural grouping only
+// and does not manage radio state.
+type RadiosProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.radios` container.
+	Attr templ.Attributes
+}
+
+// Radios renders a Bulma `.radios` container.
+//
+// Radio components must be provided via content.
+templ Radios(props RadiosProps, content templ.Component) {
+	<div class="radios" { props.Attr... }>
+		@content
+	</div>
+}

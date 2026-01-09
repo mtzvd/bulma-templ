@@ -1,0 +1,41 @@
+package form
+
+// Control — Bulma form control wrapper.
+// Atomic level: MOLECULE
+//
+// Control wraps interactive form elements such as
+// input, select, textarea or button.
+// It is responsible only for layout concerns like
+// icon positioning and width expansion.
+type ControlProps struct {
+	// Expanded adds the is-expanded modifier.
+	Expanded bool
+
+	// HasIconsLeft adds the has-icons-left modifier.
+	HasIconsLeft bool
+
+	// HasIconsRight adds the has-icons-right modifier.
+	HasIconsRight bool
+
+	// Attr contains additional HTML attributes
+	// for the `.control` container.
+	Attr templ.Attributes
+}
+
+// Control renders the Bulma `.control` container.
+//
+// This component does not manage focus, validation,
+// value binding or interactivity.
+templ Control(props ControlProps, content templ.Component) {
+	<div
+		class={
+			"control",
+			templ.KV("is-expanded", props.Expanded),
+			templ.KV("has-icons-left", props.HasIconsLeft),
+			templ.KV("has-icons-right", props.HasIconsRight),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}

@@ -1,0 +1,69 @@
+package elements
+
+// Tag — Bulma tag element.
+// Atomic level: ATOM
+//
+// Tag is a content-based component that renders
+// a Bulma `.tag` element. It does not manage delete
+// buttons, icons, or links internally.
+//
+// Any additional elements must be composed explicitly.
+type TagProps struct {
+	// Color defines the tag color modifier
+	// (is-primary, is-info, is-success, is-warning, is-danger).
+	Color string
+
+	// Size defines the tag size modifier
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Rounded applies the `is-rounded` modifier.
+	Rounded bool
+
+	// Attr contains additional HTML attributes
+	// for the `.tag` element.
+	Attr templ.Attributes
+}
+
+// Tag renders a Bulma tag.
+templ Tag(props TagProps, content templ.Component) {
+	<span
+		class={
+			"tag",
+			props.Color,
+			props.Size,
+			templ.KV("is-rounded", props.Rounded),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</span>
+}
+
+
+// Tags — Bulma tags container.
+// Atomic level: MOLECULE
+//
+// Tags groups multiple Tag components together
+// using the Bulma `.tags` wrapper.
+type TagsProps struct {
+	// HasAddons applies the `has-addons` modifier.
+	HasAddons bool
+
+	// Attr contains additional HTML attributes
+	// for the `.tags` container.
+	Attr templ.Attributes
+}
+
+// Tags renders a Bulma tags container.
+templ Tags(props TagsProps, content templ.Component) {
+	<div
+		class={
+			"tags",
+			templ.KV("has-addons", props.HasAddons),
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}

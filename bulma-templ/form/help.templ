@@ -1,0 +1,31 @@
+package form
+
+// Help — Bulma help text element.
+// Atomic level: ATOM
+//
+// Help is used to display helper messages or
+// validation feedback below a form control.
+// It is purely presentational and does not
+// perform validation by itself.
+type HelpProps struct {
+	// Text defines the help message content.
+	Text string
+
+	// Color defines the message color
+	// (e.g. is-danger, is-success).
+	Color string
+
+	// Attr contains additional HTML attributes
+	// for the `.help` element.
+	Attr templ.Attributes
+}
+
+// Help renders a Bulma `.help` element.
+//
+// This component should be conditionally rendered
+// by higher-level logic when needed.
+templ Help(props HelpProps) {
+	<p class={ "help", props.Color } { props.Attr... }>
+		{ props.Text }
+	</p>
+}

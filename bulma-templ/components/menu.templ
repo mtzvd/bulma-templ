@@ -1,0 +1,88 @@
+package components
+
+// Menu renders a Bulma `.menu` component.
+// Atomic level: ORGANISM
+//
+// Menu is used for vertical navigation and grouped links.
+// It does not manage state or impose internal structure.
+type MenuProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.menu` container.
+	Attr templ.Attributes
+}
+
+// Menu renders the root `.menu` container.
+templ Menu(props MenuProps, content templ.Component) {
+	<aside class="menu" { props.Attr... }>
+		@content
+	</aside>
+}
+
+
+// MenuLabel renders a Bulma `.menu-label`.
+// Atomic level: MOLECULE
+//
+// MenuLabel is used to display section headers inside Menu.
+type MenuLabelProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.menu-label` element.
+	Attr templ.Attributes
+}
+
+// MenuLabel renders a menu section label.
+templ MenuLabel(props MenuLabelProps, content templ.Component) {
+	<p class="menu-label" { props.Attr... }>
+		@content
+	</p>
+}
+
+
+// MenuList renders a Bulma `.menu-list`.
+// Atomic level: MOLECULE
+//
+// MenuList wraps menu items and supports
+// nested lists via standard <ul> nesting.
+type MenuListProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.menu-list` container.
+	Attr templ.Attributes
+}
+
+// MenuList renders a menu list container.
+templ MenuList(props MenuListProps, content templ.Component) {
+	<ul class="menu-list" { props.Attr... }>
+		@content
+	</ul>
+}
+
+
+// MenuItem renders a Bulma-compatible menu item.
+// Atomic level: ATOM
+//
+// MenuItem is always rendered as an <a> element.
+// Active state is controlled externally.
+type MenuItemProps struct {
+	// Href defines the link URL.
+	// If nil, the item is treated as an action item.
+	Href *string
+
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the <a> element.
+	Attr templ.Attributes
+}
+
+// MenuItem renders a menu link.
+templ MenuItem(props MenuItemProps, content templ.Component) {
+	<a
+		class={ templ.KV("is-active", props.Active) }
+		if props.Href != nil {
+			href={ *props.Href }
+		}
+		{ props.Attr... }
+	>
+		@content
+	</a>
+}

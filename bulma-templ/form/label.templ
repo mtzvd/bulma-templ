@@ -1,0 +1,26 @@
+package form
+
+// Label — Bulma form label element.
+// Atomic level: ATOM
+//
+// Label renders a textual label associated with
+// a form control. It does not manage layout,
+// accessibility relations or form state.
+type LabelProps struct {
+	// Text defines the label content.
+	Text string
+
+	// Attr contains additional HTML attributes
+	// for the <label> element.
+	Attr templ.Attributes
+}
+
+// Label renders a Bulma `.label` element.
+//
+// This component is a pure typographic atom and
+// should not be extended with layout logic.
+templ Label(props LabelProps) {
+	<label class="label" { props.Attr... }>
+		{ props.Text }
+	</label>
+}

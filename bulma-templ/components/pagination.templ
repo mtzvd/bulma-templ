@@ -1,0 +1,152 @@
+package components
+
+// PaginationLink represents a pagination link.
+// Atomic level: MOLECULE
+//
+// Used for:
+// - page links
+// - previous / next controls
+type PaginationLink struct {
+	// Label defines the visible text.
+	Label string
+
+	// Href defines the link URL.
+	// If empty or Disabled == true, the link is rendered as disabled.
+	Href string
+
+	// Current marks the link as the current page
+	// (used only for page links).
+	Current bool
+
+	// Disabled disables the link and renders it as non-clickable.
+	Disabled bool
+
+	// Attr contains additional HTML attributes
+	// for the <a> element.
+	Attr templ.Attributes
+}
+
+// PaginationItem represents an item inside pagination-list.
+type PaginationItem struct {
+	// Link defines a page link.
+	// If nil and Ellipsis == true, an ellipsis is rendered.
+	Link *PaginationLink
+
+	// Ellipsis renders a "…" separator.
+	Ellipsis bool
+}
+
+// PaginationProps defines properties for the Pagination component.
+//
+// Atomic level: ORGANISM
+// Pagination is an organism-level Bulma component responsible
+// only for rendering pagination UI.
+// It does NOT calculate pages or manage state.
+type PaginationProps struct {
+	// Prev defines the "Previous" link.
+	// If nil, the control is not rendered.
+	Prev *PaginationLink
+
+	// Next defines the "Next" link.
+	// If nil, the control is not rendered.
+	Next *PaginationLink
+
+	// Items defines page items.
+	// If empty or nil, pagination-list is not rendered
+	// (simple pagination).
+	Items []PaginationItem
+
+	// Size defines pagination size
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Alignment defines pagination alignment
+	// ("", is-centered, is-right).
+	Alignment string
+
+	// Rounded applies the `is-rounded` modifier.
+	Rounded bool
+
+	// Attr contains additional HTML attributes
+	// for the <nav> element.
+	Attr templ.Attributes
+}
+
+// Pagination renders a Bulma `.pagination` component.
+// Atomic level: ORGANISM
+//
+// Supported modes:
+// - simple pagination (prev / next only)
+// - pagination with page numbers
+// - alignment, size and rounded styles
+templ Pagination(props PaginationProps) {
+	<nav
+		class={
+			"pagination",
+			props.Size,
+			props.Alignment,
+			templ.KV("is-rounded", props.Rounded),
+		}
+		role="navigation"
+		aria-label="pagination"
+		{ props.Attr... }
+	>
+		if props.Prev != nil {
+			<a
+				class="pagination-previous"
+				if !props.Prev.Disabled && props.Prev.Href != "" {
+					href={ props.Prev.Href }
+				}
+				if props.Prev.Disabled {
+					disabled
+				}
+				{ props.Prev.Attr... }
+			>
+				{ props.Prev.Label }
+			</a>
+		}
+
+		if props.Next != nil {
+			<a
+				class="pagination-next"
+				if !props.Next.Disabled && props.Next.Href != "" {
+					href={ props.Next.Href }
+				}
+				if props.Next.Disabled {
+					disabled
+				}
+				{ props.Next.Attr... }
+			>
+				{ props.Next.Label }
+			</a>
+		}
+
+		if len(props.Items) > 0 {
+			<ul class="pagination-list">
+				for _, item := range props.Items {
+					<li>
+						if item.Ellipsis {
+							<span class="pagination-ellipsis">&hellip;</span>
+						} else if item.Link != nil {
+							<a
+								class={
+									"pagination-link",
+									templ.KV("is-current", item.Link.Current),
+								}
+								if !item.Link.Disabled && item.Link.Href != "" {
+									href={ item.Link.Href }
+								}
+								if item.Link.Disabled {
+									disabled
+								}
+								{ item.Link.Attr... }
+							>
+								{ item.Link.Label }
+							</a>
+						}
+					</li>
+				}
+			</ul>
+		}
+	</nav>
+}

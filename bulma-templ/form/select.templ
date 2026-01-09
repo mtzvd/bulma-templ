@@ -1,0 +1,90 @@
+package form
+
+// Select — Bulma select form component.
+// Atomic level: MOLECULE
+//
+// Select renders a Bulma `.select` wrapper together with
+// the native `<select>` element inside.
+//
+// IMPORTANT:
+// This component intentionally exposes two separate
+// attribute sets:
+//
+//   - WrapperAttr applies to the `.select` wrapper
+//   - Attr applies to the native `<select>` element
+//
+// This distinction is required because Bulma styles
+// and JavaScript hooks (e.g. Alpine.js) are often applied
+// to the wrapper, while form-related attributes
+// (name, value, data-*, x-model, etc.) must be applied
+// to the native control.
+//
+// Options must be provided via the component content.
+type SelectProps struct {
+	// Color defines the select color modifier
+	// (e.g. is-primary, is-danger).
+	Color string
+
+	// Size defines the select size modifier
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Multiple enables multiple selection.
+	//
+	// Note: This affects both the Bulma wrapper
+	// and the native <select> element.
+	Multiple bool
+
+	// FullWidth adds the is-fullwidth modifier
+	// to the Bulma wrapper.
+	FullWidth bool
+
+	// Disabled disables the native <select> element.
+	Disabled bool
+
+	// Attr contains additional HTML attributes
+	// for the native <select> element.
+	//
+	// Use this for:
+	//   - name
+	//   - value
+	//   - data-*
+	//   - x-model
+	//   - aria-*
+	Attr templ.Attributes
+
+	// WrapperAttr contains additional HTML attributes
+	// for the Bulma `.select` wrapper.
+	//
+	// Use this for:
+	//   - layout-related classes
+	//   - visibility helpers
+	//   - Alpine.js state (x-data, x-show, etc.)
+	//   - non-form-related data attributes
+	WrapperAttr templ.Attributes
+}
+
+// Select renders a Bulma `.select` component.
+//
+// This component must be wrapped with Control
+// and Field components when used in a form layout.
+templ Select(props SelectProps, content templ.Component) {
+	<div
+		class={
+			"select",
+			props.Color,
+			props.Size,
+			templ.KV("is-multiple", props.Multiple),
+			templ.KV("is-fullwidth", props.FullWidth),
+		}
+		{ props.WrapperAttr... }
+	>
+		<select
+			multiple={ props.Multiple }
+			disabled={ props.Disabled }
+			{ props.Attr... }
+		>
+			@content
+		</select>
+	</div>
+}

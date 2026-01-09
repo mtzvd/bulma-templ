@@ -1,0 +1,32 @@
+package elements
+
+// Content — Bulma typographic container.
+// Atomic level: MOLECULE
+//
+// Content applies Bulma typography styles to all nested
+// HTML elements (headings, lists, tables, code blocks, etc.).
+//
+// This component is used for articles, documentation,
+// FAQ sections, and SEO-oriented content.
+type ContentProps struct {
+	// Size defines the typography size modifier
+	// (is-small, is-medium, is-large).
+	Size string
+
+	// Attr contains additional HTML attributes
+	// for the `.content` container.
+	Attr templ.Attributes
+}
+
+// Content renders a Bulma `.content` container.
+templ Content(props ContentProps, content templ.Component) {
+	<div
+		class={
+			"content",
+			props.Size,
+		}
+		{ props.Attr... }
+	>
+		@content
+	</div>
+}
