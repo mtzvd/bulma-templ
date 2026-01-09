@@ -1,6 +1,6 @@
 package components
 
-// PaginationLink represents a pagination link.
+// PaginationLink defines a pagination link.
 // Atomic level: MOLECULE
 //
 // Used for:
@@ -26,7 +26,7 @@ type PaginationLink struct {
 	Attr templ.Attributes
 }
 
-// PaginationItem represents an item inside pagination-list.
+// PaginationItem defines an item inside pagination-list.
 type PaginationItem struct {
 	// Link defines a page link.
 	// If nil and Ellipsis == true, an ellipsis is rendered.
@@ -150,3 +150,4 @@ templ Pagination(props PaginationProps) {
 		}
 	</nav>
 }
+

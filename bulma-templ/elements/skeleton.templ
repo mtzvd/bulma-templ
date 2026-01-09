@@ -3,7 +3,7 @@ package elements
 // SkeletonBlock renders a Bulma `.skeleton-block`.
 // Atomic level: ATOM
 //
-// SkeletonBlock is a visual wrapper that applies
+// SkeletonBlock defines visual wrapper that applies
 // a skeleton loading style to its content.
 type SkeletonBlockProps struct {
 	// Attr contains additional HTML attributes
@@ -22,7 +22,7 @@ templ SkeletonBlock(props SkeletonBlockProps, content templ.Component) {
 // SkeletonLines renders Bulma `.skeleton-lines`.
 // Atomic level: ATOM
 //
-// SkeletonLines is a wrapper used to apply
+// SkeletonLines defines wrapper used to apply
 // skeleton loading styles to text-like content.
 type SkeletonLinesProps struct {
 	// Attr contains additional HTML attributes
@@ -36,3 +36,4 @@ templ SkeletonLines(props SkeletonLinesProps, content templ.Component) {
 		@content
 	</div>
 }
+

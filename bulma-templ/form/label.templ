@@ -17,10 +17,11 @@ type LabelProps struct {
 
 // Label renders a Bulma `.label` element.
 //
-// This component is a pure typographic atom and
+// This component defines pure typographic atom and
 // should not be extended with layout logic.
 templ Label(props LabelProps) {
 	<label class="label" { props.Attr... }>
 		{ props.Text }
 	</label>
 }
+

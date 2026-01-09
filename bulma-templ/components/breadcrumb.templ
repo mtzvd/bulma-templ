@@ -2,9 +2,9 @@ package components
 
 import "github.com/mtzvd/faqgeo/internal/web/bulma/elements"
 
-// BreadcrumbItem represents a single breadcrumb item.
+// BreadcrumbItem defines a single breadcrumb item.
 //
-// This struct is a UI view-model used exclusively
+// This struct defines UI view-model used exclusively
 // for rendering breadcrumb navigation.
 //
 // The order of items defines the navigation hierarchy.
@@ -28,7 +28,7 @@ type BreadcrumbItem struct {
 
 // BreadcrumbProps defines the properties for Breadcrumb.
 //
-// Breadcrumb is a Bulma component responsible for rendering
+// Breadcrumb defines Bulma component renders
 // navigational hierarchy. It does not manage routing,
 // state, or business logic.
 type BreadcrumbProps struct {
@@ -88,3 +88,4 @@ templ Breadcrumb(props BreadcrumbProps) {
 		</ul>
 	</nav>
 }
+
