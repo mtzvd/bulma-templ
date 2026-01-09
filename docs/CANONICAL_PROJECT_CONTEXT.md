@@ -6,8 +6,8 @@ A standalone **Bulma-based design system**, implemented with **templ (Go)**.
 
 SSR-first, type-safe, Bulma-first, minimal JavaScript.
 
-Project goal:
-Create a complete, canonical, OSS-ready Bulma design system for Go/templ,
+Project goal:  
+Create a complete, canonical, OSS-ready Bulma design system for Go/templ,  
 suitable for reuse across multiple projects and for public distribution.
 
 ---
@@ -25,14 +25,14 @@ suitable for reuse across multiple projects and for public distribution.
 
   ❌ No LAYOUT-*, COMPONENT-PART, UI-LEVEL, etc.
 
-- **templ-first**
+- **templ-first**  
   All components are written in templ.
 
-- **SSR-first**
+- **SSR-first**  
   No client-side rendering assumptions.
 
-- **Minimal JS**
-  Only Alpine.js, only where Bulma requires interactivity.
+- **Minimal JS**  
+  Only Alpine.js, only where Bulma requires interactivity.  
   State is always external to components.
 
 ---
@@ -41,9 +41,29 @@ suitable for reuse across multiple projects and for public distribution.
 
 - Every component:
   - Accepts a **Props struct**
-  - Optionally accepts `content templ.Component`
+  - Accepts explicit content as `Items`
 - No positional params
 - No implicit behavior
+- No internal state
+
+### Content model (IMPORTANT)
+
+This design system uses an explicit multi-child composition model.
+
+```go
+type Items []templ.Component
+```
+
+- `Items` represents an ordered list of sibling components.
+- This model exists to:
+  - avoid excessive `templ.Join` usage
+  - better match Bulma’s structural patterns
+  - enable readable, linear composition
+- Single-child composition is treated as a special case of `Items`.
+
+All content-based components accept `Items`, not `templ.Component`.
+
+---
 
 ### Attr (escape hatch)
 
@@ -56,21 +76,58 @@ suitable for reuse across multiple projects and for public distribution.
 
 ---
 
+## Infrastructure Primitives (NON-BULMA)
+
+Some primitives exist to enable practical composition but are **not Bulma components**.
+
+### Items
+
+- Defined in `elements`
+- Canonical multi-child content container
+- Used across all packages (`elements`, `components`, `layout`, `form`, etc.)
+
+### RenderItems
+
+```go
+templ RenderItems(content Items)
+```
+
+- Centralized rendering helper for `Items`
+- Prevents duplication of render loops
+- Ensures consistent rendering semantics
+
+### Html
+
+```go
+templ Html(content string)
+```
+
+- Raw HTML rendering helper
+- Uses `templ.Raw`
+- MUST be used only with trusted, pre-sanitized content
+- Exists to enable page-level and low-level composition where templ DSL becomes impractical
+- Does NOT perform escaping or validation
+
+---
+
 ## Package Structure (CURRENT ARCHITECTURE)
 
-``` text
+```text
 /
-├── bulma-templ/
-│ ├── elements/
-│ ├── components/
-│ ├── form/
-│ ├── grid/
-│ ├── columns/
-│ └── layout/
+├── elements/
+├── components/
+├── form/
+├── grid/
+├── columns/
+├── layout/
+├── docs/
+├── examples (optional)
 ```
 
 This structure reflects Bulma documentation directly.
-Atomic level is declared **explicitly in code comments**, not inferred from folders.
+
+Atomic level is declared **explicitly in code comments**,  
+never inferred from directory names.
 
 ---
 
@@ -93,17 +150,36 @@ Atomic level is declared **explicitly in code comments**, not inferred from fold
 - Dark mode: NOT a component (application concern)
 - Bulma CDN: NOT a component (layout/head concern)
 - Starter Template: EXISTS as an example / quick start reference
+- HTML semantics (`h1`, `p`, `section`, etc.):  
+  **Handled at page or layout level**, not inside typographic components
 
 ---
 
 ## Current State
 
 - All major Bulma sections implemented:
-  elements, components, forms, layout, grid
+  - elements
+  - components
+  - form
+  - layout
+  - grid
+  - columns
+- Unified content model based on `Items`
 - High architectural consistency
-- Remaining work:
-  - comment/style unification
-  - usage examples
-  - tests
 
-  
+Remaining work:
+- usage examples
+- Kitchen Sink page
+- tests
+- final README polish
+
+---
+
+## Architectural Notes (v1.0)
+
+- `Items` + `RenderItems` is a **deliberate deviation** from single-slot templ composition
+- This choice is made to preserve:
+  - Bulma fidelity
+  - explicit composition
+  - readability at scale
+- No implicit slots, no magic, no hidden structure
