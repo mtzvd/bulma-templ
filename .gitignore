@@ -1,2 +1,75 @@
 *.exe
 all_code.txt
+
+# .gitignore for Go + bulma-templ project
+
+# Binaries for programs and plugins
+/bin/
+/*.exe
+/*.exe~
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Output of `go test`
+*.test
+coverage.out
+
+# Build directories
+/pkg/
+
+# Optional: vendor directory (uncomment if you vendor deps)
+# /vendor/
+
+# Local Go workspace files
+go.work
+
+# IDEs and editors
+.vscode/
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary and backup files
+*.tmp
+*.temp
+*~
+.#*
+*.swp
+~$*
+
+# Logs and environment files
+*.log
+.env
+.env.local
+.env.*.local
+
+# Generated files (if any)
+all_code.txt
+*.gen.go
+*.generated.go
+
+# Node/npm (if you use node tooling)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Misc
+testdata/
+
+# Keep templates (*.templ) tracked in repo — do not ignore them.
+
+
+# End of .gitignore
+
+# Ignore generated/temporary Go template helpers
+*_templ.go
+**/*_templ.go
