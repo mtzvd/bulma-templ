@@ -255,8 +255,8 @@ func DropdownDivider() templ.Component {
 // and can be handled via JS/Alpine.
 type DropdownItemProps struct {
 	// Href defines the link URL.
-	// If nil, the item is treated as an action item.
-	Href *string
+	// If empty, the item is treated as an action item.
+	Href string
 
 	// Active applies the `is-active` modifier.
 	Active bool
@@ -312,15 +312,15 @@ func DropdownItem(props DropdownItemProps, content templ.Component) templ.Compon
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if props.Href != nil {
+		if props.Href != "" {
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, " href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var10 templ.SafeURL
-			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(*props.Href)
+			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(props.Href)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/dropdown.templ`, Line: 117, Col: 21}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/dropdown.templ`, Line: 117, Col: 20}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {

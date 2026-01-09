@@ -1,5 +1,7 @@
 package grid
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Grid — Bulma Smart Grid container.
 // Atomic level: ORGANISM
 //
@@ -22,9 +24,9 @@ type GridProps struct {
 }
 
 // Grid renders a Bulma `.grid` container.
-templ Grid(props GridProps, content templ.Component) {
+templ Grid(props GridProps, content elements.Items) {
 	<div class="grid" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -47,9 +49,9 @@ type CellProps struct {
 }
 
 // Cell renders a Bulma `.cell` element.
-templ Cell(props CellProps, content templ.Component) {
+templ Cell(props CellProps, content elements.Items) {
 	<div class="cell" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 

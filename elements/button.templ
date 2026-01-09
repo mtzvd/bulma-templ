@@ -11,8 +11,8 @@ package elements
 // explicitly via the Icon component.
 type ButtonProps struct {
 	// Href, when provided, renders the button as <a>.
-	// When nil, a native <button> is rendered.
-	Href *string
+	// When empty, a native <button> is rendered.
+	Href string
 
 	// Type defines the button type attribute.
 	// Applicable only when rendering <button>.
@@ -35,8 +35,8 @@ type ButtonProps struct {
 }
 
 // Button renders a Bulma button.
-templ Button(props ButtonProps, content templ.Component) {
-	if props.Href != nil {
+templ Button(props ButtonProps, content Items) {
+	if props.Href != "" {
 		<a
 			class={
 				"button",
@@ -46,10 +46,10 @@ templ Button(props ButtonProps, content templ.Component) {
 				templ.KV("is-fullwidth", props.FullWidth),
 				templ.KV("is-disabled", props.Disabled),
 			}
-			href={ templ.SafeURL(*props.Href) }
+			href={ templ.SafeURL(props.Href) }
 			{ props.Attr... }
 		>
-			@content
+			@RenderItems(content)
 		</a>
 	} else {
 		<button
@@ -59,12 +59,13 @@ templ Button(props ButtonProps, content templ.Component) {
 				props.Size,
 				props.State,
 				templ.KV("is-fullwidth", props.FullWidth),
+				templ.KV("is-disabled", props.Disabled),
 			}
 			type={ props.Type }
-			disabled={ props.Disabled }
+			
 			{ props.Attr... }
 		>
-			@content
+			@RenderItems(content)
 		</button>
 	}
 }
@@ -88,7 +89,7 @@ type ButtonsProps struct {
 }
 
 // Buttons renders a Bulma buttons container.
-templ Buttons(props ButtonsProps, content templ.Component) {
+templ Buttons(props ButtonsProps, content Items) {
 	<div
 		class={
 			"buttons",
@@ -97,6 +98,6 @@ templ Buttons(props ButtonsProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@RenderItems(content)
 	</div>
 }

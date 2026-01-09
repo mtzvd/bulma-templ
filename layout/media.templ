@@ -1,5 +1,7 @@
 package layout
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Media — Bulma media object layout component.
 // Atomic level: ORGANISM
 //
@@ -15,9 +17,9 @@ type MediaProps struct {
 }
 
 // Media renders a Bulma `.media` container.
-templ Media(props MediaProps, content templ.Component) {
+templ Media(props MediaProps, content elements.Items) {
 	<article class="media" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</article>
 }
 
@@ -34,9 +36,9 @@ type MediaLeftProps struct {
 }
 
 // MediaLeft renders a Bulma `.media-left` container.
-templ MediaLeft(props MediaLeftProps, content templ.Component) {
+templ MediaLeft(props MediaLeftProps, content elements.Items) {
 	<figure class="media-left" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</figure>
 }
 
@@ -53,9 +55,9 @@ type MediaContentProps struct {
 }
 
 // MediaContent renders a Bulma `.media-content` container.
-templ MediaContent(props MediaContentProps, content templ.Component) {
+templ MediaContent(props MediaContentProps, content elements.Items) {
 	<div class="media-content" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -72,9 +74,9 @@ type MediaRightProps struct {
 }
 
 // MediaRight renders a Bulma `.media-right` container.
-templ MediaRight(props MediaRightProps, content templ.Component) {
+templ MediaRight(props MediaRightProps, content elements.Items) {
 	<div class="media-right" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 

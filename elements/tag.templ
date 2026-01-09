@@ -26,7 +26,7 @@ type TagProps struct {
 }
 
 // Tag renders a Bulma tag.
-templ Tag(props TagProps, content templ.Component) {
+templ Tag(props TagProps, content Items) {
 	<span
 		class={
 			"tag",
@@ -36,7 +36,7 @@ templ Tag(props TagProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@RenderItems(content)
 	</span>
 }
 
@@ -56,7 +56,7 @@ type TagsProps struct {
 }
 
 // Tags renders a Bulma tags container.
-templ Tags(props TagsProps, content templ.Component) {
+templ Tags(props TagsProps, content Items) {
 	<div
 		class={
 			"tags",
@@ -64,7 +64,7 @@ templ Tags(props TagsProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@RenderItems(content)
 	</div>
 }
 

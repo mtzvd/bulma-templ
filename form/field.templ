@@ -1,5 +1,7 @@
 package form
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Field — Bulma form field wrapper.
 // Atomic level: MOLECULE
 //
@@ -23,7 +25,7 @@ type FieldProps struct {
 //
 // This component acts purely as a layout wrapper and
 // must not contain any business logic or validation rules.
-templ Field(props FieldProps, content templ.Component) {
+templ Field(props FieldProps, content elements.Items) {
 	<div
 		class={
 			"field",
@@ -32,7 +34,7 @@ templ Field(props FieldProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 

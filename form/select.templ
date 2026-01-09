@@ -1,5 +1,7 @@
 package form
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Select — Bulma select form component.
 // Atomic level: MOLECULE
 //
@@ -68,7 +70,7 @@ type SelectProps struct {
 //
 // This component must be wrapped with Control
 // and Field components when used in a form layout.
-templ Select(props SelectProps, content templ.Component) {
+templ Select(props SelectProps, content elements.Items) {
 	<div
 		class={
 			"select",
@@ -84,7 +86,7 @@ templ Select(props SelectProps, content templ.Component) {
 			disabled={ props.Disabled }
 			{ props.Attr... }
 		>
-			@content
+			@elements.RenderItems(content)
 		</select>
 	</div>
 }

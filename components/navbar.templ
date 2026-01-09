@@ -1,5 +1,7 @@
 package components
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Navbar — Bulma navbar layout component.
 // Atomic level: ORGANISM
 //
@@ -23,7 +25,7 @@ type NavbarProps struct {
 }
 
 // Navbar renders a Bulma `.navbar` container.
-templ Navbar(props NavbarProps, content templ.Component) {
+templ Navbar(props NavbarProps, content elements.Items) {
 	<nav
 		class={
 			"navbar",
@@ -35,7 +37,7 @@ templ Navbar(props NavbarProps, content templ.Component) {
 		aria-label="main navigation"
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</nav>
 }
 
@@ -51,9 +53,9 @@ type NavbarBrandProps struct {
 }
 
 // NavbarBrand renders a Bulma `.navbar-brand` container.
-templ NavbarBrand(props NavbarBrandProps, content templ.Component) {
+templ NavbarBrand(props NavbarBrandProps, content elements.Items) {
 	<div class="navbar-brand" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -103,7 +105,7 @@ type NavbarMenuProps struct {
 }
 
 // NavbarMenu renders a Bulma `.navbar-menu` container.
-templ NavbarMenu(props NavbarMenuProps, content templ.Component) {
+templ NavbarMenu(props NavbarMenuProps, content elements.Items) {
 	<div
 		class={
 			"navbar-menu",
@@ -111,7 +113,7 @@ templ NavbarMenu(props NavbarMenuProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -123,9 +125,9 @@ type NavbarStartProps struct {
 }
 
 // NavbarStart renders a Bulma `.navbar-start` container.
-templ NavbarStart(props NavbarStartProps, content templ.Component) {
+templ NavbarStart(props NavbarStartProps, content elements.Items) {
 	<div class="navbar-start" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -137,9 +139,9 @@ type NavbarEndProps struct {
 }
 
 // NavbarEnd renders a Bulma `.navbar-end` container.
-templ NavbarEnd(props NavbarEndProps, content templ.Component) {
+templ NavbarEnd(props NavbarEndProps, content elements.Items) {
 	<div class="navbar-end" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -156,7 +158,7 @@ type NavbarDropdownProps struct {
 }
 
 // NavbarDropdown renders a Bulma `.navbar-dropdown` container.
-templ NavbarDropdown(props NavbarDropdownProps, content templ.Component) {
+templ NavbarDropdown(props NavbarDropdownProps, content elements.Items) {
 	<div
 		class={
 			"navbar-dropdown",
@@ -164,7 +166,7 @@ templ NavbarDropdown(props NavbarDropdownProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 

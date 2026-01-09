@@ -1,5 +1,7 @@
 package form
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Radio — Bulma radio form control.
 // Atomic level: ATOM
 //
@@ -46,7 +48,7 @@ type RadioProps struct {
 //
 // The radio label text must be provided
 // via the component content.
-templ Radio(props RadioProps, content templ.Component) {
+templ Radio(props RadioProps, content elements.Items) {
 	<label class="radio" { props.WrapperAttr... }>
 		<input
 			type="radio"
@@ -54,7 +56,7 @@ templ Radio(props RadioProps, content templ.Component) {
 			disabled={ props.Disabled }
 			{ props.Attr... }
 		/>
-		@content
+		@elements.RenderItems(content)
 	</label>
 }
 
@@ -77,8 +79,8 @@ type RadiosProps struct {
 // Radios renders a Bulma `.radios` container.
 //
 // Radio components must be provided via content.
-templ Radios(props RadiosProps, content templ.Component) {
+templ Radios(props RadiosProps, content elements.Items) {
 	<div class="radios" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }

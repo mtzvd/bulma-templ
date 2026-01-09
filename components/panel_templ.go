@@ -8,6 +8,8 @@ package components
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Panel renders a Bulma `.panel` component.
 // Atomic level: ORGANISM
 //
@@ -20,7 +22,7 @@ type PanelProps struct {
 }
 
 // Panel renders the root `.panel` container.
-func Panel(props PanelProps, content templ.Component) templ.Component {
+func Panel(props PanelProps, content elements.Items) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -53,7 +55,7 @@ func Panel(props PanelProps, content templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = content.Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = elements.RenderItems(content).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -76,7 +78,7 @@ type PanelHeadingProps struct {
 }
 
 // PanelHeading renders the panel heading.
-func PanelHeading(props PanelHeadingProps, content templ.Component) templ.Component {
+func PanelHeading(props PanelHeadingProps, content elements.Items) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -109,7 +111,7 @@ func PanelHeading(props PanelHeadingProps, content templ.Component) templ.Compon
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = content.Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = elements.RenderItems(content).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -132,7 +134,7 @@ type PanelTabsProps struct {
 }
 
 // PanelTabs renders panel tabs.
-func PanelTabs(props PanelTabsProps, content templ.Component) templ.Component {
+func PanelTabs(props PanelTabsProps, content elements.Items) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -165,7 +167,7 @@ func PanelTabs(props PanelTabsProps, content templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = content.Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = elements.RenderItems(content).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -184,8 +186,8 @@ func PanelTabs(props PanelTabsProps, content templ.Component) templ.Component {
 // as a container (<div>) depending on the presence of Href.
 type PanelBlockProps struct {
 	// Href defines the link URL.
-	// If nil, the block is rendered as a <div>.
-	Href *string
+	// If empty, the block is rendered as a <div>.
+	Href string
 
 	// Active applies the `is-active` modifier.
 	Active bool
@@ -196,7 +198,7 @@ type PanelBlockProps struct {
 }
 
 // PanelBlock renders a panel block.
-func PanelBlock(props PanelBlockProps, content templ.Component) templ.Component {
+func PanelBlock(props PanelBlockProps, content elements.Items) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -217,7 +219,7 @@ func PanelBlock(props PanelBlockProps, content templ.Component) templ.Component 
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		if props.Href != nil {
+		if props.Href != "" {
 			var templ_7745c5c3_Var5 = []any{"panel-block",
 				templ.KV("is-active", props.Active),
 			}
@@ -243,9 +245,9 @@ func PanelBlock(props PanelBlockProps, content templ.Component) templ.Component 
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var7 templ.SafeURL
-			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinURLErrs(*props.Href)
+			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinURLErrs(props.Href)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/panel.templ`, Line: 84, Col: 21}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/panel.templ`, Line: 86, Col: 20}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
@@ -263,7 +265,7 @@ func PanelBlock(props PanelBlockProps, content templ.Component) templ.Component 
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = content.Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = elements.RenderItems(content).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -304,7 +306,7 @@ func PanelBlock(props PanelBlockProps, content templ.Component) templ.Component 
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = content.Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = elements.RenderItems(content).Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

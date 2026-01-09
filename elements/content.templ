@@ -19,7 +19,7 @@ type ContentProps struct {
 }
 
 // Content renders a Bulma `.content` container.
-templ Content(props ContentProps, content templ.Component) {
+templ Content(props ContentProps, content Items) {
 	<div
 		class={
 			"content",
@@ -27,6 +27,6 @@ templ Content(props ContentProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@RenderItems(content)
 	</div>
 }

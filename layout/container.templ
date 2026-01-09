@@ -1,5 +1,7 @@
 package layout
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Container — Bulma container layout wrapper.
 // Atomic level: MOLECULE
 //
@@ -25,7 +27,7 @@ type ContainerProps struct {
 }
 
 // Container renders a Bulma `.container` element.
-templ Container(props ContainerProps, content templ.Component) {
+templ Container(props ContainerProps, content elements.Items) {
 	<div
 		class={
 			"container",
@@ -35,6 +37,6 @@ templ Container(props ContainerProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }

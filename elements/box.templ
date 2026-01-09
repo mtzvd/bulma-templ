@@ -15,9 +15,9 @@ type BoxProps struct {
 }
 
 // Box renders a Bulma `.box` container.
-templ Box(props BoxProps, content templ.Component) {
+templ Box(props BoxProps, content Items) {
 	<div class="box" { props.Attr... }>
-		@content
+		@RenderItems(content)
 	</div>
 }
 

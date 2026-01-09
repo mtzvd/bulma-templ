@@ -1,5 +1,7 @@
 package components
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Panel renders a Bulma `.panel` component.
 // Atomic level: ORGANISM
 //
@@ -12,9 +14,9 @@ type PanelProps struct {
 }
 
 // Panel renders the root `.panel` container.
-templ Panel(props PanelProps, content templ.Component) {
+templ Panel(props PanelProps, content elements.Items) {
 	<nav class="panel" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</nav>
 }
 
@@ -30,9 +32,9 @@ type PanelHeadingProps struct {
 }
 
 // PanelHeading renders the panel heading.
-templ PanelHeading(props PanelHeadingProps, content templ.Component) {
+templ PanelHeading(props PanelHeadingProps, content elements.Items) {
 	<p class="panel-heading" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</p>
 }
 
@@ -48,9 +50,9 @@ type PanelTabsProps struct {
 }
 
 // PanelTabs renders panel tabs.
-templ PanelTabs(props PanelTabsProps, content templ.Component) {
+templ PanelTabs(props PanelTabsProps, content elements.Items) {
 	<p class="panel-tabs" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</p>
 }
 
@@ -62,8 +64,8 @@ templ PanelTabs(props PanelTabsProps, content templ.Component) {
 // as a container (<div>) depending on the presence of Href.
 type PanelBlockProps struct {
 	// Href defines the link URL.
-	// If nil, the block is rendered as a <div>.
-	Href *string
+	// If empty, the block is rendered as a <div>.
+	Href string
 
 	// Active applies the `is-active` modifier.
 	Active bool
@@ -74,17 +76,17 @@ type PanelBlockProps struct {
 }
 
 // PanelBlock renders a panel block.
-templ PanelBlock(props PanelBlockProps, content templ.Component) {
-	if props.Href != nil {
+templ PanelBlock(props PanelBlockProps, content elements.Items) {
+	if props.Href != "" {
 		<a
 			class={
 				"panel-block",
 				templ.KV("is-active", props.Active),
 			}
-			href={ *props.Href }
+			href={ props.Href }
 			{ props.Attr... }
 		>
-			@content
+			@elements.RenderItems(content)
 		</a>
 	} else {
 		<div
@@ -94,7 +96,7 @@ templ PanelBlock(props PanelBlockProps, content templ.Component) {
 			}
 			{ props.Attr... }
 		>
-			@content
+			@elements.RenderItems(content)
 		</div>
 	}
 }

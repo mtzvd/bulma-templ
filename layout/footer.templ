@@ -1,5 +1,7 @@
 package layout
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Footer — Bulma footer layout component.
 // Atomic level: ORGANISM
 //
@@ -15,9 +17,9 @@ type FooterProps struct {
 }
 
 // Footer renders a Bulma `.footer` element.
-templ Footer(props FooterProps, content templ.Component) {
+templ Footer(props FooterProps, content elements.Items) {
 	<footer class="footer" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</footer>
 }
 

@@ -21,12 +21,12 @@ type TableProps struct {
 }
 
 // Table renders the table element.
-templ Table(props TableProps, content templ.Component) {
+templ Table(props TableProps, content Items) {
 	<table
 		class={ "table", props.Modifiers }
 		{ props.Attr... }
 	>
-		@content
+		@RenderItems(content)
 	</table>
 }
 
@@ -43,9 +43,9 @@ type TableContainerProps struct {
 }
 
 // TableContainer renders the table container.
-templ TableContainer(props TableContainerProps, content templ.Component) {
+templ TableContainer(props TableContainerProps, content Items) {
 	<div class="table-container" { props.Attr... }>
-		@content
+		@RenderItems(content)
 	</div>
 }
 

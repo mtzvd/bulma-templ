@@ -255,8 +255,8 @@ func TabsItem(props TabsItemProps, content templ.Component) templ.Component {
 // It does not manage tab state.
 type TabsLinkProps struct {
 	// Href defines the tab link URL.
-	// If nil, TabsLink is rendered as a non-navigational interactive element.
-	Href *string
+	// If empty, TabsLink is rendered as a non-navigational interactive element.
+	Href string
 
 	// Attr contains additional HTML attributes
 	// for the <a> element.
@@ -289,15 +289,15 @@ func TabsLink(props TabsLinkProps, content templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if props.Href != nil {
+		if props.Href != "" {
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, " href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var9 templ.SafeURL
-			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(*props.Href)
+			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(props.Href)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/tabs.templ`, Line: 118, Col: 21}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/tabs.templ`, Line: 118, Col: 20}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {

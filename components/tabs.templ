@@ -1,5 +1,7 @@
 package components
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Tabs renders a Bulma `.tabs` component.
 // Atomic level: ORGANISM
 //
@@ -34,7 +36,7 @@ type TabsProps struct {
 }
 
 // Tabs renders the root `.tabs` container.
-templ Tabs(props TabsProps, content templ.Component) {
+templ Tabs(props TabsProps, content elements.Items) {
 	<div
 		class={
 			"tabs",
@@ -48,7 +50,7 @@ templ Tabs(props TabsProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -64,9 +66,9 @@ type TabsListProps struct {
 }
 
 // TabsList renders the tabs list container.
-templ TabsList(props TabsListProps, content templ.Component) {
+templ TabsList(props TabsListProps, content elements.Items) {
 	<ul { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</ul>
 }
 
@@ -86,12 +88,12 @@ type TabsItemProps struct {
 }
 
 // TabsItem renders a tab item.
-templ TabsItem(props TabsItemProps, content templ.Component) {
+templ TabsItem(props TabsItemProps, content elements.Items) {
 	<li
 		class={ templ.KV("is-active", props.Active) }
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</li>
 }
 
@@ -103,8 +105,8 @@ templ TabsItem(props TabsItemProps, content templ.Component) {
 // It does not manage tab state.
 type TabsLinkProps struct {
 	// Href defines the tab link URL.
-	// If nil, TabsLink is rendered as a non-navigational interactive element.
-	Href *string
+	// If empty, TabsLink is rendered as a non-navigational interactive element.
+	Href string
 
 	// Attr contains additional HTML attributes
 	// for the <a> element.
@@ -112,14 +114,14 @@ type TabsLinkProps struct {
 }
 
 // TabsLink renders a clickable tab element.
-templ TabsLink(props TabsLinkProps, content templ.Component) {
+templ TabsLink(props TabsLinkProps, content elements.Items) {
 	<a
-		if props.Href != nil {
-			href={ *props.Href }
+		if props.Href != "" {
+			href={ props.Href }
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</a>
 }
 

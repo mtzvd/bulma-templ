@@ -1,5 +1,7 @@
 package form
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Control — Bulma form control wrapper.
 // Atomic level: MOLECULE
 //
@@ -26,7 +28,7 @@ type ControlProps struct {
 //
 // This component does not manage focus, validation,
 // value binding or interactivity.
-templ Control(props ControlProps, content templ.Component) {
+templ Control(props ControlProps, content elements.Items) {
 	<div
 		class={
 			"control",
@@ -36,6 +38,6 @@ templ Control(props ControlProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }

@@ -1,0 +1,25 @@
+package elements
+
+
+// Items defines a list of templ components used for
+// explicit multi-child composition.
+//
+// This type exists to avoid excessive templ.Join usage
+// and to better match Bulma's structural patterns.
+type Items []templ.Component
+
+templ (i Items) Render(){
+	for _, item := range i {
+		@item
+	}
+
+}
+	
+
+
+templ RenderItems(content Items) {
+	for _, item := range content {
+		@item
+	}
+}
+

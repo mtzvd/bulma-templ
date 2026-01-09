@@ -1,5 +1,7 @@
 package components
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Menu renders a Bulma `.menu` component.
 // Atomic level: ORGANISM
 //
@@ -12,9 +14,9 @@ type MenuProps struct {
 }
 
 // Menu renders the root `.menu` container.
-templ Menu(props MenuProps, content templ.Component) {
+templ Menu(props MenuProps, content elements.Items) {
 	<aside class="menu" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</aside>
 }
 
@@ -30,9 +32,9 @@ type MenuLabelProps struct {
 }
 
 // MenuLabel renders a menu section label.
-templ MenuLabel(props MenuLabelProps, content templ.Component) {
+templ MenuLabel(props MenuLabelProps, content elements.Items) {
 	<p class="menu-label" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</p>
 }
 
@@ -49,9 +51,9 @@ type MenuListProps struct {
 }
 
 // MenuList renders a menu list container.
-templ MenuList(props MenuListProps, content templ.Component) {
+templ MenuList(props MenuListProps, content elements.Items) {
 	<ul class="menu-list" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</ul>
 }
 
@@ -63,8 +65,8 @@ templ MenuList(props MenuListProps, content templ.Component) {
 // Active state is controlled externally.
 type MenuItemProps struct {
 	// Href defines the link URL.
-	// If nil, the item is treated as an action item.
-	Href *string
+	// If empty, the item is treated as an action item.
+	Href string
 
 	// Active applies the `is-active` modifier.
 	Active bool
@@ -75,14 +77,14 @@ type MenuItemProps struct {
 }
 
 // MenuItem renders a menu link.
-templ MenuItem(props MenuItemProps, content templ.Component) {
+templ MenuItem(props MenuItemProps, content elements.Items) {
 	<a
 		class={ templ.KV("is-active", props.Active) }
-		if props.Href != nil {
-			href={ *props.Href }
+		if props.Href != "" {
+			href={ props.Href }
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</a>
 }

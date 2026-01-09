@@ -19,7 +19,7 @@ type NotificationProps struct {
 }
 
 // Notification renders a Bulma notification container.
-templ Notification(props NotificationProps, content templ.Component) {
+templ Notification(props NotificationProps, content Items) {
 	<div
 		class={
 			"notification",
@@ -27,6 +27,6 @@ templ Notification(props NotificationProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@RenderItems(content)
 	</div>
 }

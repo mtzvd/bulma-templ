@@ -1,5 +1,7 @@
 package layout
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Section — Bulma section layout wrapper.
 // Atomic level: ORGANISM
 //
@@ -19,7 +21,7 @@ type SectionProps struct {
 }
 
 // Section renders a Bulma `.section` element.
-templ Section(props SectionProps, content templ.Component) {
+templ Section(props SectionProps, content elements.Items) {
 	<section
 		class={
 			"section",
@@ -27,6 +29,6 @@ templ Section(props SectionProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</section>
 }

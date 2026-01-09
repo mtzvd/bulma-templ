@@ -23,7 +23,7 @@ type TitleProps struct {
 }
 
 // Title renders a Bulma `.title` typographic element.
-templ Title(props TitleProps, content templ.Component) {
+templ Title(props TitleProps, content Items) {
 	<span
 		class={
 			"title",
@@ -32,7 +32,7 @@ templ Title(props TitleProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@RenderItems(content)
 	</span>
 }
 
@@ -55,7 +55,7 @@ type SubtitleProps struct {
 }
 
 // Subtitle renders a Bulma `.subtitle` typographic element.
-templ Subtitle(props SubtitleProps, content templ.Component) {
+templ Subtitle(props SubtitleProps, content Items) {
 	<span
 		class={
 			"subtitle",
@@ -63,6 +63,6 @@ templ Subtitle(props SubtitleProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@RenderItems(content)
 	</span>
 }

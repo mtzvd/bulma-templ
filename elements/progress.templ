@@ -32,7 +32,7 @@ type ProgressProps struct {
 }
 
 // Progress renders a Bulma progress bar.
-templ Progress(props ProgressProps, content templ.Component) {
+templ Progress(props ProgressProps, content Items) {
 	<progress
 		class={
 			"progress",
@@ -47,7 +47,7 @@ templ Progress(props ProgressProps, content templ.Component) {
 			max={ *props.Max }
 		}
 	>
-		@content
+		@RenderItems(content)
 	</progress>
 }
 

@@ -1,5 +1,7 @@
 package form
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // File — Bulma file upload component.
 // Atomic level: MOLECULE
 //
@@ -36,7 +38,7 @@ type FileProps struct {
 // File renders the Bulma `.file` container.
 //
 // FileLabel must be provided via content.
-templ File(props FileProps, content templ.Component) {
+templ File(props FileProps, content elements.Items) {
 	<div
 		class={
 			"file",
@@ -49,7 +51,7 @@ templ File(props FileProps, content templ.Component) {
 		}
 		{ props.WrapperAttr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -66,9 +68,9 @@ type FileLabelProps struct {
 }
 
 // FileLabel renders a Bulma `.file-label` container.
-templ FileLabel(props FileLabelProps, content templ.Component) {
+templ FileLabel(props FileLabelProps, content elements.Items) {
 	<label class="file-label" { props.WrapperAttr... }>
-		@content
+		@elements.RenderItems(content)
 	</label>
 }
 
@@ -116,9 +118,9 @@ type FileCTAProps struct {
 }
 
 // FileCTA renders a Bulma `.file-cta` element.
-templ FileCTA(props FileCTAProps, content templ.Component) {
+templ FileCTA(props FileCTAProps, content elements.Items) {
 	<span class="file-cta" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</span>
 }
 
@@ -129,9 +131,9 @@ type FileIconProps struct {
 	Attr templ.Attributes
 }
 
-templ FileIcon(props FileIconProps, content templ.Component) {
+templ FileIcon(props FileIconProps, content elements.Items) {
 	<span class="file-icon" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</span>
 }
 
@@ -142,9 +144,9 @@ type FileTextProps struct {
 	Attr templ.Attributes
 }
 
-templ FileText(props FileTextProps, content templ.Component) {
+templ FileText(props FileTextProps, content elements.Items) {
 	<span class="file-label" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</span>
 }
 
@@ -155,8 +157,8 @@ type FileNameProps struct {
 	Attr templ.Attributes
 }
 
-templ FileName(props FileNameProps, content templ.Component) {
+templ FileName(props FileNameProps, content elements.Items) {
 	<span class="file-name" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</span>
 }

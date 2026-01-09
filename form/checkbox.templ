@@ -1,5 +1,7 @@
 package form
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Checkbox — Bulma checkbox form control.
 // Atomic level: ATOM
 //
@@ -46,7 +48,7 @@ type CheckboxProps struct {
 //
 // The checkbox label text must be provided
 // via the component content.
-templ Checkbox(props CheckboxProps, content templ.Component) {
+templ Checkbox(props CheckboxProps, content elements.Items) {
 	<label class="checkbox" { props.WrapperAttr... }>
 		<input
 			type="checkbox"
@@ -54,7 +56,7 @@ templ Checkbox(props CheckboxProps, content templ.Component) {
 			disabled={ props.Disabled }
 			{ props.Attr... }
 		/>
-		@content
+	@elements.RenderItems(content)
 	</label>
 }
 
@@ -77,8 +79,8 @@ type CheckboxesProps struct {
 // Checkboxes renders a Bulma `.checkboxes` container.
 //
 // Checkbox components must be provided via content.
-templ Checkboxes(props CheckboxesProps, content templ.Component) {
+templ Checkboxes(props CheckboxesProps, content elements.Items) {
 	<div class="checkboxes" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }

@@ -1,0 +1,18 @@
+package elements
+
+// Html — raw HTML rendering helper.
+// Atomic level: ATOM
+//
+// Html renders trusted raw HTML content using templ.Raw.
+// It exists as an infrastructure primitive to enable
+// explicit HTML composition where templ-based component
+// composition becomes impractical.
+//
+// Html MUST be used only with trusted, pre-sanitized
+// content. It does NOT perform escaping or validation
+// and is intended primarily for page-level composition
+// and low-level layout scenarios.
+templ Html(content string){
+    @templ.Raw(content)
+}
+

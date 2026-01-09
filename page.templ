@@ -1,0 +1,48 @@
+// StarterTemplate — Bulma Starter Page.
+// Atomic level: ORGANISM
+//
+// StarterTemplate demonstrates the minimal recommended
+// page structure when using Bulma-Templ components.
+
+package main
+
+import (
+
+	"github.com/mtzvd/bulma-templ/elements"
+
+	
+)
+
+templ Page() {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="utf-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>Bulma Starter</title>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+		</head>
+		<body>
+	
+			
+				@elements.Block( elements.BlockProps{}, 
+				elements.Items{ 
+					elements.Html("<div>This is a block of text inside a Bulma block element.</div>"), 
+					elements.Html("<div>Blocks add vertical spacing between elements.</div>"), 
+					elements.Button(elements.ButtonProps{
+						Color: "is-primary", 
+						Disabled: false,
+						FullWidth: true,
+						Type: "button",
+						Href: "https://example.com",
+						}, 
+						elements.Items{
+							elements.Html("Click me")}),
+					elements.Html("<div>Blocks add vertical spacing between elements.</div>"),
+				} )
+					
+	
+				
+			</body>
+	</html>
+}

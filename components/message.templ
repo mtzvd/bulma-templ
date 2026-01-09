@@ -1,5 +1,7 @@
 package components
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Message renders a Bulma `.message` component.
 // Atomic level: ORGANISM
 //
@@ -17,7 +19,7 @@ type MessageProps struct {
 }
 
 // Message renders the root `.message` container.
-templ Message(props MessageProps, content templ.Component) {
+templ Message(props MessageProps, content elements.Items) {
 	<article
 		class={
 			"message",
@@ -25,7 +27,7 @@ templ Message(props MessageProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</article>
 }
 
@@ -42,9 +44,9 @@ type MessageHeaderProps struct {
 }
 
 // MessageHeader renders a Bulma `.message-header`.
-templ MessageHeader(props MessageHeaderProps, content templ.Component) {
+templ MessageHeader(props MessageHeaderProps, content elements.Items) {
 	<div class="message-header" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -60,8 +62,8 @@ type MessageBodyProps struct {
 }
 
 // MessageBody renders a Bulma `.message-body`.
-templ MessageBody(props MessageBodyProps, content templ.Component) {
+templ MessageBody(props MessageBodyProps, content elements.Items) {
 	<div class="message-body" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }

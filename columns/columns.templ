@@ -1,5 +1,7 @@
 package columns
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Columns — Bulma columns layout container.
 // Atomic level: ORGANISM
 //
@@ -26,7 +28,7 @@ type ColumnsProps struct {
 }
 
 // Columns renders a Bulma `.columns` container.
-templ Columns(props ColumnsProps, content templ.Component) {
+templ Columns(props ColumnsProps, content elements.Items) {
 	<div
 		class={
 			"columns",
@@ -37,7 +39,7 @@ templ Columns(props ColumnsProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -65,7 +67,7 @@ type ColumnProps struct {
 }
 
 // Column renders a Bulma `.column` element.
-templ Column(props ColumnProps, content templ.Component) {
+templ Column(props ColumnProps, content elements.Items) {
 	<div
 		class={
 			"column",
@@ -75,7 +77,7 @@ templ Column(props ColumnProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 

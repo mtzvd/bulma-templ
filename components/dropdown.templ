@@ -1,5 +1,7 @@
 package components
 
+import "github.com/mtzvd/bulma-templ/elements"
+
 // Dropdown renders a Bulma `.dropdown` component.
 // Atomic level: ORGANISM
 //
@@ -25,7 +27,7 @@ type DropdownProps struct {
 }
 
 // Dropdown renders the root `.dropdown` container.
-templ Dropdown(props DropdownProps, content templ.Component) {
+templ Dropdown(props DropdownProps, content elements.Items) {
 	<div
 		class={
 			"dropdown",
@@ -36,7 +38,7 @@ templ Dropdown(props DropdownProps, content templ.Component) {
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -53,9 +55,9 @@ type DropdownTriggerProps struct {
 }
 
 // DropdownTrigger renders a Bulma `.dropdown-trigger`.
-templ DropdownTrigger(props DropdownTriggerProps, content templ.Component) {
+templ DropdownTrigger(props DropdownTriggerProps, content elements.Items) {
 	<div class="dropdown-trigger" { props.Attr... }>
-		@content
+		@elements.RenderItems(content)
 	</div>
 }
 
@@ -71,10 +73,10 @@ type DropdownMenuProps struct {
 }
 
 // DropdownMenu renders a Bulma dropdown menu container.
-templ DropdownMenu(props DropdownMenuProps, content templ.Component) {
+templ DropdownMenu(props DropdownMenuProps, content elements.Items) {
 	<div class="dropdown-menu" { props.Attr... }>
 		<div class="dropdown-content">
-			@content
+			@elements.RenderItems(content)
 		</div>
 	</div>
 }
@@ -95,8 +97,8 @@ templ DropdownDivider() {
 // and can be handled via JS/Alpine.
 type DropdownItemProps struct {
 	// Href defines the link URL.
-	// If nil, the item is treated as an action item.
-	Href *string
+	// If empty, the item is treated as an action item.
+	Href string
 
 	// Active applies the `is-active` modifier.
 	Active bool
@@ -107,17 +109,17 @@ type DropdownItemProps struct {
 }
 
 // DropdownItem renders a Bulma `.dropdown-item`.
-templ DropdownItem(props DropdownItemProps, content templ.Component) {
+templ DropdownItem(props DropdownItemProps, content elements.Items) {
 	<a
 		class={
 			"dropdown-item",
 			templ.KV("is-active", props.Active),
 		}
-		if props.Href != nil {
-			href={ *props.Href }
+		if props.Href != "" {
+			href={ props.Href }
 		}
 		{ props.Attr... }
 	>
-		@content
+		@elements.RenderItems(content)
 	</a>
 }

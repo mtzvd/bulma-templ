@@ -17,6 +17,7 @@ import templruntime "github.com/a-h/templ/runtime"
 //
 // This component does not manage layout or content
 // semantics and serves as a low-level UI primitive.
+
 type BlockProps struct {
 	// Attr contains additional HTML attributes
 	// for the `.block` container.
@@ -24,7 +25,7 @@ type BlockProps struct {
 }
 
 // Block renders a Bulma `.block` container.
-func Block(props BlockProps, content templ.Component) templ.Component {
+func Block(props BlockProps, content Items) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -57,7 +58,7 @@ func Block(props BlockProps, content templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = content.Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = content.Render().Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
