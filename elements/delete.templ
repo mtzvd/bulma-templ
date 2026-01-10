@@ -20,11 +20,13 @@ type DeleteProps struct {
 
 // Delete renders a Bulma delete button.
 templ Delete(props DeleteProps) {
-	<button
-		class={
-			"delete",
-			props.Size,
-		}
-		{ props.Attr... }
-	></button>
+	
+	@BaseElement(
+		BaseElementProps{
+			Tag: "button",
+			BaseClasses: []string{"delete", props.Size},
+			Attr: props.Attr,
+		},
+		Items{},
+	)
 }

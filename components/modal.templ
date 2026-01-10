@@ -21,15 +21,21 @@ type ModalProps struct {
 
 // Modal renders the root `.modal` container.
 templ Modal(props ModalProps, content elements.Items) {
-	<div
-		class={
-			"modal",
-			templ.KV("is-active", props.Active),
+	
+	{{
+		classes:= []string{"modal"}
+		if props.Active {
+			classes = append(classes, "is-active")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -46,7 +52,14 @@ type ModalBackgroundProps struct {
 
 // ModalBackground renders the modal backdrop.
 templ ModalBackground(props ModalBackgroundProps) {
-	<div class="modal-background" { props.Attr... }></div>
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"modal-background"},
+			Attr: props.Attr,
+		},
+		nil,
+	)
 }
 
 
@@ -62,9 +75,15 @@ type ModalContentProps struct {
 
 // ModalContent renders a Bulma `.modal-content`.
 templ ModalContent(props ModalContentProps, content elements.Items) {
-	<div class="modal-content" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"modal-content"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -88,11 +107,12 @@ templ ModalClose(props ModalCloseProps) {
 	<button
 		class={
 			"modal-close",
-			props.Size,
+			props.Size, props.Attr["class"],
 		}
 		aria-label="close"
 		{ props.Attr... }
 	></button>
+
 }
 
 
@@ -108,9 +128,15 @@ type ModalCardProps struct {
 
 // ModalCard renders a Bulma `.modal-card`.
 templ ModalCard(props ModalCardProps, content elements.Items) {
-	<div class="modal-card" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"modal-card"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -126,9 +152,15 @@ type ModalCardHeadProps struct {
 
 // ModalCardHead renders the card modal header.
 templ ModalCardHead(props ModalCardHeadProps, content elements.Items) {
-	<header class="modal-card-head" { props.Attr... }>
-		@elements.RenderItems(content)
-	</header>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "header",
+			BaseClasses: []string{"modal-card-head"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -144,9 +176,15 @@ type ModalCardBodyProps struct {
 
 // ModalCardBody renders the card modal body.
 templ ModalCardBody(props ModalCardBodyProps, content elements.Items) {
-	<section class="modal-card-body" { props.Attr... }>
-		@elements.RenderItems(content)
-	</section>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "section",
+			BaseClasses: []string{"modal-card-body"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -162,7 +200,13 @@ type ModalCardFootProps struct {
 
 // ModalCardFoot renders the card modal footer.
 templ ModalCardFoot(props ModalCardFootProps, content elements.Items) {
-	<footer class="modal-card-foot" { props.Attr... }>
-		@elements.RenderItems(content)
-	</footer>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "footer",
+			BaseClasses: []string{"modal-card-foot"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }

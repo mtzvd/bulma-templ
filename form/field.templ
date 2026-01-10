@@ -26,15 +26,23 @@ type FieldProps struct {
 // This component acts purely as a layout wrapper and
 // must not contain any business logic or validation rules.
 templ Field(props FieldProps, content elements.Items) {
-	<div
-		class={
-			"field",
-			templ.KV("is-grouped", props.Grouped),
-			templ.KV("is-horizontal", props.Horizontal),
+	
+	{{
+		classes:= []string{"field"}
+		if props.Grouped {
+			classes = append(classes, "is-grouped")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
+		if props.Horizontal {
+			classes = append(classes, "is-horizontal")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
 

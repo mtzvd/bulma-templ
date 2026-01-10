@@ -42,7 +42,7 @@ type TextareaProps struct {
 // and Field components when used in a form layout.
 templ Textarea(props TextareaProps) {
 	<textarea
-		class={ "textarea", props.Color, props.Size }
+		class={ "textarea", props.Color, props.Size, props.Attr["class"] }
 		placeholder={ props.Placeholder }
 		rows={ props.Rows }
 		disabled={ props.Disabled }

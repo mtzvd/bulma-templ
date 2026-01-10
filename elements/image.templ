@@ -40,19 +40,47 @@ type ImageProps struct {
 
 // Image renders a Bulma image component.
 templ Image(props ImageProps) {
-	<figure
-		class={
-			"image",
-			props.Ratio,
-			props.Size,
+	{{
+		figureClasses := []string{"image"}
+		if props.Ratio != "" {
+			figureClasses = append(figureClasses, props.Ratio)
 		}
-		{ props.FigureAttr... }
-	>
-		<img
-			src={ props.Src }
-			alt={ props.Alt }
-			class={ templ.KV("is-rounded", props.Rounded) }
-			{ props.Attr... }
-		/>
-	</figure>
+		if props.Size != "" {
+			figureClasses = append(figureClasses, props.Size)
+		}
+
+		imgClasses := []string{}
+		if props.Rounded {
+			imgClasses = append(imgClasses, "is-rounded")
+		}
+
+		imgAttrs := templ.Attributes{
+			"src": props.Src,
+			"alt": props.Alt,
+		}
+
+		// merge user-provided img attrs (except class — Wrap сам разрулит)
+		for k, v := range props.Attr {
+			imgAttrs[k] = v
+		}
+	}}
+
+	@BaseElement(
+		BaseElementProps{
+			Tag:         "figure",
+			BaseClasses: figureClasses,
+			Attr:        props.FigureAttr,
+		},
+		Items{
+			BaseElement(
+				BaseElementProps{
+					Tag:         "img",
+					BaseClasses: imgClasses,
+					Attr:        imgAttrs,
+				},
+				nil,
+			),
+		},
+	)
 }
+

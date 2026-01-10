@@ -26,20 +26,39 @@ type NavbarProps struct {
 
 // Navbar renders a Bulma `.navbar` container.
 templ Navbar(props NavbarProps, content elements.Items) {
-	<nav
-		class={
-			"navbar",
-			props.Color,
-			props.Fixed,
-			templ.KV("is-transparent", props.Transparent),
+	{{
+		classes := []string{"navbar"}
+
+		if props.Color != "" {
+			classes = append(classes, props.Color)
 		}
-		role="navigation"
-		aria-label="main navigation"
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</nav>
+		if props.Fixed != "" {
+			classes = append(classes, props.Fixed)
+		}
+		if props.Transparent {
+			classes = append(classes, "is-transparent")
+		}
+
+		attrs := templ.Attributes{
+			"role": "navigation",
+			"aria-label": "main navigation",
+		}
+
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "nav",
+			BaseClasses: classes,
+			Attr:        attrs,
+		},
+		content,
+	)
 }
+
 
 
 // NavbarBrand — brand section of Navbar.
@@ -54,9 +73,15 @@ type NavbarBrandProps struct {
 
 // NavbarBrand renders a Bulma `.navbar-brand` container.
 templ NavbarBrand(props NavbarBrandProps, content elements.Items) {
-	<div class="navbar-brand" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"navbar-brand"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -76,20 +101,35 @@ type NavbarBurgerProps struct {
 
 // NavbarBurger renders a Bulma `.navbar-burger` button.
 templ NavbarBurger(props NavbarBurgerProps) {
-	<a
-		role="button"
-		class={
-			"navbar-burger",
-			templ.KV("is-active", props.Active),
+	{{
+		classes := []string{"navbar-burger"}
+		if props.Active {
+			classes = append(classes, "is-active")
 		}
-		aria-label="menu"
-		aria-expanded={ templ.Bool(props.Active) }
-		{ props.Attr... }
-	>
-		<span aria-hidden="true"></span>
-		<span aria-hidden="true"></span>
-		<span aria-hidden="true"></span>
-	</a>
+
+		attrs := templ.Attributes{
+			"role": "button",
+			"aria-label": "menu",
+			"aria-expanded": props.Active,
+		}
+
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "a",
+			BaseClasses: classes,
+			Attr:        attrs,
+		},
+		elements.Items{
+			elements.Html(`<span aria-hidden="true"></span>`),
+			elements.Html(`<span aria-hidden="true"></span>`),
+			elements.Html(`<span aria-hidden="true"></span>`),
+		},
+	)
 }
 
 
@@ -106,15 +146,20 @@ type NavbarMenuProps struct {
 
 // NavbarMenu renders a Bulma `.navbar-menu` container.
 templ NavbarMenu(props NavbarMenuProps, content elements.Items) {
-	<div
-		class={
-			"navbar-menu",
-			templ.KV("is-active", props.Active),
+	{{
+		classes := []string{"navbar-menu"}
+		if props.Active {
+			classes = append(classes, "is-active")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -126,9 +171,15 @@ type NavbarStartProps struct {
 
 // NavbarStart renders a Bulma `.navbar-start` container.
 templ NavbarStart(props NavbarStartProps, content elements.Items) {
-	<div class="navbar-start" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"navbar-start"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -140,9 +191,15 @@ type NavbarEndProps struct {
 
 // NavbarEnd renders a Bulma `.navbar-end` container.
 templ NavbarEnd(props NavbarEndProps, content elements.Items) {
-	<div class="navbar-end" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"navbar-end"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -159,15 +216,21 @@ type NavbarDropdownProps struct {
 
 // NavbarDropdown renders a Bulma `.navbar-dropdown` container.
 templ NavbarDropdown(props NavbarDropdownProps, content elements.Items) {
-	<div
-		class={
-			"navbar-dropdown",
-			templ.KV("is-right", props.Right),
+	
+	{{
+		classes:= []string{"navbar-dropdown"}
+		if props.Right {
+			classes = append(classes, "is-right")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -179,5 +242,13 @@ type NavbarDividerProps struct {
 
 // NavbarDivider renders a Bulma `.navbar-divider`.
 templ NavbarDivider(props NavbarDividerProps) {
-	<hr class="navbar-divider" { props.Attr... } />
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "hr",
+			BaseClasses: []string{"navbar-divider"},
+			Attr:        props.Attr,
+		},
+		nil,
+	)
 }
+

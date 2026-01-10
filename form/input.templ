@@ -46,7 +46,7 @@ templ Input(props InputProps) {
 		type={ props.Type }
 		value={ props.Value }
 		placeholder={ props.Placeholder }
-		class={ "input", props.Color, props.Size }
+		class={ "input", props.Color, props.Size, props.Attr["class"] }
 		disabled={ props.Disabled }
 		readonly={ props.ReadOnly }
 		{ props.Attr... }

@@ -28,20 +28,32 @@ type DropdownProps struct {
 
 // Dropdown renders the root `.dropdown` container.
 templ Dropdown(props DropdownProps, content elements.Items) {
-	<div
-		class={
-			"dropdown",
-			templ.KV("is-active", props.Active),
-			templ.KV("is-hoverable", props.Hoverable),
-			templ.KV("is-right", props.Right),
-			templ.KV("is-up", props.Up),
-		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
-}
+	{{
+		classes := []string{"dropdown"}
 
+		if props.Active {
+			classes = append(classes, "is-active")
+		}
+		if props.Hoverable {
+			classes = append(classes, "is-hoverable")
+		}
+		if props.Right {
+			classes = append(classes, "is-right")
+		}
+		if props.Up {
+			classes = append(classes, "is-up")
+		}
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
+}
 
 // DropdownTrigger renders `.dropdown-trigger`.
 // Atomic level: MOLECULE
@@ -56,9 +68,15 @@ type DropdownTriggerProps struct {
 
 // DropdownTrigger renders a Bulma `.dropdown-trigger`.
 templ DropdownTrigger(props DropdownTriggerProps, content elements.Items) {
-	<div class="dropdown-trigger" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"dropdown-trigger"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -74,26 +92,45 @@ type DropdownMenuProps struct {
 
 // DropdownMenu renders a Bulma dropdown menu container.
 templ DropdownMenu(props DropdownMenuProps, content elements.Items) {
-	<div class="dropdown-menu" { props.Attr... }>
-		<div class="dropdown-content">
-			@elements.RenderItems(content)
-		</div>
-	</div>
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: []string{"dropdown-menu"},
+			Attr:        props.Attr,
+		},
+		elements.Items{
+			elements.BaseElement(
+				elements.BaseElementProps{
+					Tag:         "div",
+					BaseClasses: []string{"dropdown-content"},
+				},
+				content,
+			),
+		},
+	)
 }
+
 // DropdownDivider renders a Bulma `.dropdown-divider`.
 // Atomic level: ATOM
 //
 // Used to visually separate dropdown items.
 templ DropdownDivider() {
-	<hr class="dropdown-divider" />
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "hr",
+			BaseClasses: []string{"dropdown-divider"},
+		},
+		nil,
+	)
 }
+
 
 
 // DropdownItem renders a Bulma `.dropdown-item`.
 // Atomic level: ATOM
 //
 // DropdownItem is always rendered as an <a> element.
-// If Href is nil, the item is treated as an action item
+// If Href is empty, the item is treated as an action item
 // and can be handled via JS/Alpine.
 type DropdownItemProps struct {
 	// Href defines the link URL.
@@ -110,16 +147,29 @@ type DropdownItemProps struct {
 
 // DropdownItem renders a Bulma `.dropdown-item`.
 templ DropdownItem(props DropdownItemProps, content elements.Items) {
-	<a
-		class={
-			"dropdown-item",
-			templ.KV("is-active", props.Active),
+	{{
+		classes := []string{"dropdown-item"}
+		if props.Active {
+			classes = append(classes, "is-active")
 		}
+
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+
 		if props.Href != "" {
-			href={ props.Href }
+			attrs["href"] = props.Href
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</a>
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "a",
+			BaseClasses: classes,
+			Attr:        attrs,
+		},
+		content,
+	)
 }
+

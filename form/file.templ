@@ -30,31 +30,46 @@ type FileProps struct {
 	// (is-centered, is-right).
 	Align string
 
-	// WrapperAttr contains additional HTML attributes
+	// Attr contains additional HTML attributes
 	// for the `.file` wrapper.
-	WrapperAttr templ.Attributes
+	Attr templ.Attributes
 }
 
 // File renders the Bulma `.file` container.
 //
 // FileLabel must be provided via content.
 templ File(props FileProps, content elements.Items) {
-	<div
-		class={
-			"file",
-			props.Color,
-			props.Size,
-			props.Align,
-			templ.KV("is-fullwidth", props.FullWidth),
-			templ.KV("is-boxed", props.Boxed),
-			templ.KV("has-name", props.HasName),
-		}
-		{ props.WrapperAttr... }
-	>
-		@elements.RenderItems(content)
-	</div>
-}
+	{{
+		classes := []string{"file"}
 
+		if props.Color != "" {
+			classes = append(classes, props.Color)
+		}
+		if props.Size != "" {
+			classes = append(classes, props.Size)
+		}
+		if props.Align != "" {
+			classes = append(classes, props.Align)
+		}
+		if props.FullWidth {
+			classes = append(classes, "is-fullwidth")
+		}
+		if props.Boxed {
+			classes = append(classes, "is-boxed")
+		}
+		if props.HasName {
+			classes = append(classes, "has-name")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
+}
 
 // FileLabel — Bulma file label wrapper.
 // Atomic level: ATOM
@@ -62,18 +77,22 @@ templ File(props FileProps, content elements.Items) {
 // FileLabel wraps the native file input
 // and all visual file UI elements.
 type FileLabelProps struct {
-	// WrapperAttr contains additional HTML attributes
+	// Attr contains additional HTML attributes
 	// for the `.file-label` element.
-	WrapperAttr templ.Attributes
+	Attr templ.Attributes
 }
 
 // FileLabel renders a Bulma `.file-label` container.
 templ FileLabel(props FileLabelProps, content elements.Items) {
-	<label class="file-label" { props.WrapperAttr... }>
-		@elements.RenderItems(content)
-	</label>
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "label",
+			BaseClasses: []string{"file-label"},
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
-
 
 // FileInput — native file input element.
 // Atomic level: ATOM
@@ -97,14 +116,28 @@ type FileInputProps struct {
 
 // FileInput renders the native file input.
 templ FileInput(props FileInputProps) {
-	<input
-		type="file"
-		class="file-input"
-		disabled={ props.Disabled }
-		{ props.Attr... }
-	/>
-}
+	{{
+		attrs := templ.Attributes{
+			"type": "file",
+		}
 
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+
+		if props.Disabled {
+			attrs["disabled"] = "disabled"
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "input",
+			BaseClasses: []string{"file-input"},
+			Attr:        attrs,
+		},
+		nil,
+	)
+}
 
 // FileCTA — Bulma file call-to-action.
 // Atomic level: ATOM
@@ -119,11 +152,15 @@ type FileCTAProps struct {
 
 // FileCTA renders a Bulma `.file-cta` element.
 templ FileCTA(props FileCTAProps, content elements.Items) {
-	<span class="file-cta" { props.Attr... }>
-		@elements.RenderItems(content)
-	</span>
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "span",
+			BaseClasses: []string{"file-cta"},
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
-
 
 // FileIcon — icon container inside file CTA.
 // Atomic level: ATOM
@@ -132,11 +169,15 @@ type FileIconProps struct {
 }
 
 templ FileIcon(props FileIconProps, content elements.Items) {
-	<span class="file-icon" { props.Attr... }>
-		@elements.RenderItems(content)
-	</span>
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "span",
+			BaseClasses: []string{"file-icon"},
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
-
 
 // FileText — text label inside file CTA.
 // Atomic level: ATOM
@@ -145,11 +186,15 @@ type FileTextProps struct {
 }
 
 templ FileText(props FileTextProps, content elements.Items) {
-	<span class="file-label" { props.Attr... }>
-		@elements.RenderItems(content)
-	</span>
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "span",
+			BaseClasses: []string{"file-label"},
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
-
 
 // FileName — selected file name display.
 // Atomic level: ATOM
@@ -158,7 +203,12 @@ type FileNameProps struct {
 }
 
 templ FileName(props FileNameProps, content elements.Items) {
-	<span class="file-name" { props.Attr... }>
-		@elements.RenderItems(content)
-	</span>
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "span",
+			BaseClasses: []string{"file-name"},
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }

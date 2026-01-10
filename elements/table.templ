@@ -22,12 +22,15 @@ type TableProps struct {
 
 // Table renders the table element.
 templ Table(props TableProps, content Items) {
-	<table
-		class={ "table", props.Modifiers }
-		{ props.Attr... }
-	>
-		@RenderItems(content)
-	</table>
+
+	@BaseElement(
+		BaseElementProps{
+			Tag: "table",
+			BaseClasses: []string{"table", props.Modifiers},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -44,8 +47,14 @@ type TableContainerProps struct {
 
 // TableContainer renders the table container.
 templ TableContainer(props TableContainerProps, content Items) {
-	<div class="table-container" { props.Attr... }>
-		@RenderItems(content)
-	</div>
+	
+	@BaseElement(
+		BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"table-container"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 

@@ -16,8 +16,14 @@ type BoxProps struct {
 
 // Box renders a Bulma `.box` container.
 templ Box(props BoxProps, content Items) {
-	<div class="box" { props.Attr... }>
-		@RenderItems(content)
-	</div>
+	
+	@BaseElement(
+		BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"box"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 

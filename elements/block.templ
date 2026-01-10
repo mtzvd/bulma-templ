@@ -20,9 +20,14 @@ type BlockProps struct {
 
 // Block renders a Bulma `.block` container.
 templ Block(props BlockProps, content Items) {
-	<div class="block" { props.Attr... }>
-		@content.Render()
-		
-	</div>
+	
+	@BaseElement(
+		BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"block"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 

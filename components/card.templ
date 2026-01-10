@@ -17,9 +17,15 @@ type CardProps struct {
 
 // Card renders a Bulma `.card` container.
 templ Card(props CardProps, content elements.Items) {
-	<div class="card" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"card"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -31,9 +37,15 @@ type CardHeaderProps struct {
 
 // CardHeader renders a Bulma `.card-header`.
 templ CardHeader(props CardHeaderProps, content elements.Items) {
-	<header class="card-header" { props.Attr... }>
-		@elements.RenderItems(content)
-	</header>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"card-header"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -45,9 +57,15 @@ type CardHeaderTitleProps struct {
 
 // CardHeaderTitle renders `.card-header-title`.
 templ CardHeaderTitle(props CardHeaderTitleProps, content elements.Items) {
-	<p class="card-header-title" { props.Attr... }>
-		@elements.RenderItems(content)
-	</p>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "p",
+			BaseClasses: []string{"card-header-title"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -59,9 +77,15 @@ type CardHeaderIconProps struct {
 
 // CardHeaderIcon renders `.card-header-icon`.
 templ CardHeaderIcon(props CardHeaderIconProps, content elements.Items) {
-	<a class="card-header-icon" { props.Attr... }>
-		@elements.RenderItems(content)
-	</a>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "a",
+			BaseClasses: []string{"card-header-icon"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -73,9 +97,15 @@ type CardContentProps struct {
 
 // CardContent renders `.card-content`.
 templ CardContent(props CardContentProps, content elements.Items) {
-	<div class="card-content" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"card-content"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -87,9 +117,15 @@ type CardFooterProps struct {
 
 // CardFooter renders `.card-footer`.
 templ CardFooter(props CardFooterProps, content elements.Items) {
-	<footer class="card-footer" { props.Attr... }>
-		@elements.RenderItems(content)
-	</footer>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "footer",
+			BaseClasses: []string{"card-footer"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -101,8 +137,14 @@ type CardFooterItemProps struct {
 
 // CardFooterItem renders `.card-footer-item`.
 templ CardFooterItem(props CardFooterItemProps, content elements.Items) {
-	<a class="card-footer-item" { props.Attr... }>
-		@elements.RenderItems(content)
-	</a>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "a",
+			BaseClasses: []string{"card-footer-item"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 

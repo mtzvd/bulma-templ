@@ -34,9 +34,12 @@ templ Icon(props IconProps) {
 			"icon",
 			props.Size,
 			props.Color,
+			props.Attr["class"],
 		}
 		{ props.Attr... }
 	>
 		<i class={ props.IconClass }></i>
 	</span>
+
+	
 }

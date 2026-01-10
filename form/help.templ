@@ -25,7 +25,7 @@ type HelpProps struct {
 // This component should be conditionally rendered
 // by higher-level logic when needed.
 templ Help(props HelpProps) {
-	<p class={ "help", props.Color } { props.Attr... }>
+	<p class={ "help", props.Color, props.Attr["class"] } { props.Attr... }>
 		{ props.Text }
 	</p>
 }

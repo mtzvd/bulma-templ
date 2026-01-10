@@ -3,8 +3,8 @@ package elements
 // Progress — Bulma progress bar.
 // Atomic level: ATOM
 //
-// Progress defines thin wrapper around the native <progress> element
-// styled with Bulma classes.
+// Progress defines a thin wrapper around the native <progress>
+// element styled with Bulma classes.
 //
 // This component does NOT compute or format progress values.
 // Any content rendered inside <progress> is fully controlled
@@ -33,21 +33,37 @@ type ProgressProps struct {
 
 // Progress renders a Bulma progress bar.
 templ Progress(props ProgressProps, content Items) {
-	<progress
-		class={
-			"progress",
-			props.Color,
-			props.Size,
+	{{
+		// Build component classes explicitly
+		classes := []string{"progress"}
+
+		if props.Color != "" {
+			classes = append(classes, props.Color)
 		}
-		{ props.Attr... }
+		if props.Size != "" {
+			classes = append(classes, props.Size)
+		}
+
+		// Copy attributes to avoid mutating input
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+
 		if props.Value != nil {
-			value={ *props.Value }
+			attrs["value"] = *props.Value
 		}
 		if props.Max != nil {
-			max={ *props.Max }
+			attrs["max"] = *props.Max
 		}
-	>
-		@RenderItems(content)
-	</progress>
-}
+	}}
 
+	@BaseElement(
+		BaseElementProps{
+			Tag:         "progress",
+			BaseClasses: classes,
+			Attr:        attrs,
+		},
+		content,
+	)
+}

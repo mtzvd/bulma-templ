@@ -1,153 +1,204 @@
 package components
 
-// PaginationLink defines a pagination link.
-// Atomic level: MOLECULE
-//
-// Used for:
-// - page links
-// - previous / next controls
-type PaginationLink struct {
-	// Label defines the visible text.
-	Label string
+import "github.com/mtzvd/bulma-templ/elements"
 
-	// Href defines the link URL.
-	// If empty or Disabled == true, the link is rendered as disabled.
-	Href string
-
-	// Current marks the link as the current page
-	// (used only for page links).
-	Current bool
-
-	// Disabled disables the link and renders it as non-clickable.
-	Disabled bool
-
-	// Attr contains additional HTML attributes
-	// for the <a> element.
-	Attr templ.Attributes
-}
-
-// PaginationItem defines an item inside pagination-list.
-type PaginationItem struct {
-	// Link defines a page link.
-	// If nil and Ellipsis == true, an ellipsis is rendered.
-	Link *PaginationLink
-
-	// Ellipsis renders a "…" separator.
-	Ellipsis bool
-}
-
-// PaginationProps defines properties for the Pagination component.
-//
+// Pagination — Bulma pagination container.
 // Atomic level: ORGANISM
-// Pagination is an organism-level Bulma component responsible
-// only for rendering pagination UI.
-// It does NOT calculate pages or manage state.
+//
+// Pagination renders the root `.pagination` element.
+//
+// This component is a pure structural container and does NOT:
+//   - calculate page ranges
+//   - decide which blocks are rendered
+//   - enforce ordering of child blocks
+//
+// All pagination blocks MUST be provided explicitly
+// via the Content field and rendered in the exact
+// order defined by the caller.
+//
+// This design matches Bulma documentation, where
+// `.pagination-previous`, `.pagination-next`, and
+// `.pagination-list` may appear in any order.
 type PaginationProps struct {
-	// Prev defines the "Previous" link.
-	// If nil, the control is not rendered.
-	Prev *PaginationLink
+	// Content defines ordered pagination blocks.
+	//
+	// Supported blocks include:
+	//   - PaginationPrev
+	//   - PaginationNext
+	//   - PaginationList
+	//
+	// Order is significant and MUST be defined explicitly.
+	Content elements.Items
 
-	// Next defines the "Next" link.
-	// If nil, the control is not rendered.
-	Next *PaginationLink
-
-	// Items defines page items.
-	// If empty or nil, pagination-list is not rendered
-	// (simple pagination).
-	Items []PaginationItem
-
-	// Size defines pagination size
+	// Size defines the pagination size modifier
 	// (is-small, is-medium, is-large).
 	Size string
 
-	// Alignment defines pagination alignment
-	// ("", is-centered, is-right).
+	// Alignment defines pagination alignment modifier
+	// (is-centered, is-right).
 	Alignment string
 
 	// Rounded applies the `is-rounded` modifier.
 	Rounded bool
 
 	// Attr contains additional HTML attributes
-	// for the <nav> element.
+	// for the root `.pagination` container.
 	Attr templ.Attributes
 }
 
-// Pagination renders a Bulma `.pagination` component.
-// Atomic level: ORGANISM
-//
-// Supported modes:
-// - simple pagination (prev / next only)
-// - pagination with page numbers
-// - alignment, size and rounded styles
+// Pagination renders the Bulma `.pagination` container.
 templ Pagination(props PaginationProps) {
-	<nav
-		class={
-			"pagination",
-			props.Size,
-			props.Alignment,
-			templ.KV("is-rounded", props.Rounded),
-		}
-		role="navigation"
-		aria-label="pagination"
-		{ props.Attr... }
-	>
-		if props.Prev != nil {
-			<a
-				class="pagination-previous"
-				if !props.Prev.Disabled && props.Prev.Href != "" {
-					href={ props.Prev.Href }
-				}
-				if props.Prev.Disabled {
-					disabled
-				}
-				{ props.Prev.Attr... }
-			>
-				{ props.Prev.Label }
-			</a>
-		}
+	{{
+		classes := []string{"pagination"}
 
-		if props.Next != nil {
-			<a
-				class="pagination-next"
-				if !props.Next.Disabled && props.Next.Href != "" {
-					href={ props.Next.Href }
-				}
-				if props.Next.Disabled {
-					disabled
-				}
-				{ props.Next.Attr... }
-			>
-				{ props.Next.Label }
-			</a>
+		if props.Size != "" {
+			classes = append(classes, props.Size)
 		}
-
-		if len(props.Items) > 0 {
-			<ul class="pagination-list">
-				for _, item := range props.Items {
-					<li>
-						if item.Ellipsis {
-							<span class="pagination-ellipsis">&hellip;</span>
-						} else if item.Link != nil {
-							<a
-								class={
-									"pagination-link",
-									templ.KV("is-current", item.Link.Current),
-								}
-								if !item.Link.Disabled && item.Link.Href != "" {
-									href={ item.Link.Href }
-								}
-								if item.Link.Disabled {
-									disabled
-								}
-								{ item.Link.Attr... }
-							>
-								{ item.Link.Label }
-							</a>
-						}
-					</li>
-				}
-			</ul>
+		if props.Alignment != "" {
+			classes = append(classes, props.Alignment)
 		}
-	</nav>
+		if props.Rounded {
+			classes = append(classes, "is-rounded")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "nav",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		props.Content,
+	)
 }
 
+//
+// PaginationPrev — previous page control.
+// Atomic level: MOLECULE
+//
+// PaginationPrev renders the `.pagination-previous` block.
+//
+// The block is rendered only if content is provided.
+// Absence MUST be represented by an empty Items list.
+//
+templ PaginationPrev(content elements.Items) {
+	if len(content) > 0 {
+		@elements.BaseElement(
+			elements.BaseElementProps{
+				Tag:         "a",
+				BaseClasses: []string{"pagination-previous"},
+			},
+			content,
+		)
+	}
+}
+
+//
+// PaginationNext — next page control.
+// Atomic level: MOLECULE
+//
+// PaginationNext renders the `.pagination-next` block.
+//
+// The block is rendered only if content is provided.
+// Absence MUST be represented by an empty Items list.
+//
+templ PaginationNext(content elements.Items) {
+	if len(content) > 0 {
+		@elements.BaseElement(
+			elements.BaseElementProps{
+				Tag:         "a",
+				BaseClasses: []string{"pagination-next"},
+			},
+			content,
+		)
+	}
+}
+
+//
+// PaginationList — page list container.
+// Atomic level: MOLECULE
+//
+// PaginationList renders the `.pagination-list` element.
+//
+// The list is rendered only if content is provided.
+//
+templ PaginationList(content elements.Items) {
+	if len(content) > 0 {
+		@elements.BaseElement(
+			elements.BaseElementProps{
+				Tag:         "ul",
+				BaseClasses: []string{"pagination-list"},
+			},
+			content,
+		)
+	}
+}
+
+//
+// PaginationItem — list item wrapper.
+// Atomic level: MOLECULE
+//
+// PaginationItem renders a `<li>` element inside
+// `.pagination-list`.
+//
+templ PaginationItem(content elements.Items) {
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "li",
+		},
+		content,
+	)
+}
+
+//
+// PaginationLink — page link.
+// Atomic level: ATOM
+
+type PaginationLinkProps struct {
+
+	// Active indicates whether the link is active.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the link element.
+	Attr templ.Attributes
+}
+
+//
+// PaginationLink renders a Bulma `.pagination-link`.
+//
+// Active state MUST be controlled externally.
+// Navigation behavior (href, disabled, JS handlers)
+// MUST be provided via attributes.
+//
+templ PaginationLink(props PaginationLinkProps, content elements.Items) {
+	{{
+		classes := []string{"pagination-link"}
+		if props.Active {
+			classes = append(classes, "is-current")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "a",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
+}
+
+//
+// PaginationEllipsis — pagination separator.
+// Atomic level: ATOM
+//
+// PaginationEllipsis renders the `.pagination-ellipsis` element.
+//
+templ PaginationEllipsis() {
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "span",
+			BaseClasses: []string{"pagination-ellipsis"},
+		},
+		nil,
+	)
+}

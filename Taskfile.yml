@@ -1,0 +1,31 @@
+version: "3"
+
+tasks:
+  clean:
+    desc: Remove all generated templ files
+    cmds:
+      - echo "→ Cleaning generated templ files (*_templ.go)"
+      - powershell -Command "Get-ChildItem -Recurse -Filter '*_templ.go' | Remove-Item -Force"
+
+  templ:
+    desc: Generate templ files
+    deps: [clean]
+    cmds:
+      - echo "→ Generating templ code"
+      - templ generate
+
+  run:
+    desc: Run dev server (manual)
+    deps: [templ]
+    cmds:
+      - echo "→ Starting dev server"
+      - go run ./cmd/dev
+
+  dump:
+    desc: Collect all project code into all_code.txt
+    deps: [clean]
+    cmds:
+      - echo "→ Collecting project source into all_code.txt"
+      - go run ./tools/collector
+      - echo "→ Restoring generated templ files"
+      - templ generate  

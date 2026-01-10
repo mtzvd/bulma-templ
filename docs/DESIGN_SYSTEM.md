@@ -1,204 +1,168 @@
-# Bulma-Templ Design System for templ (Go) — v1.0
+# Design System – Architectural Decisions (Canonical)
 
-## Status
+This document fixes the key architectural decisions
+of the **Bulma-Templ Design System**.
 
-Architecture: **FINAL**  
-Components: **Complete**  
-Documentation: **Synchronized with Canonical Context**  
-OSS readiness: **80%**
-
----
-
-## Philosophy
-
-This design system is a **faithful, type-safe implementation of Bulma**
-for Go projects using **templ**.
-
-The system prioritizes:
-
-- correctness over convenience
-- transparency over abstraction
-- explicit composition over magic
+This document is **normative**: all future components
+and refactors MUST comply with it.
 
 ---
 
-## Atomic Design
+## 1. Default State Rule (CRITICAL)
 
-Only three atomic levels exist and are strictly enforced:
+**Rule:**
+> The default state of any component MUST represent
+> the most common, active, and usable state.
 
-- **ATOM** — visual and infrastructure primitives
-- **MOLECULE** — structural composition
-- **ORGANISM** — complex UI and page-level blocks
+### Implications
 
-Atomic level **MUST** be declared explicitly in code comments.
-No other levels are allowed.
+- Boolean props MUST NOT require explicit `false`
+- Modifiers (`is-disabled`, `is-active`, etc.)
+  are added ONLY when the value is `true`
+- HTML attributes (`disabled`, `multiple`, etc.)
+  are rendered ONLY when `true`
 
----
+### Example (Button)
 
-## Component Contract
+```go
+if props.Disabled {
+    classes = append(classes, "is-disabled")
+    attrs["disabled"] = "disabled"
+}
+```
 
-Every component:
-
-- is written in **templ**
-- exposes a **Props struct**
-- accepts explicit content as `Items`
-- never manages application state
-- never hides or reinterprets Bulma behavior
-
-There are:
-
-- no implicit children
-- no slots
-- no positional parameters
-- no internal state
+❌ Forbidden:
+- `templ.KV(...)`
+- disabled-by-default components
+- hidden implicit states
 
 ---
 
-## Content Model
-
-This design system uses an explicit multi-child composition model.
+## 2. Items — Canonical Composition Model
 
 ```go
 type Items []templ.Component
 ```
 
-- `Items` represents an ordered list of sibling components.
-- This model exists to:
-  - avoid excessive `templ.Join` usage
-  - better reflect Bulma’s structural patterns
-  - enable readable, linear composition
-- Single-child composition is treated as a special case of `Items`.
+- Used everywhere a component accepts multiple children
+- Explicit rendering via `Items.Render()`
 
-All content-based components accept `Items`, not `templ.Component`.
-
----
-
-## Infrastructure Primitives
-
-Some primitives exist to enable practical composition but are **not Bulma components**.
-
-### Items
-
-- Defined in `elements`
-- Canonical multi-child content container
-- Used consistently across all packages
-
-### RenderItems
+### Render
 
 ```go
-templ RenderItems(content Items)
+templ (i Items) Render() {
+    for _, item := range i {
+        @item
+    }
+}
 ```
 
-- Centralized rendering helper for `Items`
-- Prevents duplication of render loops
-- Ensures consistent rendering semantics
+### Why
 
-### Html
+- Explicit structure
+- Predictable order
+- Matches Bulma documentation
+- Zero magic
+
+---
+
+## 3. Wrap — Infrastructure Primitive
+
+`Wrap` is a low-level rendering primitive.
+
+Responsibilities:
+- render arbitrary HTML tag
+- merge component classes with user classes
+- extract `class` from Attr
+- prevent duplicated attributes
+
+Rules:
+- MUST NOT be used by application code
+- MAY be used by BaseElement and internals only
+
+---
+
+## 4. BaseElement — Canonical HTML Container
 
 ```go
-templ Html(content string)
+templ BaseElement(props BaseElementProps, content Items)
 ```
 
-- Raw HTML rendering helper
-- Uses `templ.Raw`
-- MUST be used only with trusted, pre-sanitized content
-- Intended for page-level and low-level composition
-- Performs no escaping or validation
+### Purpose
+
+- Single abstraction for most Bulma containers
+- Eliminates duplicated tag/class/attr logic
+- Improves readability and consistency
+
+### Rule
+
+> If a component differs only by tag name and classes,
+> it MUST be implemented via BaseElement.
 
 ---
 
-## Bulma Coverage
+## 5. Class Handling (STRICT)
 
-Implemented sections:
+- `class` is extracted from `Attr`
+- merged with component-defined classes
+- NOT re-expanded via `{ Attr... }`
 
-- Elements (button, icon, tag, table, skeletons, etc.)
-- Components (navbar, tabs, dropdown, pagination, card, etc.)
-- Forms (input, select, textarea, checkbox, radio, file)
-- Layout (container, section, hero, level, media, footer)
-- Grid (columns and grid helpers)
+This guarantees:
 
-Explicitly excluded:
-
-- dark mode logic
-- CSS abstraction layers
-- JavaScript frameworks beyond Alpine
-- application state management
+- no duplicated `class` attributes
+- correct class merging
+- predictable output
 
 ---
 
-## JavaScript Policy
+## 6. Attr vs WrapperAttr
 
-- Alpine.js only
-- Only where Bulma explicitly requires interactivity
-- No inline business logic
-- No hidden or internal state inside components
+Final rule:
 
----
+- Single-element component → `Attr`
+- Multi-element (wrapper + control) → separate attrs MAY exist
 
-## Semantics vs Presentation
-
-- HTML semantics (`h1`, `p`, `section`, etc.) are handled at
-  **page or layout level**
-- Visual components (e.g. `Title`) do **not** define semantics
-- Mixing semantics and visual components inside a single component
-  is explicitly forbidden
+But:
+> Do NOT introduce `WrapperAttr` unless there is
+> a real semantic distinction.
 
 ---
 
-## Package Structure
+## 7. Flow Control & Order Freedom
 
-```text
-/
-├── elements/
-├── components/
-├── form/
-├── grid/
-├── columns/
-├── layout/
-├── docs/
-├── examples (optional)
-```
+Bulma allows flexible block order
+(e.g. pagination: prev / next / list in any order).
 
-This structure mirrors Bulma documentation directly.
-Atomic level is declared in code comments, never inferred from folders.
+Therefore:
+
+- Components MUST NOT hardcode block order
+- Structural blocks are separate templ templates
+- User controls final composition
 
 ---
 
-## Quality Bar
+## 8. Canonical Goal
 
-A component is considered **canonical** if:
+This design system:
 
-- atomic level is valid and explicit
-- Props naming is explicit and consistent
-- content uses `Items`
-- Bulma documentation can be mapped 1:1 to the component
-- no implicit behavior or hidden structure exists
+- ❌ does not abstract Bulma
+- ❌ does not hide HTML
+- ❌ does not infer behavior
 
----
+It:
 
-## Versioning
-
-- **v1.0** — architecture freeze
-- **v1.x** — additive improvements only
-- **v2.0** — breaking API or architectural changes
+- ✅ maps Bulma 1:1
+- ✅ is explicit and predictable
+- ✅ is composable
+- ✅ is OSS-grade
 
 ---
 
-## Architectural Notes (v1.0)
+## Status
 
-- The `Items` + `RenderItems` model is a deliberate deviation
-  from single-slot templ composition
-- This choice preserves:
-  - Bulma fidelity
-  - explicit structure
-  - readability at scale
-- No slots, no magic, no implicit composition
+- Architecture: FINAL
+- Composition model: FINAL
+- Class handling: FINAL
+- Default state semantics: FINAL
 
----
-
-## Next Steps
-
-- Kitchen Sink page
-- usage examples
-- tests
-- final README polish
+Any deviation is an architectural error.

@@ -25,9 +25,15 @@ type GridProps struct {
 
 // Grid renders a Bulma `.grid` container.
 templ Grid(props GridProps, content elements.Items) {
-	<div class="grid" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"grid"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -50,8 +56,14 @@ type CellProps struct {
 
 // Cell renders a Bulma `.cell` element.
 templ Cell(props CellProps, content elements.Items) {
-	<div class="cell" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"cell"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 

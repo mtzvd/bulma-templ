@@ -49,14 +49,14 @@ type RadioProps struct {
 // The radio label text must be provided
 // via the component content.
 templ Radio(props RadioProps, content elements.Items) {
-	<label class="radio" { props.WrapperAttr... }>
+	<label class={"radio", props.WrapperAttr["class"]} { props.WrapperAttr... }>
 		<input
 			type="radio"
 			checked={ props.Checked }
 			disabled={ props.Disabled }
 			{ props.Attr... }
 		/>
-		@elements.RenderItems(content)
+		@content.Render()
 	</label>
 }
 
@@ -80,7 +80,7 @@ type RadiosProps struct {
 //
 // Radio components must be provided via content.
 templ Radios(props RadiosProps, content elements.Items) {
-	<div class="radios" { props.Attr... }>
-		@elements.RenderItems(content)
+	<div class={"radios", props.Attr["class"]} { props.Attr... }>
+		@content.Render()
 	</div>
 }

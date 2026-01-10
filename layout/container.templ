@@ -28,15 +28,25 @@ type ContainerProps struct {
 
 // Container renders a Bulma `.container` element.
 templ Container(props ContainerProps, content elements.Items) {
-	<div
-		class={
-			"container",
-			templ.KV("is-fluid", props.Fluid),
-			templ.KV("is-widescreen", props.Widescreen),
-			templ.KV("is-fullhd", props.FullHD),
+	
+	{{
+		classes:= []string{"container"}
+		if props.Fluid {
+			classes = append(classes, "is-fluid")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
+		if props.Widescreen {
+			classes = append(classes, "is-widescreen")
+		}
+		if props.FullHD {
+			classes = append(classes, "is-fullhd")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }

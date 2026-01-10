@@ -37,21 +37,36 @@ type TabsProps struct {
 
 // Tabs renders the root `.tabs` container.
 templ Tabs(props TabsProps, content elements.Items) {
-	<div
-		class={
-			"tabs",
-			props.Size,
-			templ.KV("is-centered", props.Centered),
-			templ.KV("is-right", props.Right),
-			templ.KV("is-boxed", props.Boxed),
-			templ.KV("is-toggle", props.Toggle),
-			templ.KV("is-toggle-rounded", props.ToggleRounded),
-			templ.KV("is-fullwidth", props.Fullwidth),
+	
+	{{
+		classes:= []string{"tabs"}
+		if props.Centered {
+			classes = append(classes, "is-centered")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
+		if props.Right {
+			classes = append(classes, "is-right")
+		}
+		if props.Boxed {
+			classes = append(classes, "is-boxed")
+		}
+		if props.Toggle {
+			classes = append(classes, "is-toggle")
+		}
+		if props.ToggleRounded {
+			classes = append(classes, "is-toggle-rounded")
+		}
+		if props.Fullwidth {
+			classes = append(classes, "is-fullwidth")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -67,9 +82,14 @@ type TabsListProps struct {
 
 // TabsList renders the tabs list container.
 templ TabsList(props TabsListProps, content elements.Items) {
-	<ul { props.Attr... }>
-		@elements.RenderItems(content)
-	</ul>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "ul",
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -89,12 +109,21 @@ type TabsItemProps struct {
 
 // TabsItem renders a tab item.
 templ TabsItem(props TabsItemProps, content elements.Items) {
-	<li
-		class={ templ.KV("is-active", props.Active) }
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</li>
+	
+	{{
+		classes:= []string{}
+		if props.Active {
+			classes = append(classes, "is-active")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "li",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
 
 // TabsLink renders an interactive tab link.
@@ -115,13 +144,16 @@ type TabsLinkProps struct {
 
 // TabsLink renders a clickable tab element.
 templ TabsLink(props TabsLinkProps, content elements.Items) {
-	<a
-		if props.Href != "" {
-			href={ props.Href }
-		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</a>
+	{{ attrs := templ.Attributes{} 
+	for k, v := range props.Attr { attrs[k] = v } 
+	if props.Href != "" { attrs["href"] = props.Href } }}
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "a",
+			Attr: attrs,
+		},
+		content,
+	)
 }
 

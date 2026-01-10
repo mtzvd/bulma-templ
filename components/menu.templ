@@ -15,9 +15,15 @@ type MenuProps struct {
 
 // Menu renders the root `.menu` container.
 templ Menu(props MenuProps, content elements.Items) {
-	<aside class="menu" { props.Attr... }>
-		@elements.RenderItems(content)
-	</aside>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "aside",
+			BaseClasses: []string{"menu"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -33,9 +39,15 @@ type MenuLabelProps struct {
 
 // MenuLabel renders a menu section label.
 templ MenuLabel(props MenuLabelProps, content elements.Items) {
-	<p class="menu-label" { props.Attr... }>
-		@elements.RenderItems(content)
-	</p>
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "p",
+			BaseClasses: []string{"menu-label"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -52,9 +64,15 @@ type MenuListProps struct {
 
 // MenuList renders a menu list container.
 templ MenuList(props MenuListProps, content elements.Items) {
-	<ul class="menu-list" { props.Attr... }>
-		@elements.RenderItems(content)
-	</ul>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "ul",
+			BaseClasses: []string{"menu-list"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -78,13 +96,28 @@ type MenuItemProps struct {
 
 // MenuItem renders a menu link.
 templ MenuItem(props MenuItemProps, content elements.Items) {
-	<a
-		class={ templ.KV("is-active", props.Active) }
-		if props.Href != "" {
-			href={ props.Href }
+	{{
+		classes := []string{}
+		if props.Active {
+			classes = append(classes, "is-active")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</a>
+
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+
+		if props.Href != "" {
+			attrs["href"] = props.Href
+		}
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "a",
+			BaseClasses: classes,
+			Attr:        attrs,
+		},
+		content,
+	)
 }

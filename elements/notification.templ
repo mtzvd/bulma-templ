@@ -20,13 +20,13 @@ type NotificationProps struct {
 
 // Notification renders a Bulma notification container.
 templ Notification(props NotificationProps, content Items) {
-	<div
-		class={
-			"notification",
-			props.Color,
-		}
-		{ props.Attr... }
-	>
-		@RenderItems(content)
-	</div>
+	
+	@BaseElement(
+		BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"notification", props.Color},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }

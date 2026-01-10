@@ -29,15 +29,25 @@ type ControlProps struct {
 // This component does not manage focus, validation,
 // value binding or interactivity.
 templ Control(props ControlProps, content elements.Items) {
-	<div
-		class={
-			"control",
-			templ.KV("is-expanded", props.Expanded),
-			templ.KV("has-icons-left", props.HasIconsLeft),
-			templ.KV("has-icons-right", props.HasIconsRight),
+	
+	{{
+		classes:= []string{"control"}
+		if props.Expanded {
+			classes = append(classes, "is-expanded")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
+		if props.HasIconsLeft {
+			classes = append(classes, "has-icons-left")
+		}
+		if props.HasIconsRight {
+			classes = append(classes, "has-icons-right")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }

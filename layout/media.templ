@@ -18,9 +18,15 @@ type MediaProps struct {
 
 // Media renders a Bulma `.media` container.
 templ Media(props MediaProps, content elements.Items) {
-	<article class="media" { props.Attr... }>
-		@elements.RenderItems(content)
-	</article>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "article",
+			BaseClasses: []string{"media"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -37,9 +43,15 @@ type MediaLeftProps struct {
 
 // MediaLeft renders a Bulma `.media-left` container.
 templ MediaLeft(props MediaLeftProps, content elements.Items) {
-	<figure class="media-left" { props.Attr... }>
-		@elements.RenderItems(content)
-	</figure>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "figure",
+			BaseClasses: []string{"media-left"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -56,9 +68,15 @@ type MediaContentProps struct {
 
 // MediaContent renders a Bulma `.media-content` container.
 templ MediaContent(props MediaContentProps, content elements.Items) {
-	<div class="media-content" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"media-content"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -75,8 +93,14 @@ type MediaRightProps struct {
 
 // MediaRight renders a Bulma `.media-right` container.
 templ MediaRight(props MediaRightProps, content elements.Items) {
-	<div class="media-right" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"media-right"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 

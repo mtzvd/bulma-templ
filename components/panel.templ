@@ -15,9 +15,15 @@ type PanelProps struct {
 
 // Panel renders the root `.panel` container.
 templ Panel(props PanelProps, content elements.Items) {
-	<nav class="panel" { props.Attr... }>
-		@elements.RenderItems(content)
-	</nav>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "nav",
+			BaseClasses: []string{"panel"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -33,9 +39,15 @@ type PanelHeadingProps struct {
 
 // PanelHeading renders the panel heading.
 templ PanelHeading(props PanelHeadingProps, content elements.Items) {
-	<p class="panel-heading" { props.Attr... }>
-		@elements.RenderItems(content)
-	</p>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "p",
+			BaseClasses: []string{"panel-heading"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -51,9 +63,15 @@ type PanelTabsProps struct {
 
 // PanelTabs renders panel tabs.
 templ PanelTabs(props PanelTabsProps, content elements.Items) {
-	<p class="panel-tabs" { props.Attr... }>
-		@elements.RenderItems(content)
-	</p>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "p",
+			BaseClasses: []string{"panel-tabs"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -77,27 +95,35 @@ type PanelBlockProps struct {
 
 // PanelBlock renders a panel block.
 templ PanelBlock(props PanelBlockProps, content elements.Items) {
-	if props.Href != "" {
-		<a
-			class={
-				"panel-block",
-				templ.KV("is-active", props.Active),
-			}
-			href={ props.Href }
-			{ props.Attr... }
-		>
-			@elements.RenderItems(content)
-		</a>
-	} else {
-		<div
-			class={
-				"panel-block",
-				templ.KV("is-active", props.Active),
-			}
-			{ props.Attr... }
-		>
-			@elements.RenderItems(content)
-		</div>
-	}
+	{{
+		tag := "div"
+		if props.Href != "" {
+			tag = "a"
+		}
+
+		classes := []string{"panel-block"}
+		if props.Active {
+			classes = append(classes, "is-active")
+		}
+
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+
+		if props.Href != "" {
+			attrs["href"] = props.Href
+		}
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         tag,
+			BaseClasses: classes,
+			Attr:        attrs,
+		},
+		content,
+	)
 }
+
 

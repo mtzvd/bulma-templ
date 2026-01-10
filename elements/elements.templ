@@ -1,5 +1,9 @@
 package elements
 
+import (
+	"fmt"
+	"strings"
+)
 
 // Items defines a list of templ components used for
 // explicit multi-child composition.
@@ -8,18 +12,139 @@ package elements
 // and to better match Bulma's structural patterns.
 type Items []templ.Component
 
-templ (i Items) Render(){
+// Render outputs all components contained in the Items list
+// in declaration order.
+//
+// Render MUST be called explicitly by container components
+// that accept Items as their content model.
+templ (i Items) Render() {
 	for _, item := range i {
 		@item
 	}
-
 }
-	
 
+// BaseElementProps defines common rendering parameters
+// for generic HTML container elements.
+type BaseElementProps struct {
+	// Tag defines the HTML tag name to render.
+	Tag string
 
-templ RenderItems(content Items) {
-	for _, item := range content {
-		@item
+	// BaseClasses defines CSS classes
+	// applied by the component itself.
+	BaseClasses []string
+
+	// Attr contains additional HTML attributes.
+	Attr templ.Attributes
+}
+
+// BaseElement — generic HTML container.
+// Atomic level: ATOM
+//
+// BaseElement renders a generic HTML element with unified
+// class and attribute handling.
+templ BaseElement(props BaseElementProps, content Items) {
+	@Wrap(
+		WrapProps{
+			Tag:     props.Tag,
+			Classes: props.BaseClasses,
+			Attr:    props.Attr,
+		},
+		content,
+	)
+}
+
+// WrapProps defines parameters for Wrap.
+type WrapProps struct {
+	Tag     string
+	Classes []string
+	Attr    templ.Attributes
+}
+
+// escapeAttribute escapes a string for safe usage
+// inside an HTML attribute value.
+func escapeAttribute(s string) string {
+	var b strings.Builder
+	for _, r := range s {
+		switch r {
+		case '&':
+			b.WriteString("&amp;")
+		case '"':
+			b.WriteString("&quot;")
+		case '\'':
+			b.WriteString("&#39;")
+		case '<':
+			b.WriteString("&lt;")
+		case '>':
+			b.WriteString("&gt;")
+		default:
+			b.WriteRune(r)
+		}
 	}
+	return b.String()
 }
 
+// buildAttributeString serializes attributes according
+// to the Wrap contract.
+func buildAttributeString(classes []string, attrs templ.Attributes) string {
+	allClasses := make([]string, 0, len(classes))
+
+	// component classes
+	for _, c := range classes {
+		if c != "" {
+			allClasses = append(allClasses, c)
+		}
+	}
+
+	otherAttrs := make([]string, 0, len(attrs))
+
+	for k, v := range attrs {
+		if k == "class" {
+			if s, ok := v.(string); ok {
+				allClasses = append(allClasses, strings.Fields(s)...)
+			}
+			continue
+		}
+
+		switch val := v.(type) {
+		case nil:
+			// omit
+		case bool:
+			if val {
+				otherAttrs = append(otherAttrs, k)
+			}
+		default:
+			str := escapeAttribute(fmt.Sprint(val))
+			otherAttrs = append(otherAttrs, k+`="`+str+`"`)
+		}
+	}
+
+	var out []string
+
+	if len(allClasses) > 0 {
+		out = append(out, `class="`+strings.Join(allClasses, " ")+`"`)
+	}
+
+	out = append(out, otherAttrs...)
+
+	if len(out) == 0 {
+		return ""
+	}
+
+	return " " + strings.Join(out, " ")
+}
+
+// Wrap — low-level HTML wrapper primitive.
+//
+// Wrap is a low-level HTML serializer with escaping
+// and boolean attribute semantics.
+//
+// MUST NOT be used directly by application code.
+templ Wrap(p WrapProps, content Items) {
+	{{
+		attrString := buildAttributeString(p.Classes, p.Attr)
+	}}
+
+	@Html("<" + p.Tag + attrString + ">")
+	@content.Render()
+	@Html("</" + p.Tag + ">")
+}

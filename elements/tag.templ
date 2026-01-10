@@ -27,17 +27,27 @@ type TagProps struct {
 
 // Tag renders a Bulma tag.
 templ Tag(props TagProps, content Items) {
-	<span
-		class={
-			"tag",
-			props.Color,
-			props.Size,
-			templ.KV("is-rounded", props.Rounded),
+	
+	{{
+		classes:= []string{"tag"}
+		if props.Color != "" {
+			classes = append(classes, props.Color)
 		}
-		{ props.Attr... }
-	>
-		@RenderItems(content)
-	</span>
+		if props.Size != "" {
+			classes = append(classes, props.Size)
+		}
+		if props.Rounded {
+			classes = append(classes, "is-rounded")
+		}
+	}}
+	@BaseElement(
+		BaseElementProps{
+			Tag: "span",
+			BaseClasses: classes,
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -57,14 +67,19 @@ type TagsProps struct {
 
 // Tags renders a Bulma tags container.
 templ Tags(props TagsProps, content Items) {
-	<div
-		class={
-			"tags",
-			templ.KV("has-addons", props.HasAddons),
+	
+	{{
+		classes:= []string{"tags"}
+		if props.HasAddons {
+			classes = append(classes, "has-addons")
 		}
-		{ props.Attr... }
-	>
-		@RenderItems(content)
-	</div>
+	}}
+	@BaseElement(
+		BaseElementProps{
+			Tag: "div",
+			BaseClasses: classes,
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
-

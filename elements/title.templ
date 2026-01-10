@@ -24,16 +24,21 @@ type TitleProps struct {
 
 // Title renders a Bulma `.title` typographic element.
 templ Title(props TitleProps, content Items) {
-	<span
-		class={
-			"title",
-			props.Size,
-			templ.KV("is-spaced", props.Spaced),
+	
+	{{
+		classes:= []string{"title"}
+		if props.Size != "" {
+			classes = append(classes, props.Size)
 		}
-		{ props.Attr... }
-	>
-		@RenderItems(content)
-	</span>
+	}}
+	@BaseElement(
+		BaseElementProps{
+			Tag: "span",
+			BaseClasses: classes,
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 // Subtitle — Bulma typographic subtitle.
@@ -56,13 +61,13 @@ type SubtitleProps struct {
 
 // Subtitle renders a Bulma `.subtitle` typographic element.
 templ Subtitle(props SubtitleProps, content Items) {
-	<span
-		class={
-			"subtitle",
-			props.Size,
-		}
-		{ props.Attr... }
-	>
-		@RenderItems(content)
-	</span>
+	
+	@BaseElement(
+		BaseElementProps{
+			Tag: "span",
+			BaseClasses: []string{"subtitle", props.Size},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }

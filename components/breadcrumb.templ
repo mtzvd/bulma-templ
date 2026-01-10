@@ -2,90 +2,187 @@ package components
 
 import "github.com/mtzvd/bulma-templ/elements"
 
-// BreadcrumbItem defines a single breadcrumb item.
 //
-// This struct defines UI view-model used exclusively
-// for rendering breadcrumb navigation.
+// Breadcrumb — Bulma breadcrumb container.
+// Atomic level: ORGANISM
 //
-// The order of items defines the navigation hierarchy.
-// The last item is considered the current page.
-type BreadcrumbItem struct {
-	// Label defines the visible text of the breadcrumb item.
-	Label string
-
-	// Href defines the link URL.
-	// If empty, the item is considered the current page.
-	Href string
-
-	// Icon defines an optional icon rendered before the label.
-	// When nil, no icon is rendered.
-	Icon *elements.IconProps
-
-	// Attr contains additional HTML attributes
-	// for the anchor (<a>) element.
-	Attr templ.Attributes
-}
-
-// BreadcrumbProps defines the properties for Breadcrumb.
+// Breadcrumb renders the root `.breadcrumb` navigation container.
 //
-// Breadcrumb defines Bulma component renders
-// navigational hierarchy. It does not manage routing,
-// state, or business logic.
+// This component is a pure structural container and does NOT:
+//
+//   - infer active items
+//   - calculate navigation hierarchy
+//   - manage routing or application state
+//   - impose ordering of child elements
+//
+// All structure, ordering, and active state MUST be
+// composed explicitly by the caller using subcomponents.
+//
 type BreadcrumbProps struct {
-	// Items defines the breadcrumb items ordered
-	// from root to the current page.
-	Items []BreadcrumbItem
-
 	// Separator defines the Bulma separator modifier.
+	//
 	// Examples:
-	// has-arrow-separator
-	// has-bullet-separator
-	// has-dot-separator
-	// has-succeeds-separator
+	//   - has-arrow-separator
+	//   - has-bullet-separator
+	//   - has-dot-separator
+	//   - has-succeeds-separator
 	Separator string
 
 	// Attr contains additional HTML attributes
-	// for the <nav> element.
+	// for the `<nav>` element.
 	Attr templ.Attributes
 }
 
-// Breadcrumb renders a Bulma `.breadcrumb` component.
-// Atomic level: ORGANISM
-//
-// The active breadcrumb item is determined
-// as the last item in the Items list.
-templ Breadcrumb(props BreadcrumbProps) {
-	<nav
-		class={
-			"breadcrumb",
-			props.Separator,
+// Breadcrumb renders the Bulma `.breadcrumb` container.
+templ Breadcrumb(props BreadcrumbProps, content elements.Items) {
+	{{
+		classes := []string{"breadcrumb"}
+		if props.Separator != "" {
+			classes = append(classes, props.Separator)
 		}
-		aria-label="breadcrumbs"
-		{ props.Attr... }
-	>
-		<ul>
-			for i, item := range props.Items {
-				if i == len(props.Items)-1 {
-					<li class="is-active">
-						<a aria-current="page" { item.Attr... }>
-							if item.Icon != nil {
-								@elements.Icon(*item.Icon)
-							}
-							<span>{ item.Label }</span>
-						</a>
-					</li>
-				} else {
-					<li>
-						<a href={ item.Href } { item.Attr... }>
-							if item.Icon != nil {
-								@elements.Icon(*item.Icon)
-							}
-							<span>{ item.Label }</span>
-						</a>
-					</li>
-				}
-			}
-		</ul>
-	</nav>
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "nav",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
 
+//
+// BreadcrumbList — breadcrumb list container.
+// Atomic level: MOLECULE
+//
+// BreadcrumbList renders the `<ul>` element inside Breadcrumb.
+//
+// This component does not validate children and allows
+// arbitrary ordering and composition of breadcrumb items.
+//
+type BreadcrumbListProps struct {
+	// Attr contains additional HTML attributes
+	// for the `<ul>` element.
+	Attr templ.Attributes
+}
+
+// BreadcrumbList renders a breadcrumb list container.
+templ BreadcrumbList(props BreadcrumbListProps, content elements.Items) {
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "ul",
+			BaseClasses: nil,
+			Attr:        props.Attr,
+		},
+		content,
+	)
+}
+
+//
+// BreadcrumbItem — breadcrumb list item.
+// Atomic level: MOLECULE
+//
+// BreadcrumbItem renders a `<li>` element.
+//
+// Active state MUST be provided explicitly by the caller.
+// This component does not infer current page.
+//
+type BreadcrumbItemProps struct {
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Attr contains additional HTML attributes
+	// for the `<li>` element.
+	Attr templ.Attributes
+}
+
+// BreadcrumbItem renders a breadcrumb list item.
+templ BreadcrumbItem(props BreadcrumbItemProps, content elements.Items) {
+	{{
+		classes := []string{}
+		if props.Active {
+			classes = append(classes, "is-active")
+		}
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "li",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
+}
+
+//
+// BreadcrumbLink — breadcrumb link element.
+// Atomic level: ATOM
+//
+// BreadcrumbLink renders an `<a>` element inside BreadcrumbItem.
+//
+// This component does not assume navigation semantics.
+// If `Href` is empty, the link is rendered without `href`.
+//
+// Accessibility attributes (aria-current) MUST be provided
+// explicitly via props.
+//
+type BreadcrumbLinkProps struct {
+	// Href defines the link URL.
+	// When empty, no `href` attribute is rendered.
+	Href string
+
+	// Current applies `aria-current="page"`.
+	Current bool
+
+	// Attr contains additional HTML attributes
+	// for the `<a>` element.
+	Attr templ.Attributes
+}
+
+// BreadcrumbLink renders a breadcrumb link.
+templ BreadcrumbLink(props BreadcrumbLinkProps, content elements.Items) {
+	{{
+		attrs := templ.Attributes{}
+
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+
+		if props.Href != "" {
+			attrs["href"] = props.Href
+		}
+
+		if props.Current {
+			attrs["aria-current"] = "page"
+		}
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "a",
+			BaseClasses: nil,
+			Attr:        attrs,
+		},
+		content,
+	)
+}
+
+//
+// BreadcrumbIcon — icon wrapper for breadcrumb items.
+// Atomic level: ATOM
+//
+// BreadcrumbIcon renders an icon inside a breadcrumb link.
+//
+// This component is a thin wrapper around the Icon element
+// and exists solely for semantic clarity.
+//
+type BreadcrumbIconProps struct {
+	Icon elements.IconProps
+}
+
+// BreadcrumbIcon renders a breadcrumb icon.
+templ BreadcrumbIcon(props BreadcrumbIconProps) {
+	@elements.Icon(props.Icon)
+}

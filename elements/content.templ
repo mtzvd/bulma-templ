@@ -19,14 +19,14 @@ type ContentProps struct {
 }
 
 // Content renders a Bulma `.content` container.
+// templ Content(props ContentProps, content Items) {
 templ Content(props ContentProps, content Items) {
-	<div
-		class={
-			"content",
-			props.Size,
-		}
-		{ props.Attr... }
-	>
-		@RenderItems(content)
-	</div>
+	@BaseElement(
+		BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"content", props.Size},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }

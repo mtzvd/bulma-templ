@@ -49,14 +49,15 @@ type CheckboxProps struct {
 // The checkbox label text must be provided
 // via the component content.
 templ Checkbox(props CheckboxProps, content elements.Items) {
-	<label class="checkbox" { props.WrapperAttr... }>
+	<label class={"checkbox", props.WrapperAttr["class"]} { props.WrapperAttr... }>
 		<input
 			type="checkbox"
 			checked={ props.Checked }
 			disabled={ props.Disabled }
 			{ props.Attr... }
+			
 		/>
-	@elements.RenderItems(content)
+	@content.Render()
 	</label>
 }
 
@@ -80,7 +81,7 @@ type CheckboxesProps struct {
 //
 // Checkbox components must be provided via content.
 templ Checkboxes(props CheckboxesProps, content elements.Items) {
-	<div class="checkboxes" { props.Attr... }>
-		@elements.RenderItems(content)
+	<div class={"checkboxes", props.Attr["class"]} { props.Attr... }>
+		@content.Render()
 	</div>
 }

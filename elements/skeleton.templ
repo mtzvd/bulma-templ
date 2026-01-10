@@ -13,8 +13,8 @@ type SkeletonBlockProps struct {
 
 // SkeletonBlock renders a skeleton block wrapper.
 templ SkeletonBlock(props SkeletonBlockProps, content Items) {
-	<div class="skeleton-block" { props.Attr... }>
-		@RenderItems(content)
+	<div class={"skeleton-block", props.Attr["class"]} { props.Attr... }>
+		@content.Render()
 	</div>
 }
 
@@ -32,8 +32,14 @@ type SkeletonLinesProps struct {
 
 // SkeletonLines renders skeleton text line wrappers.
 templ SkeletonLines(props SkeletonLinesProps, content Items) {
-	<div class="skeleton-lines" { props.Attr... }>
-		@RenderItems(content)
-	</div>
+	
+	@BaseElement(
+		BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"skeleton-lines"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 

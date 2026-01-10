@@ -71,22 +71,55 @@ type SelectProps struct {
 // This component must be wrapped with Control
 // and Field components when used in a form layout.
 templ Select(props SelectProps, content elements.Items) {
-	<div
-		class={
-			"select",
-			props.Color,
-			props.Size,
-			templ.KV("is-multiple", props.Multiple),
-			templ.KV("is-fullwidth", props.FullWidth),
+	{{
+		// wrapper (.select) classes
+		wrapperClasses := []string{"select"}
+
+		if props.Color != "" {
+			wrapperClasses = append(wrapperClasses, props.Color)
 		}
-		{ props.WrapperAttr... }
-	>
-		<select
-			multiple={ props.Multiple }
-			disabled={ props.Disabled }
-			{ props.Attr... }
-		>
-			@elements.RenderItems(content)
-		</select>
-	</div>
+		if props.Size != "" {
+			wrapperClasses = append(wrapperClasses, props.Size)
+		}
+		if props.Multiple {
+			wrapperClasses = append(wrapperClasses, "is-multiple")
+		}
+		if props.FullWidth {
+			wrapperClasses = append(wrapperClasses, "is-fullwidth")
+		}
+
+		// select element attrs
+		selectAttrs := templ.Attributes{}
+
+		if props.Multiple {
+			selectAttrs["multiple"] = "multiple"
+		}
+		if props.Disabled {
+			selectAttrs["disabled"] = "disabled"
+		}
+
+		// merge user-provided select attrs
+		for k, v := range props.Attr {
+			selectAttrs[k] = v
+		}
+	}}
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: wrapperClasses,
+			Attr:        props.WrapperAttr,
+		},
+		elements.Items{
+			elements.BaseElement(
+				elements.BaseElementProps{
+					Tag:         "select",
+					BaseClasses: nil,
+					Attr:        selectAttrs,
+				},
+				content,
+			),
+		},
+	)
 }
+

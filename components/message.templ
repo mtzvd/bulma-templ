@@ -20,15 +20,15 @@ type MessageProps struct {
 
 // Message renders the root `.message` container.
 templ Message(props MessageProps, content elements.Items) {
-	<article
-		class={
-			"message",
-			props.Color,
-		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</article>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "article",
+			BaseClasses: []string{"message", props.Color},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -45,9 +45,15 @@ type MessageHeaderProps struct {
 
 // MessageHeader renders a Bulma `.message-header`.
 templ MessageHeader(props MessageHeaderProps, content elements.Items) {
-	<div class="message-header" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"message-header"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -63,7 +69,14 @@ type MessageBodyProps struct {
 
 // MessageBody renders a Bulma `.message-body`.
 templ MessageBody(props MessageBodyProps, content elements.Items) {
-	<div class="message-body" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"message-body"},
+			Attr: props.Attr,
+		},
+		content,
+	)
+
 }

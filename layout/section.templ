@@ -22,13 +22,13 @@ type SectionProps struct {
 
 // Section renders a Bulma `.section` element.
 templ Section(props SectionProps, content elements.Items) {
-	<section
-		class={
-			"section",
-			props.Size,
-		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</section>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "section",
+			BaseClasses: []string{"section", props.Size},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }

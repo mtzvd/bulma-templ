@@ -29,20 +29,30 @@ type ColumnsProps struct {
 
 // Columns renders a Bulma `.columns` container.
 templ Columns(props ColumnsProps, content elements.Items) {
-	<div
-		class={
-			"columns",
-			templ.KV("is-multiline", props.Multiline),
-			templ.KV("is-centered", props.Centered),
-			templ.KV("is-gapless", props.Gapless),
-			templ.KV("is-variable", props.Variable),
+	{{
+		classes := []string{"columns"}
+		if props.Multiline {
+			classes = append(classes, "is-multiline")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
+		if props.Centered {
+			classes = append(classes, "is-centered")
+		}
+		if props.Gapless {
+			classes = append(classes, "is-gapless")
+		}
+		if props.Variable {
+			classes = append(classes, "is-variable")
+		}
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
-
 
 // Column — Bulma column element.
 // Atomic level: MOLECULE
@@ -68,16 +78,26 @@ type ColumnProps struct {
 
 // Column renders a Bulma `.column` element.
 templ Column(props ColumnProps, content elements.Items) {
-	<div
-		class={
-			"column",
-			props.Size,
-			props.Offset,
-			templ.KV("is-narrow", props.Narrow),
-		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</div>
-}
+	
+	{{
+		classes := []string{"column"}
 
+		if props.Size != "" {
+			classes = append(classes, props.Size)
+		}
+		if props.Narrow {
+			classes = append(classes, "is-narrow")
+		}
+		if props.Offset != "" {
+			classes = append(classes, props.Offset)
+		}
+	}}
+	 @elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "div",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
+}

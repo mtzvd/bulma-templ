@@ -21,15 +21,21 @@ type LevelProps struct {
 
 // Level renders a Bulma `.level` container.
 templ Level(props LevelProps, content elements.Items) {
-	<nav
-		class={
-			"level",
-			templ.KV("is-mobile", props.Mobile),
+	
+	{{
+		classes:= []string{"level"}
+		if props.Mobile {
+			classes = append(classes, "is-mobile")
 		}
-		{ props.Attr... }
-	>
-		@elements.RenderItems(content)
-	</nav>
+	}}
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag:         "nav",
+			BaseClasses: classes,
+			Attr:        props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -46,9 +52,15 @@ type LevelLeftProps struct {
 
 // LevelLeft renders a Bulma `.level-left` container.
 templ LevelLeft(props LevelLeftProps, content elements.Items) {
-	<div class="level-left" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"level-left"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -65,9 +77,15 @@ type LevelRightProps struct {
 
 // LevelRight renders a Bulma `.level-right` container.
 templ LevelRight(props LevelRightProps, content elements.Items) {
-	<div class="level-right" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"level-right"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
 
 
@@ -84,7 +102,13 @@ type LevelItemProps struct {
 
 // LevelItem renders a Bulma `.level-item`.
 templ LevelItem(props LevelItemProps, content elements.Items) {
-	<div class="level-item" { props.Attr... }>
-		@elements.RenderItems(content)
-	</div>
+	
+	@elements.BaseElement(
+		elements.BaseElementProps{
+			Tag: "div",
+			BaseClasses: []string{"level-item"},
+			Attr: props.Attr,
+		},
+		content,
+	)
 }
