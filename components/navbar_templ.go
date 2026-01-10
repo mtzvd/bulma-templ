@@ -207,6 +207,9 @@ func NavbarBurger(props NavbarBurgerProps) templ.Component {
 
 // NavbarMenu — collapsible menu section.
 // Atomic level: MOLECULE
+//
+// NavbarMenu defines the structural container for navbar items.
+// It does NOT manage visibility, animation, or interaction logic.
 type NavbarMenuProps struct {
 	// Active applies the `is-active` modifier.
 	Active bool

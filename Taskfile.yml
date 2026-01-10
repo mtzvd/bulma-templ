@@ -29,3 +29,9 @@ tasks:
       - go run ./tools/collector
       - echo "→ Restoring generated templ files"
       - templ generate  
+  test:
+    desc: Generate templ code and run all tests
+    deps: [templ]
+    cmds:
+      - echo "→ Running unit tests"
+      - go test ./...

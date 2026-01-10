@@ -120,8 +120,8 @@ func HeroHead(props HeroHeadProps, content elements.Items) templ.Component {
 // HeroBody — main content section of Hero.
 // Atomic level: MOLECULE
 //
-// HeroBody defines the primary area for titles, subtitles,
-// forms, or other main Hero content.
+// HeroBody defines the primary content container of Hero.
+// It does NOT impose layout rules or manage content behavior.
 type HeroBodyProps struct {
 	// Attr contains additional HTML attributes
 	// for the `.hero-body` container.

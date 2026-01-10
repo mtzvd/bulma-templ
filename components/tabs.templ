@@ -70,10 +70,11 @@ templ Tabs(props TabsProps, content elements.Items) {
 }
 
 
-// TabsList renders the list of tabs.
+// TabsList — tabs list container.
 // Atomic level: MOLECULE
 //
-// TabsList is always rendered as <ul> inside Tabs.
+// TabsList defines the structural <ul> wrapper inside Tabs.
+// It does NOT manage active state or navigation behavior.
 type TabsListProps struct {
 	// Attr contains additional HTML attributes
 	// for the <ul> element.

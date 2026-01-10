@@ -63,6 +63,9 @@ func Card(props CardProps, content elements.Items) templ.Component {
 
 // CardHeader — header section of Card.
 // Atomic level: MOLECULE
+//
+// CardHeader defines the header container of a Card.
+// It does NOT manage layout, actions, or state.
 type CardHeaderProps struct {
 	Attr templ.Attributes
 }

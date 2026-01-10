@@ -12,8 +12,8 @@ import templruntime "github.com/a-h/templ/runtime"
 // Atomic level: ATOM
 //
 // Title defines visual typographic component that applies
-// the Bulma `.title` styles. It does NOT define HTML
-// semantics (h1–h6, p, etc.).
+// the Bulma `.title` styles.
+// It does NOT define HTML semantics or document structure.
 //
 // The semantic HTML element must be chosen at the
 // page or layout level.
