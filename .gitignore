@@ -71,5 +71,5 @@ testdata/
 # End of .gitignore
 
 # Ignore generated/temporary Go template helpers
-*_templ.go
-**/*_templ.go
+#*_templ.go
+#**/*_templ.go
