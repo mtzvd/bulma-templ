@@ -1,8 +1,8 @@
 # Bulma-Templ Design System
 
-A canonical Bulma-based design system for Go + templ.
+A canonical Bulma-based design system for Go projects using templ.
 
-SSR-first. Bulma-first. Type-safe. Explicit composition. Minimal JavaScript.
+SSR-first. Bulma-first. Explicit composition. Zero internal state.
 
 ---
 
@@ -14,6 +14,16 @@ SSR-first. Bulma-first. Type-safe. Explicit composition. Minimal JavaScript.
 - OSS readiness: **v1.0**
 
 This project is considered **stable and publishable**.
+
+---
+
+## Why
+
+- You build server-rendered applications with Go
+- You use `templ`
+- You want Bulma **as-is**, not reimagined
+- You want predictable, inspectable HTML
+- You value correctness and transparency over abstraction
 
 ---
 
@@ -37,19 +47,20 @@ Nothing manages application state.
 
 ## What this is
 
-- A standalone design system
-- A direct mapping of Bulma concepts to templ components
-- A reference-quality implementation suitable for reuse and OSS
+- A 1:1 mapping of Bulma components to templ components
+- Server-side rendered by default
+- Explicit multi-child composition via `Items`
+- A reference-quality, OSS-ready design system
 
 ---
 
 ## What this is NOT
 
-- a UI framework
-- a component abstraction layer
-- a JavaScript-driven UI system
-- a state management solution
-- a theme engine (dark mode is app-level)
+- A UI framework
+- A JavaScript component library
+- A state management solution
+- A theme engine (dark mode is app-level)
+- A “Bulma-inspired” abstraction
 
 ---
 
@@ -58,7 +69,13 @@ Nothing manages application state.
 - Go
 - templ (SSR-first)
 - Bulma CSS
-- Alpine.js (optional, minimal, external)
+
+## JavaScript
+
+This design system is JavaScript-agnostic.
+
+It does not ship with or depend on any JavaScript framework.
+Client-side behavior (if needed) is entirely application-level.
 
 ---
 
@@ -70,30 +87,32 @@ Nothing manages application state.
 - Bulma documentation maps **1:1** to components
 - No reinterpretation or redesign
 
-### Atomic Design (STRICT)
-
-Only three atomic levels exist:
-
-- **ATOM** — visual or infrastructure primitives
-- **MOLECULE** — structural composition
-- **ORGANISM** — complex UI or page-level blocks
-
-No other levels are allowed.
-
-Each component declares its atomic level explicitly in code comments.
-
 ### templ-first / SSR-first
 
 - All components are written in templ
 - No client-side rendering assumptions
 - Server-side rendering is the default
 
-### Minimal JavaScript
+### Atomic Design (STRICT)
 
-- Alpine.js only
-- Only where Bulma explicitly requires interactivity
-- No inline business logic
-- No hidden or internal state
+Only three atomic levels exist:
+
+- **ATOM**
+- **MOLECULE**
+- **ORGANISM**
+
+No other levels are allowed.  
+Each component declares its atomic level explicitly in code comments.
+
+### Explicit composition
+
+- No slots
+- No implicit children
+- No positional parameters
+
+### No state
+
+Components never manage application state.
 
 ---
 
@@ -101,106 +120,89 @@ Each component declares its atomic level explicitly in code comments.
 
 Every component:
 
-- uses a **Props struct**
-- accepts explicit content as `Items`
-- exposes no positional parameters
-- never manages application state
-- never hides or reinterprets Bulma behavior
-- provides `Attr` (`templ.Attributes`) as an escape hatch
+- Uses a dedicated **Props struct**
+- Accepts explicit content as `Items`
+- Exposes no positional parameters
+- Never manages application state
+- Never hides or reinterprets Bulma behavior
+- Provides `Attr` (`templ.Attributes`) as an escape hatch
 
 There are:
-- no implicit children
-- no slots
-- no magic composition
+
+- No implicit children
+- No slots
+- No magic composition
 
 ---
 
 ## Content model
 
-This design system uses an explicit multi-child composition model.
+All content-based components use an explicit multi-child model:
 
-```go
+```
 type Items []templ.Component
 ```
 
-- `Items` represents an ordered list of sibling components
-- It exists to:
-  - avoid excessive `templ.Join` usage
-  - better match Bulma’s structural patterns
-  - enable readable, linear composition
-- Single-child composition is treated as a special case of `Items`
-
-All content-based components accept `Items`, not `templ.Component`.
+- Ordered, explicit composition
+- No hidden rendering logic
+- Matches Bulma’s structural patterns
+- Single-child composition is a special case of `Items`
 
 ---
 
 ## Infrastructure primitives (non-Bulma)
 
-Some primitives exist to enable practical composition but are **not Bulma components**.
+Some primitives exist to support composition but are **not Bulma components**.
 
 ### Items
 
-- Defined in `elements`
 - Canonical multi-child content container
 - Used consistently across all packages
 
-### RenderItems
-
-```go
-templ RenderItems(content Items)
-```
-
-- Centralized rendering helper for `Items`
-- Prevents duplication of render loops
-- Ensures consistent rendering semantics
-
 ### Html
 
-```go
+```
 templ Html(content string)
 ```
 
-- Raw HTML rendering helper
-- Uses `templ.Raw`
+- Renders raw HTML via `templ.Raw`
 - MUST be used only with trusted, pre-sanitized content
 - Intended for page-level and low-level composition
 - Performs no escaping or validation
 
 ---
 
-## Attr (templ.Attributes)
+## Example
 
-`Attr` exists on every component and is used for:
-
-- extra CSS classes
-- Alpine (`x-*`)
-- `aria-*`
-- `data-*`
-
-templ handles attribute merging correctly (no duplication).
+```
+@elements.Button(
+  elements.ButtonProps{
+    Color: "is-primary",
+  },
+  elements.Items{
+    elements.Html("Click me"),
+  },
+)
+```
 
 ---
 
 ## Package structure
 
-The design system is located in a single top-level module:
-
-```text
+```
 /
 ├── elements/
 ├── components/
 ├── form/
+├── layout/
 ├── grid/
 ├── columns/
-├── layout/
 ├── docs/
-├── examples (optional)
+├── examples/
 ```
 
-The structure mirrors Bulma documentation, not atomic levels.
-
-Atomic level is declared explicitly in code comments  
-and is never inferred from directory names.
+The structure mirrors Bulma documentation.  
+Atomic level is declared explicitly in code comments and is never inferred.
 
 ---
 
@@ -208,28 +210,46 @@ and is never inferred from directory names.
 
 Implemented sections:
 
-- Elements (button, icon, tag, table, skeletons, etc.)
-- Components (navbar, tabs, dropdown, pagination, modal, card, etc.)
-- Forms (input, select, textarea, checkbox, radio, file)
-- Layout (container, section, hero, level, media, footer)
-- Grid (columns and grid helpers)
+- Elements
+- Components
+- Forms
+- Layout
+- Grid and Columns
 
 Explicitly excluded:
 
-- dark mode logic
+- Dark mode logic
 - Bulma CDN management
 - CSS abstraction layers
-- application state management
+- Application state management
 
 ---
 
-## Comment style
+## Documentation
 
-Comment style is **strictly defined and frozen**.
+- `docs/DESIGN_SYSTEM.md` — architectural contract (FINAL)
+- `docs/COMMENT_STYLE.md` — frozen comment style
+- `docs/CANONICAL_PROJECT_CONTEXT.md` — project intent and scope
 
-See `COMMENT_STYLE.md`.
+These documents are normative.
 
-Any deviation from the defined wording is considered an error.
+---
+
+## Testing
+
+Minimal but sufficient unit test coverage is provided for v1.0:
+
+- Wrap
+- BaseElement
+- Items
+- Button
+- Pagination
+
+Focus:
+
+- Structural correctness
+- Attribute handling
+- Regression safety
 
 ---
 
@@ -237,23 +257,11 @@ Any deviation from the defined wording is considered an error.
 
 This design system is intended to be:
 
-- imported or vendored into Go projects
-- used as a shared UI foundation across services
-- extended via composition, not modification
+- Imported or vendored into Go projects
+- Used as a shared UI foundation across services
+- Extended via composition, not modification
 
-Project-specific components belong in a separate custom package.
-
----
-
-## Extending the system
-
-To extend safely:
-
-- never modify core components
-- compose existing components
-- follow the same atomic rules
-- follow `COMMENT_STYLE.md`
-- respect the `Items` content model
+Project-specific components belong in a separate package.
 
 ---
 
@@ -275,13 +283,10 @@ MIT
 
 This project intentionally avoids:
 
-- smart components
-- implicit behavior
-- hidden defaults
-- framework-style abstractions
+- Implicit behavior
+- Hidden defaults
+- Smart components
+- Framework-style abstractions
 
-If you are looking for automation or opinionated magic,  
-this design system is not the right tool.
-
-If you value clarity, predictability, and Bulma fidelity,  
-you are in the right place.
+If you value clarity, predictability, and Bulma fidelity —  
+this design system is the right tool.
