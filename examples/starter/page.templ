@@ -1,10 +1,16 @@
-// StarterPage — Bulma starter example page.
+// StarterPage — Bulma-Templ starter example page.
 // Atomic level: ORGANISM
 //
 // StarterPage demonstrates the minimal recommended
 // page structure when using the Bulma-Templ design system.
+//
+// This example intentionally mixes Bulma-Templ components,
+// Templ components, and plain HTML.
+// Bulma-Templ provides canonical Bulma mappings,
+// but does not replace HTML or enforce semantic structure.
 
-package examples
+
+package starter
 
 import (
 	"github.com/mtzvd/bulma-templ/elements"
@@ -12,13 +18,10 @@ import (
 )
 
 templ Page() {
-	@elements.Html(`<!DOCTYPE html>`)
+	<!DOCTYPE html>
 	<html>
 		<head>
-			<meta charset="utf-8"/>
-			<meta name="viewport" content="width=device-width, initial-scale=1"/>
-			<title>Hello Bulma!</title>
-			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"/>
+			@StarterHead()
 		</head>
 		<body>
 			@layout.Section(
@@ -27,27 +30,41 @@ templ Page() {
 					layout.Container(
 						layout.ContainerProps{},
 						elements.Items{
-							elements.Html("<h1>"),
-								elements.Title(
-									elements.TitleProps{},
-									elements.Items{
-										elements.Html("Hello World"),
-									},
-								),
-							elements.Html("</h1>"),
-							elements.Html("<p>"),
-								elements.Subtitle(
-									elements.SubtitleProps{},
-									elements.Items{
-										elements.Html(`My first website with <strong>Bulma-Templ</strong>!`),
-									},
-								),
-							elements.Html("</p>"),
-							
+							StarterTitle(),
+							StarterSubtitle(),
 						},
 					),
 				},
 			)
 		</body>
 	</html>
+}
+
+templ StarterHead() {
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<title>Hello Bulma-Templ!</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"/>
+}
+
+templ StarterTitle() {
+	<h1>
+		@elements.Title(
+			elements.TitleProps{},
+			elements.Items{
+				elements.Html("Hello World!"),
+			},
+		)
+	</h1>
+}
+
+templ StarterSubtitle() {
+	<p>
+		@elements.Subtitle(
+			elements.SubtitleProps{},
+			elements.Items{
+				elements.Html("My first website with <strong>Bulma-Templ</strong>!"),
+			},
+		)
+	</p>
 }

@@ -1,6 +1,6 @@
 # Bulma-Templ Design System
 
-A canonical Bulma-based design system for Go projects using templ.
+A canonical Bulma-based design system for Go projects using Templ.
 
 SSR-first. Bulma-first. Explicit composition. Zero internal state.
 
@@ -20,7 +20,7 @@ This project is considered **stable and publishable**.
 ## Why
 
 - You build server-rendered applications with Go
-- You use `templ`
+- You use `Templ`
 - You want Bulma **as-is**, not reimagined
 - You want predictable, inspectable HTML
 - You value correctness and transparency over abstraction
@@ -30,7 +30,7 @@ This project is considered **stable and publishable**.
 ## Philosophy
 
 This design system is a **faithful, explicit implementation of Bulma**
-for Go projects using **templ**.
+for Go projects using **Templ**.
 
 Core values:
 
@@ -47,7 +47,7 @@ Nothing manages application state.
 
 ## What this is
 
-- A 1:1 mapping of Bulma components to templ components
+- A 1:1 mapping of Bulma components to Templ components
 - Server-side rendered by default
 - Explicit multi-child composition via `Items`
 - A reference-quality, OSS-ready design system
@@ -67,7 +67,7 @@ Nothing manages application state.
 ## Technology stack
 
 - Go
-- templ (SSR-first)
+- Templ (SSR-first)
 - Bulma CSS
 
 ## JavaScript
@@ -87,9 +87,9 @@ Client-side behavior (if needed) is entirely application-level.
 - Bulma documentation maps **1:1** to components
 - No reinterpretation or redesign
 
-### templ-first / SSR-first
+### Templ-first / SSR-first
 
-- All components are written in templ
+- All components are written in Templ
 - No client-side rendering assumptions
 - Server-side rendering is the default
 
@@ -125,7 +125,7 @@ Every component:
 - Exposes no positional parameters
 - Never manages application state
 - Never hides or reinterprets Bulma behavior
-- Provides `Attr` (`templ.Attributes`) as an escape hatch
+- Provides `Attr` (`Templ.Attributes`) as an escape hatch
 
 There are:
 
@@ -140,7 +140,7 @@ There are:
 All content-based components use an explicit multi-child model:
 
 ```
-type Items []templ.Component
+type Items []Templ.Component
 ```
 
 - Ordered, explicit composition
@@ -162,10 +162,10 @@ Some primitives exist to support composition but are **not Bulma components**.
 ### Html
 
 ```
-templ Html(content string)
+Templ Html(content string)
 ```
 
-- Renders raw HTML via `templ.Raw`
+- Renders raw HTML via `Templ.Raw`
 - MUST be used only with trusted, pre-sanitized content
 - Intended for page-level and low-level composition
 - Performs no escaping or validation
@@ -290,3 +290,10 @@ This project intentionally avoids:
 
 If you value clarity, predictability, and Bulma fidelity —  
 this design system is the right tool.
+
+Bulma-Templ follows the same philosophy as Bulma itself.
+
+It provides canonical component mappings and structural guidance,
+but does not restrict how consumers compose their markup.
+Using plain HTML alongside Bulma-Templ components is fully supported
+and often expected at the application level.

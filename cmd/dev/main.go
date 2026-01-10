@@ -1,14 +1,19 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/a-h/templ"
+	"github.com/mtzvd/bulma-templ/examples/starter"
 )
 
 func main() {
-	http.Handle("/", templ.Handler(Page()))
+	mux := http.NewServeMux()
 
-	http.ListenAndServe(":8080", nil)
+	// Starter page (root)
+	mux.Handle("/", templ.Handler(starter.Page()))
 
+	log.Println("Listening on http://localhost:8080")
+	log.Fatal(http.ListenAndServe(":8080", mux))
 }
