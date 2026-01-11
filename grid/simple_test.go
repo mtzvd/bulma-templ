@@ -30,3 +30,15 @@ func TestSmokeGrid_Rendering(t *testing.T) {
 		t.Fatalf("expected 'grid' class, got: %s", html)
 	}
 }
+
+func TestSmokeCell_Rendering(t *testing.T) {
+	html := render(t,
+		Cell(CellProps{}, elements.Items{
+			elements.Html("Cell content"),
+		}),
+	)
+
+	if !strings.Contains(html, `cell`) {
+		t.Fatalf("expected 'cell' class, got: %s", html)
+	}
+}

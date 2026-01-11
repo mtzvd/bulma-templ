@@ -15,6 +15,7 @@ all_code.txt
 # Output of `go test`
 *.test
 coverage.out
+core_coverage.out
 
 # Build directories
 /pkg/

@@ -124,3 +124,16 @@ func TestSmokeTable_Rendering(t *testing.T) {
 		t.Fatalf("expected 'table' class, got: %s", html)
 	}
 }
+
+func TestSmokeButtons_Rendering(t *testing.T) {
+	html := render(t,
+		Buttons(ButtonsProps{}, Items{
+			Button(ButtonProps{}, Items{Html("Button 1")}),
+			Button(ButtonProps{}, Items{Html("Button 2")}),
+		}),
+	)
+
+	if !strings.Contains(html, `buttons`) {
+		t.Fatalf("expected 'buttons' class, got: %s", html)
+	}
+}
