@@ -18,9 +18,7 @@
 
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 // BlockExample1 renders the first block example with simple text
 templ BlockExample1() {
@@ -87,7 +85,6 @@ func BlockExample3Code() string {
 templ BlockExamples() {
 	// Section header using generic semantic wrapper
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Block")})
-	
 	{{
 		// Define all block examples with their codes
 		examples := []ComponentItem{
@@ -96,7 +93,6 @@ templ BlockExamples() {
 			{ID: "block-3", Code: BlockExample3Code(), Component: BlockExample3()},
 		}
 	}}
-	
 	// Render all examples
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)

@@ -29,13 +29,11 @@ import (
 // FileExamples showcases File component with and without filename display.
 templ FileExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "File")})
-	
 	// ================================================
 	// BASIC FILE INPUT
 	// ================================================
 	// File input styled as button.
 	// Native file input is hidden, styled button shows instead.
-	
 	@fo.Field(
 		fo.FieldProps{},
 		el.Items{
@@ -75,13 +73,11 @@ templ FileExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// FILE INPUT WITH FILENAME DISPLAY
 	// ================================================
 	// Shows selected filename next to button.
 	// JavaScript needed to update filename on selection.
-	
 	@ExampleSubheading("File with name")
 	@fo.File(
 		fo.FileProps{HasName: true},
@@ -113,7 +109,6 @@ templ FileExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Use HasName: true to show filename
 	// - Add JavaScript to update filename on change:

@@ -212,7 +212,6 @@ func BoxExample3Code() string {
 templ BoxExamples() {
 	// Section header
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Box")})
-	
 	{{
 		// Define all box examples with their codes
 		examples := []ComponentItem{
@@ -221,7 +220,6 @@ templ BoxExamples() {
 			{ID: "box-3", Code: BoxExample3Code(), Component: BoxExample3()},
 		}
 	}}
-	
 	// Render examples
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)

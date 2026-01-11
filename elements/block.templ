@@ -1,6 +1,5 @@
 package elements
 
-
 // Block — Bulma block element.
 // Atomic level: ATOM
 //
@@ -15,16 +14,14 @@ type BlockProps struct {
 	Attr templ.Attributes
 }
 
-
 // Block renders a Bulma `.block` container.
 templ Block(props BlockProps, content Items) {
 	@BaseElement(
 		BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"block"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

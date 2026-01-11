@@ -12,7 +12,6 @@ package elements
 // content. It does NOT perform escaping or validation
 // and is intended primarily for page-level composition
 // and low-level layout scenarios.
-templ Html(content string){
-    @templ.Raw(content)
+templ Html(content string) {
+	@templ.Raw(content)
 }
-

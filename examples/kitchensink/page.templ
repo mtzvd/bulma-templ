@@ -15,15 +15,14 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 	la "github.com/mtzvd/bulma-templ/layout"
 )
 
 // ------------------------------------------------
 // Main Page
 // ------------------------------------------------
-
 templ Page() {
 	<!DOCTYPE html>
 	<html class="has-navbar-fixed-top" x-data="{ darkMode: window.matchMedia('(prefers-color-scheme: dark)').matches, menuOpen: false }" :class="{ 'theme-dark': darkMode }">
@@ -76,7 +75,6 @@ templ Page() {
 // ------------------------------------------------
 // Page Head
 // ------------------------------------------------
-
 templ PageHead() {
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -94,7 +92,6 @@ templ PageHead() {
 // ------------------------------------------------
 // Navbar
 // ------------------------------------------------
-
 templ PageNavbar() {
 	@co.Navbar(
 		co.NavbarProps{
@@ -112,9 +109,9 @@ templ PageNavbar() {
 					co.NavbarBurger(
 						co.NavbarBurgerProps{
 							Attr: templ.Attributes{
-								"@click":        "menuOpen = !menuOpen",
-								":class":        "{ 'is-active': menuOpen }",
-								"aria-expanded": "false",
+								"@click":         "menuOpen = !menuOpen",
+								":class":         "{ 'is-active': menuOpen }",
+								"aria-expanded":  "false",
 								":aria-expanded": "menuOpen.toString()",
 							},
 						},
@@ -134,7 +131,7 @@ templ PageNavbar() {
 							co.NavbarItem(
 								co.NavbarItemProps{
 									Hoverable: true,
-									Attr: templ.Attributes{"class": "has-dropdown"},
+									Attr:      templ.Attributes{"class": "has-dropdown"},
 								},
 								el.Items{
 									co.NavbarLink(
@@ -164,7 +161,7 @@ templ PageNavbar() {
 							co.NavbarItem(
 								co.NavbarItemProps{
 									Hoverable: true,
-									Attr: templ.Attributes{"class": "has-dropdown"},
+									Attr:      templ.Attributes{"class": "has-dropdown"},
 								},
 								el.Items{
 									co.NavbarLink(
@@ -191,7 +188,7 @@ templ PageNavbar() {
 							co.NavbarItem(
 								co.NavbarItemProps{
 									Hoverable: true,
-									Attr: templ.Attributes{"class": "has-dropdown"},
+									Attr:      templ.Attributes{"class": "has-dropdown"},
 								},
 								el.Items{
 									co.NavbarLink(
@@ -224,7 +221,7 @@ templ PageNavbar() {
 							co.NavbarItem(
 								co.NavbarItemProps{
 									Hoverable: true,
-									Attr: templ.Attributes{"class": "has-dropdown"},
+									Attr:      templ.Attributes{"class": "has-dropdown"},
 								},
 								el.Items{
 									co.NavbarLink(
@@ -291,7 +288,6 @@ templ PageNavbar() {
 // ------------------------------------------------
 // Footer
 // ------------------------------------------------
-
 templ PageFooter() {
 	@la.Footer(
 		la.FooterProps{},
@@ -381,7 +377,7 @@ templ ExampleWithCode(id string, code string, component templ.Component) {
 					return el.Block(
 						el.BlockProps{
 							Attr: templ.Attributes{
-								"x-show": "showCode",
+								"x-show":       "showCode",
 								"x-transition": "",
 							},
 						},
@@ -390,10 +386,10 @@ templ ExampleWithCode(id string, code string, component templ.Component) {
 							el.Button(
 								el.ButtonProps{
 									Color: "is-primary",
-									Size: "is-small",
+									Size:  "is-small",
 									Attr: templ.Attributes{
 										"@click": "navigator.clipboard.writeText(`" + code + "`)",
-										"class": "mt-2",
+										"class":  "mt-2",
 									},
 								},
 								el.Items{
@@ -424,7 +420,7 @@ templ DemoSection(props DemoSectionProps, items []ComponentItem) {
 	{{
 		// Build section content with boxed items
 		sectionItems := make(el.Items, 0, len(items)+2)
-		
+
 		// Wrap title and subtitle in Block for proper spacing
 		sectionItems = append(sectionItems, el.Block(
 			el.BlockProps{},
@@ -433,7 +429,7 @@ templ DemoSection(props DemoSectionProps, items []ComponentItem) {
 				SubtitleP("5", props.Subtitle),
 			},
 		))
-		
+
 		// Wrap each example in a Block with ID and code attributes
 		for _, item := range items {
 			attrs := templ.Attributes{"id": item.ID}
@@ -441,13 +437,13 @@ templ DemoSection(props DemoSectionProps, items []ComponentItem) {
 				attrs["x-data"] = "{ showCode: false }"
 				attrs["class"] = "is-relative"
 			}
-			
+
 			// Build example content
 			exampleContent := el.Items{}
-			
+
 			// Add code toggle button if code exists
 			if item.Code != "" {
-				exampleContent = append(exampleContent, 
+				exampleContent = append(exampleContent,
 					el.Block(
 						el.BlockProps{
 							Attr: templ.Attributes{"style": "position: absolute; top: 0; right: 0; z-index: 10;"},
@@ -469,17 +465,17 @@ templ DemoSection(props DemoSectionProps, items []ComponentItem) {
 					),
 				)
 			}
-			
+
 			// Add the component itself
 			exampleContent = append(exampleContent, item.Component)
-			
+
 			// Add code display if code exists
 			if item.Code != "" {
 				exampleContent = append(exampleContent,
 					el.Block(
 						el.BlockProps{
 							Attr: templ.Attributes{
-								"x-show": "showCode",
+								"x-show":       "showCode",
 								"x-transition": "",
 							},
 						},
@@ -488,10 +484,10 @@ templ DemoSection(props DemoSectionProps, items []ComponentItem) {
 							el.Button(
 								el.ButtonProps{
 									Color: "is-primary",
-									Size: "is-small",
+									Size:  "is-small",
 									Attr: templ.Attributes{
 										"@click": "navigator.clipboard.writeText(`" + item.Code + "`)",
-										"class": "mt-2",
+										"class":  "mt-2",
 									},
 								},
 								el.Items{
@@ -503,16 +499,15 @@ templ DemoSection(props DemoSectionProps, items []ComponentItem) {
 					),
 				)
 			}
-			
+
 			sectionItems = append(sectionItems, el.Block(
 				el.BlockProps{Attr: attrs},
 				exampleContent,
 			))
 		}
-		
+
 		sectionItems = append(sectionItems, el.Html("<hr class='my-6'/>"))
 	}}
-	
 	@la.Section(
 		la.SectionProps{
 			Attr: templ.Attributes{

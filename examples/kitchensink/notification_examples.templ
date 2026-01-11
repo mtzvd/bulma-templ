@@ -19,9 +19,7 @@
 
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 // NotificationExample1 demonstrates notification color variations.
 // Notification supports all Bulma semantic colors.
@@ -83,13 +81,11 @@ func NotificationExample1Code() string {
 // Demonstrates all semantic color options available.
 templ NotificationExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Notification")})
-	
 	{{
 		examples := []ComponentItem{
 			{ID: "notification-colors", Code: NotificationExample1Code(), Component: NotificationExample1()},
 		}
 	}}
-	
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)
 	}

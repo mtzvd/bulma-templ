@@ -17,9 +17,7 @@
 
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 // ButtonExample1 demonstrates button color variations.
 // Bulma provides 7 semantic color modifiers for buttons.
@@ -207,7 +205,6 @@ func ButtonExample4Code() string {
 // Demonstrates color, size, state, and layout properties.
 templ ButtonExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Button")})
-	
 	{{
 		examples := []ComponentItem{
 			{ID: "button-colors", Code: ButtonExample1Code(), Component: ButtonExample1()},
@@ -216,7 +213,6 @@ templ ButtonExamples() {
 			{ID: "button-fullwidth", Code: ButtonExample4Code(), Component: ButtonExample4()},
 		}
 	}}
-	
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)
 	}

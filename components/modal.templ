@@ -21,9 +21,8 @@ type ModalProps struct {
 
 // Modal renders the root `.modal` container.
 templ Modal(props ModalProps, content elements.Items) {
-	
 	{{
-		classes:= []string{"modal"}
+		classes := []string{"modal"}
 		if props.Active {
 			classes = append(classes, "is-active")
 		}
@@ -37,7 +36,6 @@ templ Modal(props ModalProps, content elements.Items) {
 		content,
 	)
 }
-
 
 // ModalBackground renders `.modal-background`.
 // Atomic level: MOLECULE
@@ -54,14 +52,13 @@ type ModalBackgroundProps struct {
 templ ModalBackground(props ModalBackgroundProps) {
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"modal-background"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		nil,
 	)
 }
-
 
 // ModalContent renders `.modal-content`.
 // Atomic level: MOLECULE
@@ -75,17 +72,15 @@ type ModalContentProps struct {
 
 // ModalContent renders a Bulma `.modal-content`.
 templ ModalContent(props ModalContentProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"modal-content"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // ModalClose renders `.modal-close` button.
 // Atomic level: MOLECULE
@@ -112,9 +107,7 @@ templ ModalClose(props ModalCloseProps) {
 		aria-label="close"
 		{ props.Attr... }
 	></button>
-
 }
-
 
 // ModalCard renders `.modal-card`.
 // Atomic level: MOLECULE
@@ -128,17 +121,15 @@ type ModalCardProps struct {
 
 // ModalCard renders a Bulma `.modal-card`.
 templ ModalCard(props ModalCardProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"modal-card"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // ModalCardHead renders `.modal-card-head`.
 // Atomic level: MOLECULE
@@ -152,17 +143,15 @@ type ModalCardHeadProps struct {
 
 // ModalCardHead renders the card modal header.
 templ ModalCardHead(props ModalCardHeadProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "header",
+			Tag:         "header",
 			BaseClasses: []string{"modal-card-head"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // ModalCardBody renders `.modal-card-body`.
 // Atomic level: MOLECULE
@@ -176,17 +165,15 @@ type ModalCardBodyProps struct {
 
 // ModalCardBody renders the card modal body.
 templ ModalCardBody(props ModalCardBodyProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "section",
+			Tag:         "section",
 			BaseClasses: []string{"modal-card-body"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // ModalCardFoot renders `.modal-card-foot`.
 // Atomic level: MOLECULE
@@ -200,12 +187,11 @@ type ModalCardFootProps struct {
 
 // ModalCardFoot renders the card modal footer.
 templ ModalCardFoot(props ModalCardFootProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "footer",
+			Tag:         "footer",
 			BaseClasses: []string{"modal-card-foot"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)

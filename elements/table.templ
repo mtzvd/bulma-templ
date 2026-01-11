@@ -22,17 +22,15 @@ type TableProps struct {
 
 // Table renders the table element.
 templ Table(props TableProps, content Items) {
-
 	@BaseElement(
 		BaseElementProps{
-			Tag: "table",
+			Tag:         "table",
 			BaseClasses: []string{"table", props.Modifiers},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // TableContainer renders a Bulma `.table-container`.
 // Atomic level: ATOM
@@ -47,14 +45,12 @@ type TableContainerProps struct {
 
 // TableContainer renders the table container.
 templ TableContainer(props TableContainerProps, content Items) {
-	
 	@BaseElement(
 		BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"table-container"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

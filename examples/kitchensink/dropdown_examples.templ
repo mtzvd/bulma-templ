@@ -20,14 +20,13 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 // DropdownExamples showcases Dropdown component variations.
 templ DropdownExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Dropdown")})
-	
 	// Hoverable dropdown - opens on hover
 	@ExampleSubheading("Hoverable dropdown")
 	@el.Block(
@@ -74,7 +73,6 @@ templ DropdownExamples() {
 			),
 		},
 	)
-	
 	// Right-aligned dropdown
 	@ExampleSubheading("Right-aligned dropdown")
 	@el.Block(
@@ -120,7 +118,6 @@ templ DropdownExamples() {
 			),
 		},
 	)
-	
 	// Dropup - menu appears above button
 	@ExampleSubheading("Dropup (opens upward)")
 	@el.Block(
@@ -162,7 +159,6 @@ templ DropdownExamples() {
 			),
 		},
 	)
-	
 	// Dropdown with custom content (not just links)
 	@ExampleSubheading("Dropdown with content")
 	@el.Block(

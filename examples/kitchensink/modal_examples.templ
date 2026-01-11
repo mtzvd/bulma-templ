@@ -20,14 +20,13 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 // ModalExamples showcases three modal variants with Alpine.js interactivity.
 templ ModalExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Modal")})
-	
 	<div x-data="{ basicModal: false, imageModal: false, cardModal: false }">
 		@el.Block(
 			el.BlockProps{},
@@ -40,11 +39,9 @@ templ ModalExamples() {
 				),
 			},
 		)
-		
 		// ================================================
 		// TRIGGER BUTTONS
 		// ================================================
-		
 		@ExampleSubheading("Launch modals")
 		@el.Block(
 			el.BlockProps{},
@@ -65,11 +62,9 @@ templ ModalExamples() {
 				el.Html(`</div>`),
 			},
 		)
-		
 		// ================================================
 		// BASIC MODAL - with Box content
 		// ================================================
-		
 		@co.Modal(
 			co.ModalProps{
 				Attr: templ.Attributes{
@@ -106,11 +101,9 @@ templ ModalExamples() {
 				),
 			},
 		)
-		
 		// ================================================
 		// IMAGE MODAL - full width image
 		// ================================================
-		
 		@co.Modal(
 			co.ModalProps{
 				Attr: templ.Attributes{
@@ -142,11 +135,9 @@ templ ModalExamples() {
 				),
 			},
 		)
-		
 		// ================================================
 		// CARD MODAL - structured with header/body/footer
 		// ================================================
-		
 		@co.Modal(
 			co.ModalProps{
 				Attr: templ.Attributes{

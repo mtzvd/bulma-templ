@@ -61,16 +61,14 @@ templ Checkbox(props CheckboxProps, content elements.Items) {
 			attrs["checked"] = "checked"
 		}
 	}}
-	<label class={"checkbox", props.WrapperAttr["class"]} { props.WrapperAttr... }>
+	<label class={ "checkbox", props.WrapperAttr["class"] } { props.WrapperAttr... }>
 		<input
 			type="checkbox"
 			{ attrs... }
-			
 		/>
-	@content.Render()
+		@content.Render()
 	</label>
 }
-
 
 // Checkboxes — Bulma checkboxes container.
 // Atomic level: ORGANISM
@@ -91,7 +89,7 @@ type CheckboxesProps struct {
 //
 // Checkbox components must be provided via content.
 templ Checkboxes(props CheckboxesProps, content elements.Items) {
-	<div class={"checkboxes", props.Attr["class"]} { props.Attr... }>
+	<div class={ "checkboxes", props.Attr["class"] } { props.Attr... }>
 		@content.Render()
 	</div>
 }

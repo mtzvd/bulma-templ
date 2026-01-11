@@ -26,7 +26,6 @@ import (
 // MediaExamples showcases Media component structure.
 templ MediaExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Media")})
-	
 	// ================================================
 	// BASIC MEDIA OBJECT
 	// ================================================
@@ -37,7 +36,6 @@ templ MediaExamples() {
 	// - MediaLeft: Avatar or thumbnail (fixed width)
 	// - MediaContent: Post content (flexible width)
 	// - MediaRight: Optional actions or metadata
-	
 	@la.Media(
 		la.MediaProps{},
 		el.Items{
@@ -68,7 +66,6 @@ templ MediaExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Use Media for comment threads
 	// - MediaLeft for avatar (64x64 or 48x48)

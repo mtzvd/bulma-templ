@@ -67,16 +67,13 @@ func SkeletonExample2Code() string {
 // Demonstrates block and line skeleton loading states.
 templ SkeletonExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Skeleton")})
-	
 	{{
 		examples := []ComponentItem{
 			{ID: "skeleton-block", Code: SkeletonExample1Code(), Component: SkeletonExample1()},
 			{ID: "skeleton-lines", Code: SkeletonExample2Code(), Component: SkeletonExample2()},
 		}
 	}}
-	
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)
 	}
 }
-

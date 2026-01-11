@@ -11,8 +11,6 @@ package main
 import (
 	"github.com/mtzvd/bulma-templ/elements"
 	"github.com/mtzvd/bulma-templ/layout"
-
-	
 )
 
 templ Page() {
@@ -21,7 +19,7 @@ templ Page() {
 
 templ Test() {
 	@Doctype()
-	<html>	
+	<html>
 		<head>
 			@MetaCharset()
 			@MetaViewport()
@@ -29,39 +27,33 @@ templ Test() {
 			@BulmaCSS()
 		</head>
 		<body>
-			
-		
-	@elements.Content(
-			elements.ContentProps{
-				Size: "is-medium",
-				Attr: templ.Attributes{
-					"class": "has-text-danger",	
-					"data-test": "content-example",		
+			@elements.Content(
+				elements.ContentProps{
+					Size: "is-medium",
+					Attr: templ.Attributes{
+						"class":     "has-text-danger",
+						"data-test": "content-example",
+					},
 				},
-			},
-			elements.Items{
-				elements.Html(`
+				elements.Items{
+					elements.Html(`
 					Hello, Bulma-Templ!
-					
+
 				`),
-			},
+				},
+			)
+			@elements.Content(
+				elements.ContentProps{},
 
-	)
-
-	@elements.Content(
-			elements.ContentProps{},
-			
-			elements.Items{
-				elements.Html(`
+				elements.Items{
+					elements.Html(`
 					Test content without modifier.
-					
-				`),
-			},
 
-	)
-	</body>
+				`),
+				},
+			)
+		</body>
 	</html>
-	
 }
 
 templ Doctype() {

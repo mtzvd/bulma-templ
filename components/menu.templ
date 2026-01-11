@@ -15,17 +15,15 @@ type MenuProps struct {
 
 // Menu renders the root `.menu` container.
 templ Menu(props MenuProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "aside",
+			Tag:         "aside",
 			BaseClasses: []string{"menu"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // MenuLabel renders a Bulma `.menu-label`.
 // Atomic level: MOLECULE
@@ -39,17 +37,15 @@ type MenuLabelProps struct {
 
 // MenuLabel renders a menu section label.
 templ MenuLabel(props MenuLabelProps, content elements.Items) {
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "p",
+			Tag:         "p",
 			BaseClasses: []string{"menu-label"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // MenuList renders a Bulma `.menu-list`.
 // Atomic level: MOLECULE
@@ -64,17 +60,15 @@ type MenuListProps struct {
 
 // MenuList renders a menu list container.
 templ MenuList(props MenuListProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "ul",
+			Tag:         "ul",
 			BaseClasses: []string{"menu-list"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // MenuItem renders a Bulma-compatible menu item.
 // Atomic level: ATOM
@@ -111,7 +105,6 @@ templ MenuItem(props MenuItemProps, content elements.Items) {
 			attrs["href"] = props.Href
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "a",

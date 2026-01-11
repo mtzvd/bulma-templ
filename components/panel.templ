@@ -15,17 +15,15 @@ type PanelProps struct {
 
 // Panel renders the root `.panel` container.
 templ Panel(props PanelProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "nav",
+			Tag:         "nav",
 			BaseClasses: []string{"panel"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // PanelHeading renders a Bulma `.panel-heading`.
 // Atomic level: MOLECULE
@@ -39,17 +37,15 @@ type PanelHeadingProps struct {
 
 // PanelHeading renders the panel heading.
 templ PanelHeading(props PanelHeadingProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "p",
+			Tag:         "p",
 			BaseClasses: []string{"panel-heading"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // PanelTabs renders Bulma `.panel-tabs`.
 // Atomic level: MOLECULE
@@ -63,17 +59,15 @@ type PanelTabsProps struct {
 
 // PanelTabs renders panel tabs.
 templ PanelTabs(props PanelTabsProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "p",
+			Tag:         "p",
 			BaseClasses: []string{"panel-tabs"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // PanelBlock renders Bulma `.panel-block`.
 // Atomic level: MOLECULE
@@ -115,7 +109,6 @@ templ PanelBlock(props PanelBlockProps, content elements.Items) {
 			attrs["href"] = props.Href
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         tag,
@@ -125,5 +118,3 @@ templ PanelBlock(props PanelBlockProps, content elements.Items) {
 		content,
 	)
 }
-
-

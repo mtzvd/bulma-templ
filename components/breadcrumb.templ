@@ -2,7 +2,6 @@ package components
 
 import "github.com/mtzvd/bulma-templ/elements"
 
-//
 // Breadcrumb — Bulma breadcrumb container.
 // Atomic level: ORGANISM
 //
@@ -17,7 +16,6 @@ import "github.com/mtzvd/bulma-templ/elements"
 //
 // All structure, ordering, and active state MUST be
 // composed explicitly by the caller using subcomponents.
-//
 type BreadcrumbProps struct {
 	// Separator defines the Bulma separator modifier.
 	//
@@ -41,7 +39,6 @@ templ Breadcrumb(props BreadcrumbProps, content elements.Items) {
 			classes = append(classes, props.Separator)
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "nav",
@@ -105,7 +102,6 @@ templ BreadcrumbItem(props BreadcrumbItemProps, content elements.Items) {
 			classes = append(classes, "is-active")
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "li",
@@ -158,7 +154,6 @@ templ BreadcrumbLink(props BreadcrumbLinkProps, content elements.Items) {
 			attrs["aria-current"] = "page"
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "a",

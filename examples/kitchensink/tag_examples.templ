@@ -20,9 +20,7 @@
 
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 // TagExample1 demonstrates tag color variations.
 // Tags support all Bulma semantic colors for categorization.
@@ -186,7 +184,6 @@ func TagExample3Code() string {
 // Demonstrates colors, sizes, rounded style, and tag groups.
 templ TagExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Tag")})
-	
 	{{
 		examples := []ComponentItem{
 			{ID: "tag-colors", Code: TagExample1Code(), Component: TagExample1()},
@@ -194,7 +191,6 @@ templ TagExamples() {
 			{ID: "tag-groups", Code: TagExample3Code(), Component: TagExample3()},
 		}
 	}}
-	
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)
 	}

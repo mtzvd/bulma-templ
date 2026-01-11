@@ -18,20 +18,18 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	cl "github.com/mtzvd/bulma-templ/columns"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 // ColumnsExamples showcases Columns system variations.
 templ ColumnsExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Columns")})
-	
 	// ================================================
 	// BASIC COLUMNS
 	// ================================================
 	// Equal-width columns by default.
 	// Each column takes equal space automatically.
-	
 	@ExampleSubheading("Basic columns")
 	@cl.Columns(
 		cl.ColumnsProps{},
@@ -65,13 +63,11 @@ templ ColumnsExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// CUSTOM COLUMN SIZES
 	// ================================================
 	// Set explicit column widths.
 	// Other columns without size auto-fill remaining space.
-	
 	@ExampleSubheading("Custom column sizes")
 	@cl.Columns(
 		cl.ColumnsProps{},
@@ -96,13 +92,11 @@ templ ColumnsExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// MULTILINE COLUMNS
 	// ================================================
 	// Columns wrap to next line when they exceed container width.
 	// Perfect for responsive card grids.
-	
 	@ExampleSubheading("Multiline columns")
 	@cl.Columns(
 		cl.ColumnsProps{Multiline: true},
@@ -163,12 +157,10 @@ templ ColumnsExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// CENTERED COLUMNS
 	// ================================================
 	// Centers columns horizontally when they don't fill full width.
-	
 	@ExampleSubheading("Centered columns")
 	@cl.Columns(
 		cl.ColumnsProps{Centered: true},
@@ -184,7 +176,6 @@ templ ColumnsExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Use Multiline for responsive grids
 	// - Column sizes: is-half, is-one-third, is-two-thirds, is-one-quarter, is-three-quarters

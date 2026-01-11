@@ -1,13 +1,12 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 templ MessageExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Message")})
-	
 	@ExampleSubheading("Default message")
 	@co.Message(
 		co.MessageProps{},
@@ -22,7 +21,6 @@ templ MessageExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Primary message with delete button")
 	@co.Message(
 		co.MessageProps{Color: "is-primary"},
@@ -40,7 +38,6 @@ templ MessageExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Info message")
 	@co.Message(
 		co.MessageProps{Color: "is-info"},
@@ -58,7 +55,6 @@ templ MessageExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Success message")
 	@co.Message(
 		co.MessageProps{Color: "is-success"},
@@ -73,7 +69,6 @@ templ MessageExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Warning message")
 	@co.Message(
 		co.MessageProps{Color: "is-warning"},
@@ -91,7 +86,6 @@ templ MessageExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Danger message")
 	@co.Message(
 		co.MessageProps{Color: "is-danger"},
@@ -109,7 +103,6 @@ templ MessageExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Message without header")
 	@co.Message(
 		co.MessageProps{Color: "is-info"},

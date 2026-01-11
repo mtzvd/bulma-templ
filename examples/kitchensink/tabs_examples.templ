@@ -1,13 +1,12 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 templ TabsExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Tabs")})
-	
 	@ExampleSubheading("Default")
 	@co.Tabs(
 		co.TabsProps{},
@@ -22,7 +21,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Centered alignment")
 	@co.Tabs(
 		co.TabsProps{Centered: true},
@@ -37,7 +35,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Right alignment")
 	@co.Tabs(
 		co.TabsProps{Right: true},
@@ -52,7 +49,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("With icons")
 	@co.Tabs(
 		co.TabsProps{Centered: true},
@@ -87,7 +83,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Boxed style")
 	@co.Tabs(
 		co.TabsProps{Boxed: true},
@@ -122,7 +117,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Toggle style")
 	@co.Tabs(
 		co.TabsProps{Toggle: true},
@@ -157,7 +151,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Toggle rounded")
 	@co.Tabs(
 		co.TabsProps{Toggle: true, ToggleRounded: true},
@@ -186,7 +179,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Fullwidth")
 	@co.Tabs(
 		co.TabsProps{Fullwidth: true},
@@ -215,7 +207,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Small size")
 	@co.Tabs(
 		co.TabsProps{Size: "is-small"},
@@ -230,7 +221,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Medium size")
 	@co.Tabs(
 		co.TabsProps{Size: "is-medium"},
@@ -245,7 +235,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Large size")
 	@co.Tabs(
 		co.TabsProps{Size: "is-large"},
@@ -260,7 +249,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Combining modifiers (Centered + Boxed + Medium)")
 	@co.Tabs(
 		co.TabsProps{Centered: true, Boxed: true, Size: "is-medium"},
@@ -295,7 +283,6 @@ templ TabsExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Combining modifiers (Toggle + Fullwidth + Large)")
 	@co.Tabs(
 		co.TabsProps{Toggle: true, Fullwidth: true, Size: "is-large"},

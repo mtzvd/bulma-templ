@@ -1,6 +1,7 @@
 package components
 
 import "github.com/mtzvd/bulma-templ/elements"
+
 // Card — Bulma card component.
 // Atomic level: ORGANISM
 //
@@ -19,14 +20,13 @@ type CardProps struct {
 templ Card(props CardProps, content elements.Items) {
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"card"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // CardHeader — header section of Card.
 // Atomic level: MOLECULE
@@ -41,14 +41,13 @@ type CardHeaderProps struct {
 templ CardHeader(props CardHeaderProps, content elements.Items) {
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"card-header"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // CardHeaderTitle — title inside CardHeader.
 // Atomic level: MOLECULE
@@ -64,14 +63,13 @@ type CardHeaderTitleProps struct {
 templ CardHeaderTitle(props CardHeaderTitleProps, content elements.Items) {
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "p",
+			Tag:         "p",
 			BaseClasses: []string{"card-header-title"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // CardHeaderIcon — icon/action inside CardHeader.
 // Atomic level: MOLECULE
@@ -87,14 +85,13 @@ type CardHeaderIconProps struct {
 templ CardHeaderIcon(props CardHeaderIconProps, content elements.Items) {
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "a",
+			Tag:         "a",
 			BaseClasses: []string{"card-header-icon"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // CardContent — main content area of Card.
 // Atomic level: MOLECULE
@@ -110,14 +107,13 @@ type CardContentProps struct {
 templ CardContent(props CardContentProps, content elements.Items) {
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"card-content"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // CardFooter — footer section of Card.
 // Atomic level: MOLECULE
@@ -133,14 +129,13 @@ type CardFooterProps struct {
 templ CardFooter(props CardFooterProps, content elements.Items) {
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "footer",
+			Tag:         "footer",
 			BaseClasses: []string{"card-footer"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // CardFooterItem — item inside CardFooter.
 // Atomic level: MOLECULE
@@ -156,11 +151,10 @@ type CardFooterItemProps struct {
 templ CardFooterItem(props CardFooterItemProps, content elements.Items) {
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "a",
+			Tag:         "a",
 			BaseClasses: []string{"card-footer-item"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

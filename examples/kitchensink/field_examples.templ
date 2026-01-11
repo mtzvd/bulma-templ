@@ -23,13 +23,11 @@ import (
 // FieldExamples showcases Field component grouping and expansion.
 templ FieldExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Field (Grouped)")})
-	
 	// ================================================
 	// GROUPED FIELDS
 	// ================================================
 	// Controls placed side-by-side (horizontally).
 	// Perfect for search box + button combinations.
-	
 	@ExampleSubheading("Grouped fields")
 	@fo.Field(
 		fo.FieldProps{Grouped: true},
@@ -56,13 +54,11 @@ templ FieldExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// EXPANDED FIELD
 	// ================================================
 	// First control expands to fill available space.
 	// Other controls take minimal space (button width).
-	
 	@ExampleSubheading("Expanded field")
 	@fo.Field(
 		fo.FieldProps{Grouped: true},
@@ -89,7 +85,6 @@ templ FieldExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Use Grouped for input + button combos
 	// - Use Expanded for search bars

@@ -25,17 +25,15 @@ type GridProps struct {
 
 // Grid renders a Bulma `.grid` container.
 templ Grid(props GridProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"grid"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // Cell — Bulma Smart Grid cell.
 // Atomic level: MOLECULE
@@ -56,14 +54,12 @@ type CellProps struct {
 
 // Cell renders a Bulma `.cell` element.
 templ Cell(props CellProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"cell"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

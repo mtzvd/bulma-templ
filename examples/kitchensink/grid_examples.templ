@@ -28,11 +28,9 @@ import (
 // GridExamples showcases both Smart Grid and Fixed Grid.
 templ GridExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Grid")})
-	
 	// ================================================
 	// SMART GRID - BASIC
 	// ================================================
-	
 	@ExampleSubheading("Smart Grid")
 	@gr.Grid(
 		gr.GridProps{},
@@ -45,11 +43,9 @@ templ GridExamples() {
 			gr.Cell(gr.CellProps{}, el.Items{el.Notification(el.NotificationProps{}, el.Items{el.Html("Cell 6")})}),
 		},
 	)
-	
 	// ================================================
 	// FIXED GRID - 2 COLUMNS
 	// ================================================
-	
 	@ExampleSubheading("Fixed Grid - 2 columns")
 	@el.Html(`<div class="fixed-grid has-2-cols">`)
 	@gr.Grid(
@@ -62,11 +58,9 @@ templ GridExamples() {
 		},
 	)
 	@el.Html(`</div>`)
-	
 	// ================================================
 	// FIXED GRID - 4 COLUMNS WITH SPAN
 	// ================================================
-	
 	@ExampleSubheading("Fixed Grid - 4 columns with spanning")
 	@el.Html(`<div class="fixed-grid has-4-cols">`)
 	@gr.Grid(
@@ -81,11 +75,9 @@ templ GridExamples() {
 		},
 	)
 	@el.Html(`</div>`)
-	
 	// ================================================
 	// FIXED GRID - 12 COLUMNS
 	// ================================================
-	
 	@ExampleSubheading("Fixed Grid - 12 columns")
 	@el.Html(`<div class="fixed-grid has-12-cols">`)
 	@gr.Grid(
@@ -106,11 +98,9 @@ templ GridExamples() {
 		},
 	)
 	@el.Html(`</div>`)
-	
 	// ================================================
 	// FIXED GRID - ROW SPANNING
 	// ================================================
-	
 	@ExampleSubheading("Fixed Grid - row spanning")
 	@el.Html(`<div class="fixed-grid has-4-cols">`)
 	@gr.Grid(
@@ -125,11 +115,9 @@ templ GridExamples() {
 		},
 	)
 	@el.Html(`</div>`)
-	
 	// ================================================
 	// SMART GRID WITH MODIFIERS
 	// ================================================
-	
 	@ExampleSubheading("Smart Grid - with minimum column width (is-col-min-8)")
 	@gr.Grid(
 		gr.GridProps{Attr: templ.Attributes{"class": "is-col-min-8"}},
@@ -142,7 +130,6 @@ templ GridExamples() {
 			gr.Cell(gr.CellProps{}, el.Items{el.Box(el.BoxProps{}, el.Items{el.Html("<p>Cell 6</p>")})}),
 		},
 	)
-	
 	@ExampleSubheading("Smart Grid - with gap (is-gap-4)")
 	@gr.Grid(
 		gr.GridProps{Attr: templ.Attributes{"class": "is-gap-4"}},

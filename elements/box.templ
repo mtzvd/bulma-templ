@@ -17,11 +17,10 @@ type BoxProps struct {
 templ Box(props BoxProps, content Items) {
 	@BaseElement(
 		BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"box"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

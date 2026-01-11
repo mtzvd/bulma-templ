@@ -21,13 +21,11 @@ import (
 // RadioExamples showcases Radio component grouping.
 templ RadioExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Radio")})
-	
 	// ================================================
 	// RADIO GROUP 1: YES/NO
 	// ================================================
 	// Two mutually exclusive options.
 	// Same name attribute groups them together.
-	
 	@fo.Field(
 		fo.FieldProps{},
 		el.Items{
@@ -54,12 +52,10 @@ templ RadioExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// RADIO GROUP 2: SIZE SELECTION
 	// ================================================
 	// Three mutually exclusive options.
-	
 	@fo.Field(
 		fo.FieldProps{},
 		el.Items{
@@ -95,7 +91,6 @@ templ RadioExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Use for mutually exclusive choices (only one selectable)
 	// - All radios in group need same name attribute

@@ -24,12 +24,10 @@ import (
 // TextareaExamples showcases Textarea component with validation.
 templ TextareaExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Textarea")})
-	
 	// ================================================
 	// BASIC TEXTAREA
 	// ================================================
 	// Standard multi-line text input.
-	
 	@fo.Field(
 		fo.FieldProps{},
 		el.Items{
@@ -48,12 +46,10 @@ templ TextareaExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// TEXTAREA WITH VALIDATION
 	// ================================================
 	// Colored textarea with help text.
-	
 	@fo.Field(
 		fo.FieldProps{},
 		el.Items{
@@ -76,7 +72,6 @@ templ TextareaExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Use Label for accessibility
 	// - Provide clear Placeholder text

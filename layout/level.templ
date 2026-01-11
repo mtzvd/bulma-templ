@@ -21,9 +21,8 @@ type LevelProps struct {
 
 // Level renders a Bulma `.level` container.
 templ Level(props LevelProps, content elements.Items) {
-	
 	{{
-		classes:= []string{"level"}
+		classes := []string{"level"}
 		if props.Mobile {
 			classes = append(classes, "is-mobile")
 		}
@@ -38,7 +37,6 @@ templ Level(props LevelProps, content elements.Items) {
 	)
 }
 
-
 // LevelLeft — left-aligned section of Level.
 // Atomic level: MOLECULE
 //
@@ -52,17 +50,15 @@ type LevelLeftProps struct {
 
 // LevelLeft renders a Bulma `.level-left` container.
 templ LevelLeft(props LevelLeftProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"level-left"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // LevelRight — right-aligned section of Level.
 // Atomic level: MOLECULE
@@ -77,17 +73,15 @@ type LevelRightProps struct {
 
 // LevelRight renders a Bulma `.level-right` container.
 templ LevelRight(props LevelRightProps, content elements.Items) {
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"level-right"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // LevelItem — individual item inside Level.
 // Atomic level: MOLECULE
@@ -102,12 +96,11 @@ type LevelItemProps struct {
 
 // LevelItem renders a Bulma `.level-item`.
 templ LevelItem(props LevelItemProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"level-item"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)

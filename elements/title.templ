@@ -25,16 +25,16 @@ type TitleProps struct {
 // Title renders a Bulma `.title` typographic element.
 templ Title(props TitleProps, content Items) {
 	{{
-		classes:= []string{"title"}
+		classes := []string{"title"}
 		if props.Size != "" {
 			classes = append(classes, props.Size)
 		}
 	}}
 	@BaseElement(
 		BaseElementProps{
-			Tag: "span",
+			Tag:         "span",
 			BaseClasses: classes,
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
@@ -60,12 +60,11 @@ type SubtitleProps struct {
 
 // Subtitle renders a Bulma `.subtitle` typographic element.
 templ Subtitle(props SubtitleProps, content Items) {
-	
 	@BaseElement(
 		BaseElementProps{
-			Tag: "span",
+			Tag:         "span",
 			BaseClasses: []string{"subtitle", props.Size},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)

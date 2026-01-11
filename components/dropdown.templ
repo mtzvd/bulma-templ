@@ -44,7 +44,6 @@ templ Dropdown(props DropdownProps, content elements.Items) {
 			classes = append(classes, "is-up")
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "div",
@@ -68,17 +67,15 @@ type DropdownTriggerProps struct {
 
 // DropdownTrigger renders a Bulma `.dropdown-trigger`.
 templ DropdownTrigger(props DropdownTriggerProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"dropdown-trigger"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // DropdownMenu renders `.dropdown-menu` and `.dropdown-content`.
 // Atomic level: MOLECULE
@@ -124,8 +121,6 @@ templ DropdownDivider() {
 	)
 }
 
-
-
 // DropdownItem renders a Bulma `.dropdown-item`.
 // Atomic level: ATOM
 //
@@ -162,7 +157,6 @@ templ DropdownItem(props DropdownItemProps, content elements.Items) {
 			attrs["href"] = props.Href
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "a",
@@ -172,4 +166,3 @@ templ DropdownItem(props DropdownItemProps, content elements.Items) {
 		content,
 	)
 }
-

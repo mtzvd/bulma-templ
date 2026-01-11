@@ -22,12 +22,10 @@ import (
 // SelectExamples showcases Select component single and multiple modes.
 templ SelectExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Select")})
-	
 	// ================================================
 	// SINGLE SELECT
 	// ================================================
 	// Standard dropdown selection.
-	
 	@fo.Field(
 		fo.FieldProps{},
 		el.Items{
@@ -53,13 +51,11 @@ templ SelectExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// MULTIPLE SELECT
 	// ================================================
 	// Multi-selection list box.
 	// Users can select multiple options with Ctrl/Cmd click.
-	
 	@ExampleSubheading("Multiple select")
 	@fo.Control(
 		fo.ControlProps{},
@@ -78,7 +74,6 @@ templ SelectExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - First option as placeholder ("Select...")
 	// - Group related options with <optgroup>
