@@ -5,6 +5,10 @@ run:
   timeout: 5m
   tests: true
 
+issues:
+  exclude-dirs:
+    - tools/collector
+
 linters:
   enable:
     - gofmt       # Check formatting
@@ -32,9 +36,6 @@ linters-settings:
     simplify: true
 
 issues:
-  exclude-dirs:
-    - tools/collector
-  
   exclude-rules:
     # Exclude generated templ files from all linting
     - path: _templ\.go$

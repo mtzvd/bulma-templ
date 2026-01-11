@@ -52,3 +52,21 @@ func TestSmokeHelp_Rendering(t *testing.T) {
 		t.Fatalf("expected 'help' class, got: %s", html)
 	}
 }
+
+func TestSmokeFileIcon_Rendering(t *testing.T) {
+	html := render(t,
+		FileIcon(FileIconProps{}, elements.Items{elements.Html("<i>icon</i>")}),
+	)
+	if !strings.Contains(html, `file-icon`) {
+		t.Fatalf("expected 'file-icon' class, got: %s", html)
+	}
+}
+
+func TestSmokeFileText_Rendering(t *testing.T) {
+	html := render(t,
+		FileText(FileTextProps{}, elements.Items{elements.Html("filename.txt")}),
+	)
+	if !strings.Contains(html, `file-label`) {
+		t.Fatalf("expected 'file-label' class, got: %s", html)
+	}
+}
