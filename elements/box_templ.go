@@ -11,14 +11,13 @@ import templruntime "github.com/a-h/templ/runtime"
 // Box — Bulma box element.
 // Atomic level: ATOM
 //
-// Box defines visual container that provides padding,
+// Box defines a visual container that provides padding,
 // border radius, and shadow using the Bulma `.box` class.
 //
 // This component is content-based and does not manage
 // layout, behavior, or semantics.
 type BoxProps struct {
-	// Attr contains additional HTML attributes
-	// for the `.box` container.
+	// Attr contains additional HTML attributes for the `.box` container.
 	Attr templ.Attributes
 }
 

@@ -1,0 +1,108 @@
+// RadioExamples — comprehensive demonstration of fo.Radio component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Radio component from the form package.
+// Radio provides mutually exclusive selection within a group.
+//
+// Radio props:
+// - Disabled: Boolean state
+// - Attr: templ.Attributes for name, value, checked, etc
+//
+// Content is the label text that appears after radio button.
+// All radios in same group must have same name attribute.
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+)
+
+// RadioExamples showcases Radio component grouping.
+templ RadioExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Radio")})
+	
+	// ================================================
+	// RADIO GROUP 1: YES/NO
+	// ================================================
+	// Two mutually exclusive options.
+	// Same name attribute groups them together.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Choose an option:"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Radio(
+						fo.RadioProps{Attr: templ.Attributes{"name": "answer"}},
+						el.Items{el.Html("Yes")},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Radio(
+						fo.RadioProps{Attr: templ.Attributes{"name": "answer"}},
+						el.Items{el.Html("No")},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// RADIO GROUP 2: SIZE SELECTION
+	// ================================================
+	// Three mutually exclusive options.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Select size:"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Radio(
+						fo.RadioProps{Attr: templ.Attributes{"name": "size"}},
+						el.Items{el.Html("Small")},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Radio(
+						fo.RadioProps{Attr: templ.Attributes{"name": "size"}},
+						el.Items{el.Html("Medium")},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Radio(
+						fo.RadioProps{Attr: templ.Attributes{"name": "size"}},
+						el.Items{el.Html("Large")},
+					),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use for mutually exclusive choices (only one selectable)
+	// - All radios in group need same name attribute
+	// - Provide group Label for context
+	// - Set one radio as default checked
+	// - Use Checkbox for independent selections
+	// - Keep to 2-7 options per group
+	// - For >7 options, use Select dropdown
+	// - Add value attribute for form submission
+}

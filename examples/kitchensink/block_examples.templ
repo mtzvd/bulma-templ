@@ -1,0 +1,104 @@
+// BlockExamples — comprehensive demonstration of el.Block component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Block component from the elements package.
+// Block is a simple spacing utility that adds consistent vertical margins between content sections.
+// It is the most basic layout primitive in Bulma for creating visual breathing room.
+//
+// Block supports:
+// - No configuration props (just consistent spacing)
+// - Can contain any content (text, images, components)
+// - Stacks vertically with proper spacing between each block
+//
+// Each example shows Block wrapping different content types.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes in el.Html() - only plain text
+// - Props-based configuration via el.BlockProps
+// - Consistent vertical rhythm in layouts
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// BlockExample1 renders the first block example with simple text
+templ BlockExample1() {
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			el.Html("<p>This is a block element with spacing.</p>"),
+		},
+	)
+}
+
+// BlockExample1Code returns the source code for BlockExample1
+func BlockExample1Code() string {
+	return `@el.Block(
+	el.BlockProps{},
+	el.Items{
+		el.Html("<p>This is a block element with spacing.</p>"),
+	},
+)`
+}
+
+// BlockExample2 renders the second block example with explanatory text
+templ BlockExample2() {
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			el.Html("<p>Block elements add consistent vertical spacing between content sections.</p>"),
+		},
+	)
+}
+
+// BlockExample2Code returns the source code for BlockExample2
+func BlockExample2Code() string {
+	return `@el.Block(
+	el.BlockProps{},
+	el.Items{
+		el.Html("<p>Block elements add consistent vertical spacing between content sections.</p>"),
+	},
+)`
+}
+
+// BlockExample3 renders the third block example demonstrating stacking
+templ BlockExample3() {
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			el.Html("<p>They are useful for creating visual breathing room in your layout.</p>"),
+		},
+	)
+}
+
+// BlockExample3Code returns the source code for BlockExample3
+func BlockExample3Code() string {
+	return `@el.Block(
+	el.BlockProps{},
+	el.Items{
+		el.Html("<p>They are useful for creating visual breathing room in your layout.</p>"),
+	},
+)`
+}
+
+// BlockExamples showcases Block component usage.
+// Demonstrates how Block creates consistent vertical spacing between content sections.
+templ BlockExamples() {
+	// Section header using generic semantic wrapper
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Block")})
+	
+	{{
+		// Define all block examples with their codes
+		examples := []ComponentItem{
+			{ID: "block-1", Code: BlockExample1Code(), Component: BlockExample1()},
+			{ID: "block-2", Code: BlockExample2Code(), Component: BlockExample2()},
+			{ID: "block-3", Code: BlockExample3Code(), Component: BlockExample3()},
+		}
+	}}
+	
+	// Render all examples
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}

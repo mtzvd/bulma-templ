@@ -1,0 +1,636 @@
+{
+  "projectAudit": {
+    "projectName": "bulma-templ",
+    "version": "1.0.0",
+    "auditDate": "2026-01-11",
+    "overallScore": 9.0,
+    "status": "Production-ready pure rendering library with selective testing needs",
+    "philosophyStatement": "Bulma-Templ is a pure rendering component library with frozen architecture, NOT a framework. It provides 1:1 Bulma CSS mappings with zero logic and zero state.",
+
+    "strengths": {
+      "architecture": {
+        "score": 10,
+        "highlights": [
+          "Frozen v1.0 API - protection from breaking changes",
+          "5 NON-NEGOTIABLE principles - clear project philosophy",
+          "Atomic Design (STRICT) - explicit classification of all components",
+          "Items composition model - single composition mechanism without magic",
+          "Default State Rule - predictable default behavior",
+          "Zero internal state - components are pure rendering functions",
+          "80-90% of components are thin 1:1 Bulma mappings requiring minimal testing"
+        ]
+      },
+      "documentation": {
+        "score": 9,
+        "files": [
+          {
+            "name": "CANONICAL_PROJECT_CONTEXT.md",
+            "purpose": "Project structure and core principles"
+          },
+          {
+            "name": "DESIGN_SYSTEM.md",
+            "purpose": "Architectural decisions (NORMATIVE)"
+          },
+          {
+            "name": "LLM_INSTRUCTIONS.md",
+            "purpose": "PRIMARY guidance for LLMs"
+          },
+          {
+            "name": "COMMENT_STYLE.md",
+            "purpose": "Code documentation standards (FROZEN for v1.0)"
+          }
+        ]
+      },
+      "testingCurrent": {
+        "score": 8,
+        "analysis": "Existing tests correctly target infrastructure and components with branching logic",
+        "existingTests": [
+          {
+            "file": "elements/wrap_test.go",
+            "category": "INFRASTRUCTURE",
+            "value": "CRITICAL",
+            "rationale": "Tests core rendering primitive used by all components"
+          },
+          {
+            "file": "elements/base_element_test.go",
+            "category": "INFRASTRUCTURE",
+            "value": "CRITICAL",
+            "rationale": "Tests BaseElement abstraction used by 80%+ components"
+          },
+          {
+            "file": "elements/button_test.go",
+            "category": "CONDITIONAL_LOGIC",
+            "value": "HIGH",
+            "rationale": "Tests tag switching (button vs a), disabled state handling"
+          },
+          {
+            "file": "components/pagination_test.go",
+            "category": "CONDITIONAL_LOGIC",
+            "value": "HIGH",
+            "rationale": "Tests free ordering, conditional rendering, no implicit logic"
+          }
+        ],
+        "verdict": "Current tests target the RIGHT components - infrastructure and conditional logic"
+      },
+      "kitchenSink": {
+        "score": 10,
+        "role": "Integration Test Suite",
+        "highlights": [
+          "Kitchen Sink compiles successfully = integration test passes",
+          "30+ example files cover ALL components",
+          "Serves as living documentation and visual regression test",
+          "Replaces need for separate integration tests"
+        ]
+      }
+    },
+
+    "realRiskAssessment": {
+      "lowRiskComponents": {
+        "description": "Thin 1:1 Bulma mappings with no conditional logic",
+        "percentage": "80-90% of codebase",
+        "examples": [
+          "Box - just renders <div class='box'>",
+          "Block - just renders spacing container",
+          "Content - just wraps with .content class",
+          "Container, Section, Footer - simple layout wrappers"
+        ],
+        "testingStrategy": "Optional smoke tests only. Protected by BaseElement tests.",
+        "rationale": "Cannot break without changing Bulma itself or BaseElement"
+      },
+      "mediumRiskComponents": {
+        "description": "Components with CSS modifier handling but no branching",
+        "percentage": "10-15% of codebase",
+        "examples": [
+          "Icon, Tag, Title, Notification",
+          "Most layout components with alignment/color props"
+        ],
+        "testingStrategy": "1-2 smoke tests per package to verify BaseElement integration",
+        "rationale": "Logic is in BaseElement (already tested). Only need smoke test confidence."
+      },
+      "highRiskComponents": {
+        "description": "Components with conditional rendering or branching logic",
+        "percentage": "5-10% of codebase",
+        "list": [
+          {
+            "component": "Button",
+            "logic": "Tag switching (button vs a), disabled state handling",
+            "status": "TESTED ✓"
+          },
+          {
+            "component": "Pagination",
+            "logic": "Free ordering, conditional rendering of empty blocks",
+            "status": "TESTED ✓"
+          },
+          {
+            "component": "Progress",
+            "logic": "Sentinel value handling (ProgressUnset = -1)",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Navbar + subcomponents",
+            "logic": "NavbarItem tag switching (div vs a), ARIA attributes",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "NavbarBurger",
+            "logic": "Active state rendering hardcoded spans",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Modal + subcomponents",
+            "logic": "Active state handling, conditional visibility",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Dropdown",
+            "logic": "Active/hoverable states",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Form: Input",
+            "logic": "Disabled/readonly state handling",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Form: Textarea",
+            "logic": "Disabled/readonly state handling",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Form: Checkbox",
+            "logic": "Checked/disabled state",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Form: Radio",
+            "logic": "Checked/disabled state, name attribute",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Form: Select",
+            "logic": "Multiple attribute, wrapper vs control attributes",
+            "status": "NOT TESTED"
+          },
+          {
+            "component": "Form: File",
+            "logic": "Wrapper pattern, multiple files",
+            "status": "NOT TESTED"
+          }
+        ],
+        "testingStrategy": "MANDATORY comprehensive unit tests",
+        "rationale": "These components have branching logic that can break independently of Bulma"
+      }
+    }
+  },
+
+  "canonicalTestingStrategy": {
+    "goal": "Validate infrastructure correctness and protect components with conditional rendering logic. Do NOT test Bulma itself.",
+
+    "corePrinciples": [
+      "Test architectural invariants, not every div",
+      "80% real protection with 20% of test effort (Pareto principle)",
+      "Kitchen Sink serves as integration test suite",
+      "Source of truth is Bulma docs, not our tests",
+      "Tests validate behavior, not byte-identical HTML output"
+    ],
+
+    "whatToTest": {
+      "tier1_mandatory": {
+        "priority": "CRITICAL",
+        "description": "Infrastructure primitives",
+        "status": "COMPLETE ✓",
+        "components": [
+          {
+            "name": "Wrap",
+            "file": "elements/wrap_test.go",
+            "status": "EXISTS",
+            "tests": ["ClassMerging", "BooleanAttributes", "EscapesAttributes", "OmitsNilAttributes"]
+          },
+          {
+            "name": "BaseElement",
+            "file": "elements/base_element_test.go",
+            "status": "EXISTS",
+            "tests": ["RendersTagAndClasses", "DelegatesAttrMerging", "WithContent"]
+          },
+          {
+            "name": "Items.Render",
+            "file": "elements/render_test.go",
+            "status": "EXISTS",
+            "note": "Implicitly tested through component tests"
+          }
+        ],
+        "value": "Protects 80%+ of codebase through abstraction testing"
+      },
+
+      "tier2_mandatory": {
+        "priority": "HIGH",
+        "description": "Components with conditional rendering or branching logic",
+        "estimatedEffort": "2-3 days",
+        "components": [
+          {
+            "name": "Button",
+            "file": "elements/button_test.go",
+            "status": "EXISTS ✓",
+            "logic": ["Tag switching (button/a)", "Disabled state handling", "Type attribute"]
+          },
+          {
+            "name": "Pagination",
+            "file": "components/pagination_test.go",
+            "status": "EXISTS ✓",
+            "logic": ["Free ordering", "Conditional rendering", "No implicit logic"]
+          },
+          {
+            "name": "Progress",
+            "file": "elements/progress_test.go",
+            "status": "NEEDED",
+            "logic": ["Sentinel value (ProgressUnset = -1)", "Max/Value attribute handling"],
+            "tests": [
+              "Progress_DefaultRendering",
+              "Progress_WithValue",
+              "Progress_WithMax",
+              "Progress_UnsetSentinel",
+              "Progress_ColorModifiers"
+            ]
+          },
+          {
+            "name": "Navbar + subcomponents",
+            "file": "components/navbar_test.go",
+            "status": "NEEDED",
+            "logic": ["NavbarItem tag switching", "NavbarBurger spans", "ARIA attributes"],
+            "tests": [
+              "Navbar_AriaAttributes",
+              "NavbarBurger_RendersSpans",
+              "NavbarBurger_ActiveState",
+              "NavbarItem_TagSwitching",
+              "NavbarItem_ActiveState"
+            ]
+          },
+          {
+            "name": "Modal",
+            "file": "components/modal_test.go",
+            "status": "NEEDED",
+            "logic": ["Active state visibility"],
+            "tests": [
+              "Modal_DefaultRendering",
+              "Modal_ActiveState"
+            ]
+          },
+          {
+            "name": "Dropdown",
+            "file": "components/dropdown_test.go",
+            "status": "NEEDED",
+            "logic": ["Active/hoverable states"],
+            "tests": [
+              "Dropdown_DefaultState",
+              "Dropdown_ActiveState",
+              "Dropdown_HoverableState"
+            ]
+          },
+          {
+            "name": "Form: Input",
+            "file": "form/input_test.go",
+            "status": "NEEDED",
+            "logic": ["Disabled/readonly states", "Type attribute"],
+            "tests": [
+              "Input_DefaultRendering",
+              "Input_TypeAttribute",
+              "Input_DisabledState",
+              "Input_ReadOnlyState"
+            ]
+          },
+          {
+            "name": "Form: Textarea",
+            "file": "form/textarea_test.go",
+            "status": "NEEDED",
+            "logic": ["Disabled/readonly states", "Rows attribute"],
+            "tests": [
+              "Textarea_DefaultRendering",
+              "Textarea_DisabledState",
+              "Textarea_ReadOnlyState"
+            ]
+          },
+          {
+            "name": "Form: Checkbox",
+            "file": "form/checkbox_test.go",
+            "status": "NEEDED",
+            "logic": ["Checked/disabled states"],
+            "tests": [
+              "Checkbox_DefaultUnchecked",
+              "Checkbox_CheckedState",
+              "Checkbox_DisabledState"
+            ]
+          },
+          {
+            "name": "Form: Radio",
+            "file": "form/radio_test.go",
+            "status": "NEEDED",
+            "logic": ["Checked/disabled states", "Name attribute"],
+            "tests": [
+              "Radio_DefaultUnchecked",
+              "Radio_CheckedState",
+              "Radio_DisabledState"
+            ]
+          },
+          {
+            "name": "Form: Select",
+            "file": "form/select_test.go",
+            "status": "NEEDED",
+            "logic": ["Multiple attribute", "Wrapper vs control attributes"],
+            "tests": [
+              "Select_DefaultRendering",
+              "Select_MultipleAttribute",
+              "Select_DisabledState",
+              "Select_WrapperAttributes"
+            ]
+          },
+          {
+            "name": "Form: File",
+            "file": "form/file_test.go",
+            "status": "NEEDED",
+            "logic": ["Wrapper pattern", "Multiple files", "File name display"],
+            "tests": [
+              "File_DefaultRendering",
+              "File_MultipleAttribute",
+              "File_WrapperAttributes"
+            ]
+          }
+        ]
+      },
+
+      "tier3_optional": {
+        "priority": "LOW",
+        "description": "Smoke tests for thin wrapper components (regression confidence only)",
+        "estimatedEffort": "1-2 days",
+        "strategy": "1-2 smoke tests per package, not per component",
+        "examples": [
+          {
+            "package": "elements",
+            "file": "elements/simple_test.go",
+            "tests": [
+              "SmokeTest_Box",
+              "SmokeTest_Block",
+              "SmokeTest_Content"
+            ],
+            "rationale": "Verify BaseElement integration works, nothing more"
+          },
+          {
+            "package": "layout",
+            "file": "layout/simple_test.go",
+            "tests": [
+              "SmokeTest_Container",
+              "SmokeTest_Section",
+              "SmokeTest_Hero"
+            ],
+            "rationale": "Confidence that layout components compile and render"
+          }
+        ],
+        "note": "These tests provide psychological confidence but limited technical value"
+      }
+    },
+
+    "whatNotToTest": {
+      "antipatterns": [
+        {
+          "pattern": "100% component coverage goal",
+          "reason": "Most components are thin wrappers with no logic to test",
+          "impact": "Low value / high maintenance cost"
+        },
+        {
+          "pattern": "Golden file tests (HTML snapshots)",
+          "reason": "HTML formatting/attribute order can change without semantic changes",
+          "impact": "Brittle tests that break on benign changes"
+        },
+        {
+          "pattern": "Bulma CSS compliance tests",
+          "reason": "Bulma is source of truth, not our tests. If Bulma changes, we update to match.",
+          "impact": "Testing Bulma, not Bulma-Templ"
+        },
+        {
+          "pattern": "Integration tests separate from Kitchen Sink",
+          "reason": "Kitchen Sink already serves as comprehensive integration test",
+          "impact": "Duplicate effort with no additional value"
+        },
+        {
+          "pattern": "Testing every CSS modifier combination",
+          "reason": "Modifiers are string pass-through, tested once in BaseElement",
+          "impact": "Explosion of low-value tests"
+        },
+        {
+          "pattern": "Testing Bulma CSS rendering",
+          "reason": "We test class names, not what CSS does with them",
+          "impact": "Outside our responsibility boundary"
+        },
+        {
+          "pattern": "CI linters for comments / atomic levels",
+          "reason": "Human review at PR time is sufficient for frozen v1.0 API",
+          "impact": "Over-engineering for stable codebase"
+        }
+      ]
+    }
+  },
+
+  "implementationPlan": {
+    "totalEstimatedEffort": "2-4 days (NOT 10-13 days)",
+    "phases": [
+      {
+        "phase": 1,
+        "name": "High-Risk Components with Conditional Logic",
+        "duration": "2-3 days",
+        "priority": "MANDATORY",
+        "tasks": [
+          {
+            "file": "elements/progress_test.go",
+            "component": "Progress",
+            "tests": 5,
+            "focus": "Sentinel value handling"
+          },
+          {
+            "file": "components/navbar_test.go",
+            "component": "Navbar + subcomponents",
+            "tests": 5,
+            "focus": "Tag switching, ARIA, active states"
+          },
+          {
+            "file": "components/modal_test.go",
+            "component": "Modal",
+            "tests": 2,
+            "focus": "Active state rendering"
+          },
+          {
+            "file": "components/dropdown_test.go",
+            "component": "Dropdown",
+            "tests": 3,
+            "focus": "Active/hoverable states"
+          },
+          {
+            "file": "form/input_test.go",
+            "component": "Input",
+            "tests": 4,
+            "focus": "Disabled/readonly states"
+          },
+          {
+            "file": "form/textarea_test.go",
+            "component": "Textarea",
+            "tests": 3,
+            "focus": "Disabled/readonly states"
+          },
+          {
+            "file": "form/checkbox_test.go",
+            "component": "Checkbox",
+            "tests": 3,
+            "focus": "Checked/disabled states"
+          },
+          {
+            "file": "form/radio_test.go",
+            "component": "Radio",
+            "tests": 3,
+            "focus": "Checked/disabled states"
+          },
+          {
+            "file": "form/select_test.go",
+            "component": "Select",
+            "tests": 4,
+            "focus": "Multiple attribute, wrapper pattern"
+          },
+          {
+            "file": "form/file_test.go",
+            "component": "File",
+            "tests": 3,
+            "focus": "Wrapper pattern, multiple files"
+          }
+        ],
+        "totalTests": "~35 tests",
+        "value": "80% of real regression protection"
+      },
+      {
+        "phase": 2,
+        "name": "Optional Smoke Tests",
+        "duration": "1 day",
+        "priority": "OPTIONAL",
+        "tasks": [
+          {
+            "file": "elements/simple_test.go",
+            "tests": "3-5 smoke tests for thin wrappers"
+          },
+          {
+            "file": "layout/simple_test.go",
+            "tests": "3-5 smoke tests for layout components"
+          },
+          {
+            "file": "components/simple_test.go",
+            "tests": "3-5 smoke tests for remaining components"
+          }
+        ],
+        "totalTests": "~10-15 smoke tests",
+        "value": "Psychological confidence, limited technical value"
+      },
+      {
+        "phase": 3,
+        "name": "CI/CD Setup",
+        "duration": "0.5 days",
+        "priority": "RECOMMENDED",
+        "tasks": [
+          {
+            "file": ".github/workflows/test.yml",
+            "actions": [
+              "Run go test ./... on PR",
+              "Run templ generate before tests",
+              "Check compilation of Kitchen Sink"
+            ]
+          }
+        ],
+        "value": "Automatic regression detection"
+      }
+    ]
+  },
+
+  "successMetrics": {
+    "coverage": {
+      "targetMetric": "NOT line coverage percentage",
+      "correctMetric": "All components with conditional logic have tests",
+      "current": "50% (2 of 4 infrastructure + 2 of ~12 logic components)",
+      "target": "100% (4 of 4 infrastructure + 12 of 12 logic components)"
+    },
+    "value": {
+      "current": "High value tests (infrastructure + Button + Pagination)",
+      "target": "All high-value targets covered (infrastructure + all conditional logic)",
+      "maintainability": "Tests remain simple and focused on behavior, not formatting"
+    },
+    "kitchenSink": {
+      "status": "Serves as integration test suite",
+      "value": "Compiles successfully = all components work in composition"
+    }
+  },
+
+  "testingPatterns": {
+    "renderHelper": {
+      "description": "Standard render helper used in all tests",
+      "code": "func render(t *testing.T, c templ.Component) string {\n    var b strings.Builder\n    if err := c.Render(context.Background(), &b); err != nil {\n        t.Fatalf(\"render failed: %v\", err)\n    }\n    return b.String()\n}",
+      "location": "Each package has render_test.go with shared helper"
+    },
+    "testNamingConvention": {
+      "pattern": "TestComponentName_SpecificBehavior",
+      "goodExamples": [
+        "TestButton_HrefSwitchesToAnchor (tests tag switching)",
+        "TestPagination_NoImplicitLogic (tests no state inference)",
+        "TestProgress_UnsetSentinel (tests sentinel value)"
+      ],
+      "badExamples": [
+        "TestButton_ColorModifiers (modifiers are strings, tested in BaseElement)",
+        "TestBox_Rendering (Box has no logic to test)"
+      ]
+    },
+    "focusOnBehavior": {
+      "description": "Test semantic behavior, not HTML formatting",
+      "good": [
+        "Verify correct CSS class is present",
+        "Verify correct HTML tag is used",
+        "Verify attribute is present when condition is true",
+        "Verify attribute is absent when condition is false"
+      ],
+      "bad": [
+        "Verify exact HTML byte sequence",
+        "Verify attribute order",
+        "Verify whitespace formatting",
+        "Verify all possible modifier combinations"
+      ]
+    }
+  },
+
+  "architecturalConstraints": {
+    "testingPhilosophy": "Test architectural invariants and conditional logic. Do NOT test Bulma CSS or every thin wrapper.",
+    "nonNegotiableRules": [
+      "DO NOT test components with no conditional logic (already protected by BaseElement)",
+      "DO NOT create golden file tests (HTML formatting is not semantic)",
+      "DO NOT test Bulma CSS compliance (Bulma is source of truth)",
+      "DO NOT duplicate Kitchen Sink with separate integration tests",
+      "DO test infrastructure primitives (Wrap, BaseElement, Items)",
+      "DO test components with branching logic (Button, Pagination, Progress, Form inputs, etc.)"
+    ],
+    "testValueAssessment": {
+      "beforeWritingTest": [
+        "Does this component have conditional rendering logic?",
+        "Does this component switch HTML tags based on props?",
+        "Does this component handle sentinel values?",
+        "Does this component have state-dependent attributes?",
+        "If NO to all: consider if test provides value beyond BaseElement coverage"
+      ]
+    }
+  },
+
+  "conclusion": {
+    "summary": "Bulma-Templ is a pure rendering library, not a framework. Most components are thin wrappers requiring minimal testing. Focus on infrastructure and conditional logic.",
+    "currentState": "Infrastructure well-tested. Need tests for ~10 components with conditional logic.",
+    "targetState": "All infrastructure + conditional logic components tested. Thin wrappers optionally smoke-tested.",
+    "effort": "2-4 days (NOT 10-13 days)",
+    "impact": "HIGH - 80% regression protection with 20% effort (Pareto principle)",
+    "realGap": "~10 components with conditional logic need tests (not 39 'untested' components)",
+    "nextSteps": [
+      "Phase 1: Test components with conditional logic (2-3 days)",
+      "Phase 2: Optional smoke tests for thin wrappers (1 day)",
+      "Phase 3: Setup CI/CD (0.5 days)",
+      "Kitchen Sink continues to serve as integration test"
+    ],
+    "philosophyReminder": "Kitchen Sink = integration test. Bulma docs = source of truth. Tests protect logic, not divs."
+  }
+}

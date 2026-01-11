@@ -41,13 +41,23 @@ type TextareaProps struct {
 // This component must be wrapped with Control
 // and Field components when used in a form layout.
 templ Textarea(props TextareaProps) {
+	{{
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+		if props.Disabled {
+			attrs["disabled"] = "disabled"
+		}
+		if props.ReadOnly {
+			attrs["readonly"] = "readonly"
+		}
+	}}
 	<textarea
 		class={ "textarea", props.Color, props.Size, props.Attr["class"] }
 		placeholder={ props.Placeholder }
 		rows={ props.Rows }
-		disabled={ props.Disabled }
-		readonly={ props.ReadOnly }
-		{ props.Attr... }
+		{ attrs... }
 	>
 		{ props.Value }
 	</textarea>

@@ -3,7 +3,7 @@ package layout
 import "github.com/mtzvd/bulma-templ/elements"
 
 // Container — Bulma container layout wrapper.
-// Atomic level: MOLECULE
+// Atomic level: ATOM
 //
 // Container constrains the horizontal width of its content
 // according to Bulma container rules.
@@ -28,7 +28,6 @@ type ContainerProps struct {
 
 // Container renders a Bulma `.container` element.
 templ Container(props ContainerProps, content elements.Items) {
-	
 	{{
 		classes:= []string{"container"}
 		if props.Fluid {

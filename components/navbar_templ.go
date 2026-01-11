@@ -346,6 +346,149 @@ func NavbarEnd(props NavbarEndProps, content elements.Items) templ.Component {
 	})
 }
 
+// NavbarItem — individual item in navbar (link, div, or dropdown trigger).
+// Atomic level: ATOM
+//
+// NavbarItem represents a `.navbar-item` element.
+// Can be a link (<a>), div (<div>), or dropdown trigger.
+type NavbarItemProps struct {
+	// Href defines the link target.
+	// If empty, renders a <div>; if set, renders an <a>.
+	Href string
+
+	// Tab applies the `is-tab` modifier for tab-like styling.
+	Tab bool
+
+	// Active applies the `is-active` modifier.
+	Active bool
+
+	// Hoverable applies the `is-hoverable` modifier.
+	Hoverable bool
+
+	// Attr contains additional HTML attributes
+	// for the `.navbar-item` element.
+	Attr templ.Attributes
+}
+
+// NavbarItem renders a Bulma `.navbar-item` element.
+func NavbarItem(props NavbarItemProps, content elements.Items) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		classes := []string{"navbar-item"}
+
+		if props.Tab {
+			classes = append(classes, "is-tab")
+		}
+		if props.Active {
+			classes = append(classes, "is-active")
+		}
+		if props.Hoverable {
+			classes = append(classes, "is-hoverable")
+		}
+
+		// Determine tag based on Href
+		tag := "div"
+		if props.Href != "" {
+			tag = "a"
+		}
+
+		attrs := templ.Attributes{}
+		if props.Href != "" {
+			attrs["href"] = props.Href
+		}
+
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+		templ_7745c5c3_Err = elements.BaseElement(
+			elements.BaseElementProps{
+				Tag:         tag,
+				BaseClasses: classes,
+				Attr:        attrs,
+			},
+			content,
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// NavbarLink — clickable dropdown trigger inside navbar-item.
+// Atomic level: ATOM
+//
+// NavbarLink represents a `.navbar-link` element.
+// Used as dropdown trigger with is-arrowless modifier support.
+type NavbarLinkProps struct {
+	// Arrowless removes the dropdown arrow indicator.
+	Arrowless bool
+
+	// Attr contains additional HTML attributes
+	// for the `.navbar-link` element.
+	Attr templ.Attributes
+}
+
+// NavbarLink renders a Bulma `.navbar-link` element.
+func NavbarLink(props NavbarLinkProps, content elements.Items) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var8 == nil {
+			templ_7745c5c3_Var8 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		classes := []string{"navbar-link"}
+
+		if props.Arrowless {
+			classes = append(classes, "is-arrowless")
+		}
+		templ_7745c5c3_Err = elements.BaseElement(
+			elements.BaseElementProps{
+				Tag:         "a",
+				BaseClasses: classes,
+				Attr:        props.Attr,
+			},
+			content,
+		).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
 // NavbarDropdown — dropdown menu inside Navbar.
 // Atomic level: MOLECULE
 type NavbarDropdownProps struct {
@@ -374,9 +517,9 @@ func NavbarDropdown(props NavbarDropdownProps, content elements.Items) templ.Com
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var7 == nil {
-			templ_7745c5c3_Var7 = templ.NopComponent
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		classes := []string{"navbar-dropdown"}
@@ -421,9 +564,9 @@ func NavbarDivider(props NavbarDividerProps) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var8 == nil {
-			templ_7745c5c3_Var8 = templ.NopComponent
+		templ_7745c5c3_Var10 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var10 == nil {
+			templ_7745c5c3_Var10 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
 		templ_7745c5c3_Err = elements.BaseElement(

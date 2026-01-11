@@ -1,0 +1,52 @@
+# golangci-lint configuration for bulma-templ
+# See: https://golangci-lint.run/usage/configuration/
+
+run:
+  timeout: 5m
+  tests: true
+  skip-dirs:
+    - tools/collector
+
+linters:
+  enable:
+    - gofmt       # Check formatting
+    - govet       # Standard Go vet
+    - errcheck    # Check error handling
+    - staticcheck # Advanced static analysis
+    - unused      # Check for unused code
+    - gosimple    # Simplify code suggestions
+    - ineffassign # Detect ineffectual assignments
+    - misspell    # Check for misspelled words
+
+  disable:
+    - exhaustive  # Bulma-Templ uses plain strings, not enums
+    - stylecheck  # We follow our own COMMENT_STYLE.md
+    - revive      # Too opinionated for our frozen v1.0 API
+
+linters-settings:
+  errcheck:
+    # Don't check for unchecked errors in templ render calls
+    # (render errors are intentionally ignored in some contexts)
+    exclude-functions:
+      - (github.com/a-h/templ.Component).Render
+
+  gofmt:
+    simplify: true
+
+issues:
+  exclude-rules:
+    # Exclude generated templ files from all linting
+    - path: _templ\.go$
+      linters:
+        - gofmt
+        - govet
+        - errcheck
+        - staticcheck
+        - unused
+        - gosimple
+        - ineffassign
+        - misspell
+
+  # Maximum issues count per linter
+  max-issues-per-linter: 0
+  max-same-issues: 0

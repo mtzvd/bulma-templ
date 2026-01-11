@@ -1,0 +1,110 @@
+// Helper components for Kitchen Sink examples.
+// These are generic reusable wrappers used across all example files.
+//
+// Generic semantic wrappers:
+// - TitleH1-H4: Wrap el.Title in semantic HTML tags (h1-h4)
+// - SubtitleP: Wrap el.Subtitle in semantic <p> tag
+// - ExampleSubheading: Consistent subheading style for example sections
+//
+// These components enforce the canonical pattern:
+// - Title/Subtitle always wrapped in semantic HTML
+// - No one-off wrappers - one generic component per HTML tag
+// - Consistent sizing via size parameter
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// ================================================
+// GENERIC SEMANTIC WRAPPERS
+// ================================================
+
+// TitleH1 wraps el.Title in <h1> tag.
+// Used for main page titles and hero headings.
+// Parameters:
+// - size: Bulma size modifier (is-1, is-2, etc.)
+// - text: Title text content
+templ TitleH1(size string, text string) {
+	<h1>
+		@el.Title(
+			el.TitleProps{Size: size},
+			el.Items{el.Html(text)},
+		)
+	</h1>
+}
+
+// TitleH2 wraps el.Title in <h2> tag.
+// Used for package section headers (Elements, Components, etc.)
+// Parameters:
+// - size: Bulma size modifier (is-2, is-3, etc.)
+// - text: Title text content
+templ TitleH2(size string, text string) {
+	<h2>
+		@el.Title(
+			el.TitleProps{Size: size},
+			el.Items{el.Html(text)},
+		)
+	</h2>
+}
+
+// TitleH3 wraps el.Title in <h3> tag.
+// Used for component section headers (Button, Card, etc.)
+// Parameters:
+// - size: Bulma size modifier (is-4, is-5, etc.)
+// - text: Title text content
+templ TitleH3(size string, text string) {
+	<h3>
+		@el.Title(
+			el.TitleProps{Size: size},
+			el.Items{el.Html(text)},
+		)
+	</h3>
+}
+
+// TitleH4 wraps el.Title in <h4> tag.
+// Used for example titles within component sections.
+// Parameters:
+// - size: Bulma size modifier (is-5, is-6, etc.)
+// - text: Title text content
+templ TitleH4(size string, text string) {
+	<h4>
+		@el.Title(
+			el.TitleProps{Size: size},
+			el.Items{el.Html(text)},
+		)
+	</h4>
+}
+
+// SubtitleP wraps el.Subtitle in <p> tag.
+// Used for all subtitle contexts (package descriptions, hero subtitles, etc.)
+// Parameters:
+// - size: Bulma size modifier (is-3, is-4, is-5, etc.)
+// - text: Subtitle text content
+templ SubtitleP(size string, text string) {
+	<p>
+		@el.Subtitle(
+			el.SubtitleProps{Size: size},
+			el.Items{el.Html(text)},
+		)
+	</p>
+}
+
+// ================================================
+// EXAMPLE SECTION HELPERS
+// ================================================
+
+// ExampleSubheading creates a consistent subheading for example variations.
+// Used to label different examples within a component showcase
+// (e.g., "Colors", "Sizes", "States").
+// Parameters:
+// - text: Subheading text (will be wrapped in <strong>)
+templ ExampleSubheading(text string) {
+	@el.Content(
+		el.ContentProps{},
+		el.Items{
+			el.Html("<p><strong>" + text + "</strong></p>"),
+		},
+	)
+}

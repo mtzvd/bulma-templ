@@ -1,0 +1,181 @@
+// TableExamples — comprehensive demonstration of el.Table component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Table component from the elements package.
+// Table wraps standard HTML tables with Bulma styling options.
+// It supports stripes, borders, hover effects, and responsive behavior.
+//
+// Table supports:
+// - Modifiers: is-bordered, is-striped, is-narrow, is-hoverable, is-fullwidth
+// - Can combine multiple modifiers
+// - Responsive wrapper available
+// - Contains standard HTML table elements (thead, tbody, tr, td, th)
+//
+// Each example shows different table styling options.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes in el.Html() - only plain HTML table structure
+// - Props-based configuration via el.TableProps
+// - Modifiers passed via Modifiers prop as space-separated string
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// TableExample1 demonstrates basic table without modifiers.
+// Simple table with minimal styling - border and header.
+templ TableExample1() {
+	@el.Table(
+		el.TableProps{},
+		el.Items{
+			el.Html(`
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Role</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Alice Johnson</td>
+						<td>alice@example.com</td>
+						<td>Admin</td>
+					</tr>
+					<tr>
+						<td>Bob Smith</td>
+						<td>bob@example.com</td>
+						<td>User</td>
+					</tr>
+					<tr>
+						<td>Carol White</td>
+						<td>carol@example.com</td>
+						<td>Editor</td>
+					</tr>
+				</tbody>
+			`),
+		},
+	)
+}
+
+func TableExample1Code() string {
+	return `@el.Table(
+	el.TableProps{},
+	el.Items{
+		el.Html(\` + "`" + `
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Role</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Alice Johnson</td>
+					<td>alice@example.com</td>
+					<td>Admin</td>
+				</tr>
+				<tr>
+					<td>Bob Smith</td>
+					<td>bob@example.com</td>
+					<td>User</td>
+				</tr>
+				<tr>
+					<td>Carol White</td>
+					<td>carol@example.com</td>
+					<td>Editor</td>
+				</tr>
+			</tbody>
+		\` + "`" + `),
+	},
+)`
+}
+
+// TableExample2 demonstrates styled table with multiple modifiers.
+// Striped rows, hover effect, and full width for better usability.
+templ TableExample2() {
+	@el.Table(
+		el.TableProps{Modifiers: "is-striped is-hoverable is-fullwidth"},
+		el.Items{
+			el.Html(`
+				<thead>
+					<tr>
+						<th>Product</th>
+						<th>Price</th>
+						<th>Stock</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Widget A</td>
+						<td>$29.99</td>
+						<td>50</td>
+					</tr>
+					<tr>
+						<td>Widget B</td>
+						<td>$39.99</td>
+						<td>30</td>
+					</tr>
+					<tr>
+						<td>Widget C</td>
+						<td>$49.99</td>
+						<td>20</td>
+					</tr>
+				</tbody>
+			`),
+		},
+	)
+}
+
+func TableExample2Code() string {
+	return `@el.Table(
+	el.TableProps{Modifiers: "is-striped is-hoverable is-fullwidth"},
+	el.Items{
+		el.Html(\` + "`" + `
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Price</th>
+					<th>Stock</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Widget A</td>
+					<td>$29.99</td>
+					<td>50</td>
+				</tr>
+				<tr>
+					<td>Widget B</td>
+					<td>$39.99</td>
+					<td>30</td>
+				</tr>
+				<tr>
+					<td>Widget C</td>
+					<td>$49.99</td>
+					<td>20</td>
+				</tr>
+			</tbody>
+		\` + "`" + `),
+	},
+)`
+}
+
+// TableExamples showcases Table component variations.
+// Demonstrates basic and styled tables with modifiers.
+templ TableExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Table")})
+	
+	{{
+		examples := []ComponentItem{
+			{ID: "table-basic", Code: TableExample1Code(), Component: TableExample1()},
+			{ID: "table-styled", Code: TableExample2Code(), Component: TableExample2()},
+		}
+	}}
+	
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}

@@ -103,7 +103,7 @@ func File(props FileProps, content elements.Items) templ.Component {
 }
 
 // FileLabel — Bulma file label wrapper.
-// Atomic level: ATOM
+// Atomic level: MOLECULE
 //
 // FileLabel wraps the native file input
 // and all visual file UI elements.
@@ -151,7 +151,7 @@ func FileLabel(props FileLabelProps, content elements.Items) templ.Component {
 }
 
 // FileInput — native file input element.
-// Atomic level: ATOM
+// Atomic level: MOLECULE
 //
 // FileInput renders the `<input type=\"file\">` element.
 type FileInputProps struct {

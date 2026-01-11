@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "github.com/mtzvd/bulma-templ/elements"
 
 // Select — Bulma select form component.
-// Atomic level: MOLECULE
+// Atomic level: ORGANISM
 //
 // Select renders a Bulma `.select` wrapper together with
 // the native `<select>` element inside.

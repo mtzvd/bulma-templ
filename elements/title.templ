@@ -3,7 +3,7 @@ package elements
 // Title — Bulma typographic title.
 // Atomic level: ATOM
 //
-// Title defines visual typographic component that applies
+// Title defines a visual typographic component that applies
 // the Bulma `.title` styles.
 // It does NOT define HTML semantics or document structure.
 //
@@ -24,7 +24,6 @@ type TitleProps struct {
 
 // Title renders a Bulma `.title` typographic element.
 templ Title(props TitleProps, content Items) {
-	
 	{{
 		classes:= []string{"title"}
 		if props.Size != "" {

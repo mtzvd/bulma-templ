@@ -1,0 +1,229 @@
+// BoxExamples — comprehensive demonstration of el.Box component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Box component from the elements package.
+// Box is a simple container with a white background, border, border-radius, and box-shadow.
+// It's commonly used for cards, panels, and content containers.
+//
+// Box supports:
+// - No specific props (just wrapper styling)
+// - Can contain any content (text, media, components)
+// - White background with subtle shadow
+// - Rounded corners for modern appearance
+//
+// Each example shows different use cases for Box.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes in el.Html() - only plain text
+// - Props-based configuration via el.BoxProps
+// - Semantic HTML wrappers where appropriate
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+	lo "github.com/mtzvd/bulma-templ/layout"
+)
+
+// BoxExample1 renders a simple box with text
+templ BoxExample1() {
+	@el.Box(
+		el.BoxProps{},
+		el.Items{
+			el.Html("I'm in a box."),
+		},
+	)
+}
+
+// BoxExample1Code returns the source code for BoxExample1
+func BoxExample1Code() string {
+	return `@el.Box(
+	el.BoxProps{},
+	el.Items{
+		el.Html("I'm in a box."),
+	},
+)`
+}
+
+// BoxExample2 renders a box with a form
+templ BoxExample2() {
+	@el.Box(
+		el.BoxProps{},
+		el.Items{
+			fo.Field(
+				fo.FieldProps{},
+				el.Items{
+					fo.Label(fo.LabelProps{Text: "Email"}),
+					fo.Control(
+						fo.ControlProps{},
+						el.Items{
+							fo.Input(fo.InputProps{
+								Type:        "email",
+								Placeholder: "e.g. alex@example.com",
+							}),
+						},
+					),
+				},
+			),
+			fo.Field(
+				fo.FieldProps{},
+				el.Items{
+					fo.Label(fo.LabelProps{Text: "Password"}),
+					fo.Control(
+						fo.ControlProps{},
+						el.Items{
+							fo.Input(fo.InputProps{
+								Type:        "password",
+								Placeholder: "********",
+							}),
+						},
+					),
+				},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-primary"},
+				el.Items{el.Html("Sign in")},
+			),
+		},
+	)
+}
+
+// BoxExample2Code returns the source code for BoxExample2
+func BoxExample2Code() string {
+	return `@el.Box(
+	el.BoxProps{},
+	el.Items{
+		fo.Field(
+			fo.FieldProps{},
+			el.Items{
+				fo.Label(fo.LabelProps{Text: "Email"}),
+				fo.Control(
+					fo.ControlProps{},
+					el.Items{
+						fo.Input(fo.InputProps{
+							Type:        "email",
+							Placeholder: "e.g. alex@example.com",
+						}),
+					},
+				),
+			},
+		),
+		fo.Field(
+			fo.FieldProps{},
+			el.Items{
+				fo.Label(fo.LabelProps{Text: "Password"}),
+				fo.Control(
+					fo.ControlProps{},
+					el.Items{
+						fo.Input(fo.InputProps{
+							Type:        "password",
+							Placeholder: "********",
+						}),
+					},
+				),
+			},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-primary"},
+			el.Items{el.Html("Sign in")},
+		),
+	},
+)`
+}
+
+// BoxExample3 renders a box with media object
+templ BoxExample3() {
+	@el.Box(
+		el.BoxProps{},
+		el.Items{
+			lo.Media(
+				lo.MediaProps{},
+				el.Items{
+					lo.MediaLeft(
+						lo.MediaLeftProps{},
+						el.Items{
+							el.Image(
+								el.ImageProps{
+									Size: "is-64x64",
+									Src:  "https://bulma.io/assets/images/placeholders/128x128.png",
+									Alt:  "Image",
+								},
+							),
+						},
+					),
+					lo.MediaContent(
+						lo.MediaContentProps{},
+						el.Items{
+							el.Html(`
+								<p>
+									<strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+									<br>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas.
+								</p>
+							`),
+						},
+					),
+				},
+			),
+		},
+	)
+}
+
+// BoxExample3Code returns the source code for BoxExample3
+func BoxExample3Code() string {
+	return `@el.Box(
+	el.BoxProps{},
+	el.Items{
+		lo.Media(
+			lo.MediaProps{},
+			el.Items{
+				lo.MediaLeft(
+					lo.MediaLeftProps{},
+					el.Items{
+						el.Image(
+							el.ImageProps{
+								Size: "is-64x64",
+								Src:  "https://bulma.io/.../128x128.png",
+								Alt:  "Image",
+							},
+						),
+					},
+				),
+				lo.MediaContent(
+					lo.MediaContentProps{},
+					el.Items{
+						el.Html(` + "`" + `
+							<p>
+								<strong>John Smith</strong> <small>@johnsmith</small>
+								<br>
+								Lorem ipsum dolor sit amet...
+							</p>
+						` + "`" + `),
+					},
+				),
+			},
+		),
+	},
+)`
+}
+
+// BoxExamples showcases Box component variations.
+// Demonstrates different content types inside Box containers.
+templ BoxExamples() {
+	// Section header
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Box")})
+	
+	{{
+		// Define all box examples with their codes
+		examples := []ComponentItem{
+			{ID: "box-1", Code: BoxExample1Code(), Component: BoxExample1()},
+			{ID: "box-2", Code: BoxExample2Code(), Component: BoxExample2()},
+			{ID: "box-3", Code: BoxExample3Code(), Component: BoxExample3()},
+		}
+	}}
+	
+	// Render examples
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}

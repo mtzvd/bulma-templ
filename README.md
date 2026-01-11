@@ -1,299 +1,303 @@
-# Bulma-Templ Design System
+# Bulma-Templ
 
-A canonical Bulma-based design system for Go projects using Templ.
+[![Go Version](https://img.shields.io/badge/Go-1.25%2B-00ADD8?style=flat&logo=go)](https://go.dev)
+[![Tests](https://github.com/mtzvd/bulma-templ/workflows/Tests/badge.svg)](https://github.com/mtzvd/bulma-templ/actions?query=workflow%3ATests)
+[![Lint](https://github.com/mtzvd/bulma-templ/workflows/Lint/badge.svg)](https://github.com/mtzvd/bulma-templ/actions?query=workflow%3ALint)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Bulma](https://img.shields.io/badge/Bulma-1.0-00D1B2?style=flat&logo=bulma)](https://bulma.io)
+[![Templ](https://img.shields.io/badge/Templ-latest-7C3AED?style=flat)](https://templ.guide)
 
-SSR-first. Bulma-first. Explicit composition. Zero internal state.
+A **type-safe**, **SSR-first** Bulma component library for Go using [Templ](https://templ.guide).
 
----
+Provides 1:1 mappings of [Bulma CSS](https://bulma.io) components with explicit composition and zero internal state.
 
-## Status
-
-- Architecture: **FINAL**
-- Components: **Complete**
-- Comment style: **Frozen**
-- OSS readiness: **v1.0**
-
-This project is considered **stable and publishable**.
-
----
-
-## Why
-
-- You build server-rendered applications with Go
-- You use `Templ`
-- You want Bulma **as-is**, not reimagined
-- You want predictable, inspectable HTML
-- You value correctness and transparency over abstraction
-
----
-
-## Philosophy
-
-This design system is a **faithful, explicit implementation of Bulma**
-for Go projects using **Templ**.
-
-Core values:
-
-- Correctness over convenience
-- Transparency over abstraction
-- Explicit composition over magic
-- Bulma-first, not “Bulma-inspired”
-
-Nothing is hidden.  
-Nothing is inferred.  
-Nothing manages application state.
-
----
-
-## What this is
-
-- A 1:1 mapping of Bulma components to Templ components
-- Server-side rendered by default
-- Explicit multi-child composition via `Items`
-- A reference-quality, OSS-ready design system
-
----
-
-## What this is NOT
-
-- A UI framework
-- A JavaScript component library
-- A state management solution
-- A theme engine (dark mode is app-level)
-- A “Bulma-inspired” abstraction
-
----
-
-## Technology stack
-
-- Go
-- Templ (SSR-first)
-- Bulma CSS
-
-## JavaScript
-
-This design system is JavaScript-agnostic.
-
-It does not ship with or depend on any JavaScript framework.
-Client-side behavior (if needed) is entirely application-level.
-
----
-
-## Core principles (NON-NEGOTIABLE)
-
-### Bulma-first
-
-- Bulma classes are used directly
-- Bulma documentation maps **1:1** to components
-- No reinterpretation or redesign
-
-### Templ-first / SSR-first
-
-- All components are written in Templ
-- No client-side rendering assumptions
-- Server-side rendering is the default
-
-### Atomic Design (STRICT)
-
-Only three atomic levels exist:
-
-- **ATOM**
-- **MOLECULE**
-- **ORGANISM**
-
-No other levels are allowed.  
-Each component declares its atomic level explicitly in code comments.
-
-### Explicit composition
-
-- No slots
-- No implicit children
-- No positional parameters
-
-### No state
-
-Components never manage application state.
-
----
-
-## Component contract
-
-Every component:
-
-- Uses a dedicated **Props struct**
-- Accepts explicit content as `Items`
-- Exposes no positional parameters
-- Never manages application state
-- Never hides or reinterprets Bulma behavior
-- Provides `Attr` (`Templ.Attributes`) as an escape hatch
-
-There are:
-
-- No implicit children
-- No slots
-- No magic composition
-
----
-
-## Content model
-
-All content-based components use an explicit multi-child model:
-
-```
-type Items []Templ.Component
-```
-
-- Ordered, explicit composition
-- No hidden rendering logic
-- Matches Bulma’s structural patterns
-- Single-child composition is a special case of `Items`
-
----
-
-## Infrastructure primitives (non-Bulma)
-
-Some primitives exist to support composition but are **not Bulma components**.
-
-### Items
-
-- Canonical multi-child content container
-- Used consistently across all packages
-
-### Html
-
-```
-Templ Html(content string)
-```
-
-- Renders raw HTML via `Templ.Raw`
-- MUST be used only with trusted, pre-sanitized content
-- Intended for page-level and low-level composition
-- Performs no escaping or validation
-
----
-
-## Example
-
-```
-@elements.Button(
-  elements.ButtonProps{
-    Color: "is-primary",
-  },
-  elements.Items{
-    elements.Html("Click me"),
-  },
+```go
+@Button(
+    ButtonProps{Color: "is-primary", Size: "is-large"},
+    Items{Html("Get Started")},
 )
 ```
 
----
+## Features
 
-## Package structure
+- ✅ **Complete Bulma coverage** — All elements, components, forms, and layouts
+- ✅ **Type-safe** — Props structs with IDE autocomplete
+- ✅ **SSR-first** — No JavaScript required for rendering
+- ✅ **Zero state** — Pure rendering functions
+- ✅ **Explicit composition** — Multi-child `Items` pattern
+- ✅ **Escape hatch** — `Attr` for custom attributes and Alpine.js
+- ✅ **Stable v1.0** — Frozen architecture, no breaking changes
 
+## Quick Start
+
+### Installation
+
+```bash
+go get github.com/mtzvd/bulma-templ
 ```
-/
-├── elements/
-├── components/
-├── form/
-├── layout/
-├── grid/
-├── columns/
-├── docs/
-├── examples/
+
+### Requirements
+
+- Go 1.25+
+- [Templ CLI](https://templ.guide/quick-start/installation)
+- Bulma CSS (via CDN or bundled)
+
+### Basic Example
+
+```go
+package main
+
+import "github.com/mtzvd/bulma-templ/elements"
+
+templ Page() {
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+        </head>
+        <body>
+            @elements.Button(
+                elements.ButtonProps{Color: "is-primary"},
+                elements.Items{elements.Html("Click Me")},
+            )
+        </body>
+    </html>
+}
 ```
 
-The structure mirrors Bulma documentation.  
-Atomic level is declared explicitly in code comments and is never inferred.
+## Examples
 
----
+### Buttons
 
-## Bulma coverage
+```go
+// Primary button
+@elements.Button(
+    elements.ButtonProps{Color: "is-primary", Size: "is-large"},
+    elements.Items{elements.Html("Primary")},
+)
 
-Implemented sections:
+// With loading state
+@elements.Button(
+    elements.ButtonProps{Color: "is-info", IsLoading: true},
+    elements.Items{elements.Html("Loading...")},
+)
+```
 
-- Elements
-- Components
-- Forms
-- Layout
-- Grid and Columns
+### Card
 
-Explicitly excluded:
+```go
+@components.Card(
+    components.CardProps{},
+    components.Items{
+        components.CardHeader(
+            components.CardHeaderProps{},
+            components.Items{
+                components.CardHeaderTitle(
+                    components.Items{elements.Html("Card Title")},
+                ),
+            },
+        ),
+        components.CardContent(
+            components.Items{
+                elements.Content(
+                    elements.ContentProps{},
+                    elements.Items{elements.Html("<p>Card content</p>")},
+                ),
+            },
+        ),
+    },
+)
+```
 
-- Dark mode logic
-- Bulma CDN management
-- CSS abstraction layers
-- Application state management
+### Form
 
----
+```go
+@form.Field(
+    form.FieldProps{},
+    form.Items{
+        form.Label(
+            form.LabelProps{},
+            form.Items{elements.Html("Email")},
+        ),
+        form.Control(
+            form.ControlProps{},
+            form.Items{
+                form.Input(
+                    form.InputProps{
+                        Type: "email",
+                        Placeholder: "user@example.com",
+                    },
+                ),
+            },
+        ),
+    },
+)
+```
+
+### Alpine.js Integration
+
+```go
+@elements.Button(
+    elements.ButtonProps{
+        Color: "is-primary",
+        Attr: templ.Attributes{
+            "x-on:click": "alert('Clicked!')",
+        },
+    },
+    elements.Items{elements.Html("Interactive")},
+)
+```
+
+## Philosophy
+
+**Bulma-Templ is intentionally conservative.**
+
+- **1:1 Bulma mapping** — No abstractions, no re-interpretation
+- **Explicit composition** — Multi-child `Items` pattern
+- **Zero state** — Components render HTML only
+- **Type-safe** — Compile-time validation
+- **Stable** — v1.0 architecture frozen
+
+**What this is:**
+
+- Type-safe Bulma components for Go/Templ
+- Predictable HTML output
+- Foundation for server-rendered UIs
+
+**What this is NOT:**
+
+- UI framework with routing/state
+- JavaScript component library
+- Theme engine or CSS abstraction
+
+## Component API
+
+Every component follows this pattern:
+
+```go
+templ ComponentName(props ComponentNameProps, content Items)
+```
+
+**Props struct** — Configuration via typed struct with Bulma modifiers  
+**Items** — Multi-child composition model (`[]templ.Component`)  
+**Attr** — Escape hatch for custom attributes (Alpine.js, ARIA, etc.)
+
+Example Props:
+
+```go
+type ButtonProps struct {
+    Color    string            // is-primary, is-link, etc.
+    Size     string            // is-small, is-medium, is-large
+    Disabled bool              // Disabled state
+    Attr     templ.Attributes  // Escape hatch
+}
+```
+
+## Available Components
+
+### Elements
+
+`block`, `box`, `button`, `content`, `delete`, `icon`, `image`, `notification`, `progress`, `skeleton`, `table`, `tag`, `title`
+
+### Components
+
+`breadcrumb`, `card`, `dropdown`, `menu`, `message`, `modal`, `navbar`, `pagination`, `panel`, `tabs`
+
+### Form
+
+`checkbox`, `control`, `field`, `file`, `help`, `input`, `label`, `radio`, `select`, `textarea`
+
+### Layout
+
+`container`, `footer`, `hero`, `level`, `media`, `section`
+
+### Columns
+
+`columns`, `column`
+
+### Grid
+
+`grid`
 
 ## Documentation
 
-- `docs/DESIGN_SYSTEM.md` — architectural contract (FINAL)
-- `docs/COMMENT_STYLE.md` — frozen comment style
-- `docs/CANONICAL_PROJECT_CONTEXT.md` — project intent and scope
+- [CANONICAL_PROJECT_CONTEXT.md](docs/CANONICAL_PROJECT_CONTEXT.md) — Architecture and design decisions
+- [DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) — Component patterns and usage guidelines
+- [CONTRIBUTING.md](docs/CONTRIBUTING.md) — How to contribute
+- [COMMENT_STYLE.md](docs/COMMENT_STYLE.md) — Code documentation standards
+- [LLM_INSTRUCTIONS.md](docs/LLM_INSTRUCTIONS.md) — Guidelines for LLM-assisted development
 
-These documents are normative.
+## Development
 
----
+### Quick Start
 
-## Testing
+```bash
+task templ   # Generate Templ files
+task run     # Run dev server
+task test    # Run tests
+```
 
-Minimal but sufficient unit test coverage is provided for v1.0:
+### Testing
 
-- Wrap
-- BaseElement
-- Items
-- Button
-- Pagination
+The project has **154 tests** covering:
 
-Focus:
+- **Infrastructure primitives** (Wrap, BaseElement, Items)
+- **Components with conditional logic** (Progress, Navbar, Modal, Dropdown, Form inputs)
+- **Smoke tests** for thin wrapper components
 
-- Structural correctness
-- Attribute handling
-- Regression safety
+```bash
+# Run all tests
+go test ./...
 
----
+# Run tests with race detection
+go test ./... -race
 
-## Intended usage
+# Run tests for specific package
+go test ./elements -v
+go test ./components -v
+go test ./form -v
+```
 
-This design system is intended to be:
+### CI/CD
 
-- Imported or vendored into Go projects
-- Used as a shared UI foundation across services
-- Extended via composition, not modification
+All pull requests automatically run:
+- ✅ Full test suite with race detection
+- ✅ `templ generate` verification
+- ✅ Kitchen Sink compilation check
+- ✅ `go vet` and `gofmt` checks
+- ✅ golangci-lint analysis
 
-Project-specific components belong in a separate package.
+## Project Status
 
----
+**Version 1.0** — Architecture is frozen. No breaking changes will be introduced.
 
-## Stability and versioning
+All core Bulma components are implemented and stable. Future work focuses on documentation, examples, and community support.
 
-- **v1.0** — architecture frozen
-- **v1.x** — additive, backward-compatible changes only
-- **v2.0** — breaking API or architectural changes
+## Contributing
 
----
+Contributions are welcome! Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) before submitting PRs.
+
+**What's welcome:**
+
+- Bug fixes
+- Documentation improvements
+- Test coverage
+- Examples
+- Accessibility enhancements
+
+**What's out of scope:**
+
+- New components (beyond Bulma)
+- Framework-specific integrations
+- State management
+- Routing
 
 ## License
 
-MIT
+MIT © 2026 mtzvd
 
----
+## Acknowledgments
 
-## Final note
-
-This project intentionally avoids:
-
-- Implicit behavior
-- Hidden defaults
-- Smart components
-- Framework-style abstractions
-
-If you value clarity, predictability, and Bulma fidelity —  
-this design system is the right tool.
-
-Bulma-Templ follows the same philosophy as Bulma itself.
-
-It provides canonical component mappings and structural guidance,
-but does not restrict how consumers compose their markup.
-Using plain HTML alongside Bulma-Templ components is fully supported
-and often expected at the application level.
+- [Bulma](https://bulma.io) by Jeremy Thomas
+- [Templ](https://templ.guide) by Joe Davidson
+- Inspired by the Go and HTMX communities

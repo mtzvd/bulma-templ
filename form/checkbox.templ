@@ -49,12 +49,22 @@ type CheckboxProps struct {
 // The checkbox label text must be provided
 // via the component content.
 templ Checkbox(props CheckboxProps, content elements.Items) {
+	{{
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+		if props.Disabled {
+			attrs["disabled"] = "disabled"
+		}
+		if props.Checked {
+			attrs["checked"] = "checked"
+		}
+	}}
 	<label class={"checkbox", props.WrapperAttr["class"]} { props.WrapperAttr... }>
 		<input
 			type="checkbox"
-			checked={ props.Checked }
-			disabled={ props.Disabled }
-			{ props.Attr... }
+			{ attrs... }
 			
 		/>
 	@content.Render()
@@ -63,7 +73,7 @@ templ Checkbox(props CheckboxProps, content elements.Items) {
 
 
 // Checkboxes — Bulma checkboxes container.
-// Atomic level: MOLECULE
+// Atomic level: ORGANISM
 //
 // Checkboxes renders the Bulma `.checkboxes` wrapper,
 // which groups multiple Checkbox components

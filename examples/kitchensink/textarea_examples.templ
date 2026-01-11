@@ -1,0 +1,88 @@
+// TextareaExamples — comprehensive demonstration of fo.Textarea component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Textarea component from the form package.
+// Textarea provides multi-line text input with validation states and sizing.
+//
+// Textarea props:
+// - Placeholder: Placeholder text
+// - Color: is-primary, is-danger, is-success (validation states)
+// - Size: is-small, is-medium, is-large
+// - Rows: Number of visible rows
+// - Disabled, Readonly: Boolean states
+// - FixedSize: Disable resize handle
+//
+// Use with Field for labels and Help for guidance text.
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+)
+
+// TextareaExamples showcases Textarea component with validation.
+templ TextareaExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Textarea")})
+	
+	// ================================================
+	// BASIC TEXTAREA
+	// ================================================
+	// Standard multi-line text input.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Message"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Textarea(
+						fo.TextareaProps{
+							Placeholder: "Enter your message here...",
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// TEXTAREA WITH VALIDATION
+	// ================================================
+	// Colored textarea with help text.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Comment"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Textarea(
+						fo.TextareaProps{
+							Placeholder: "Add a comment",
+							Color:       "is-primary",
+						},
+					),
+				},
+			),
+			fo.Help(
+				fo.HelpProps{Text: "Maximum 500 characters"},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use Label for accessibility
+	// - Provide clear Placeholder text
+	// - Add character count in Help text
+	// - Use Color for validation states
+	// - Set appropriate Rows height
+	// - Allow resize unless FixedSize: true
+	// - Validate on blur or submit
+}

@@ -9,7 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 // Content — Bulma typographic container.
-// Atomic level: MOLECULE
+// Atomic level: ATOM
 //
 // Content applies Bulma typography styles to all nested
 // HTML elements (headings, lists, tables, code blocks, etc.).

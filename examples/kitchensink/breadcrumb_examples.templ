@@ -1,0 +1,229 @@
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	co "github.com/mtzvd/bulma-templ/components"
+)
+
+templ BreadcrumbExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Breadcrumb")})
+	
+	@ExampleSubheading("Default (slash separator)")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Documents</a></li>
+					<li><a href="#">Projects</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Current</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("With arrow separator")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{Separator: "has-arrow-separator"},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Products</a></li>
+					<li><a href="#">Electronics</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Laptops</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("With bullet separator")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{Separator: "has-bullet-separator"},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Admin</a></li>
+					<li><a href="#">Users</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Settings</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("With dot separator")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{Separator: "has-dot-separator"},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Category</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Article</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("With succeeds separator")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{Separator: "has-succeeds-separator"},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Library</a></li>
+					<li><a href="#">Books</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Fiction</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("Centered alignment")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{
+			Attr: templ.Attributes{"class": "is-centered"},
+		},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Section</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Page</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("Right alignment")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{
+			Attr: templ.Attributes{"class": "is-right"},
+		},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Start</a></li>
+					<li><a href="#">Middle</a></li>
+					<li class="is-active"><a href="#" aria-current="page">End</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("Small size")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{
+			Attr: templ.Attributes{"class": "is-small"},
+		},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Dashboard</a></li>
+					<li><a href="#">Reports</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Analytics</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("Medium size")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{
+			Attr: templ.Attributes{"class": "is-medium"},
+		},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Store</a></li>
+					<li><a href="#">Products</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Details</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("Large size")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{
+			Attr: templ.Attributes{"class": "is-large"},
+		},
+		el.Items{
+			el.Html(`
+				<ul>
+					<li><a href="#">Company</a></li>
+					<li><a href="#">Team</a></li>
+					<li class="is-active"><a href="#" aria-current="page">Members</a></li>
+				</ul>
+			`),
+		},
+	)
+	
+	@ExampleSubheading("With icons")
+	@co.Breadcrumb(
+		co.BreadcrumbProps{},
+		el.Items{
+			co.BreadcrumbList(
+				co.BreadcrumbListProps{},
+				el.Items{
+					co.BreadcrumbItem(
+						co.BreadcrumbItemProps{},
+						el.Items{
+							co.BreadcrumbLink(
+								co.BreadcrumbLinkProps{Href: "#"},
+								el.Items{
+									co.BreadcrumbIcon(co.BreadcrumbIconProps{
+										Icon: el.IconProps{IconClass: "fas fa-home"},
+									}),
+									el.Html("<span>Home</span>"),
+								},
+							),
+						},
+					),
+					co.BreadcrumbItem(
+						co.BreadcrumbItemProps{},
+						el.Items{
+							co.BreadcrumbLink(
+								co.BreadcrumbLinkProps{Href: "#"},
+								el.Items{
+									co.BreadcrumbIcon(co.BreadcrumbIconProps{
+										Icon: el.IconProps{IconClass: "fas fa-book"},
+									}),
+									el.Html("<span>Documentation</span>"),
+								},
+							),
+						},
+					),
+					co.BreadcrumbItem(
+						co.BreadcrumbItemProps{},
+						el.Items{
+							co.BreadcrumbLink(
+								co.BreadcrumbLinkProps{Href: "#"},
+								el.Items{
+									co.BreadcrumbIcon(co.BreadcrumbIconProps{
+										Icon: el.IconProps{IconClass: "fas fa-puzzle-piece"},
+									}),
+									el.Html("<span>Components</span>"),
+								},
+							),
+						},
+					),
+					co.BreadcrumbItem(
+						co.BreadcrumbItemProps{Active: true},
+						el.Items{
+							co.BreadcrumbLink(
+								co.BreadcrumbLinkProps{Current: true},
+								el.Items{
+									co.BreadcrumbIcon(co.BreadcrumbIconProps{
+										Icon: el.IconProps{IconClass: "fas fa-thumbs-up"},
+									}),
+									el.Html("<span>Breadcrumb</span>"),
+								},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+}

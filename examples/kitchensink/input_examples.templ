@@ -1,0 +1,197 @@
+// InputExamples — comprehensive demonstration of fo.Input component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Input component from the form package.
+// Input provides text input fields with validation states, icons, and sizes.
+//
+// Input props:
+// - Type: text, email, password, number, tel, url, etc
+// - Placeholder: Placeholder text
+// - Color: is-primary, is-danger, is-success (validation states)
+// - Size: is-small, is-medium, is-large
+// - Disabled, Readonly: Boolean states
+//
+// Use with Control for icon support and Field for labels/help text.
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+)
+
+// InputExamples showcases Input component with validation and icons.
+templ InputExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Input")})
+	
+	// ================================================
+	// BASIC INPUT WITH LABEL
+	// ================================================
+	// Standard form field pattern:
+	// Field > Label + Control > Input
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Name"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "text",
+							Placeholder: "Enter your name",
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// INPUT WITH ICON AND SUCCESS STATE
+	// ================================================
+	// Green border + icon + help text for valid input.
+	// HasIconsLeft: true in Control to add left icon.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Email"},
+			),
+			fo.Control(
+				fo.ControlProps{HasIconsLeft: true},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "email",
+							Placeholder: "user@example.com",
+							Color:       "is-success",
+						},
+					),
+					el.Icon(
+						el.IconProps{
+							IconClass: "fas fa-envelope",
+							Size:      "is-small",
+							Attr: templ.Attributes{
+								"class": "is-left",
+							},
+						},
+					),
+				},
+			),
+			fo.Help(
+				fo.HelpProps{Color: "is-success", Text: "This email is available"},
+			),
+		},
+	)
+	
+	// ================================================
+	// INPUT WITH ERROR STATE
+	// ================================================
+	// Red border + icon + error message for invalid input.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Password"},
+			),
+			fo.Control(
+				fo.ControlProps{HasIconsLeft: true},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "password",
+							Placeholder: "••••••••",
+							Color:       "is-danger",
+						},
+					),
+					el.Icon(
+						el.IconProps{
+							IconClass: "fas fa-lock",
+							Size:      "is-small",
+							Attr: templ.Attributes{
+								"class": "is-left",
+							},
+						},
+					),
+				},
+			),
+			fo.Help(
+				fo.HelpProps{Color: "is-danger", Text: "Password is too short"},
+			),
+		},
+	)
+	
+	// ================================================
+	// SIZE VARIATIONS
+	// ================================================
+	// Input supports 4 sizes: small, normal, medium, large.
+	
+	@ExampleSubheading("Sizes")
+	
+	@fo.Control(
+		fo.ControlProps{},
+		el.Items{
+			fo.Input(
+				fo.InputProps{
+					Type:        "text",
+					Size:        "is-small",
+					Placeholder: "Small input",
+				},
+			),
+		},
+	)
+	<br/>
+	@fo.Control(
+		fo.ControlProps{},
+		el.Items{
+			fo.Input(
+				fo.InputProps{
+					Type:        "text",
+					Placeholder: "Normal input",
+				},
+			),
+		},
+	)
+	<br/>
+	@fo.Control(
+		fo.ControlProps{},
+		el.Items{
+			fo.Input(
+				fo.InputProps{
+					Type:        "text",
+					Size:        "is-medium",
+					Placeholder: "Medium input",
+				},
+			),
+		},
+	)
+	<br/>
+	@fo.Control(
+		fo.ControlProps{},
+		el.Items{
+			fo.Input(
+				fo.InputProps{
+					Type:        "text",
+					Size:        "is-large",
+					Placeholder: "Large input",
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Always use Label for accessibility
+	// - Use Color for validation feedback
+	// - Add Help text for errors/guidance
+	// - Use appropriate Type (email, tel, url)
+	// - Add icons for visual clarity
+	// - Match icon size to input size
+	// - Use is-success for valid, is-danger for invalid
+	// - Provide clear error messages in Help
+}

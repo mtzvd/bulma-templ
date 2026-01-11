@@ -1,0 +1,147 @@
+// MediaExamples — comprehensive demonstration of la.Media component family.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Media components from the layout package.
+// Media provides a layout pattern for content with an image/avatar on the side.
+// Classic pattern for comments, messages, social media posts, and user lists.
+//
+// Media family:
+// - Media: Main container
+// - MediaLeft: Left section (typically avatar/image)
+// - MediaContent: Main content area (expands to fill space)
+// - MediaRight: Optional right section (actions/metadata)
+//
+// Media automatically:
+// - Aligns image on left, content fills remaining space
+// - Can nest Media inside Media for threaded comments
+// - Maintains structure on all screen sizes
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	la "github.com/mtzvd/bulma-templ/layout"
+)
+
+// MediaExamples showcases Media component structure.
+templ MediaExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Media")})
+	
+	// ================================================
+	// BASIC MEDIA OBJECT
+	// ================================================
+	// Classic media object pattern: image left, content right.
+	// Perfect for comments, posts, user lists, notifications.
+	//
+	// Structure:
+	// - MediaLeft: Avatar or thumbnail (fixed width)
+	// - MediaContent: Post content (flexible width)
+	// - MediaRight: Optional actions or metadata
+	
+	@la.Media(
+		la.MediaProps{},
+		el.Items{
+			// Left section: User avatar
+			la.MediaLeft(
+				la.MediaLeftProps{},
+				el.Items{
+					el.Image(
+						el.ImageProps{
+							Size: "is-64x64",
+							Src:  "https://picsum.photos/64/64",
+							Alt:  "User avatar",
+						},
+					),
+				},
+			),
+			// Content section: Post content
+			la.MediaContent(
+				la.MediaContentProps{},
+				el.Items{
+					el.Content(
+						el.ContentProps{},
+						el.Items{
+							MediaExampleContent(),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use Media for comment threads
+	// - MediaLeft for avatar (64x64 or 48x48)
+	// - MediaContent for main text content
+	// - MediaRight for actions (reply, delete, like)
+	// - Nest Media for threaded replies
+	// - Use Content component for proper typography
+	//
+	// Common use cases:
+	//
+	// 1. Comment thread:
+	//    @la.Media(
+	//      la.MediaProps{},
+	//      el.Items{
+	//        la.MediaLeft(...),      // Avatar
+	//        la.MediaContent(
+	//          la.MediaContentProps{},
+	//          el.Items{
+	//            el.Content(...),    // Comment text
+	//            @la.Media(...),     // Nested reply (indent)
+	//          },
+	//        ),
+	//      },
+	//    )
+	//
+	// 2. Social post:
+	//    MediaLeft: Profile pic
+	//    MediaContent: Name, timestamp, post text, actions
+	//    MediaRight: Post options menu
+	//
+	// 3. Notification item:
+	//    MediaLeft: Icon or avatar
+	//    MediaContent: Notification text
+	//    MediaRight: Timestamp
+	//
+	// 4. User list item:
+	//    MediaLeft: Avatar
+	//    MediaContent: Name, bio, metadata
+	//    MediaRight: Follow button
+	//
+	// Nested media (not shown):
+	//   @la.Media(
+	//     la.MediaProps{},
+	//     el.Items{
+	//       la.MediaLeft(...),
+	//       la.MediaContent(
+	//         la.MediaContentProps{},
+	//         el.Items{
+	//           el.Content(...),
+	//           // Nested reply with same structure
+	//           @la.Media(...),
+	//         },
+	//       ),
+	//     },
+	//   )
+	// Creates indented thread structure.
+	//
+	// MediaRight usage (not shown):
+	//   la.MediaRight(
+	//     la.MediaRightProps{},
+	//     el.Items{
+	//       el.Delete(el.DeleteProps{}),  // Delete button
+	//     },
+	//   )
+}
+
+// MediaExampleContent provides sample content for media object.
+templ MediaExampleContent() {
+	@el.Html(`
+		<p>
+			<strong>John Smith</strong> <small>&#64;johnsmith</small> <small>31m</small>
+			<br>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros.
+		</p>
+	`)
+}

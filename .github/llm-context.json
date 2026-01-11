@@ -1,0 +1,189 @@
+{
+  "project": "Bulma-Templ",
+  "type": "design-system / component-library",
+  "language": "Go",
+  "templating": "templ",
+  "css_framework": "Bulma 1.0.4",
+  "status": "v1.0-candidate",
+  "repository": "https://github.com/mtzvd/bulma-templ",
+  
+  "philosophy": {
+    "summary": "1:1 mapping of Bulma CSS to type-safe Go components. Zero abstractions, zero magic, zero client-side logic.",
+    "bulma_first": true,
+    "templ_first": true,
+    "ssr_first": true,
+    "no_state_management": true,
+    "explicit_composition": true,
+    "no_abstractions_over_bulma": true,
+    "html_is_idiomatic": true
+  },
+  
+  "core_principles": [
+    "Bulma documentation maps 1:1 to components - any deviation is a bug",
+    "Components render HTML, nothing more - no computation, validation, or transformation",
+    "Items is the ONLY composition model - no slots, no named children, no positional parameters",
+    "Props are value types - no pointers, Bulma modifiers are plain strings",
+    "CSS helpers remain plain strings - never wrapped, enumerated, or abstracted",
+    "Direct HTML is allowed and encouraged - not everything needs to be a component",
+    "Kitchen Sink examples are authoritative - when in doubt, check there first",
+    "Bulma-Templ is NOT a framework - no routing, no state, no app structure enforcement"
+  ],
+  
+  "architecture": {
+    "atomic_design_levels": ["ATOM", "MOLECULE", "ORGANISM"],
+    "composition_model": {
+      "type": "Items",
+      "accepts": ["templ.Component", "raw HTML strings"],
+      "alternatives": "NONE"
+    },
+    "component_pattern": {
+      "structure": "ComponentNameProps struct + Items parameter",
+      "props_type": "value types only (no pointers)",
+      "css_modifiers": "plain strings (Color, Size, etc.)",
+      "attributes": "templ.Attributes for HTML pass-through",
+      "rendering": "BaseElement wrapper or direct HTML"
+    },
+    "infrastructure_primitives": ["Wrap", "BaseElement"],
+    "default_state_rule": "Boolean props default to false and are opt-in"
+  },
+  
+  "api_rules": {
+    "components_expose_props_struct": true,
+    "no_pointer_types_in_props": true,
+    "no_enums_for_css_classes": true,
+    "leaf_components_do_not_accept_items": true,
+    "container_components_accept_items": true,
+    "sentinel_values_use_package_constants": true,
+    "example": "ProgressUnset = -1"
+  },
+  
+  "css_helpers_policy": {
+    "helpers_as_strings": true,
+    "no_helper_constants": true,
+    "no_helper_enums": true,
+    "no_helper_wrappers": true,
+    "rationale": "CSS helpers are part of Bulma language, not Bulma-Templ API. Users pass them directly."
+  },
+  
+  "bulma_compliance": {
+    "mapping": "1:1",
+    "deviation_policy": "Any deviation from Bulma docs is a bug",
+    "helpers": "Plain strings, never wrapped or enumerated",
+    "modifiers": "Passed as strings, never constants or enums"
+  },
+  
+  "prohibited_patterns": [
+    "NO abstractions beyond Bulma",
+    "NO DSLs or helper builders",
+    "NO enums for CSS classes",
+    "NO pointer types in Props",
+    "NO slots or named children",
+    "NO computation or validation in components",
+    "NO event handlers or interactivity",
+    "NO state management",
+    "NO API redesigns or 'improvements' without explicit request"
+  ],
+  
+  "file_structure": {
+    "components": ["elements/", "components/", "form/", "layout/", "columns/", "grid/"],
+    "examples": "examples/kitchensink/ (authoritative usage examples)",
+    "docs": [
+      "docs/LLM_INSTRUCTIONS.md (primary LLM guidance)",
+      "docs/CANONICAL_PROJECT_CONTEXT.md (project structure and patterns)",
+      "docs/COMMENT_STYLE.md (comment formatting rules)",
+      "docs/CONTRIBUTING.md (contribution guidelines)",
+      "docs/DESIGN_SYSTEM.md (design patterns and atomic structure)"
+    ]
+  },
+  
+  "naming_conventions": {
+    "project_name": "Bulma-Templ (always capitalized with dash)",
+    "components": "PascalCase (Button, Navbar, Progress)",
+    "props": "ComponentNameProps struct",
+    "files": "snake_case.templ",
+    "packages": "lowercase (elements, components, form, layout)",
+    "import_aliases": "el (elements), la (layout), form (by convention)"
+  },
+  
+  "comment_style": {
+    "format": "// only (never /* */)",
+    "component_doc": "// ComponentName — Brief description.",
+    "atomic_level": "Always specify: // Atomic level: ATOM/MOLECULE/ORGANISM",
+    "fields_alignment": "Aligned comments with trailing periods"
+  },
+  
+  "testing": {
+    "pattern": "render_test.go for component output validation",
+    "test_props_variations": true,
+    "test_css_class_application": true,
+    "test_attribute_passing": true
+  },
+  
+  "kitchen_sink": {
+    "location": "examples/kitchensink/",
+    "purpose": "Authoritative inventory and usage examples of all components",
+    "single_file": true,
+    "multiple_local_components": true,
+    "sections_follow_bulma_docs": true,
+    "html_usage": "Only where semantically required",
+    "status": "authoritative - when in doubt, check Kitchen Sink first"
+  },
+  
+  "contributing": {
+    "allowed": [
+      "Bug fixes",
+      "Documentation improvements",
+      "Tests",
+      "Bulma-aligned feature additions",
+      "1:1 Bulma component implementations"
+    ],
+    "disallowed": [
+      "New abstractions beyond Bulma",
+      "Framework features (routing, state, etc.)",
+      "Opinionated extensions",
+      "CSS helper DSLs or enums",
+      "API redesigns without explicit discussion"
+    ]
+  },
+  
+  "llm_guidance": {
+    "primary_rule": "When in doubt, DO NOTHING",
+    "clarification": "Ask instead of inferring. If clarification not possible, do nothing.",
+    "preferred_mode": "Direct implementation over discussion",
+    "priority": "Working code over formal contracts",
+    "refactoring": "NEVER refactor without explicit request",
+    "improvements": "NEVER suggest 'better' patterns from other ecosystems",
+    "type_system": "Strings are the choice, not a limitation. Do not propose type-safe alternatives.",
+    "avoid_overengineering": true,
+    "respect_existing_api": true,
+    "critical_warnings": [
+      "Stop 'helpfully' refactoring — this isn't helpfulness, it's harm",
+      "Stop suggesting 'best practices' from other ecosystems — Bulma-Templ has its own philosophy",
+      "Stop trying to make code 'more idiomatic' — it already is, for this project",
+      "Stop proposing type-safe alternatives — strings are intentional"
+    ]
+  },
+  
+  "build_commands": {
+    "generate": "templ generate",
+    "test": "go test ./...",
+    "dev": "go build ./cmd/dev"
+  },
+  
+  "integration_points": {
+    "bulma_css": "CDN link required in HTML head (https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css)",
+    "http_server": "Standard Go net/http integration",
+    "templ_generation": "templ generate must run before build",
+    "no_build_step": "Pure SSR, no bundler required"
+  },
+  
+  "metadata": {
+    "last_updated": "2026-01-11",
+    "version": "1.0",
+    "purpose": "GitHub LLM context file for AI coding assistants",
+    "related_files": [
+      "package.json (npm/LLM metadata)",
+      "docs/LLM_INSTRUCTIONS.md (primary LLM documentation)"
+    ]
+  }
+}

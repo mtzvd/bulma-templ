@@ -1,0 +1,88 @@
+// DeleteExamples — comprehensive demonstration of el.Delete component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Delete component from the elements package.
+// Delete is a circular close/remove button commonly used in notifications, modals, and tags.
+// It uses a cross icon (×) and is purely visual - functionality must be added via JavaScript.
+//
+// Delete supports:
+// - Size variations (small, normal, medium, large)
+// - No color variations (always dark cross on transparent background)
+// - Hover/active states built-in
+//
+// Each example shows different sizes and contexts for Delete button.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes in el.Html() - only plain text
+// - Props-based configuration via el.DeleteProps
+// - Delete is a self-contained component with no children
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// DeleteExample1 demonstrates delete button size variations.
+// Delete supports 4 size modifiers: small, normal, medium, large.
+templ DeleteExample1() {
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			el.Delete(el.DeleteProps{}),
+			el.Delete(el.DeleteProps{Size: "is-small"}),
+			el.Delete(el.DeleteProps{Size: "is-medium"}),
+			el.Delete(el.DeleteProps{Size: "is-large"}),
+		},
+	)
+}
+
+func DeleteExample1Code() string {
+	return `@el.Block(
+	el.BlockProps{},
+	el.Items{
+		el.Delete(el.DeleteProps{}),
+		el.Delete(el.DeleteProps{Size: "is-small"}),
+		el.Delete(el.DeleteProps{Size: "is-medium"}),
+		el.Delete(el.DeleteProps{Size: "is-large"}),
+	},
+)`
+}
+
+// DeleteExample2 demonstrates delete button in notification context.
+// Delete is positioned in the top-right corner of notifications.
+templ DeleteExample2() {
+	@el.Notification(
+		el.NotificationProps{Color: "is-warning"},
+		el.Items{
+			el.Delete(el.DeleteProps{}),
+			el.Html("Notification with delete button"),
+		},
+	)
+}
+
+func DeleteExample2Code() string {
+	return `@el.Notification(
+	el.NotificationProps{Color: "is-warning"},
+	el.Items{
+		el.Delete(el.DeleteProps{}),
+		el.Html("Notification with delete button"),
+	},
+)`
+}
+
+// DeleteExamples showcases Delete component variations.
+// Demonstrates size options and common use cases.
+templ DeleteExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Delete")})
+	
+	{{
+		examples := []ComponentItem{
+			{ID: "delete-sizes", Code: DeleteExample1Code(), Component: DeleteExample1()},
+			{ID: "delete-notification", Code: DeleteExample2Code(), Component: DeleteExample2()},
+		}
+	}}
+	
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}

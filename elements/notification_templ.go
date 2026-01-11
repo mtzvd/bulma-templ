@@ -9,7 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 // Notification — Bulma notification component.
-// Atomic level: MOLECULE
+// Atomic level: ATOM
 //
 // Notification renders a Bulma `.notification` container.
 // It does not manage close buttons, state, or behavior.

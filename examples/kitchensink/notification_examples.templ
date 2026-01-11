@@ -1,0 +1,96 @@
+// NotificationExamples — comprehensive demonstration of el.Notification component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Notification component from the elements package.
+// Notification is a colored alert/message container for displaying feedback to users.
+// It supports all Bulma semantic colors and can include a delete button.
+//
+// Notification supports:
+// - Color variations (all Bulma semantic colors)
+// - Delete button integration
+// - Light color variants
+// - Can contain any content
+//
+// Each example shows different notification colors.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes in el.Html() - only plain text
+// - Props-based configuration via el.NotificationProps
+// - Color passed via Color prop
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// NotificationExample1 demonstrates notification color variations.
+// Notification supports all Bulma semantic colors.
+templ NotificationExample1() {
+	@el.Notification(
+		el.NotificationProps{},
+		el.Items{el.Html("Default notification")},
+	)
+	@el.Notification(
+		el.NotificationProps{Color: "is-primary"},
+		el.Items{el.Html("Primary notification")},
+	)
+	@el.Notification(
+		el.NotificationProps{Color: "is-info"},
+		el.Items{el.Html("Info notification")},
+	)
+	@el.Notification(
+		el.NotificationProps{Color: "is-success"},
+		el.Items{el.Html("Success notification")},
+	)
+	@el.Notification(
+		el.NotificationProps{Color: "is-warning"},
+		el.Items{el.Html("Warning notification")},
+	)
+	@el.Notification(
+		el.NotificationProps{Color: "is-danger"},
+		el.Items{el.Html("Danger notification")},
+	)
+}
+
+func NotificationExample1Code() string {
+	return `@el.Notification(
+	el.NotificationProps{},
+	el.Items{el.Html("Default notification")},
+)
+@el.Notification(
+	el.NotificationProps{Color: "is-primary"},
+	el.Items{el.Html("Primary notification")},
+)
+@el.Notification(
+	el.NotificationProps{Color: "is-info"},
+	el.Items{el.Html("Info notification")},
+)
+@el.Notification(
+	el.NotificationProps{Color: "is-success"},
+	el.Items{el.Html("Success notification")},
+)
+@el.Notification(
+	el.NotificationProps{Color: "is-warning"},
+	el.Items{el.Html("Warning notification")},
+)
+@el.Notification(
+	el.NotificationProps{Color: "is-danger"},
+	el.Items{el.Html("Danger notification")},
+)`
+}
+
+// NotificationExamples showcases Notification component color variations.
+// Demonstrates all semantic color options available.
+templ NotificationExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Notification")})
+	
+	{{
+		examples := []ComponentItem{
+			{ID: "notification-colors", Code: NotificationExample1Code(), Component: NotificationExample1()},
+		}
+	}}
+	
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}

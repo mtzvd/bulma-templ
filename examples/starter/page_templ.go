@@ -29,8 +29,8 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"github.com/mtzvd/bulma-templ/elements"
-	"github.com/mtzvd/bulma-templ/layout"
+	el "github.com/mtzvd/bulma-templ/elements"
+	la "github.com/mtzvd/bulma-templ/layout"
 )
 
 func Page() templ.Component {
@@ -66,12 +66,12 @@ func Page() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = layout.Section(
-			layout.SectionProps{},
-			elements.Items{
-				layout.Container(
-					layout.ContainerProps{},
-					elements.Items{
+		templ_7745c5c3_Err = la.Section(
+			la.SectionProps{},
+			el.Items{
+				la.Container(
+					la.ContainerProps{},
+					el.Items{
 						StarterTitle(),
 						StarterSubtitle(),
 					},
@@ -143,10 +143,10 @@ func StarterTitle() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = elements.Title(
-			elements.TitleProps{},
-			elements.Items{
-				elements.Html("Hello World!"),
+		templ_7745c5c3_Err = el.Title(
+			el.TitleProps{},
+			el.Items{
+				el.Html("Hello World!"),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -185,10 +185,10 @@ func StarterSubtitle() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = elements.Subtitle(
-			elements.SubtitleProps{},
-			elements.Items{
-				elements.Html("My first website with <strong>Bulma-Templ</strong>!"),
+		templ_7745c5c3_Err = el.Subtitle(
+			el.SubtitleProps{},
+			el.Items{
+				el.Html("My first website with <strong>Bulma-Templ</strong>!"),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

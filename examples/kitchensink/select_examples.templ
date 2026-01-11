@@ -1,0 +1,90 @@
+// SelectExamples — comprehensive demonstration of fo.Select component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Select component from the form package.
+// Select provides dropdown selection with single or multiple options.
+//
+// Select props:
+// - Multiple: Boolean for multiple selection
+// - Size: is-small, is-medium, is-large
+// - Color: is-primary, is-danger, is-success
+// - Disabled: Boolean state
+//
+// Content is HTML <option> elements inside Select.
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+)
+
+// SelectExamples showcases Select component single and multiple modes.
+templ SelectExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Select")})
+	
+	// ================================================
+	// SINGLE SELECT
+	// ================================================
+	// Standard dropdown selection.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Country"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Select(
+						fo.SelectProps{},
+						el.Items{
+							el.Html(`
+								<option>Select country</option>
+								<option>United States</option>
+								<option>United Kingdom</option>
+								<option>Canada</option>
+								<option>Germany</option>
+							`),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// MULTIPLE SELECT
+	// ================================================
+	// Multi-selection list box.
+	// Users can select multiple options with Ctrl/Cmd click.
+	
+	@ExampleSubheading("Multiple select")
+	@fo.Control(
+		fo.ControlProps{},
+		el.Items{
+			fo.Select(
+				fo.SelectProps{Multiple: true},
+				el.Items{
+					el.Html(`
+						<option>Option 1</option>
+						<option>Option 2</option>
+						<option>Option 3</option>
+						<option>Option 4</option>
+						<option>Option 5</option>
+					`),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - First option as placeholder ("Select...")
+	// - Group related options with <optgroup>
+	// - Keep option text concise
+	// - Use Multiple for 3-10 selections
+	// - For >10 options, use searchable dropdown
+	// - Set default selected with selected attribute
+	// - Add Label for accessibility
+}

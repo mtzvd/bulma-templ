@@ -8,6 +8,10 @@ package elements
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
+// ProgressUnset indicates that a progress value is not set.
+// Use this constant when you want to omit the attribute.
+const ProgressUnset = -1
+
 // Progress — Bulma progress bar.
 // Atomic level: ATOM
 //
@@ -18,14 +22,6 @@ import templruntime "github.com/a-h/templ/runtime"
 // Any content rendered inside <progress> is fully controlled
 // by the caller, exactly as allowed by Bulma.
 type ProgressProps struct {
-	// Value defines the current progress value.
-	// When nil, the progress bar is rendered in indeterminate mode.
-	Value *int
-
-	// Max defines the maximum progress value.
-	// When nil, the default browser value is used (typically 100).
-	Max *int
-
 	// Color defines the Bulma color modifier
 	// (is-primary, is-link, is-info, is-success, etc.).
 	Color string
@@ -37,6 +33,14 @@ type ProgressProps struct {
 	// Attr contains additional HTML attributes
 	// for the <progress> element.
 	Attr templ.Attributes
+
+	// Max is the maximum value of the progress bar (maps to the "max" attribute).
+	// Use ProgressUnset (-1) to omit this attribute.
+	Max int
+
+	// Current is the current progress value (maps to the "value" attribute).
+	// Use ProgressUnset (-1) to omit this attribute and show indeterminate progress.
+	Current int
 }
 
 // Progress renders a Bulma progress bar.
@@ -77,11 +81,14 @@ func Progress(props ProgressProps, content Items) templ.Component {
 			attrs[k] = v
 		}
 
-		if props.Value != nil {
-			attrs["value"] = *props.Value
+		// Set "max" attribute if provided (values >= 0 are valid)
+		if props.Max != ProgressUnset {
+			attrs["max"] = props.Max
 		}
-		if props.Max != nil {
-			attrs["max"] = *props.Max
+		// Set "value" attribute if provided (values >= 0 are valid)
+		// Omitting this creates an indeterminate progress bar
+		if props.Current != ProgressUnset {
+			attrs["value"] = props.Current
 		}
 		templ_7745c5c3_Err = BaseElement(
 			BaseElementProps{

@@ -49,12 +49,22 @@ type RadioProps struct {
 // The radio label text must be provided
 // via the component content.
 templ Radio(props RadioProps, content elements.Items) {
+	{{
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+		if props.Disabled {
+			attrs["disabled"] = "disabled"
+		}
+		if props.Checked {
+			attrs["checked"] = "checked"
+		}
+	}}
 	<label class={"radio", props.WrapperAttr["class"]} { props.WrapperAttr... }>
 		<input
 			type="radio"
-			checked={ props.Checked }
-			disabled={ props.Disabled }
-			{ props.Attr... }
+			{ attrs... }
 		/>
 		@content.Render()
 	</label>
@@ -62,7 +72,7 @@ templ Radio(props RadioProps, content elements.Items) {
 
 
 // Radios — Bulma radios container.
-// Atomic level: MOLECULE
+// Atomic level: ORGANISM
 //
 // Radios renders the Bulma `.radios` wrapper,
 // which groups multiple Radio components

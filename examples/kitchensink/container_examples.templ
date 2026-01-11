@@ -1,0 +1,77 @@
+// ContainerExamples — comprehensive demonstration of la.Container component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Container component from the layout package.
+// Container provides a responsive centered layout with max-width at breakpoints.
+//
+// Container props:
+// - Fluid: Boolean to disable max-width (full width)
+// - Widescreen, FullHD: Boolean for larger max-widths
+//
+// Container automatically:
+// - Centers content horizontally
+// - Sets max-width at breakpoints
+// - Adds horizontal padding on mobile
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	la "github.com/mtzvd/bulma-templ/layout"
+)
+
+// ContainerExamples showcases Container component.
+templ ContainerExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Container")})
+	
+	// ================================================
+	// BASIC CONTAINER
+	// ================================================
+	// Responsive container with max-width at each breakpoint.
+	//
+	// Max-widths:
+	// - Desktop: 960px + 2×32px padding
+	// - Widescreen: 1152px + 2×32px padding
+	// - FullHD: 1344px + 2×32px padding
+	//
+	// Mobile: Full width with horizontal padding.
+	
+	@la.Container(
+		la.ContainerProps{},
+		el.Items{
+			el.Notification(
+				el.NotificationProps{Color: "is-primary"},
+				el.Items{el.Html("Default container - responsive breakpoint container")},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use Container to center page content
+	// - Wrap main content areas in Container
+	// - Nest inside Hero, Section, or Footer
+	// - Don't nest Containers
+	// - Use Fluid: true for full-width sections
+	// - Container provides consistent content width
+	//
+	// Breakpoints:
+	// - Mobile: <769px - full width with padding
+	// - Tablet: ≥769px - no max-width
+	// - Desktop: ≥1024px - max 960px
+	// - Widescreen: ≥1216px - max 1152px
+	// - FullHD: ≥1408px - max 1344px
+	//
+	// Fluid container (not shown):
+	//   @la.Container(
+	//     la.ContainerProps{Fluid: true},
+	//     el.Items{...},
+	//   )
+	//   Always full width, no max-width.
+	//
+	// Widescreen container (not shown):
+	//   @la.Container(
+	//     la.ContainerProps{Widescreen: true},
+	//     el.Items{...},
+	//   )
+	//   Only constrained at widescreen breakpoint.
+}

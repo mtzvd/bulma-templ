@@ -1,0 +1,197 @@
+// ColumnsExamples — comprehensive demonstration of cl.Columns and cl.Column components.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Columns system from the columns package.
+// Columns provides flexbox-based responsive grid layout.
+//
+// Columns props:
+// - Multiline: Boolean for wrapping columns
+// - Centered: Boolean to center columns
+// - VCentered: Boolean to vertically center columns
+// - Mobile, Tablet, Desktop: Boolean for breakpoint control
+// - Gap: Gap size (0-8)
+//
+// Column props:
+// - Size: Width (is-half, is-one-third, is-one-quarter, is-narrow, etc)
+// - Offset: Left margin (is-offset-one-quarter, etc)
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	cl "github.com/mtzvd/bulma-templ/columns"
+)
+
+// ColumnsExamples showcases Columns system variations.
+templ ColumnsExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Columns")})
+	
+	// ================================================
+	// BASIC COLUMNS
+	// ================================================
+	// Equal-width columns by default.
+	// Each column takes equal space automatically.
+	
+	@ExampleSubheading("Basic columns")
+	@cl.Columns(
+		cl.ColumnsProps{},
+		el.Items{
+			cl.Column(
+				cl.ColumnProps{},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-primary"},
+						el.Items{el.Html("Column 1")},
+					),
+				},
+			),
+			cl.Column(
+				cl.ColumnProps{},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-info"},
+						el.Items{el.Html("Column 2")},
+					),
+				},
+			),
+			cl.Column(
+				cl.ColumnProps{},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-success"},
+						el.Items{el.Html("Column 3")},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// CUSTOM COLUMN SIZES
+	// ================================================
+	// Set explicit column widths.
+	// Other columns without size auto-fill remaining space.
+	
+	@ExampleSubheading("Custom column sizes")
+	@cl.Columns(
+		cl.ColumnsProps{},
+		el.Items{
+			cl.Column(
+				cl.ColumnProps{Size: "is-half"},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-warning"},
+						el.Items{el.Html("is-half")},
+					),
+				},
+			),
+			cl.Column(
+				cl.ColumnProps{},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-link"},
+						el.Items{el.Html("Auto")},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// MULTILINE COLUMNS
+	// ================================================
+	// Columns wrap to next line when they exceed container width.
+	// Perfect for responsive card grids.
+	
+	@ExampleSubheading("Multiline columns")
+	@cl.Columns(
+		cl.ColumnsProps{Multiline: true},
+		el.Items{
+			cl.Column(
+				cl.ColumnProps{Size: "is-one-quarter"},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-primary"},
+						el.Items{el.Html("1/4")},
+					),
+				},
+			),
+			cl.Column(
+				cl.ColumnProps{Size: "is-one-quarter"},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-primary"},
+						el.Items{el.Html("1/4")},
+					),
+				},
+			),
+			cl.Column(
+				cl.ColumnProps{Size: "is-one-quarter"},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-primary"},
+						el.Items{el.Html("1/4")},
+					),
+				},
+			),
+			cl.Column(
+				cl.ColumnProps{Size: "is-one-quarter"},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-primary"},
+						el.Items{el.Html("1/4")},
+					),
+				},
+			),
+			cl.Column(
+				cl.ColumnProps{Size: "is-half"},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-info"},
+						el.Items{el.Html("1/2")},
+					),
+				},
+			),
+			cl.Column(
+				cl.ColumnProps{Size: "is-one-quarter"},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-success"},
+						el.Items{el.Html("1/4")},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// CENTERED COLUMNS
+	// ================================================
+	// Centers columns horizontally when they don't fill full width.
+	
+	@ExampleSubheading("Centered columns")
+	@cl.Columns(
+		cl.ColumnsProps{Centered: true},
+		el.Items{
+			cl.Column(
+				cl.ColumnProps{Size: "is-half"},
+				el.Items{
+					el.Notification(
+						el.NotificationProps{Color: "is-danger"},
+						el.Items{el.Html("Centered")},
+					),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use Multiline for responsive grids
+	// - Column sizes: is-half, is-one-third, is-two-thirds, is-one-quarter, is-three-quarters
+	// - 12-column system: is-1 through is-12
+	// - Responsive sizes: is-half-tablet, is-one-third-desktop
+	// - Use Centered for hero sections
+	// - Use VCentered to align column content
+	// - Gap for custom spacing: Gap: 0 through Gap: 8
+	// - Mobile stacking is automatic (columns stack on mobile)
+}

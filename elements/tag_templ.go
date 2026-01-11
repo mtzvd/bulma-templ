@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 // Tag — Bulma tag element.
 // Atomic level: ATOM
 //
-// Tag defines content-based component that renders
+// Tag defines a content-based component that renders
 // a Bulma `.tag` element. It does not manage delete
 // buttons, icons, or links internally.
 //
@@ -81,7 +81,7 @@ func Tag(props TagProps, content Items) templ.Component {
 }
 
 // Tags — Bulma tags container.
-// Atomic level: MOLECULE
+// Atomic level: ORGANISM
 //
 // Tags groups multiple Tag components together
 // using the Bulma `.tags` wrapper.

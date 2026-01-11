@@ -17,7 +17,6 @@ type CardProps struct {
 
 // Card renders a Bulma `.card` container.
 templ Card(props CardProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag: "div",
@@ -40,7 +39,6 @@ type CardHeaderProps struct {
 
 // CardHeader renders a Bulma `.card-header`.
 templ CardHeader(props CardHeaderProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag: "div",
@@ -54,13 +52,16 @@ templ CardHeader(props CardHeaderProps, content elements.Items) {
 
 // CardHeaderTitle — title inside CardHeader.
 // Atomic level: MOLECULE
+//
+// CardHeaderTitle displays the title text in CardHeader.
 type CardHeaderTitleProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-header-title` element.
 	Attr templ.Attributes
 }
 
 // CardHeaderTitle renders `.card-header-title`.
 templ CardHeaderTitle(props CardHeaderTitleProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag: "p",
@@ -73,14 +74,17 @@ templ CardHeaderTitle(props CardHeaderTitleProps, content elements.Items) {
 
 
 // CardHeaderIcon — icon/action inside CardHeader.
-// Atomic level: ATOM
+// Atomic level: MOLECULE
+//
+// CardHeaderIcon is used for action buttons or icons in CardHeader.
 type CardHeaderIconProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-header-icon` element.
 	Attr templ.Attributes
 }
 
 // CardHeaderIcon renders `.card-header-icon`.
 templ CardHeaderIcon(props CardHeaderIconProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag: "a",
@@ -94,13 +98,16 @@ templ CardHeaderIcon(props CardHeaderIconProps, content elements.Items) {
 
 // CardContent — main content area of Card.
 // Atomic level: MOLECULE
+//
+// CardContent is used to display the main content of Card.
 type CardContentProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-content` container.
 	Attr templ.Attributes
 }
 
 // CardContent renders `.card-content`.
 templ CardContent(props CardContentProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag: "div",
@@ -114,13 +121,16 @@ templ CardContent(props CardContentProps, content elements.Items) {
 
 // CardFooter — footer section of Card.
 // Atomic level: MOLECULE
+//
+// CardFooter displays actions or links at the bottom of Card.
 type CardFooterProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-footer` container.
 	Attr templ.Attributes
 }
 
 // CardFooter renders `.card-footer`.
 templ CardFooter(props CardFooterProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag: "footer",
@@ -134,13 +144,16 @@ templ CardFooter(props CardFooterProps, content elements.Items) {
 
 // CardFooterItem — item inside CardFooter.
 // Atomic level: MOLECULE
+//
+// CardFooterItem defines a single action or link inside CardFooter.
 type CardFooterItemProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-footer-item` element.
 	Attr templ.Attributes
 }
 
 // CardFooterItem renders `.card-footer-item`.
 templ CardFooterItem(props CardFooterItemProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag: "a",

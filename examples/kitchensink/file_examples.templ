@@ -1,0 +1,132 @@
+// FileExamples — comprehensive demonstration of fo.File component family.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the File components from the form package.
+// File provides file upload input with custom styled button.
+//
+// File family:
+// - File: Main container
+// - FileLabel: Wrapper for all file components
+// - FileInput: Hidden native file input
+// - FileCTA: Call-to-action button area
+// - FileIcon: Icon in CTA
+// - FileName: Selected filename display
+//
+// Props:
+// - HasName: Boolean to show filename display
+// - Size: is-small, is-medium, is-large
+// - Color: Bulma semantic colors
+// - Boxed: Box style file input
+// - Fullwidth: Full width file input
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+)
+
+// FileExamples showcases File component with and without filename display.
+templ FileExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "File")})
+	
+	// ================================================
+	// BASIC FILE INPUT
+	// ================================================
+	// File input styled as button.
+	// Native file input is hidden, styled button shows instead.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Choose a file"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.File(
+						fo.FileProps{},
+						el.Items{
+							fo.FileLabel(
+								fo.FileLabelProps{},
+								el.Items{
+									fo.FileInput(fo.FileInputProps{}),
+									fo.FileCTA(
+										fo.FileCTAProps{},
+										el.Items{
+											fo.FileIcon(
+												fo.FileIconProps{},
+												el.Items{
+													el.Icon(el.IconProps{IconClass: "fas fa-upload"}),
+												},
+											),
+											fo.FileLabel(
+												fo.FileLabelProps{},
+												el.Items{el.Html("Choose a file...")},
+											),
+										},
+									),
+								},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// FILE INPUT WITH FILENAME DISPLAY
+	// ================================================
+	// Shows selected filename next to button.
+	// JavaScript needed to update filename on selection.
+	
+	@ExampleSubheading("File with name")
+	@fo.File(
+		fo.FileProps{HasName: true},
+		el.Items{
+			fo.FileLabel(
+				fo.FileLabelProps{},
+				el.Items{
+					fo.FileInput(fo.FileInputProps{}),
+					fo.FileCTA(
+						fo.FileCTAProps{},
+						el.Items{
+							fo.FileIcon(
+								fo.FileIconProps{},
+								el.Items{
+									el.Icon(el.IconProps{IconClass: "fas fa-upload"}),
+								},
+							),
+							fo.FileLabel(
+								fo.FileLabelProps{},
+								el.Items{el.Html("Choose a file...")},
+							),
+						},
+					),
+					fo.FileName(
+						fo.FileNameProps{},
+						el.Items{el.Html("document.pdf")},
+					),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use HasName: true to show filename
+	// - Add JavaScript to update filename on change:
+	//   const fileInput = document.querySelector('.file-input');
+	//   const fileName = document.querySelector('.file-name');
+	//   fileInput.addEventListener('change', () => {
+	//     fileName.textContent = fileInput.files[0].name;
+	//   });
+	// - Add accept attribute to FileInput for file type filtering
+	// - Use FileIcon with upload icon
+	// - Validate file size/type on selection
+	// - Show upload progress if uploading
+	// - Color options: is-primary, is-info, etc
+	// - Boxed: true for box style
+	// - Fullwidth: true for full width
+}

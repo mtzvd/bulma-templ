@@ -1,0 +1,268 @@
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	co "github.com/mtzvd/bulma-templ/components"
+)
+
+templ NavbarExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Navbar")})
+	
+	@ExampleSubheading("Basic navbar")
+	@co.Navbar(
+		co.NavbarProps{},
+		el.Items{
+			co.NavbarBrand(
+				co.NavbarBrandProps{},
+				el.Items{
+					co.NavbarItem(
+						co.NavbarItemProps{Href: "#"},
+						el.Items{el.Html("<strong>Brand</strong>")},
+					),
+				},
+			),
+			co.NavbarMenu(
+				co.NavbarMenuProps{},
+				el.Items{
+					co.NavbarStart(
+						co.NavbarStartProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Home")},
+							),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Documentation")},
+							),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Examples")},
+							),
+						},
+					),
+					co.NavbarEnd(
+						co.NavbarEndProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{},
+								el.Items{
+									el.Button(
+										el.ButtonProps{Color: "is-primary"},
+										el.Items{el.Html("Sign up")},
+									),
+								},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	@ExampleSubheading("With dropdown (hoverable)")
+	@co.Navbar(
+		co.NavbarProps{},
+		el.Items{
+			co.NavbarBrand(
+				co.NavbarBrandProps{},
+				el.Items{
+					co.NavbarItem(
+						co.NavbarItemProps{Href: "#"},
+						el.Items{el.Html("<strong>Logo</strong>")},
+					),
+				},
+			),
+			co.NavbarMenu(
+				co.NavbarMenuProps{},
+				el.Items{
+					co.NavbarStart(
+						co.NavbarStartProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Home")},
+							),
+							el.Html(`
+								<div class="navbar-item has-dropdown is-hoverable">
+									<a class="navbar-link">Docs</a>
+									<div class="navbar-dropdown">
+										<a class="navbar-item">Overview</a>
+										<a class="navbar-item">Elements</a>
+										<a class="navbar-item">Components</a>
+										<hr class="navbar-divider">
+										<a class="navbar-item">Version 1.0</a>
+									</div>
+								</div>
+							`),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Blog")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Transparent navbar")
+	@co.Navbar(
+		co.NavbarProps{Transparent: true},
+		el.Items{
+			co.NavbarBrand(
+				co.NavbarBrandProps{},
+				el.Items{
+					co.NavbarItem(
+						co.NavbarItemProps{Href: "#"},
+						el.Items{el.Html("<strong>Transparent</strong>")},
+					),
+				},
+			),
+			co.NavbarMenu(
+				co.NavbarMenuProps{},
+				el.Items{
+					co.NavbarStart(
+						co.NavbarStartProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Home")},
+							),
+							el.Html(`
+								<div class="navbar-item has-dropdown is-hoverable">
+									<a class="navbar-link">More</a>
+									<div class="navbar-dropdown is-boxed">
+										<a class="navbar-item">About</a>
+										<a class="navbar-item">Jobs</a>
+										<a class="navbar-item">Contact</a>
+									</div>
+								</div>
+							`),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Primary color")
+	@co.Navbar(
+		co.NavbarProps{Color: "is-primary"},
+		el.Items{
+			co.NavbarBrand(
+				co.NavbarBrandProps{},
+				el.Items{
+					co.NavbarItem(
+						co.NavbarItemProps{Href: "#"},
+						el.Items{el.Html("<strong>Primary</strong>")},
+					),
+				},
+			),
+			co.NavbarMenu(
+				co.NavbarMenuProps{},
+				el.Items{
+					co.NavbarStart(
+						co.NavbarStartProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Home")},
+							),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Features")},
+							),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Pricing")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Info color")
+	@co.Navbar(
+		co.NavbarProps{Color: "is-info"},
+		el.Items{
+			co.NavbarBrand(
+				co.NavbarBrandProps{},
+				el.Items{
+					co.NavbarItem(
+						co.NavbarItemProps{Href: "#"},
+						el.Items{el.Html("<strong>Info</strong>")},
+					),
+				},
+			),
+			co.NavbarMenu(
+				co.NavbarMenuProps{},
+				el.Items{
+					co.NavbarStart(
+						co.NavbarStartProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Dashboard")},
+							),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Reports")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Dark color")
+	@co.Navbar(
+		co.NavbarProps{Color: "is-dark"},
+		el.Items{
+			co.NavbarBrand(
+				co.NavbarBrandProps{},
+				el.Items{
+					co.NavbarItem(
+						co.NavbarItemProps{Href: "#"},
+						el.Items{el.Html("<strong>Dark</strong>")},
+					),
+				},
+			),
+			co.NavbarMenu(
+				co.NavbarMenuProps{},
+				el.Items{
+					co.NavbarStart(
+						co.NavbarStartProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Products")},
+							),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "#"},
+								el.Items{el.Html("Services")},
+							),
+						},
+					),
+					co.NavbarEnd(
+						co.NavbarEndProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{},
+								el.Items{
+									el.Button(
+										el.ButtonProps{Color: "is-light"},
+										el.Items{el.Html("Login")},
+									),
+								},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+}

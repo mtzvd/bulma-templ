@@ -1,0 +1,281 @@
+// CardExamples — comprehensive demonstration of co.Card component family.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Card components from the components package.
+// Card is a flexible content container with header, content, image, and footer sections.
+// Perfect for blog posts, products, profiles, and any structured content.
+//
+// Card family components:
+// - Card: Main container
+// - CardHeader: Optional top section with title
+// - CardHeaderTitle: Title within header
+// - CardImage: Image section (typically at top)
+// - CardContent: Main content area
+// - CardFooter: Optional bottom section
+// - CardFooterItem: Clickable footer items
+//
+// Each example shows different card configurations.
+// The examples follow Bulma-Templ canonical patterns:
+// - Props-based configuration
+// - Compose cards from smaller components
+// - Use Columns for side-by-side cards
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	co "github.com/mtzvd/bulma-templ/components"
+)
+
+// CardExamples showcases Card component variations following Bulma documentation.
+// Demonstrates header, image, content, and footer sections.
+templ CardExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Card")})
+	
+	// Card with header, content and footer - Complete example
+	@ExampleSubheading("Card with header, content and footer")
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
+		el.Items{
+			co.Card(
+				co.CardProps{},
+				el.Items{
+					co.CardHeader(
+						co.CardHeaderProps{},
+						el.Items{
+							co.CardHeaderTitle(
+								co.CardHeaderTitleProps{},
+								el.Items{el.Html("Component")},
+							),
+							el.Html(`
+								<button class="card-header-icon" aria-label="more options">
+									<span class="icon">
+										<i class="fas fa-angle-down" aria-hidden="true"></i>
+									</span>
+								</button>
+							`),
+						},
+					),
+					co.CardContent(
+						co.CardContentProps{},
+						el.Items{
+							el.Content(
+								el.ContentProps{},
+								el.Items{
+									el.Html(`
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+										<a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+										<br>
+										<time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+									`),
+								},
+							),
+						},
+					),
+					co.CardFooter(
+						co.CardFooterProps{},
+						el.Items{
+							co.CardFooterItem(
+								co.CardFooterItemProps{Attr: templ.Attributes{"href": "#"}},
+								el.Items{el.Html("Save")},
+							),
+							co.CardFooterItem(
+								co.CardFooterItemProps{Attr: templ.Attributes{"href": "#"}},
+								el.Items{el.Html("Edit")},
+							),
+							co.CardFooterItem(
+								co.CardFooterItemProps{Attr: templ.Attributes{"href": "#"}},
+								el.Items{el.Html("Delete")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+
+	// Card with quote - Content and footer only
+	@ExampleSubheading("Card with quote")
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
+		el.Items{
+			co.Card(
+				co.CardProps{},
+				el.Items{
+					co.CardContent(
+						co.CardContentProps{},
+						el.Items{
+							el.Html(`
+								<p class="title">
+									"There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors."
+								</p>
+								<p class="subtitle">Jeff Atwood</p>
+							`),
+						},
+					),
+					co.CardFooter(
+						co.CardFooterProps{},
+						el.Items{
+							el.Html(`
+								<p class="card-footer-item">
+									<span>
+										View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+									</span>
+								</p>
+								<p class="card-footer-item">
+									<span>Share on <a href="#">Facebook</a></span>
+								</p>
+							`),
+						},
+					),
+				},
+			),
+		},
+	)
+
+	// Card with image, media and content - Complete profile card
+	@ExampleSubheading("Card with image and media content")
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
+		el.Items{
+			co.Card(
+				co.CardProps{},
+				el.Items{
+					el.Html(`
+						<div class="card-image">
+							<figure class="image is-4by3">
+								<img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image">
+							</figure>
+						</div>
+					`),
+					co.CardContent(
+						co.CardContentProps{},
+						el.Items{
+							el.Html(`
+								<div class="media">
+									<div class="media-left">
+										<figure class="image is-48x48">
+											<img src="https://bulma.io/assets/images/placeholders/96x96.png" alt="Placeholder image">
+										</figure>
+									</div>
+									<div class="media-content">
+										<p class="title is-4">John Smith</p>
+										<p class="subtitle is-6">@johnsmith</p>
+									</div>
+								</div>
+								<div class="content">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+									<a>@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+									<br>
+									<time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+								</div>
+							`),
+						},
+					),
+				},
+			),
+		},
+	)
+
+	// Card parts demonstration
+	@ExampleSubheading("Card parts: Header only")
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
+		el.Items{
+			co.Card(
+				co.CardProps{},
+				el.Items{
+					co.CardHeader(
+						co.CardHeaderProps{},
+						el.Items{
+							co.CardHeaderTitle(
+								co.CardHeaderTitleProps{},
+								el.Items{el.Html("Card header")},
+							),
+							el.Html(`
+								<button class="card-header-icon" aria-label="more options">
+									<span class="icon">
+										<i class="fas fa-angle-down" aria-hidden="true"></i>
+									</span>
+								</button>
+							`),
+						},
+					),
+				},
+			),
+		},
+	)
+
+	@ExampleSubheading("Card parts: Image only")
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
+		el.Items{
+			co.Card(
+				co.CardProps{},
+				el.Items{
+					el.Html(`
+						<div class="card-image">
+							<figure class="image is-4by3">
+								<img src="https://bulma.io/assets/images/placeholders/1280x960.png" alt="Placeholder image">
+							</figure>
+						</div>
+					`),
+				},
+			),
+		},
+	)
+
+	@ExampleSubheading("Card parts: Content only")
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
+		el.Items{
+			co.Card(
+				co.CardProps{},
+				el.Items{
+					co.CardContent(
+						co.CardContentProps{},
+						el.Items{
+							el.Content(
+								el.ContentProps{},
+								el.Items{
+									el.Html(`
+										Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.
+									`),
+								},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+
+	@ExampleSubheading("Card parts: Footer only")
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
+		el.Items{
+			co.Card(
+				co.CardProps{},
+				el.Items{
+					co.CardFooter(
+						co.CardFooterProps{},
+						el.Items{
+							co.CardFooterItem(
+								co.CardFooterItemProps{Attr: templ.Attributes{"href": "#"}},
+								el.Items{el.Html("Save")},
+							),
+							co.CardFooterItem(
+								co.CardFooterItemProps{Attr: templ.Attributes{"href": "#"}},
+								el.Items{el.Html("Edit")},
+							),
+							co.CardFooterItem(
+								co.CardFooterItemProps{Attr: templ.Attributes{"href": "#"}},
+								el.Items{el.Html("Delete")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+}

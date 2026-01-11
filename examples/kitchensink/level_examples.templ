@@ -1,0 +1,149 @@
+// LevelExamples — comprehensive demonstration of la.Level component family.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Level components from the layout package.
+// Level provides horizontal layout for evenly distributing elements.
+// Perfect for toolbars, stats bars, and action bars.
+//
+// Level family:
+// - Level: Main container
+// - LevelLeft: Left-aligned items container
+// - LevelRight: Right-aligned items container
+// - LevelItem: Individual items within left/right sections
+//
+// Level automatically:
+// - Distributes space between left and right sections
+// - Vertically centers items
+// - Stacks on mobile (unless Mobile: false)
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	la "github.com/mtzvd/bulma-templ/layout"
+)
+
+// LevelExamples showcases Level component with left and right sections.
+templ LevelExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Level")})
+	
+	// ================================================
+	// LEVEL WITH STATS AND ACTION
+	// ================================================
+	// Common pattern: Stats on left, action buttons on right.
+	// Level distributes space between LevelLeft and LevelRight.
+	//
+	// LevelItem contains individual elements.
+	// Items are vertically centered automatically.
+	
+	@la.Level(
+		la.LevelProps{},
+		el.Items{
+			// Left section: Stats display
+			la.LevelLeft(
+				la.LevelLeftProps{},
+				el.Items{
+					la.LevelItem(
+						la.LevelItemProps{},
+						el.Items{
+							el.Html("<div>"),
+							el.Html("<p class='heading'>Tweets</p>"),
+							el.Html("<p class='title'>"),
+							el.Title(
+								el.TitleProps{},
+								el.Items{el.Html("3,456")},
+							),
+							el.Html("</p>"),
+							el.Html("</div>"),
+						},
+					),
+					la.LevelItem(
+						la.LevelItemProps{},
+						el.Items{
+							el.Html("<div>"),
+							el.Html("<p class='heading'>Following</p>"),
+							el.Html("<p class='title'>"),
+							el.Title(
+								el.TitleProps{},
+								el.Items{el.Html("123")},
+							),
+							el.Html("</p>"),
+							el.Html("</div>"),
+						},
+					),
+					la.LevelItem(
+						la.LevelItemProps{},
+						el.Items{
+							el.Html("<div>"),
+							el.Html("<p class='heading'>Followers</p>"),
+							el.Html("<p class='title'>"),
+							el.Title(
+								el.TitleProps{},
+								el.Items{el.Html("456K")},
+							),
+							el.Html("</p>"),
+							el.Html("</div>"),
+						},
+					),
+				},
+			),
+			// Right section: Action button
+			la.LevelRight(
+				la.LevelRightProps{},
+				el.Items{
+					la.LevelItem(
+						la.LevelItemProps{},
+						el.Items{
+							el.Button(
+								el.ButtonProps{Color: "is-success"},
+								el.Items{el.Html("Follow")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use Level for horizontal toolbars
+	// - LevelLeft for primary content/stats
+	// - LevelRight for actions/buttons
+	// - Each LevelItem wraps one logical unit
+	// - Items vertically center automatically
+	// - Responsive by default (stacks on mobile)
+	//
+	// Common patterns:
+	//
+	// 1. Toolbar:
+	//    LevelLeft: Search input
+	//    LevelRight: Action buttons
+	//
+	// 2. Stats bar:
+	//    LevelLeft: Multiple stat items
+	//    LevelRight: Action button
+	//
+	// 3. Post header:
+	//    LevelLeft: Author + timestamp
+	//    LevelRight: Actions (edit, delete)
+	//
+	// 4. Pagination bar:
+	//    LevelLeft: Item count
+	//    LevelRight: Pagination controls
+	//
+	// Centered level (not shown):
+	// Omit LevelLeft/LevelRight, use LevelItem directly:
+	//   @la.Level(
+	//     la.LevelProps{},
+	//     el.Items{
+	//       la.LevelItem(...),
+	//       la.LevelItem(...),
+	//       la.LevelItem(...),
+	//     },
+	//   )
+	// Items distribute evenly across full width.
+	//
+	// Mobile behavior:
+	// By default, Level stacks items vertically on mobile.
+	// To keep horizontal: Mobile: false (not recommended).
+}

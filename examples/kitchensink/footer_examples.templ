@@ -1,0 +1,78 @@
+// FooterExamples — comprehensive demonstration of la.Footer component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Footer component from the layout package.
+// Footer provides a page footer section with padding and background.
+//
+// Footer props:
+// - None specific (just wraps content)
+//
+// Footer automatically:
+// - Adds background color
+// - Adds vertical padding
+// - Typically used with Container inside
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	la "github.com/mtzvd/bulma-templ/layout"
+)
+
+// FooterExamples showcases Footer component.
+templ FooterExamples() {
+	@el.Block(
+		el.BlockProps{},
+		el.Items{TitleH3("is-4", "Footer")},
+	)
+	
+	// ================================================
+	// BASIC FOOTER
+	// ================================================
+	// Footer with Container for centered content.
+	// Common pattern for page footers.
+	
+	@la.Footer(
+		la.FooterProps{},
+		el.Items{
+			la.Container(
+				la.ContainerProps{},
+				el.Items{
+					el.Content(
+						el.ContentProps{Attr: templ.Attributes{"class": "has-text-centered"}},
+						el.Items{
+							FooterExampleContent(),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Place at bottom of page
+	// - Use Container inside for centered content
+	// - Keep content concise
+	// - Include copyright, links, social icons
+	// - Use Content component for auto-styling
+	// - Center align for simple footers
+	// - Use Columns for multi-column footers
+	//
+	// Multi-column footer (not shown):
+	//   @la.Footer(
+	//     la.FooterProps{},
+	//     el.Items{
+	//       la.Container(
+	//         la.ContainerProps{},
+	//         el.Items{
+	//           @cl.Columns(...) // Multiple columns
+	//         },
+	//       ),
+	//     },
+	//   )
+}
+
+templ FooterExampleContent() {
+	<p><strong>Bulma-Templ</strong> by <a href='#'>Author</a>.</p>
+	<p>The source code is licensed <a href='#'>MIT</a>.</p>
+}

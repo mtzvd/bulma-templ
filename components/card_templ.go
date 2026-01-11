@@ -109,7 +109,11 @@ func CardHeader(props CardHeaderProps, content elements.Items) templ.Component {
 
 // CardHeaderTitle — title inside CardHeader.
 // Atomic level: MOLECULE
+//
+// CardHeaderTitle displays the title text in CardHeader.
 type CardHeaderTitleProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-header-title` element.
 	Attr templ.Attributes
 }
 
@@ -151,8 +155,12 @@ func CardHeaderTitle(props CardHeaderTitleProps, content elements.Items) templ.C
 }
 
 // CardHeaderIcon — icon/action inside CardHeader.
-// Atomic level: ATOM
+// Atomic level: MOLECULE
+//
+// CardHeaderIcon is used for action buttons or icons in CardHeader.
 type CardHeaderIconProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-header-icon` element.
 	Attr templ.Attributes
 }
 
@@ -195,7 +203,11 @@ func CardHeaderIcon(props CardHeaderIconProps, content elements.Items) templ.Com
 
 // CardContent — main content area of Card.
 // Atomic level: MOLECULE
+//
+// CardContent is used to display the main content of Card.
 type CardContentProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-content` container.
 	Attr templ.Attributes
 }
 
@@ -238,7 +250,11 @@ func CardContent(props CardContentProps, content elements.Items) templ.Component
 
 // CardFooter — footer section of Card.
 // Atomic level: MOLECULE
+//
+// CardFooter displays actions or links at the bottom of Card.
 type CardFooterProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-footer` container.
 	Attr templ.Attributes
 }
 
@@ -281,7 +297,11 @@ func CardFooter(props CardFooterProps, content elements.Items) templ.Component {
 
 // CardFooterItem — item inside CardFooter.
 // Atomic level: MOLECULE
+//
+// CardFooterItem defines a single action or link inside CardFooter.
 type CardFooterItemProps struct {
+	// Attr contains additional HTML attributes
+	// for the `.card-footer-item` element.
 	Attr templ.Attributes
 }
 

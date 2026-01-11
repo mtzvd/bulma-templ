@@ -1,0 +1,90 @@
+// ContentExamples — comprehensive demonstration of el.Content component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Content component from the elements package.
+// Content is a typography container that automatically styles all standard HTML elements.
+// It's essential for rendering user-generated content or markdown.
+//
+// Content automatically styles:
+// - Headings (h1-h6)
+// - Paragraphs with proper line-height
+// - Lists (ul, ol) with proper margins
+// - Blockquotes with left border
+// - Code blocks with monospace font
+// - Tables, figures, and other HTML elements
+//
+// Each example shows different HTML content types inside Content.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes needed - Content handles styling automatically
+// - Props-based configuration via el.ContentProps
+// - Use Content as a wrapper for any raw HTML or markdown output
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// ContentExample1 demonstrates Content with various HTML elements.
+// Content automatically styles headings, paragraphs, lists, emphasis, links, and blockquotes.
+templ ContentExample1() {
+	@el.Content(
+		el.ContentProps{},
+		el.Items{
+			el.Html(`
+				<h1>Lorem Ipsum Dolor</h1>
+				<p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <em>exercitation ullamco</em> laboris nisi ut aliquip ex ea commodo consequat.</p>
+				<h2>Duis Aute Irure</h2>
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<ul>
+					<li>Sed ut perspiciatis unde</li>
+					<li>Omnis iste natus error</li>
+					<li>Sit voluptatem accusantium</li>
+				</ul>
+				<blockquote>
+					Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+				</blockquote>
+				<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+			`),
+		},
+	)
+}
+
+func ContentExample1Code() string {
+	return `@el.Content(
+	el.ContentProps{},
+	el.Items{
+		el.Html(\` + "`" + `
+			<h1>Lorem Ipsum Dolor</h1>
+			<p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <em>exercitation ullamco</em> laboris nisi ut aliquip ex ea commodo consequat.</p>
+			<h2>Duis Aute Irure</h2>
+			<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<ul>
+				<li>Sed ut perspiciatis unde</li>
+				<li>Omnis iste natus error</li>
+				<li>Sit voluptatem accusantium</li>
+			</ul>
+			<blockquote>
+				Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+			</blockquote>
+			<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+		\` + "`" + `),
+	},
+)`
+}
+
+// ContentExamples showcases Content component usage.
+// Demonstrates automatic styling of various HTML elements.
+templ ContentExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Content")})
+	
+	{{
+		examples := []ComponentItem{
+			{ID: "content-html", Code: ContentExample1Code(), Component: ContentExample1()},
+		}
+	}}
+	
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}

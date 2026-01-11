@@ -1,0 +1,123 @@
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	co "github.com/mtzvd/bulma-templ/components"
+)
+
+templ MessageExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Message")})
+	
+	@ExampleSubheading("Default message")
+	@co.Message(
+		co.MessageProps{},
+		el.Items{
+			co.MessageHeader(
+				co.MessageHeaderProps{},
+				el.Items{el.Html("Default Message")},
+			),
+			co.MessageBody(
+				co.MessageBodyProps{},
+				el.Items{el.Html("This is a default message body with a neutral style.")},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Primary message with delete button")
+	@co.Message(
+		co.MessageProps{Color: "is-primary"},
+		el.Items{
+			co.MessageHeader(
+				co.MessageHeaderProps{},
+				el.Items{
+					el.Html("Primary Message"),
+					el.Delete(el.DeleteProps{}),
+				},
+			),
+			co.MessageBody(
+				co.MessageBodyProps{},
+				el.Items{el.Html("This is a primary message with a delete button. Click the × to dismiss.")},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Info message")
+	@co.Message(
+		co.MessageProps{Color: "is-info"},
+		el.Items{
+			co.MessageHeader(
+				co.MessageHeaderProps{},
+				el.Items{
+					el.Html("Info Message"),
+					el.Delete(el.DeleteProps{}),
+				},
+			),
+			co.MessageBody(
+				co.MessageBodyProps{},
+				el.Items{el.Html("This is an informational message to provide helpful context.")},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Success message")
+	@co.Message(
+		co.MessageProps{Color: "is-success"},
+		el.Items{
+			co.MessageHeader(
+				co.MessageHeaderProps{},
+				el.Items{el.Html("Success")},
+			),
+			co.MessageBody(
+				co.MessageBodyProps{},
+				el.Items{el.Html("Your operation completed successfully!")},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Warning message")
+	@co.Message(
+		co.MessageProps{Color: "is-warning"},
+		el.Items{
+			co.MessageHeader(
+				co.MessageHeaderProps{},
+				el.Items{
+					el.Html("Warning"),
+					el.Delete(el.DeleteProps{}),
+				},
+			),
+			co.MessageBody(
+				co.MessageBodyProps{},
+				el.Items{el.Html("Please review your changes before proceeding.")},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Danger message")
+	@co.Message(
+		co.MessageProps{Color: "is-danger"},
+		el.Items{
+			co.MessageHeader(
+				co.MessageHeaderProps{},
+				el.Items{
+					el.Html("Error"),
+					el.Delete(el.DeleteProps{}),
+				},
+			),
+			co.MessageBody(
+				co.MessageBodyProps{},
+				el.Items{el.Html("An error occurred. Please try again or contact support.")},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Message without header")
+	@co.Message(
+		co.MessageProps{Color: "is-info"},
+		el.Items{
+			co.MessageBody(
+				co.MessageBodyProps{},
+				el.Items{el.Html("This is a message without a header. Useful for simpler notifications.")},
+			),
+		},
+	)
+}

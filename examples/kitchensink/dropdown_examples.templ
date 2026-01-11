@@ -1,0 +1,208 @@
+// DropdownExamples — comprehensive demonstration of co.Dropdown component family.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Dropdown components from the components package.
+// Dropdown provides a toggleable menu with items, dividers, and active states.
+// Requires JavaScript for click-to-toggle, but supports hover-only mode.
+//
+// Dropdown family:
+// - Dropdown: Main container
+// - DropdownTrigger: Button that triggers menu
+// - DropdownMenu: Menu container
+// - DropdownItem: Individual menu items
+// - DropdownDivider: Separator between items
+//
+// Props:
+// - Hoverable: Open on hover instead of click
+// - Active: CSS class for active items
+// - Href: Link destination for items
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	co "github.com/mtzvd/bulma-templ/components"
+)
+
+// DropdownExamples showcases Dropdown component variations.
+templ DropdownExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Dropdown")})
+	
+	// Hoverable dropdown - opens on hover
+	@ExampleSubheading("Hoverable dropdown")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Dropdown(
+				co.DropdownProps{Hoverable: true},
+				el.Items{
+					co.DropdownTrigger(
+						co.DropdownTriggerProps{},
+						el.Items{
+							el.Button(
+								el.ButtonProps{},
+								el.Items{
+									el.Html("<span>Hover me</span>"),
+									el.Icon(el.IconProps{IconClass: "fas fa-angle-down"}),
+								},
+							),
+						},
+					),
+					co.DropdownMenu(
+						co.DropdownMenuProps{},
+						el.Items{
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Dropdown item")},
+							),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#", Active: true},
+								el.Items{el.Html("Active item")},
+							),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Another item")},
+							),
+							co.DropdownDivider(),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("With a divider")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// Right-aligned dropdown
+	@ExampleSubheading("Right-aligned dropdown")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Dropdown(
+				co.DropdownProps{Hoverable: true, Right: true},
+				el.Items{
+					co.DropdownTrigger(
+						co.DropdownTriggerProps{},
+						el.Items{
+							el.Button(
+								el.ButtonProps{},
+								el.Items{
+									el.Html("<span>Right aligned</span>"),
+									el.Icon(el.IconProps{IconClass: "fas fa-angle-down"}),
+								},
+							),
+						},
+					),
+					co.DropdownMenu(
+						co.DropdownMenuProps{},
+						el.Items{
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Overview")},
+							),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Modifiers")},
+							),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Grid")},
+							),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Elements")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// Dropup - menu appears above button
+	@ExampleSubheading("Dropup (opens upward)")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Dropdown(
+				co.DropdownProps{Hoverable: true, Up: true},
+				el.Items{
+					co.DropdownTrigger(
+						co.DropdownTriggerProps{},
+						el.Items{
+							el.Button(
+								el.ButtonProps{},
+								el.Items{
+									el.Html("<span>Dropup button</span>"),
+									el.Icon(el.IconProps{IconClass: "fas fa-angle-up"}),
+								},
+							),
+						},
+					),
+					co.DropdownMenu(
+						co.DropdownMenuProps{},
+						el.Items{
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Dropdown item")},
+							),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Other item")},
+							),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("Another item")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// Dropdown with custom content (not just links)
+	@ExampleSubheading("Dropdown with content")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Dropdown(
+				co.DropdownProps{Hoverable: true},
+				el.Items{
+					co.DropdownTrigger(
+						co.DropdownTriggerProps{},
+						el.Items{
+							el.Button(
+								el.ButtonProps{},
+								el.Items{
+									el.Html("<span>Content</span>"),
+									el.Icon(el.IconProps{IconClass: "fas fa-angle-down"}),
+								},
+							),
+						},
+					),
+					co.DropdownMenu(
+						co.DropdownMenuProps{},
+						el.Items{
+							el.Html(`
+								<div class="dropdown-item">
+									<p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
+								</div>
+								<hr class="dropdown-divider">
+								<div class="dropdown-item">
+									<p>You simply need to use a <code>&lt;div&gt;</code> instead.</p>
+								</div>
+							`),
+							co.DropdownItem(
+								co.DropdownItemProps{Href: "#"},
+								el.Items{el.Html("This is a link")},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+}

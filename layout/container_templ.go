@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "github.com/mtzvd/bulma-templ/elements"
 
 // Container — Bulma container layout wrapper.
-// Atomic level: MOLECULE
+// Atomic level: ATOM
 //
 // Container constrains the horizontal width of its content
 // according to Bulma container rules.

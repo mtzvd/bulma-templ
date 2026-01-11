@@ -42,13 +42,23 @@ type InputProps struct {
 // This component must be wrapped with Control
 // and Field components when used in a form layout.
 templ Input(props InputProps) {
+	{{
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+		if props.Disabled {
+			attrs["disabled"] = "disabled"
+		}
+		if props.ReadOnly {
+			attrs["readonly"] = "readonly"
+		}
+	}}
 	<input
 		type={ props.Type }
 		value={ props.Value }
 		placeholder={ props.Placeholder }
 		class={ "input", props.Color, props.Size, props.Attr["class"] }
-		disabled={ props.Disabled }
-		readonly={ props.ReadOnly }
-		{ props.Attr... }
+		{ attrs... }
 	/>
 }

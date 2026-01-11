@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 // Title — Bulma typographic title.
 // Atomic level: ATOM
 //
-// Title defines visual typographic component that applies
+// Title defines a visual typographic component that applies
 // the Bulma `.title` styles.
 // It does NOT define HTML semantics or document structure.
 //

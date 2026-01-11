@@ -1,0 +1,235 @@
+// PaginationExamples — comprehensive demonstration of co.Pagination component family.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Pagination components from the components package.
+// Pagination provides navigation for multi-page content with prev/next and page numbers.
+//
+// Pagination family:
+// - Pagination: Main container
+// - PaginationPrev: Previous page button
+// - PaginationNext: Next page button
+// - PaginationList: Container for page numbers
+// - PaginationItem: Wrapper for each page number
+// - PaginationLink: Clickable page number
+// - PaginationEllipsis: "..." for skipped pages
+//
+// Props:
+// - Active: true for current page
+// - Attr: templ.Attributes for href and other attributes
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	co "github.com/mtzvd/bulma-templ/components"
+)
+
+// PaginationExamples showcases Pagination component with page numbers and variations.
+templ PaginationExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Pagination")})
+	
+	// Default pagination
+	@ExampleSubheading("Default pagination")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Pagination(
+				co.PaginationProps{
+					Content: el.Items{
+						co.PaginationPrev(el.Items{el.Html("Previous")}),
+						co.PaginationNext(el.Items{el.Html("Next page")}),
+						co.PaginationList(
+							el.Items{
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("1")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{co.PaginationEllipsis()},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("45")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Active: true, Attr: templ.Attributes{"aria-current": "page"}}, el.Items{el.Html("46")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("47")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{co.PaginationEllipsis()},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("86")}),
+									},
+								),
+							},
+						),
+					},
+				},
+			),
+		},
+	)
+	
+	// Centered pagination
+	@ExampleSubheading("Centered alignment")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Pagination(
+				co.PaginationProps{
+					Alignment: "is-centered",
+					Content: el.Items{
+						co.PaginationPrev(el.Items{el.Html("Previous")}),
+						co.PaginationNext(el.Items{el.Html("Next")}),
+						co.PaginationList(
+							el.Items{
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("1")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Active: true, Attr: templ.Attributes{"aria-current": "page"}}, el.Items{el.Html("2")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("3")}),
+									},
+								),
+							},
+						),
+					},
+				},
+			),
+		},
+	)
+	
+	// Rounded pagination
+	@ExampleSubheading("Rounded style")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Pagination(
+				co.PaginationProps{
+					Rounded: true,
+					Content: el.Items{
+						co.PaginationPrev(el.Items{el.Html("Previous")}),
+						co.PaginationNext(el.Items{el.Html("Next")}),
+						co.PaginationList(
+							el.Items{
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("1")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("2")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Active: true, Attr: templ.Attributes{"aria-current": "page"}}, el.Items{el.Html("3")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("4")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("5")}),
+									},
+								),
+							},
+						),
+					},
+				},
+			),
+		},
+	)
+	
+	// Small size pagination
+	@ExampleSubheading("Small size")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Pagination(
+				co.PaginationProps{
+					Size: "is-small",
+					Content: el.Items{
+						co.PaginationPrev(el.Items{el.Html("Prev")}),
+						co.PaginationNext(el.Items{el.Html("Next")}),
+						co.PaginationList(
+							el.Items{
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("1")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Active: true}, el.Items{el.Html("2")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("3")}),
+									},
+								),
+							},
+						),
+					},
+				},
+			),
+		},
+	)
+	
+	// Large size pagination
+	@ExampleSubheading("Large size")
+	@el.Block(
+		el.BlockProps{},
+		el.Items{
+			co.Pagination(
+				co.PaginationProps{
+					Size: "is-large",
+					Content: el.Items{
+						co.PaginationPrev(el.Items{el.Html("Previous")}),
+						co.PaginationNext(el.Items{el.Html("Next")}),
+						co.PaginationList(
+							el.Items{
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("1")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Active: true}, el.Items{el.Html("2")}),
+									},
+								),
+								co.PaginationItem(
+									el.Items{
+										co.PaginationLink(co.PaginationLinkProps{Attr: templ.Attributes{"href": "#"}}, el.Items{el.Html("3")}),
+									},
+								),
+							},
+						),
+					},
+				},
+			),
+		},
+	)
+}

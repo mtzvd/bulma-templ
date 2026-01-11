@@ -1,0 +1,71 @@
+// SectionExamples — comprehensive demonstration of la.Section component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Section component from the layout package.
+// Section provides vertical spacing for page content areas.
+//
+// Section props:
+// - Size: Vertical padding size (is-medium, is-large)
+//   Default provides standard padding
+//
+// Section automatically:
+// - Adds vertical padding (top and bottom)
+// - Creates content separation
+// - Typically contains Container inside
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	la "github.com/mtzvd/bulma-templ/layout"
+)
+
+// SectionExamples showcases Section component.
+templ SectionExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Section")})
+	
+	// ================================================
+	// BASIC SECTION
+	// ================================================
+	// Section with default padding.
+	// Creates visual separation between content areas.
+	
+	@la.Section(
+		la.SectionProps{},
+		el.Items{
+			TitleH4("is-4", "Section Title"),
+			el.Html("<p>Section provides vertical spacing for page content areas.</p>"),
+		},
+	)
+	
+	// Best practices:
+	// - Use Section to separate page content areas
+	// - Nest Container inside for centered content
+	// - Stack multiple Sections vertically
+	// - Use Size for more/less padding
+	// - Section is semantic <section> element
+	//
+	// Padding sizes:
+	// - Default: 3rem top, 3rem bottom
+	// - is-medium: 9rem top, 9rem bottom
+	// - is-large: 18rem top, 18rem bottom
+	//
+	// Typical page structure:
+	//   <body>
+	//     @la.Hero(...)          // Hero banner
+	//     @la.Section(...)       // Main content
+	//     @la.Section(...)       // Secondary content
+	//     @la.Footer(...)        // Footer
+	//   </body>
+	//
+	// Section with Container (not shown):
+	//   @la.Section(
+	//     la.SectionProps{},
+	//     el.Items{
+	//       la.Container(
+	//         la.ContainerProps{},
+	//         el.Items{...},
+	//       ),
+	//     },
+	//   )
+}

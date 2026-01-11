@@ -3,7 +3,7 @@ package elements
 // Tag — Bulma tag element.
 // Atomic level: ATOM
 //
-// Tag defines content-based component that renders
+// Tag defines a content-based component that renders
 // a Bulma `.tag` element. It does not manage delete
 // buttons, icons, or links internally.
 //
@@ -27,7 +27,6 @@ type TagProps struct {
 
 // Tag renders a Bulma tag.
 templ Tag(props TagProps, content Items) {
-	
 	{{
 		classes:= []string{"tag"}
 		if props.Color != "" {
@@ -52,7 +51,7 @@ templ Tag(props TagProps, content Items) {
 
 
 // Tags — Bulma tags container.
-// Atomic level: MOLECULE
+// Atomic level: ORGANISM
 //
 // Tags groups multiple Tag components together
 // using the Bulma `.tags` wrapper.
@@ -67,7 +66,6 @@ type TagsProps struct {
 
 // Tags renders a Bulma tags container.
 templ Tags(props TagsProps, content Items) {
-	
 	{{
 		classes:= []string{"tags"}
 		if props.HasAddons {

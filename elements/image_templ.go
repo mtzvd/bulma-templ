@@ -9,7 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 // Image — Bulma image component.
-// Atomic level: MOLECULE
+// Atomic level: ATOM
 //
 // Image renders a Bulma `.image` wrapper with a nested `<img>` element.
 // It supports fixed sizes, aspect ratios, and rounded images.

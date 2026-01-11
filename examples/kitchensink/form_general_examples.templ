@@ -1,0 +1,483 @@
+// FormGeneralExamples — comprehensive demonstration of Bulma form structure and organization.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the general form structure concepts in Bulma.
+// It covers the foundational building blocks that ALL forms use:
+//
+// KEY CONCEPTS:
+// 1. Field - Container for label + control + help text (vertical spacing)
+// 2. Control - Wrapper for individual form elements (consistent sizing)
+// 3. Label - Text labels for inputs
+// 4. Help - Helper text below inputs (validation messages, hints)
+// 5. Icons - Visual indicators within inputs (left/right)
+// 6. Addons - Attach controls horizontally (input + button)
+// 7. Groups - Align controls horizontally (Submit + Cancel)
+// 8. Horizontal Forms - Side-by-side labels and inputs
+//
+// FORM HIERARCHY:
+// Field (vertical spacing container)
+//  ├─ Label (text label)
+//  ├─ Control (sizing wrapper)
+//  │   └─ Input/Select/Textarea (actual form element)
+//  └─ Help (helper text)
+//
+// This is the most important page in Form documentation - it shows
+// how to structure forms properly using Bulma's composition patterns.
+//
+// Reference: https://bulma.io/documentation/form/general/
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+)
+
+// FormGeneralExamples showcases general form structure and composition patterns.
+templ FormGeneralExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Form General - Structure & Composition")})
+	
+	// ================================================
+	// FIELD CONTAINER
+	// ================================================
+	// Field is the MOST IMPORTANT container in Bulma forms.
+	// It provides consistent vertical spacing between form elements.
+	//
+	// Field contains:
+	// - Label (optional): Text label for the input
+	// - Control (required): Wrapper for the actual input/select/textarea
+	// - Help (optional): Helper text or validation message
+	//
+	// Why use Field:
+	// - Automatic vertical spacing (margin-bottom)
+	// - Consistent alignment across all form elements
+	// - Proper structure for labels, inputs, and help text
+	// - Foundation for advanced features (addons, groups, horizontal)
+	//
+	// Best practice: ALWAYS wrap form controls in a Field
+	
+	@ExampleSubheading("Basic Field structure (Label + Control + Help)")
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Name"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "text",
+							Placeholder: "e.g. Alex Smith",
+						},
+					),
+				},
+			),
+			fo.Help(
+				fo.HelpProps{Text: "This is helper text to guide the user"},
+			),
+		},
+	)
+	
+	// ================================================
+	// CONTROL CONTAINER
+	// ================================================
+	// Control is a versatile wrapper that:
+	// - Maintains consistent sizing across different form elements
+	// - Enables icon placement (left/right)
+	// - Required for proper addon/group alignment
+	// - Preserves vertical alignment with buttons
+	//
+	// Control can contain ONLY these Bulma elements:
+	// - Input
+	// - Select
+	// - Button
+	// - Icon
+	//
+	// Why use Control:
+	// - Consistent height matching between inputs, selects, buttons
+	// - Icon positioning (has-icons-left, has-icons-right)
+	// - Proper alignment in addons and groups
+	// - Foundation for expanding controls (is-expanded)
+	
+	@ExampleSubheading("Multiple fields with consistent spacing")
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Email"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "email",
+							Placeholder: "e.g. alex@example.com",
+						},
+					),
+				},
+			),
+		},
+	)
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Password"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "password",
+							Placeholder: "Enter your password",
+						},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// VALIDATION STATES WITH HELP TEXT
+	// ================================================
+	// Help component shows validation messages, hints, or instructions.
+	// Color modifiers match validation states:
+	// - is-success: Valid input (green)
+	// - is-danger: Invalid input (red)
+	// - is-warning: Warning state (yellow)
+	// - is-info: Informational hint (blue)
+	// - (default): Neutral gray
+	//
+	// Best practice:
+	// - Place Help AFTER Control in Field
+	// - Match Help color with Input state (is-success with is-success)
+	// - Keep text concise and actionable
+	
+	@ExampleSubheading("Validation states with help text")
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Username (valid)"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:  "text",
+							Value: "bulma",
+							Color: "is-success",
+						},
+					),
+				},
+			),
+			fo.Help(
+				fo.HelpProps{
+					Text:  "This username is available",
+					Color: "is-success",
+				},
+			),
+		},
+	)
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Label(
+				fo.LabelProps{Text: "Email (invalid)"},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:  "email",
+							Value: "hello@",
+							Color: "is-danger",
+						},
+					),
+				},
+			),
+			fo.Help(
+				fo.HelpProps{
+					Text:  "This email is invalid",
+					Color: "is-danger",
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// FORM ADDONS (has-addons)
+	// ================================================
+	// Addons attach controls HORIZONTALLY - they touch each other.
+	// Applied to Field with "has-addons" modifier.
+	//
+	// Use cases:
+	// - Input + Button (search bar)
+	// - Select + Input (currency selector + amount)
+	// - Input + Static text (@gmail.com)
+	//
+	// How it works:
+	// - Field gets Attr: {"class": "has-addons"}
+	// - Each Control wraps one element
+	// - Controls automatically attach (no gap)
+	// - Use is-expanded on one Control to fill remaining space
+	//
+	// Alignment modifiers:
+	// - has-addons-centered: Center the addon group
+	// - has-addons-right: Align to right
+	
+	@ExampleSubheading("Addons - Input + Button (search bar)")
+	@fo.Field(
+		fo.FieldProps{
+			Attr: templ.Attributes{"class": "has-addons"},
+		},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "text",
+							Placeholder: "Find a repository",
+						},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					el.Button(
+						el.ButtonProps{Color: "is-info"},
+						el.Items{el.Html("Search")},
+					),
+				},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Addons - Input with static text")
+	@fo.Field(
+		fo.FieldProps{
+			Attr: templ.Attributes{"class": "has-addons"},
+		},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{
+					Attr: templ.Attributes{"class": "is-expanded"},
+				},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "text",
+							Placeholder: "Your email",
+						},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					el.Button(
+						el.ButtonProps{
+							Attr: templ.Attributes{"class": "is-static"},
+						},
+						el.Items{el.Html("@gmail.com")},
+					),
+				},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Addons - Select + Input + Button with is-expanded")
+	@fo.Field(
+		fo.FieldProps{
+			Attr: templ.Attributes{"class": "has-addons"},
+		},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Select(
+						fo.SelectProps{},
+						el.Items{
+							el.Html(`
+								<select>
+									<option>$</option>
+									<option>£</option>
+									<option>€</option>
+								</select>
+							`),
+						},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{
+					Attr: templ.Attributes{"class": "is-expanded"},
+				},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "text",
+							Placeholder: "Amount of money",
+						},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					el.Button(
+						el.ButtonProps{Color: "is-primary"},
+						el.Items{el.Html("Transfer")},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// FORM GROUP (is-grouped)
+	// ================================================
+	// Groups align controls HORIZONTALLY with SPACE between them.
+	// Applied to Field with "is-grouped" modifier.
+	//
+	// Difference from Addons:
+	// - Addons: Controls TOUCH (no gap) - for compound inputs
+	// - Groups: Controls have SPACE (gap) - for button sets
+	//
+	// Use cases:
+	// - Submit + Cancel buttons
+	// - Multiple action buttons
+	// - Toolbar-like control sets
+	//
+	// Alignment modifiers:
+	// - is-grouped-centered: Center the group
+	// - is-grouped-right: Align to right
+	// - is-grouped-multiline: Wrap to multiple lines
+	//
+	// Expanding:
+	// - Use is-expanded on one Control to fill space
+	
+	@ExampleSubheading("Group - Submit + Cancel buttons")
+	@fo.Field(
+		fo.FieldProps{
+			Attr: templ.Attributes{"class": "is-grouped"},
+		},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					el.Button(
+						el.ButtonProps{Color: "is-primary"},
+						el.Items{el.Html("Submit")},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					el.Button(
+						el.ButtonProps{Color: "is-light"},
+						el.Items{el.Html("Cancel")},
+					),
+				},
+			),
+		},
+	)
+	
+	@ExampleSubheading("Group - Expanded input + button")
+	@fo.Field(
+		fo.FieldProps{
+			Attr: templ.Attributes{"class": "is-grouped"},
+		},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{
+					Attr: templ.Attributes{"class": "is-expanded"},
+				},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "text",
+							Placeholder: "Find a repository",
+						},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					el.Button(
+						el.ButtonProps{Color: "is-info"},
+						el.Items{el.Html("Search")},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// BEST PRACTICES & PATTERNS
+	// ================================================
+	//
+	// 1. ALWAYS use Field as the outer container
+	//    ✓ Field → Label + Control + Help
+	//    ✗ Control alone (no consistent spacing)
+	//
+	// 2. ALWAYS use Control to wrap inputs/selects
+	//    ✓ Control → Input
+	//    ✗ Input alone (breaks addons/groups)
+	//
+	// 3. Match validation colors
+	//    ✓ Input is-success + Help is-success
+	//    ✗ Input is-danger + Help is-success
+	//
+	// 4. Use Addons for compound inputs
+	//    ✓ has-addons for search bar (input+button touch)
+	//    ✗ is-grouped for search bar (unwanted gap)
+	//
+	// 5. Use Groups for button sets
+	//    ✓ is-grouped for Submit+Cancel (space between)
+	//    ✗ has-addons for Submit+Cancel (buttons touching)
+	//
+	// 6. Use is-expanded wisely
+	//    - In addons: Make input fill remaining space
+	//    - In groups: Make one control flexible
+	//    - Don't use on multiple controls (only one should expand)
+	//
+	// 7. Label placement
+	//    - Vertical forms: Label before Control
+	//    - Horizontal forms: Use field-label + field-body
+	//
+	// 8. Help text guidelines
+	//    - Keep it short (one line preferred)
+	//    - Actionable (tell user what to do)
+	//    - Positive feedback for success
+	//    - Clear error messages for danger
+	//
+	// FORM COMPOSITION PATTERNS:
+	//
+	// Simple input:
+	// Field → Label + Control(Input) + Help
+	//
+	// Validated input:
+	// Field → Label + Control(Input is-success) + Help(is-success)
+	//
+	// Search bar:
+	// Field(has-addons) → Control(Input) + Control(Button)
+	//
+	// Action buttons:
+	// Field(is-grouped) → Control(Submit) + Control(Cancel)
+	//
+	// Horizontal form:
+	// Field(is-horizontal) → FieldLabel + FieldBody(Field...)
+	//
+	// These patterns apply to ALL form elements (Input, Textarea, Select, etc.)
+}

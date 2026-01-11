@@ -1,0 +1,120 @@
+// FieldExamples — comprehensive demonstration of fo.Field component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Field component from the form package.
+// Field is a container for form elements with label, control, and help text.
+// Supports horizontal layout, grouped controls, and addons.
+//
+// Field props:
+// - Grouped: Boolean to place controls side-by-side
+// - Horizontal: Boolean for horizontal form layout
+// - Addons: Boolean to connect controls seamlessly
+//
+// Control props:
+// - Expanded: Boolean to make control fill available space
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+)
+
+// FieldExamples showcases Field component grouping and expansion.
+templ FieldExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Field (Grouped)")})
+	
+	// ================================================
+	// GROUPED FIELDS
+	// ================================================
+	// Controls placed side-by-side (horizontally).
+	// Perfect for search box + button combinations.
+	
+	@ExampleSubheading("Grouped fields")
+	@fo.Field(
+		fo.FieldProps{Grouped: true},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "text",
+							Placeholder: "Find a repository",
+						},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					el.Button(
+						el.ButtonProps{Color: "is-info"},
+						el.Items{el.Html("Search")},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// EXPANDED FIELD
+	// ================================================
+	// First control expands to fill available space.
+	// Other controls take minimal space (button width).
+	
+	@ExampleSubheading("Expanded field")
+	@fo.Field(
+		fo.FieldProps{Grouped: true},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{Expanded: true},
+				el.Items{
+					fo.Input(
+						fo.InputProps{
+							Type:        "text",
+							Placeholder: "Expanded input",
+						},
+					),
+				},
+			),
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					el.Button(
+						el.ButtonProps{Color: "is-primary"},
+						el.Items{el.Html("Submit")},
+					),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use Grouped for input + button combos
+	// - Use Expanded for search bars
+	// - Add Label above grouped fields if needed
+	// - Limit to 2-3 controls per grouped field
+	// - Use Addons (not shown) for seamlessly connected controls
+	// - Horizontal layout (not shown) for side-by-side label + control
+	//
+	// Addons example (not shown):
+	//   @fo.Field(
+	//     fo.FieldProps{Addons: true},
+	//     el.Items{
+	//       fo.Control(...),  // Input
+	//       fo.Control(...),  // Button
+	//     },
+	//   )
+	//   Controls connect without gap
+	//
+	// Horizontal layout (not shown):
+	//   @fo.Field(
+	//     fo.FieldProps{Horizontal: true},
+	//     el.Items{
+	//       fo.FieldLabel(...),
+	//       fo.FieldBody(...),
+	//     },
+	//   )
+	//   Label on left, controls on right
+}

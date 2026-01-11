@@ -1,0 +1,201 @@
+// TagExamples — comprehensive demonstration of el.Tag and el.Tags components.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Tag component from the elements package.
+// Tags are small labels for categorizing, labeling, or organizing content.
+// They support colors, sizes, and can be combined in tag groups.
+//
+// Tag supports:
+// - Color variations (all Bulma semantic colors)
+// - Size variations (small, normal, medium, large)
+// - Rounded modifier for pill-shaped tags
+// - Delete button integration
+// - Tag groups with addons
+//
+// Each example shows different tag variations and combinations.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes in el.Html() - only plain text
+// - Props-based configuration via el.TagProps
+// - el.Tags for tag groups with HasAddons for connected tags
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// TagExample1 demonstrates tag color variations.
+// Tags support all Bulma semantic colors for categorization.
+templ TagExample1() {
+	@el.Tags(
+		el.TagsProps{},
+		el.Items{
+			el.Tag(
+				el.TagProps{},
+				el.Items{el.Html("Default")},
+			),
+			el.Tag(
+				el.TagProps{Color: "is-primary"},
+				el.Items{el.Html("Primary")},
+			),
+			el.Tag(
+				el.TagProps{Color: "is-info"},
+				el.Items{el.Html("Info")},
+			),
+			el.Tag(
+				el.TagProps{Color: "is-success"},
+				el.Items{el.Html("Success")},
+			),
+			el.Tag(
+				el.TagProps{Color: "is-warning"},
+				el.Items{el.Html("Warning")},
+			),
+			el.Tag(
+				el.TagProps{Color: "is-danger"},
+				el.Items{el.Html("Danger")},
+			),
+		},
+	)
+}
+
+func TagExample1Code() string {
+	return `@el.Tags(
+	el.TagsProps{},
+	el.Items{
+		el.Tag(
+			el.TagProps{},
+			el.Items{el.Html("Default")},
+		),
+		el.Tag(
+			el.TagProps{Color: "is-primary"},
+			el.Items{el.Html("Primary")},
+		),
+		el.Tag(
+			el.TagProps{Color: "is-info"},
+			el.Items{el.Html("Info")},
+		),
+		el.Tag(
+			el.TagProps{Color: "is-success"},
+			el.Items{el.Html("Success")},
+		),
+		el.Tag(
+			el.TagProps{Color: "is-warning"},
+			el.Items{el.Html("Warning")},
+		),
+		el.Tag(
+			el.TagProps{Color: "is-danger"},
+			el.Items{el.Html("Danger")},
+		),
+	},
+)`
+}
+
+// TagExample2 demonstrates tag size variations and rounded style.
+// Tags support 4 sizes and rounded modifier for pill shape.
+templ TagExample2() {
+	@el.Tags(
+		el.TagsProps{},
+		el.Items{
+			el.Tag(
+				el.TagProps{Size: "is-small", Color: "is-primary"},
+				el.Items{el.Html("Small")},
+			),
+			el.Tag(
+				el.TagProps{Color: "is-primary"},
+				el.Items{el.Html("Normal")},
+			),
+			el.Tag(
+				el.TagProps{Size: "is-medium", Color: "is-primary"},
+				el.Items{el.Html("Medium")},
+			),
+			el.Tag(
+				el.TagProps{Size: "is-large", Color: "is-primary"},
+				el.Items{el.Html("Large")},
+			),
+			el.Tag(
+				el.TagProps{Color: "is-link", Rounded: true},
+				el.Items{el.Html("Rounded")},
+			),
+		},
+	)
+}
+
+func TagExample2Code() string {
+	return `@el.Tags(
+	el.TagsProps{},
+	el.Items{
+		el.Tag(
+			el.TagProps{Size: "is-small", Color: "is-primary"},
+			el.Items{el.Html("Small")},
+		),
+		el.Tag(
+			el.TagProps{Color: "is-primary"},
+			el.Items{el.Html("Normal")},
+		),
+		el.Tag(
+			el.TagProps{Size: "is-medium", Color: "is-primary"},
+			el.Items{el.Html("Medium")},
+		),
+		el.Tag(
+			el.TagProps{Size: "is-large", Color: "is-primary"},
+			el.Items{el.Html("Large")},
+		),
+		el.Tag(
+			el.TagProps{Color: "is-link", Rounded: true},
+			el.Items{el.Html("Rounded")},
+		),
+	},
+)`
+}
+
+// TagExample3 demonstrates tag groups with addons.
+// HasAddons connects tags seamlessly for label-value pairs.
+templ TagExample3() {
+	@el.Tags(
+		el.TagsProps{HasAddons: true},
+		el.Items{
+			el.Tag(
+				el.TagProps{Color: "is-dark"},
+				el.Items{el.Html("npm")},
+			),
+			el.Tag(
+				el.TagProps{Color: "is-success"},
+				el.Items{el.Html("v1.0.0")},
+			),
+		},
+	)
+}
+
+func TagExample3Code() string {
+	return `@el.Tags(
+	el.TagsProps{HasAddons: true},
+	el.Items{
+		el.Tag(
+			el.TagProps{Color: "is-dark"},
+			el.Items{el.Html("npm")},
+		),
+		el.Tag(
+			el.TagProps{Color: "is-success"},
+			el.Items{el.Html("v1.0.0")},
+		),
+	},
+)`
+}
+
+// TagExamples showcases Tag component variations.
+// Demonstrates colors, sizes, rounded style, and tag groups.
+templ TagExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Tag")})
+	
+	{{
+		examples := []ComponentItem{
+			{ID: "tag-colors", Code: TagExample1Code(), Component: TagExample1()},
+			{ID: "tag-sizes-rounded", Code: TagExample2Code(), Component: TagExample2()},
+			{ID: "tag-groups", Code: TagExample3Code(), Component: TagExample3()},
+		}
+	}}
+	
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}

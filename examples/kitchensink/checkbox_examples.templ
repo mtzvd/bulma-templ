@@ -1,0 +1,87 @@
+// CheckboxExamples — comprehensive demonstration of fo.Checkbox component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Checkbox component from the form package.
+// Checkbox provides binary selection with label text.
+//
+// Checkbox props:
+// - Disabled: Boolean state
+// - Attr: templ.Attributes for name, value, checked, etc
+//
+// Content is the label text that appears after checkbox.
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+	fo "github.com/mtzvd/bulma-templ/form"
+)
+
+// CheckboxExamples showcases Checkbox component states.
+templ CheckboxExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Checkbox")})
+	
+	// ================================================
+	// STANDARD CHECKBOXES
+	// ================================================
+	// Basic checkbox examples.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Checkbox(
+						fo.CheckboxProps{},
+						el.Items{el.Html("I agree to the terms and conditions")},
+					),
+				},
+			),
+		},
+	)
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Checkbox(
+						fo.CheckboxProps{},
+						el.Items{el.Html("Subscribe to newsletter")},
+					),
+				},
+			),
+		},
+	)
+	
+	// ================================================
+	// DISABLED CHECKBOX
+	// ================================================
+	// Checkbox in disabled state.
+	
+	@fo.Field(
+		fo.FieldProps{},
+		el.Items{
+			fo.Control(
+				fo.ControlProps{},
+				el.Items{
+					fo.Checkbox(
+						fo.CheckboxProps{Disabled: true},
+						el.Items{el.Html("Disabled checkbox")},
+					),
+				},
+			),
+		},
+	)
+	
+	// Best practices:
+	// - Use for independent binary choices
+	// - Provide clear label text
+	// - Group related checkboxes in Field
+	// - Use Attr for name/value attributes
+	// - Don't use for mutually exclusive options (use Radio)
+	// - Make clickable label area large
+	// - Show validation errors if required
+}

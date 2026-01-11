@@ -11,16 +11,14 @@ import templruntime "github.com/a-h/templ/runtime"
 // Block — Bulma block element.
 // Atomic level: ATOM
 //
-// Block defines simple spacing container that adds
+// Block defines a simple spacing container that adds
 // vertical margin between elements using the
 // Bulma `.block` class.
 //
 // This component does not manage layout or content
 // semantics and serves as a low-level UI primitive.
-
 type BlockProps struct {
-	// Attr contains additional HTML attributes
-	// for the `.block` container.
+	// Attr contains additional HTML attributes for the `.block` container.
 	Attr templ.Attributes
 }
 

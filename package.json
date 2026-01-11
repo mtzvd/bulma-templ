@@ -1,0 +1,114 @@
+{
+  "name": "bulma-templ",
+  "version": "0.1.0",
+  "description": "Type-safe Bulma CSS components for Go + templ. Server-side rendering with zero JavaScript.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mtzvd/bulma-templ"
+  },
+  "keywords": [
+    "go",
+    "golang",
+    "templ",
+    "bulma",
+    "bulma-css",
+    "ui-components",
+    "design-system",
+    "atomic-design",
+    "ssr",
+    "server-side-rendering",
+    "type-safe",
+    "html-templates",
+    "css-framework"
+  ],
+  "author": "mtzvd",
+  "license": "MIT",
+  "llmMetadata": {
+    "projectName": "Bulma-Templ",
+    "projectPhilosophy": "1:1 mapping of Bulma CSS to type-safe Go components. Zero abstractions, zero magic, zero client-side logic.",
+    "language": "go",
+    "templateEngine": "templ",
+    "cssFramework": "bulma",
+    "cssVersion": "1.0.4",
+    "architecturalPattern": "atomic-design",
+    "atomicLevels": ["ATOM", "MOLECULE", "ORGANISM"],
+    "compositionModel": {
+      "type": "Items",
+      "description": "Single composition primitive. Items[] accepts templ.Component and raw HTML strings.",
+      "alternatives": "NONE - no slots, no named children, no positional parameters"
+    },
+    "componentPattern": {
+      "structure": "Props struct + Items parameter",
+      "propsType": "value types only (no pointers)",
+      "cssModifiers": "plain strings (Color, Size, etc.)",
+      "attributes": "templ.Attributes for pass-through HTML attributes",
+      "rendering": "BaseElement wrapper or direct HTML"
+    },
+    "stateManagement": "none",
+    "dataFlow": "caller-controlled",
+    "renderingStrategy": "ssr-first",
+    "clientSideLogic": "none",
+    "htmlPhilosophy": "Direct HTML is idiomatic and encouraged. Not everything needs to be a component.",
+    "bulmaCompliance": {
+      "mapping": "1:1",
+      "deviation": "Any deviation from Bulma docs is a bug",
+      "helpers": "Plain strings, never wrapped or enumerated",
+      "modifiers": "Passed as strings, never constants or enums"
+    },
+    "prohibitions": [
+      "NO abstractions beyond Bulma",
+      "NO DSLs or helper builders",
+      "NO enums for CSS classes",
+      "NO pointer types in Props",
+      "NO slots or named children",
+      "NO computation or validation in components",
+      "NO event handlers or interactivity",
+      "NO state management",
+      "NO API redesigns or 'improvements'"
+    ],
+    "fileStructure": {
+      "components": [
+        "elements/",
+        "components/",
+        "form/",
+        "layout/",
+        "columns/",
+        "grid/"
+      ],
+      "examples": "examples/kitchensink/ (authoritative usage examples)",
+      "docs": "docs/ (CANONICAL_PROJECT_CONTEXT.md, COMMENT_STYLE.md, CONTRIBUTING.md, LLM_INSTRUCTIONS.md)"
+    },
+    "namingConventions": {
+      "components": "PascalCase (Button, Navbar, Progress)",
+      "props": "ComponentNameProps struct",
+      "files": "snake_case.templ",
+      "packages": "lowercase (elements, components, form, layout)"
+    },
+    "commentStyle": {
+      "format": "// only (never /* */)",
+      "componentDoc": "// ComponentName — Brief description.",
+      "atomicLevel": "Always specify: // Atomic level: ATOM/MOLECULE/ORGANISM",
+      "fieldsAlignment": "Aligned comments with trailing periods"
+    },
+    "testingPattern": "render_test.go for component output validation",
+    "sentinelValues": {
+      "pattern": "Package-level constants for special values",
+      "example": "ProgressUnset = -1"
+    },
+    "authoritySource": "examples/kitchensink/ demonstrates correct usage patterns",
+    "llmGuidance": {
+      "primaryRule": "When in doubt, DO NOTHING",
+      "clarification": "Ask instead of inferring. If clarification not possible, do nothing.",
+      "refactoring": "NEVER refactor without explicit request",
+      "improvements": "NEVER suggest 'better' patterns from other ecosystems",
+      "typeSystem": "Strings are the choice, not a limitation. Do not propose type-safe alternatives."
+    },
+    "integrationPoints": {
+      "bulmaCSS": "CDN link required in HTML head",
+      "httpServer": "Standard Go net/http integration",
+      "templGeneration": "templ generate before build",
+      "testing": "go test ./..."
+    },
+    "notAFramework": "Bulma-Templ is a component library, not a framework. It does not enforce routing, state, or app structure."
+  }
+}

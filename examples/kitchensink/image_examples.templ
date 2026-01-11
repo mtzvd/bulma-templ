@@ -1,0 +1,162 @@
+// ImageExamples — comprehensive demonstration of el.Image component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Image component from the elements package.
+// Image is a responsive image container with fixed aspect ratio support.
+// It prevents content jumping during image load and maintains consistent sizing.
+//
+// Reference: https://bulma.io/documentation/elements/image/
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// ImageExample1 demonstrates fixed square images.
+// Image component with fixed dimensions prevents content jumping.
+templ ImageExample1() {
+	@el.Image(
+		el.ImageProps{
+			Size: "is-128x128",
+			Src:  "https://bulma.io/assets/images/placeholders/128x128.png",
+			Alt:  "128x128",
+		},
+	)
+	@el.Image(
+		el.ImageProps{
+			Size: "is-64x64",
+			Src:  "https://bulma.io/assets/images/placeholders/128x128.png",
+			Alt:  "64x64",
+		},
+	)
+	@el.Image(
+		el.ImageProps{
+			Size: "is-32x32",
+			Src:  "https://bulma.io/assets/images/placeholders/128x128.png",
+			Alt:  "32x32",
+		},
+	)
+}
+
+func ImageExample1Code() string {
+	return `@el.Image(
+	el.ImageProps{
+		Size: "is-128x128",
+		Src:  "https://bulma.io/assets/images/placeholders/128x128.png",
+		Alt:  "128x128",
+	},
+)
+@el.Image(
+	el.ImageProps{
+		Size: "is-64x64",
+		Src:  "https://bulma.io/assets/images/placeholders/128x128.png",
+		Alt:  "64x64",
+	},
+)
+@el.Image(
+	el.ImageProps{
+		Size: "is-32x32",
+		Src:  "https://bulma.io/assets/images/placeholders/128x128.png",
+		Alt:  "32x32",
+	},
+)`
+}
+
+// ImageExample2 demonstrates rounded images.
+// Rounded modifier creates circular images for avatars.
+templ ImageExample2() {
+	@el.Image(
+		el.ImageProps{
+			Size:    "is-128x128",
+			Src:     "https://bulma.io/assets/images/placeholders/128x128.png",
+			Alt:     "Rounded image",
+			Rounded: true,
+		},
+	)
+}
+
+func ImageExample2Code() string {
+	return `@el.Image(
+	el.ImageProps{
+		Size:    "is-128x128",
+		Src:     "https://bulma.io/assets/images/placeholders/128x128.png",
+		Alt:     "Rounded image",
+		Rounded: true,
+	},
+)`
+}
+
+// ImageExample3 demonstrates responsive images with aspect ratios.
+// Maintains 16:9 and 4:3 ratios regardless of container size.
+templ ImageExample3() {
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 640px;"}},
+		el.Items{
+			el.Image(
+				el.ImageProps{
+					Size: "is-16by9",
+					Src:  "https://bulma.io/assets/images/placeholders/1280x960.png",
+					Alt:  "16:9 ratio",
+				},
+			),
+		},
+	)
+	@el.Block(
+		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 640px;"}},
+		el.Items{
+			el.Image(
+				el.ImageProps{
+					Size: "is-4by3",
+					Src:  "https://bulma.io/assets/images/placeholders/1280x960.png",
+					Alt:  "4:3 ratio",
+				},
+			),
+		},
+	)
+}
+
+func ImageExample3Code() string {
+	return `@el.Block(
+	el.BlockProps{Attr: templ.Attributes{"style": "max-width: 640px;"}},
+	el.Items{
+		el.Image(
+			el.ImageProps{
+				Size: "is-16by9",
+				Src:  "https://bulma.io/assets/images/placeholders/1280x960.png",
+				Alt:  "16:9 ratio",
+			},
+		),
+	},
+)
+@el.Block(
+	el.BlockProps{Attr: templ.Attributes{"style": "max-width: 640px;"}},
+	el.Items{
+		el.Image(
+			el.ImageProps{
+				Size: "is-4by3",
+				Src:  "https://bulma.io/assets/images/placeholders/1280x960.png",
+				Alt:  "4:3 ratio",
+			},
+		),
+	},
+)`
+}
+
+// ImageExamples showcases Image component variations.
+templ ImageExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Image")})
+	
+	{{
+		examples := []ComponentItem{
+			{ID: "image-fixed", Code: ImageExample1Code(), Component: ImageExample1()},
+			{ID: "image-rounded", Code: ImageExample2Code(), Component: ImageExample2()},
+			{ID: "image-ratios", Code: ImageExample3Code(), Component: ImageExample3()},
+		}
+	}}
+	
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}
+

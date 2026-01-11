@@ -1,0 +1,82 @@
+// SkeletonExamples — comprehensive demonstration of el.SkeletonBlock and el.SkeletonLines components.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates the Skeleton components from the elements package.
+// Skeleton provides loading placeholders that indicate content is being loaded.
+// Modern UX pattern for reducing perceived loading time.
+//
+// Skeleton components:
+// - SkeletonBlock: Single animated placeholder block
+// - SkeletonLines: Multiple animated placeholder lines
+//
+// Each example shows different skeleton usage patterns.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes in el.Html() - only plain text
+// - Props-based configuration via el.SkeletonBlockProps/el.SkeletonLinesProps
+// - Skeleton wraps actual content which determines placeholder shape
+
+package kitchensink
+
+import el "github.com/mtzvd/bulma-templ/elements"
+
+// SkeletonExample1 demonstrates skeleton block for large content areas.
+// SkeletonBlock creates animated placeholder for images or cards.
+templ SkeletonExample1() {
+	@el.SkeletonBlock(
+		el.SkeletonBlockProps{},
+		el.Items{
+			el.Html(`<div style="height: 200px; width: 100%;"></div>`),
+		},
+	)
+}
+
+func SkeletonExample1Code() string {
+	return `@el.SkeletonBlock(
+	el.SkeletonBlockProps{},
+	el.Items{
+		el.Html(\` + "`" + `<div style="height: 200px; width: 100%;"></div>\` + "`" + `),
+	},
+)`
+}
+
+// SkeletonExample2 demonstrates skeleton lines for text content.
+// SkeletonLines creates multiple animated line placeholders for paragraphs.
+templ SkeletonExample2() {
+	@el.SkeletonLines(
+		el.SkeletonLinesProps{},
+		el.Items{
+			el.Html("<div></div>"),
+			el.Html("<div></div>"),
+			el.Html("<div></div>"),
+		},
+	)
+}
+
+func SkeletonExample2Code() string {
+	return `@el.SkeletonLines(
+	el.SkeletonLinesProps{},
+	el.Items{
+		el.Html("<div></div>"),
+		el.Html("<div></div>"),
+		el.Html("<div></div>"),
+	},
+)`
+}
+
+// SkeletonExamples showcases Skeleton component variations.
+// Demonstrates block and line skeleton loading states.
+templ SkeletonExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Skeleton")})
+	
+	{{
+		examples := []ComponentItem{
+			{ID: "skeleton-block", Code: SkeletonExample1Code(), Component: SkeletonExample1()},
+			{ID: "skeleton-lines", Code: SkeletonExample2Code(), Component: SkeletonExample2()},
+		}
+	}}
+	
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}
+

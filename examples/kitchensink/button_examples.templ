@@ -1,0 +1,223 @@
+// ButtonExamples — comprehensive demonstration of el.Button component.
+// Atomic level: EXAMPLE SHOWCASE
+//
+// This file demonstrates all major variations of the Button component from the elements package.
+// Button is one of the most versatile UI elements in Bulma, supporting:
+// - Color variations (7 semantic colors + default)
+// - Size variations (small, normal, medium, large)
+// - State modifiers (loading, disabled, active)
+// - Layout options (full-width)
+//
+// Each example is grouped by property category with explanatory comments.
+// The examples follow Bulma-Templ canonical patterns:
+// - No Bulma classes in el.Html() - only plain text
+// - Structural wrapper (<div class="buttons">) for button groups
+// - Props-based configuration via el.ButtonProps
+// - Semantic HTML wrappers for titles (TitleH3)
+
+package kitchensink
+
+import (
+	el "github.com/mtzvd/bulma-templ/elements"
+)
+
+// ButtonExample1 demonstrates button color variations.
+// Bulma provides 7 semantic color modifiers for buttons.
+templ ButtonExample1() {
+	@el.Buttons(
+		el.ButtonsProps{},
+		el.Items{
+			el.Button(
+				el.ButtonProps{},
+				el.Items{el.Html("Default")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-primary"},
+				el.Items{el.Html("Primary")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-link"},
+				el.Items{el.Html("Link")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-info"},
+				el.Items{el.Html("Info")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-success"},
+				el.Items{el.Html("Success")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-warning"},
+				el.Items{el.Html("Warning")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-danger"},
+				el.Items{el.Html("Danger")},
+			),
+		},
+	)
+}
+
+func ButtonExample1Code() string {
+	return `@el.Buttons(
+	el.ButtonsProps{},
+	el.Items{
+		el.Button(
+			el.ButtonProps{},
+			el.Items{el.Html("Default")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-primary"},
+			el.Items{el.Html("Primary")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-link"},
+			el.Items{el.Html("Link")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-info"},
+			el.Items{el.Html("Info")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-success"},
+			el.Items{el.Html("Success")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-warning"},
+			el.Items{el.Html("Warning")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-danger"},
+			el.Items{el.Html("Danger")},
+		),
+	},
+)`
+}
+
+// ButtonExample2 demonstrates button size variations.
+// Bulma provides 4 size modifiers: small, normal, medium, large.
+templ ButtonExample2() {
+	@el.Buttons(
+		el.ButtonsProps{},
+		el.Items{
+			el.Button(
+				el.ButtonProps{Size: "is-small", Color: "is-primary"},
+				el.Items{el.Html("Small")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-primary"},
+				el.Items{el.Html("Normal")},
+			),
+			el.Button(
+				el.ButtonProps{Size: "is-medium", Color: "is-primary"},
+				el.Items{el.Html("Medium")},
+			),
+			el.Button(
+				el.ButtonProps{Size: "is-large", Color: "is-primary"},
+				el.Items{el.Html("Large")},
+			),
+		},
+	)
+}
+
+func ButtonExample2Code() string {
+	return `@el.Buttons(
+	el.ButtonsProps{},
+	el.Items{
+		el.Button(
+			el.ButtonProps{Size: "is-small", Color: "is-primary"},
+			el.Items{el.Html("Small")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-primary"},
+			el.Items{el.Html("Normal")},
+		),
+		el.Button(
+			el.ButtonProps{Size: "is-medium", Color: "is-primary"},
+			el.Items{el.Html("Medium")},
+		),
+		el.Button(
+			el.ButtonProps{Size: "is-large", Color: "is-primary"},
+			el.Items{el.Html("Large")},
+		),
+	},
+)`
+}
+
+// ButtonExample3 demonstrates button state variations.
+// States include loading, disabled, and active.
+templ ButtonExample3() {
+	@el.Buttons(
+		el.ButtonsProps{},
+		el.Items{
+			el.Button(
+				el.ButtonProps{Color: "is-primary", State: "is-loading"},
+				el.Items{el.Html("Loading")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-primary", Disabled: true},
+				el.Items{el.Html("Disabled")},
+			),
+			el.Button(
+				el.ButtonProps{Color: "is-primary", State: "is-active"},
+				el.Items{el.Html("Active")},
+			),
+		},
+	)
+}
+
+func ButtonExample3Code() string {
+	return `@el.Buttons(
+	el.ButtonsProps{},
+	el.Items{
+		el.Button(
+			el.ButtonProps{Color: "is-primary", State: "is-loading"},
+			el.Items{el.Html("Loading")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-primary", Disabled: true},
+			el.Items{el.Html("Disabled")},
+		),
+		el.Button(
+			el.ButtonProps{Color: "is-primary", State: "is-active"},
+			el.Items{el.Html("Active")},
+		),
+	},
+)`
+}
+
+// ButtonExample4 demonstrates full width button layout.
+// FullWidth modifier makes button expand to 100% of parent container width.
+templ ButtonExample4() {
+	@el.Button(
+		el.ButtonProps{Color: "is-primary", FullWidth: true},
+		el.Items{el.Html("Full Width Button")},
+	)
+}
+
+func ButtonExample4Code() string {
+	return `@el.Button(
+	el.ButtonProps{Color: "is-primary", FullWidth: true},
+	el.Items{el.Html("Full Width Button")},
+)`
+}
+
+// ButtonExamples showcases all Button component variations.
+// Demonstrates color, size, state, and layout properties.
+templ ButtonExamples() {
+	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Button")})
+	
+	{{
+		examples := []ComponentItem{
+			{ID: "button-colors", Code: ButtonExample1Code(), Component: ButtonExample1()},
+			{ID: "button-sizes", Code: ButtonExample2Code(), Component: ButtonExample2()},
+			{ID: "button-states", Code: ButtonExample3Code(), Component: ButtonExample3()},
+			{ID: "button-fullwidth", Code: ButtonExample4Code(), Component: ButtonExample4()},
+		}
+	}}
+	
+	for _, example := range examples {
+		@ExampleWithCode(example.ID, example.Code, example.Component)
+	}
+}
