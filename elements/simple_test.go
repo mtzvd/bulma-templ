@@ -137,3 +137,48 @@ func TestSmokeButtons_Rendering(t *testing.T) {
 		t.Fatalf("expected 'buttons' class, got: %s", html)
 	}
 }
+
+func TestSmokeSkeletonLines_Rendering(t *testing.T) {
+	html := render(t,
+		SkeletonLines(SkeletonLinesProps{}, Items{
+			Html("Line 1"),
+			Html("Line 2"),
+			Html("Line 3"),
+		}),
+	)
+	if !strings.Contains(html, `skeleton-lines`) {
+		t.Fatalf("expected 'skeleton-lines' class, got: %s", html)
+	}
+}
+
+func TestSmokeTableContainer_Rendering(t *testing.T) {
+	html := render(t,
+		TableContainer(TableContainerProps{}, Items{
+			Table(TableProps{}, Items{Html("Table content")}),
+		}),
+	)
+	if !strings.Contains(html, `table-container`) {
+		t.Fatalf("expected 'table-container' class, got: %s", html)
+	}
+}
+
+func TestSmokeTags_Rendering(t *testing.T) {
+	html := render(t,
+		Tags(TagsProps{}, Items{
+			Tag(TagProps{}, Items{Html("Tag 1")}),
+			Tag(TagProps{}, Items{Html("Tag 2")}),
+		}),
+	)
+	if !strings.Contains(html, `tags`) {
+		t.Fatalf("expected 'tags' class, got: %s", html)
+	}
+}
+
+func TestSmokeSubtitle_Rendering(t *testing.T) {
+	html := render(t,
+		Subtitle(SubtitleProps{}, Items{Html("Subtitle text")}),
+	)
+	if !strings.Contains(html, `subtitle`) {
+		t.Fatalf("expected 'subtitle' class, got: %s", html)
+	}
+}
