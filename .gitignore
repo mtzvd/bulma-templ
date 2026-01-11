@@ -79,3 +79,7 @@ testdata/
 claude_*.log
 
 # End of .gitignore
+
+# Test coverage files
+*_coverage.out
+coverage.out

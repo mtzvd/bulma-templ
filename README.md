@@ -252,7 +252,7 @@ task test    # Run tests
 
 ### Testing
 
-The project has **154 tests** covering:
+The project has **183 tests** with **80.9% coverage** for core packages, covering:
 
 - **Infrastructure primitives** (Wrap, BaseElement, Items)
 - **Components with conditional logic** (Progress, Navbar, Modal, Dropdown, Form inputs)

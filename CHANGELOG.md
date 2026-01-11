@@ -1,35 +1,36 @@
-# Changelog
+<a name="unreleased"></a>
+## [Unreleased]
 
-All notable changes to this project will be documented in this file.
+### Chore
+- Prepare v1.0.1 release ([#1](https://github.com/mtzvd/bulma-templ/issues/1))
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### Feat
+- Add CHANGELOG automation with git-chglog
 
-## [1.0.0] - 2026-01-11
 
-### Added
+<a name="v1.0.0"></a>
+## v1.0.0 - 2026-01-11
+### Docs
+- merge README for v1.0 (concise but complete)
+- Update README and add DESIGN_SYSTEM documentation for clarity and consistency
 
-- **Elements**: Button, Box, Block, Content, Delete, Icon, Image, Notification, Progress, Skeleton, Table, Tag, Title
-- **Components**: Breadcrumb, Card, Dropdown, Menu, Message, Modal, Navbar, Pagination, Panel, Tabs
-- **Form**: Checkbox, Radio, Input, Textarea, Select, File, Field, Control, Label, Help
-- **Layout**: Container, Footer, Hero, Level, Media, Section
-- **Columns**: Responsive column system
-- **Grid**: CSS Grid layout
-- Type-safe props with IDE autocomplete
-- Zero internal state — pure rendering functions
-- SSR-first approach — no JavaScript required
-- Explicit composition with Items pattern
-- Escape hatch via Attr for custom attributes and Alpine.js
-- Comprehensive test coverage
-- Examples: kitchensink and starter projects
-- Full documentation in docs/ folder
+### Feat
+- complete CI/CD setup and project restructuring
+- Add unit tests for pagination and button components; enhance documentation for clarity
+- Add starter page example for Bulma-Templ design system
+- Refactor layout components to use new elements package for rendering
+- **examples:** add code display to kitchen sink examples
 
-### Documentation
+### Refactor
+- update comments to use "defines" for consistency across components
 
-- CANONICAL_PROJECT_CONTEXT.md — Project architecture and principles
-- DESIGN_SYSTEM.md — Design system guidelines
-- COMMENT_STYLE.md — Code commenting standards
-- TEST_STRATEGY.json — Testing approach and conventions
-- LLM_INSTRUCTIONS.md — AI assistant guidelines
+### BREAKING CHANGE
 
-[1.0.0]: https://github.com/mtzvd/bulma-templ/releases/tag/v1.0.0
+Generated *_templ.go files are no longer tracked in git.
+Users must run 'templ generate' after clone/pull.
+
+This brings the project to production-ready state with comprehensive
+CI/CD automation, multi-platform support, and clean git history.
+
+
+[Unreleased]: https://github.com/mtzvd/bulma-templ/compare/v1.0.0...HEAD
