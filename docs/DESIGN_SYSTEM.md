@@ -508,7 +508,7 @@ This document is part of a larger documentation set:
 - **[LLM_INSTRUCTIONS.md](LLM_INSTRUCTIONS.md)** — Primary guidance for LLMs working with the codebase
 - **[COMMENT_STYLE.md](COMMENT_STYLE.md)** — Comment formatting rules and standards
 - **[CANONICAL_PROJECT_CONTEXT.md](CANONICAL_PROJECT_CONTEXT.md)** — Project structure and patterns
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** — Contribution guidelines and philosophy
+- **[CONTRIBUTING.md](../CONTRIBUTING.md)** — Contribution guidelines and philosophy
 
 All documentation files are normative and MUST be followed.
 

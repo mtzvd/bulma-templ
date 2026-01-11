@@ -67,9 +67,14 @@ testdata/
 
 # Keep templates (*.templ) tracked in repo — do not ignore them.
 
+# Templ generated files
+*_templ.go
+**/*_templ.go
+
+# Claude Code temporary files
+.claude/
+*.claude
+.claude_*
+claude_*.log
 
 # End of .gitignore
-
-# Ignore generated/temporary Go template helpers
-#*_templ.go
-#**/*_templ.go

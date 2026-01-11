@@ -452,10 +452,11 @@ bulma-templ/
 │
 ├── docs/              # Documentation
 │   ├── CANONICAL_PROJECT_CONTEXT.md  # This file
-│   ├── CONTRIBUTING.md
 │   ├── COMMENT_STYLE.md
 │   ├── DESIGN_SYSTEM.md
 │   └── LLM_INSTRUCTIONS.md
+│
+├── CONTRIBUTING.md    # Contribution guidelines
 │
 ├── examples/          # Usage examples
 │   ├── kitchensink/   # Comprehensive demo
@@ -859,7 +860,7 @@ Bulma-Templ is a **conservative, predictable, transparent** implementation of Bu
 - Developers preferring magic over explicitness
 
 **Related documentation:**
-- [CONTRIBUTING.md](CONTRIBUTING.md) — How to contribute
+- [CONTRIBUTING.md](../CONTRIBUTING.md) — How to contribute
 - [COMMENT_STYLE.md](COMMENT_STYLE.md) — Code documentation style
 - [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) — Detailed design decisions
 - [LLM_INSTRUCTIONS.md](LLM_INSTRUCTIONS.md) — Guidelines for AI assistants

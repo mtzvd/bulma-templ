@@ -213,7 +213,7 @@ templ Component(props Props, content Items) {
 
 - [CANONICAL_PROJECT_CONTEXT.md](CANONICAL_PROJECT_CONTEXT.md) - Project structure and patterns
 - [COMMENT_STYLE.md](COMMENT_STYLE.md) - Comment formatting rules
-- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+- [CONTRIBUTING.md](../CONTRIBUTING.md) - Contribution guidelines
 - [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) - Design patterns and atomic structure
 
 ## Example: Creating a New Component

@@ -1,0 +1,68 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  build-kitchensink:
+    name: Build Kitchen Sink
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.25.x'
+
+    - name: Install templ
+      run: go install github.com/a-h/templ/cmd/templ@latest
+
+    - name: Generate templ files
+      run: templ generate
+
+    - name: Download dependencies
+      run: go mod download
+
+    - name: Build kitchen sink
+      run: go build -v ./cmd/dev
+
+    - name: Verify examples compile
+      run: |
+        echo "Verifying examples/kitchensink compiles..."
+        go build -v ./examples/kitchensink/...
+        echo "✓ Kitchen Sink compiles successfully"
+
+  build-matrix:
+    name: Build on multiple OS
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        go-version: ['1.25.x']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Install templ
+      run: go install github.com/a-h/templ/cmd/templ@latest
+
+    - name: Generate templ files
+      run: templ generate
+
+    - name: Build
+      run: go build -v ./...

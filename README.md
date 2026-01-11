@@ -1,8 +1,9 @@
 # Bulma-Templ
 
 [![Go Version](https://img.shields.io/badge/Go-1.25%2B-00ADD8?style=flat&logo=go)](https://go.dev)
-[![Tests](https://github.com/mtzvd/bulma-templ/workflows/Tests/badge.svg)](https://github.com/mtzvd/bulma-templ/actions?query=workflow%3ATests)
-[![Lint](https://github.com/mtzvd/bulma-templ/workflows/Lint/badge.svg)](https://github.com/mtzvd/bulma-templ/actions?query=workflow%3ALint)
+[![Tests](https://github.com/mtzvd/bulma-templ/actions/workflows/test.yml/badge.svg)](https://github.com/mtzvd/bulma-templ/actions/workflows/test.yml)
+[![Lint](https://github.com/mtzvd/bulma-templ/actions/workflows/lint.yml/badge.svg)](https://github.com/mtzvd/bulma-templ/actions/workflows/lint.yml)
+[![Build](https://github.com/mtzvd/bulma-templ/actions/workflows/build.yml/badge.svg)](https://github.com/mtzvd/bulma-templ/actions/workflows/build.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Bulma](https://img.shields.io/badge/Bulma-1.0-00D1B2?style=flat&logo=bulma)](https://bulma.io)
 [![Templ](https://img.shields.io/badge/Templ-latest-7C3AED?style=flat)](https://templ.guide)
@@ -34,6 +35,16 @@ Provides 1:1 mappings of [Bulma CSS](https://bulma.io) components with explicit 
 
 ```bash
 go get github.com/mtzvd/bulma-templ
+```
+
+**Important:** After installation, you must generate the templ files:
+
+```bash
+# Install templ CLI if not already installed
+go install github.com/a-h/templ/cmd/templ@latest
+
+# Generate templ files
+templ generate
 ```
 
 ### Requirements
@@ -223,7 +234,7 @@ type ButtonProps struct {
 
 - [CANONICAL_PROJECT_CONTEXT.md](docs/CANONICAL_PROJECT_CONTEXT.md) — Architecture and design decisions
 - [DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) — Component patterns and usage guidelines
-- [CONTRIBUTING.md](docs/CONTRIBUTING.md) — How to contribute
+- [CONTRIBUTING.md](CONTRIBUTING.md) — How to contribute
 - [COMMENT_STYLE.md](docs/COMMENT_STYLE.md) — Code documentation standards
 - [LLM_INSTRUCTIONS.md](docs/LLM_INSTRUCTIONS.md) — Guidelines for LLM-assisted development
 
@@ -231,8 +242,10 @@ type ButtonProps struct {
 
 ### Quick Start
 
+**Note:** `*_templ.go` files are generated and not tracked in git. Always run `templ generate` or `task templ` after cloning or pulling changes.
+
 ```bash
-task templ   # Generate Templ files
+task templ   # Generate Templ files (required after clone/pull)
 task run     # Run dev server
 task test    # Run tests
 ```
@@ -261,11 +274,13 @@ go test ./form -v
 ### CI/CD
 
 All pull requests automatically run:
-- ✅ Full test suite with race detection
-- ✅ `templ generate` verification
-- ✅ Kitchen Sink compilation check
-- ✅ `go vet` and `gofmt` checks
-- ✅ golangci-lint analysis
+
+- ✅ Full test suite with race detection and coverage reporting
+- ✅ `templ generate` verification (ensures generated files build correctly)
+- ✅ Kitchen Sink and example compilation checks
+- ✅ Multi-OS build verification (Linux, Windows, macOS)
+- ✅ `go vet` and `gofmt` formatting checks
+- ✅ golangci-lint static analysis
 
 ## Project Status
 
@@ -275,7 +290,7 @@ All core Bulma components are implemented and stable. Future work focuses on doc
 
 ## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](docs/CONTRIBUTING.md) before submitting PRs.
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting PRs.
 
 **What's welcome:**
 
