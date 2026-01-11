@@ -1,0 +1,17 @@
+#!/bin/sh
+# Pre-commit hook: format code before commit
+
+echo "→ Running formatters..."
+
+# Format Go code
+echo "  • gofmt"
+go fmt ./...
+
+# Format templ files
+echo "  • templ fmt"
+templ fmt .
+
+# Re-add formatted files
+git add -u
+
+echo "✓ Formatting complete"

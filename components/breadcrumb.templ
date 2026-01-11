@@ -57,7 +57,6 @@ templ Breadcrumb(props BreadcrumbProps, content elements.Items) {
 //
 // This component does not validate children and allows
 // arbitrary ordering and composition of breadcrumb items.
-//
 type BreadcrumbListProps struct {
 	// Attr contains additional HTML attributes
 	// for the `<ul>` element.
@@ -84,7 +83,6 @@ templ BreadcrumbList(props BreadcrumbListProps, content elements.Items) {
 //
 // Active state MUST be provided explicitly by the caller.
 // This component does not infer current page.
-//
 type BreadcrumbItemProps struct {
 	// Active applies the `is-active` modifier.
 	Active bool
@@ -123,7 +121,6 @@ templ BreadcrumbItem(props BreadcrumbItemProps, content elements.Items) {
 //
 // Accessibility attributes (aria-current) MUST be provided
 // explicitly via props.
-//
 type BreadcrumbLinkProps struct {
 	// Href defines the link URL.
 	// When empty, no `href` attribute is rendered.
@@ -172,7 +169,6 @@ templ BreadcrumbLink(props BreadcrumbLinkProps, content elements.Items) {
 //
 // This component is a thin wrapper around the Icon element
 // and exists solely for semantic clarity.
-//
 type BreadcrumbIconProps struct {
 	Icon elements.IconProps
 }

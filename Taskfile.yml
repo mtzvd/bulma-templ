@@ -48,9 +48,34 @@ tasks:
       - echo "→ Preview unreleased changes"
       - git-chglog --next-tag {{.CLI_ARGS}} --output /dev/stdout
 
-  release:
-    desc: Create a new release (usage task release -- v1.1.0)
+  format:
+    desc: Format all code (Go and templ)
     cmds:
+      - echo "→ Formatting Go code"
+      - go fmt ./...
+      - echo "→ Formatting templ files"
+      - templ fmt .
+      - echo "✓ Formatting complete"
+
+  lint:
+    desc: Run linters
+    cmds:
+      - echo "→ Running golangci-lint"
+      - golangci-lint run
+      - echo "✓ Linting complete"
+
+  setup-hooks:
+    desc: Install git hooks
+    cmds:
+      - echo "→ Setting up git hooks"
+      - git config core.hooksPath .githooks
+      - echo "✓ Git hooks configured"
+
+  release:
+    desc: Create a new release (usage - task release -- v1.1.0)
+    cmds:
+      - echo "→ Formatting code"
+      - task format
       - echo "→ Running tests"
       - task test
       - echo "→ Building project"
@@ -59,10 +84,10 @@ tasks:
       - git-chglog -o CHANGELOG.md --next-tag {{.CLI_ARGS}}
       - echo "→ Committing CHANGELOG"
       - git add CHANGELOG.md
-      - git commit -m "chore: Update CHANGELOG for {{.CLI_ARGS}}"
+      - git commit -m "chore - Update CHANGELOG for {{.CLI_ARGS}}"
       - echo "→ Creating tag {{.CLI_ARGS}}"
       - git tag {{.CLI_ARGS}}
       - echo "→ Pushing changes and tag"
       - git push origin main
       - git push origin {{.CLI_ARGS}}
-      - echo "✅ Release {{.CLI_ARGS}} created! Now run: gh release create {{.CLI_ARGS}}"
+      - echo "✅ Release {{.CLI_ARGS}} created! Now run - gh release create {{.CLI_ARGS}}"
