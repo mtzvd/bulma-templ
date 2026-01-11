@@ -1,13 +1,12 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 templ NavbarExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Navbar")})
-	
 	@ExampleSubheading("Basic navbar")
 	@co.Navbar(
 		co.NavbarProps{},
@@ -59,7 +58,6 @@ templ NavbarExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("With dropdown (hoverable)")
 	@co.Navbar(
 		co.NavbarProps{},
@@ -105,7 +103,6 @@ templ NavbarExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Transparent navbar")
 	@co.Navbar(
 		co.NavbarProps{Transparent: true},
@@ -145,7 +142,6 @@ templ NavbarExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Primary color")
 	@co.Navbar(
 		co.NavbarProps{Color: "is-primary"},
@@ -183,7 +179,6 @@ templ NavbarExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Info color")
 	@co.Navbar(
 		co.NavbarProps{Color: "is-info"},
@@ -217,7 +212,6 @@ templ NavbarExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Dark color")
 	@co.Navbar(
 		co.NavbarProps{Color: "is-dark"},

@@ -22,9 +22,9 @@ type NotificationProps struct {
 templ Notification(props NotificationProps, content Items) {
 	@BaseElement(
 		BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"notification", props.Color},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)

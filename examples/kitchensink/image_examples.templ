@@ -9,9 +9,7 @@
 
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 // ImageExample1 demonstrates fixed square images.
 // Image component with fixed dimensions prevents content jumping.
@@ -146,7 +144,6 @@ func ImageExample3Code() string {
 // ImageExamples showcases Image component variations.
 templ ImageExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Image")})
-	
 	{{
 		examples := []ComponentItem{
 			{ID: "image-fixed", Code: ImageExample1Code(), Component: ImageExample1()},
@@ -154,9 +151,7 @@ templ ImageExamples() {
 			{ID: "image-ratios", Code: ImageExample3Code(), Component: ImageExample3()},
 		}
 	}}
-	
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)
 	}
 }
-

@@ -4,7 +4,9 @@
 run:
   timeout: 5m
   tests: true
-  skip-dirs:
+
+issues:
+  exclude-dirs:
     - tools/collector
 
 linters:

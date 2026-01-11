@@ -26,7 +26,6 @@ import (
 // LevelExamples showcases Level component with left and right sections.
 templ LevelExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Level")})
-	
 	// ================================================
 	// LEVEL WITH STATS AND ACTION
 	// ================================================
@@ -35,7 +34,6 @@ templ LevelExamples() {
 	//
 	// LevelItem contains individual elements.
 	// Items are vertically centered automatically.
-	
 	@la.Level(
 		la.LevelProps{},
 		el.Items{
@@ -104,7 +102,6 @@ templ LevelExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Use Level for horizontal toolbars
 	// - LevelLeft for primary content/stats

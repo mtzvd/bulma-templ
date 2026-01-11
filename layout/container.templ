@@ -29,7 +29,7 @@ type ContainerProps struct {
 // Container renders a Bulma `.container` element.
 templ Container(props ContainerProps, content elements.Items) {
 	{{
-		classes:= []string{"container"}
+		classes := []string{"container"}
 		if props.Fluid {
 			classes = append(classes, "is-fluid")
 		}

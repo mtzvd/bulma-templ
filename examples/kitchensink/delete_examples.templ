@@ -18,9 +18,7 @@
 
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 // DeleteExample1 demonstrates delete button size variations.
 // Delete supports 4 size modifiers: small, normal, medium, large.
@@ -74,14 +72,12 @@ func DeleteExample2Code() string {
 // Demonstrates size options and common use cases.
 templ DeleteExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Delete")})
-	
 	{{
 		examples := []ComponentItem{
 			{ID: "delete-sizes", Code: DeleteExample1Code(), Component: DeleteExample1()},
 			{ID: "delete-notification", Code: DeleteExample2Code(), Component: DeleteExample2()},
 		}
 	}}
-	
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)
 	}

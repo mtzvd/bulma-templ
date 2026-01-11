@@ -23,13 +23,11 @@ import (
 // SectionExamples showcases Section component.
 templ SectionExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Section")})
-	
 	// ================================================
 	// BASIC SECTION
 	// ================================================
 	// Section with default padding.
 	// Creates visual separation between content areas.
-	
 	@la.Section(
 		la.SectionProps{},
 		el.Items{
@@ -37,7 +35,6 @@ templ SectionExamples() {
 			el.Html("<p>Section provides vertical spacing for page content areas.</p>"),
 		},
 	)
-	
 	// Best practices:
 	// - Use Section to separate page content areas
 	// - Nest Container inside for centered content

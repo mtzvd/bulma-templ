@@ -19,9 +19,7 @@
 
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 // ProgressExample1 demonstrates determinate progress bars.
 // Progress bar shows specific completion percentage using Current and Max props.
@@ -105,14 +103,12 @@ func ProgressExample2Code() string {
 // Demonstrates determinate and indeterminate progress states.
 templ ProgressExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Progress")})
-	
 	{{
 		examples := []ComponentItem{
 			{ID: "progress-determinate", Code: ProgressExample1Code(), Component: ProgressExample1()},
 			{ID: "progress-indeterminate", Code: ProgressExample2Code(), Component: ProgressExample2()},
 		}
 	}}
-	
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)
 	}

@@ -4,7 +4,6 @@ package elements
 // Use this constant when you want to omit the attribute.
 const ProgressUnset = -1
 
-
 // Progress — Bulma progress bar.
 // Atomic level: ATOM
 //
@@ -36,7 +35,6 @@ type ProgressProps struct {
 	Current int
 }
 
-
 // Progress renders a Bulma progress bar.
 templ Progress(props ProgressProps, content Items) {
 	{{
@@ -66,7 +64,6 @@ templ Progress(props ProgressProps, content Items) {
 			attrs["value"] = props.Current
 		}
 	}}
-
 	@BaseElement(
 		BaseElementProps{
 			Tag:         "progress",

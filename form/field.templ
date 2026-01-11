@@ -26,9 +26,8 @@ type FieldProps struct {
 // This component acts purely as a layout wrapper and
 // must not contain any business logic or validation rules.
 templ Field(props FieldProps, content elements.Items) {
-	
 	{{
-		classes:= []string{"field"}
+		classes := []string{"field"}
 		if props.Grouped {
 			classes = append(classes, "is-grouped")
 		}
@@ -45,4 +44,3 @@ templ Field(props FieldProps, content elements.Items) {
 		content,
 	)
 }
-

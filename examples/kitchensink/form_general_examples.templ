@@ -36,7 +36,6 @@ import (
 // FormGeneralExamples showcases general form structure and composition patterns.
 templ FormGeneralExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Form General - Structure & Composition")})
-	
 	// ================================================
 	// FIELD CONTAINER
 	// ================================================
@@ -55,7 +54,6 @@ templ FormGeneralExamples() {
 	// - Foundation for advanced features (addons, groups, horizontal)
 	//
 	// Best practice: ALWAYS wrap form controls in a Field
-	
 	@ExampleSubheading("Basic Field structure (Label + Control + Help)")
 	@fo.Field(
 		fo.FieldProps{},
@@ -79,7 +77,6 @@ templ FormGeneralExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// CONTROL CONTAINER
 	// ================================================
@@ -100,7 +97,6 @@ templ FormGeneralExamples() {
 	// - Icon positioning (has-icons-left, has-icons-right)
 	// - Proper alignment in addons and groups
 	// - Foundation for expanding controls (is-expanded)
-	
 	@ExampleSubheading("Multiple fields with consistent spacing")
 	@fo.Field(
 		fo.FieldProps{},
@@ -140,7 +136,6 @@ templ FormGeneralExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// VALIDATION STATES WITH HELP TEXT
 	// ================================================
@@ -156,7 +151,6 @@ templ FormGeneralExamples() {
 	// - Place Help AFTER Control in Field
 	// - Match Help color with Input state (is-success with is-success)
 	// - Keep text concise and actionable
-	
 	@ExampleSubheading("Validation states with help text")
 	@fo.Field(
 		fo.FieldProps{},
@@ -210,7 +204,6 @@ templ FormGeneralExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// FORM ADDONS (has-addons)
 	// ================================================
@@ -231,7 +224,6 @@ templ FormGeneralExamples() {
 	// Alignment modifiers:
 	// - has-addons-centered: Center the addon group
 	// - has-addons-right: Align to right
-	
 	@ExampleSubheading("Addons - Input + Button (search bar)")
 	@fo.Field(
 		fo.FieldProps{
@@ -260,7 +252,6 @@ templ FormGeneralExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Addons - Input with static text")
 	@fo.Field(
 		fo.FieldProps{
@@ -293,7 +284,6 @@ templ FormGeneralExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Addons - Select + Input + Button with is-expanded")
 	@fo.Field(
 		fo.FieldProps{
@@ -341,7 +331,6 @@ templ FormGeneralExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// FORM GROUP (is-grouped)
 	// ================================================
@@ -364,7 +353,6 @@ templ FormGeneralExamples() {
 	//
 	// Expanding:
 	// - Use is-expanded on one Control to fill space
-	
 	@ExampleSubheading("Group - Submit + Cancel buttons")
 	@fo.Field(
 		fo.FieldProps{
@@ -391,7 +379,6 @@ templ FormGeneralExamples() {
 			),
 		},
 	)
-	
 	@ExampleSubheading("Group - Expanded input + button")
 	@fo.Field(
 		fo.FieldProps{
@@ -422,7 +409,6 @@ templ FormGeneralExamples() {
 			),
 		},
 	)
-	
 	// ================================================
 	// BEST PRACTICES & PATTERNS
 	// ================================================

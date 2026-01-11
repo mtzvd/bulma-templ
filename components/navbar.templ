@@ -40,7 +40,7 @@ templ Navbar(props NavbarProps, content elements.Items) {
 		}
 
 		attrs := templ.Attributes{
-			"role": "navigation",
+			"role":       "navigation",
 			"aria-label": "main navigation",
 		}
 
@@ -48,7 +48,6 @@ templ Navbar(props NavbarProps, content elements.Items) {
 			attrs[k] = v
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "nav",
@@ -58,8 +57,6 @@ templ Navbar(props NavbarProps, content elements.Items) {
 		content,
 	)
 }
-
-
 
 // NavbarBrand — brand section of Navbar.
 // Atomic level: MOLECULE
@@ -73,17 +70,15 @@ type NavbarBrandProps struct {
 
 // NavbarBrand renders a Bulma `.navbar-brand` container.
 templ NavbarBrand(props NavbarBrandProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"navbar-brand"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // NavbarBurger — burger button for mobile navigation.
 // Atomic level: MOLECULE
@@ -108,8 +103,8 @@ templ NavbarBurger(props NavbarBurgerProps) {
 		}
 
 		attrs := templ.Attributes{
-			"role": "button",
-			"aria-label": "menu",
+			"role":          "button",
+			"aria-label":    "menu",
 			"aria-expanded": props.Active,
 		}
 
@@ -117,7 +112,6 @@ templ NavbarBurger(props NavbarBurgerProps) {
 			attrs[k] = v
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "a",
@@ -131,7 +125,6 @@ templ NavbarBurger(props NavbarBurgerProps) {
 		},
 	)
 }
-
 
 // NavbarMenu — collapsible menu section.
 // Atomic level: MOLECULE
@@ -165,7 +158,6 @@ templ NavbarMenu(props NavbarMenuProps, content elements.Items) {
 	)
 }
 
-
 // NavbarStart — left-aligned menu section.
 // Atomic level: MOLECULE
 type NavbarStartProps struct {
@@ -174,17 +166,15 @@ type NavbarStartProps struct {
 
 // NavbarStart renders a Bulma `.navbar-start` container.
 templ NavbarStart(props NavbarStartProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"navbar-start"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // NavbarEnd — right-aligned menu section.
 // Atomic level: MOLECULE
@@ -194,17 +184,15 @@ type NavbarEndProps struct {
 
 // NavbarEnd renders a Bulma `.navbar-end` container.
 templ NavbarEnd(props NavbarEndProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"navbar-end"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // NavbarItem — individual item in navbar (link, div, or dropdown trigger).
 // Atomic level: ATOM
@@ -234,7 +222,7 @@ type NavbarItemProps struct {
 templ NavbarItem(props NavbarItemProps, content elements.Items) {
 	{{
 		classes := []string{"navbar-item"}
-		
+
 		if props.Tab {
 			classes = append(classes, "is-tab")
 		}
@@ -260,7 +248,6 @@ templ NavbarItem(props NavbarItemProps, content elements.Items) {
 			attrs[k] = v
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         tag,
@@ -270,7 +257,6 @@ templ NavbarItem(props NavbarItemProps, content elements.Items) {
 		content,
 	)
 }
-
 
 // NavbarLink — clickable dropdown trigger inside navbar-item.
 // Atomic level: ATOM
@@ -290,12 +276,11 @@ type NavbarLinkProps struct {
 templ NavbarLink(props NavbarLinkProps, content elements.Items) {
 	{{
 		classes := []string{"navbar-link"}
-		
+
 		if props.Arrowless {
 			classes = append(classes, "is-arrowless")
 		}
 	}}
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "a",
@@ -305,7 +290,6 @@ templ NavbarLink(props NavbarLinkProps, content elements.Items) {
 		content,
 	)
 }
-
 
 // NavbarDropdown — dropdown menu inside Navbar.
 // Atomic level: MOLECULE
@@ -320,9 +304,8 @@ type NavbarDropdownProps struct {
 
 // NavbarDropdown renders a Bulma `.navbar-dropdown` container.
 templ NavbarDropdown(props NavbarDropdownProps, content elements.Items) {
-	
 	{{
-		classes:= []string{"navbar-dropdown"}
+		classes := []string{"navbar-dropdown"}
 		if props.Right {
 			classes = append(classes, "is-right")
 		}
@@ -336,7 +319,6 @@ templ NavbarDropdown(props NavbarDropdownProps, content elements.Items) {
 		content,
 	)
 }
-
 
 // NavbarDivider — visual divider inside NavbarDropdown.
 // Atomic level: MOLECULE
@@ -355,4 +337,3 @@ templ NavbarDivider(props NavbarDividerProps) {
 		nil,
 	)
 }
-

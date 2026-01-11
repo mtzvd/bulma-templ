@@ -18,17 +18,15 @@ type MediaProps struct {
 
 // Media renders a Bulma `.media` container.
 templ Media(props MediaProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "article",
+			Tag:         "article",
 			BaseClasses: []string{"media"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // MediaLeft — left section of Media.
 // Atomic level: MOLECULE
@@ -43,17 +41,15 @@ type MediaLeftProps struct {
 
 // MediaLeft renders a Bulma `.media-left` container.
 templ MediaLeft(props MediaLeftProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "figure",
+			Tag:         "figure",
 			BaseClasses: []string{"media-left"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // MediaContent — main content section of Media.
 // Atomic level: MOLECULE
@@ -68,17 +64,15 @@ type MediaContentProps struct {
 
 // MediaContent renders a Bulma `.media-content` container.
 templ MediaContent(props MediaContentProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"media-content"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // MediaRight — right section of Media.
 // Atomic level: MOLECULE
@@ -93,14 +87,12 @@ type MediaRightProps struct {
 
 // MediaRight renders a Bulma `.media-right` container.
 templ MediaRight(props MediaRightProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"media-right"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

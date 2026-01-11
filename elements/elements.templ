@@ -140,10 +140,7 @@ func buildAttributeString(classes []string, attrs templ.Attributes) string {
 //
 // MUST NOT be used directly by application code.
 templ Wrap(p WrapProps, content Items) {
-	{{
-		attrString := buildAttributeString(p.Classes, p.Attr)
-	}}
-
+	{{ attrString := buildAttributeString(p.Classes, p.Attr) }}
 	@Html("<" + p.Tag + attrString + ">")
 	@content.Render()
 	@Html("</" + p.Tag + ">")

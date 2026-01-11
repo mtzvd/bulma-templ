@@ -20,17 +20,15 @@ type MessageProps struct {
 
 // Message renders the root `.message` container.
 templ Message(props MessageProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "article",
+			Tag:         "article",
 			BaseClasses: []string{"message", props.Color},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // MessageHeader renders the header section of Message.
 // Atomic level: MOLECULE
@@ -45,17 +43,15 @@ type MessageHeaderProps struct {
 
 // MessageHeader renders a Bulma `.message-header`.
 templ MessageHeader(props MessageHeaderProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"message-header"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // MessageBody renders the body section of Message.
 // Atomic level: MOLECULE
@@ -69,14 +65,12 @@ type MessageBodyProps struct {
 
 // MessageBody renders a Bulma `.message-body`.
 templ MessageBody(props MessageBodyProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"message-body"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
-
 }

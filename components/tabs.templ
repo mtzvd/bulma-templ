@@ -37,9 +37,8 @@ type TabsProps struct {
 
 // Tabs renders the root `.tabs` container.
 templ Tabs(props TabsProps, content elements.Items) {
-	
 	{{
-		classes:= []string{"tabs"}
+		classes := []string{"tabs"}
 		if props.Centered {
 			classes = append(classes, "is-centered")
 		}
@@ -69,7 +68,6 @@ templ Tabs(props TabsProps, content elements.Items) {
 	)
 }
 
-
 // TabsList — tabs list container.
 // Atomic level: MOLECULE
 //
@@ -83,16 +81,14 @@ type TabsListProps struct {
 
 // TabsList renders the tabs list container.
 templ TabsList(props TabsListProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "ul",
+			Tag:  "ul",
 			Attr: props.Attr,
 		},
 		content,
 	)
 }
-
 
 // TabsItem renders a single tab item.
 // Atomic level: MOLECULE
@@ -110,9 +106,8 @@ type TabsItemProps struct {
 
 // TabsItem renders a tab item.
 templ TabsItem(props TabsItemProps, content elements.Items) {
-	
 	{{
-		classes:= []string{}
+		classes := []string{}
 		if props.Active {
 			classes = append(classes, "is-active")
 		}
@@ -145,16 +140,20 @@ type TabsLinkProps struct {
 
 // TabsLink renders a clickable tab element.
 templ TabsLink(props TabsLinkProps, content elements.Items) {
-	{{ attrs := templ.Attributes{} 
-	for k, v := range props.Attr { attrs[k] = v } 
-	if props.Href != "" { attrs["href"] = props.Href } }}
-	
+	{{
+		attrs := templ.Attributes{}
+		for k, v := range props.Attr {
+			attrs[k] = v
+		}
+		if props.Href != "" {
+			attrs["href"] = props.Href
+		}
+	}}
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "a",
+			Tag:  "a",
 			Attr: attrs,
 		},
 		content,
 	)
 }
-

@@ -29,9 +29,8 @@ type ControlProps struct {
 // This component does not manage focus, validation,
 // value binding or interactivity.
 templ Control(props ControlProps, content elements.Items) {
-	
 	{{
-		classes:= []string{"control"}
+		classes := []string{"control"}
 		if props.Expanded {
 			classes = append(classes, "is-expanded")
 		}

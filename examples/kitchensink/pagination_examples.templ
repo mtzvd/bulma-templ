@@ -20,14 +20,13 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 // PaginationExamples showcases Pagination component with page numbers and variations.
 templ PaginationExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Pagination")})
-	
 	// Default pagination
 	@ExampleSubheading("Default pagination")
 	@el.Block(
@@ -78,7 +77,6 @@ templ PaginationExamples() {
 			),
 		},
 	)
-	
 	// Centered pagination
 	@ExampleSubheading("Centered alignment")
 	@el.Block(
@@ -114,7 +112,6 @@ templ PaginationExamples() {
 			),
 		},
 	)
-	
 	// Rounded pagination
 	@ExampleSubheading("Rounded style")
 	@el.Block(
@@ -160,7 +157,6 @@ templ PaginationExamples() {
 			),
 		},
 	)
-	
 	// Small size pagination
 	@ExampleSubheading("Small size")
 	@el.Block(
@@ -196,7 +192,6 @@ templ PaginationExamples() {
 			),
 		},
 	)
-	
 	// Large size pagination
 	@ExampleSubheading("Large size")
 	@el.Block(

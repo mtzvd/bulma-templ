@@ -23,15 +23,14 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 // CardExamples showcases Card component variations following Bulma documentation.
 // Demonstrates header, image, content, and footer sections.
 templ CardExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Card")})
-	
 	// Card with header, content and footer - Complete example
 	@ExampleSubheading("Card with header, content and footer")
 	@el.Block(
@@ -93,7 +92,6 @@ templ CardExamples() {
 			),
 		},
 	)
-
 	// Card with quote - Content and footer only
 	@ExampleSubheading("Card with quote")
 	@el.Block(
@@ -132,7 +130,6 @@ templ CardExamples() {
 			),
 		},
 	)
-
 	// Card with image, media and content - Complete profile card
 	@ExampleSubheading("Card with image and media content")
 	@el.Block(
@@ -176,7 +173,6 @@ templ CardExamples() {
 			),
 		},
 	)
-
 	// Card parts demonstration
 	@ExampleSubheading("Card parts: Header only")
 	@el.Block(
@@ -205,7 +201,6 @@ templ CardExamples() {
 			),
 		},
 	)
-
 	@ExampleSubheading("Card parts: Image only")
 	@el.Block(
 		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
@@ -224,7 +219,6 @@ templ CardExamples() {
 			),
 		},
 	)
-
 	@ExampleSubheading("Card parts: Content only")
 	@el.Block(
 		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},
@@ -249,7 +243,6 @@ templ CardExamples() {
 			),
 		},
 	)
-
 	@ExampleSubheading("Card parts: Footer only")
 	@el.Block(
 		el.BlockProps{Attr: templ.Attributes{"style": "max-width: 400px;"}},

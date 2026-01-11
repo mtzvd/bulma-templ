@@ -16,14 +16,13 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 // MenuExamples showcases Menu component with labels and nested items.
 templ MenuExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Menu")})
-	
 	// ================================================
 	// MENU STRUCTURE
 	// ================================================
@@ -33,7 +32,6 @@ templ MenuExamples() {
 	//
 	// Nested menus: Add <ul> inside <li> for subitems.
 	// Active item: Add class="is-active" to <a>.
-	
 	@co.Menu(
 		co.MenuProps{},
 		el.Items{
@@ -51,7 +49,7 @@ templ MenuExamples() {
 					`),
 				},
 			),
-			
+
 			// Second section: Administration with nested menu
 			co.MenuLabel(
 				co.MenuLabelProps{},
@@ -75,7 +73,6 @@ templ MenuExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Group related items under MenuLabel
 	// - Limit nesting to 2 levels

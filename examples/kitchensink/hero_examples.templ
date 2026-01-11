@@ -25,13 +25,11 @@ import (
 // HeroExamples showcases Hero component color and size variations.
 templ HeroExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Hero")})
-	
 	// ================================================
 	// COLORED HERO
 	// ================================================
 	// Hero with color modifier.
 	// Common for page headers and landing pages.
-	
 	@la.Hero(
 		la.HeroProps{Color: "is-info"},
 		el.Items{
@@ -44,15 +42,12 @@ templ HeroExamples() {
 			),
 		},
 	)
-	
 	<br/>
-	
 	// ================================================
 	// MEDIUM SIZED HERO
 	// ================================================
 	// Hero with size modifier for more vertical space.
 	// Sizes: is-small, is-medium, is-large, is-halfheight, is-fullheight.
-	
 	@la.Hero(
 		la.HeroProps{Color: "is-success", Size: "is-medium"},
 		el.Items{
@@ -65,7 +60,6 @@ templ HeroExamples() {
 			),
 		},
 	)
-	
 	// Best practices:
 	// - Use Hero for page headers
 	// - HeroBody is required (contains main content)

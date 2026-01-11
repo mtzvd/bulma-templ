@@ -61,7 +61,7 @@ templ Radio(props RadioProps, content elements.Items) {
 			attrs["checked"] = "checked"
 		}
 	}}
-	<label class={"radio", props.WrapperAttr["class"]} { props.WrapperAttr... }>
+	<label class={ "radio", props.WrapperAttr["class"] } { props.WrapperAttr... }>
 		<input
 			type="radio"
 			{ attrs... }
@@ -69,7 +69,6 @@ templ Radio(props RadioProps, content elements.Items) {
 		@content.Render()
 	</label>
 }
-
 
 // Radios — Bulma radios container.
 // Atomic level: ORGANISM
@@ -90,7 +89,7 @@ type RadiosProps struct {
 //
 // Radio components must be provided via content.
 templ Radios(props RadiosProps, content elements.Items) {
-	<div class={"radios", props.Attr["class"]} { props.Attr... }>
+	<div class={ "radios", props.Attr["class"] } { props.Attr... }>
 		@content.Render()
 	</div>
 }

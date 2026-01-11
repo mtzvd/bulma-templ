@@ -13,11 +13,10 @@ type SkeletonBlockProps struct {
 
 // SkeletonBlock renders a skeleton block wrapper.
 templ SkeletonBlock(props SkeletonBlockProps, content Items) {
-	<div class={"skeleton-block", props.Attr["class"]} { props.Attr... }>
+	<div class={ "skeleton-block", props.Attr["class"] } { props.Attr... }>
 		@content.Render()
 	</div>
 }
-
 
 // SkeletonLines renders Bulma `.skeleton-lines`.
 // Atomic level: ATOM
@@ -32,14 +31,12 @@ type SkeletonLinesProps struct {
 
 // SkeletonLines renders skeleton text line wrappers.
 templ SkeletonLines(props SkeletonLinesProps, content Items) {
-	
 	@BaseElement(
 		BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"skeleton-lines"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

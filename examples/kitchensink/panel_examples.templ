@@ -1,12 +1,9 @@
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 templ PanelExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Panel")})
-	
 	@ExampleSubheading("Basic panel with search and items")
 	<div style="max-width: 400px;">
 		@el.Html(`
@@ -63,7 +60,6 @@ templ PanelExamples() {
 			</nav>
 		`)
 	</div>
-	
 	@ExampleSubheading("Primary color panel")
 	<div style="max-width: 400px;">
 		@el.Html(`
@@ -95,7 +91,6 @@ templ PanelExamples() {
 			</article>
 		`)
 	</div>
-	
 	@ExampleSubheading("Info color panel")
 	<div style="max-width: 400px;">
 		@el.Html(`
@@ -126,7 +121,6 @@ templ PanelExamples() {
 			</article>
 		`)
 	</div>
-	
 	@ExampleSubheading("Success color panel")
 	<div style="max-width: 400px;">
 		@el.Html(`
@@ -153,7 +147,6 @@ templ PanelExamples() {
 			</article>
 		`)
 	</div>
-	
 	@ExampleSubheading("Warning color panel")
 	<div style="max-width: 400px;">
 		@el.Html(`
@@ -180,7 +173,6 @@ templ PanelExamples() {
 			</article>
 		`)
 	</div>
-	
 	@ExampleSubheading("Danger color panel")
 	<div style="max-width: 400px;">
 		@el.Html(`

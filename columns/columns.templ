@@ -78,7 +78,6 @@ type ColumnProps struct {
 
 // Column renders a Bulma `.column` element.
 templ Column(props ColumnProps, content elements.Items) {
-	
 	{{
 		classes := []string{"column"}
 
@@ -92,7 +91,7 @@ templ Column(props ColumnProps, content elements.Items) {
 			classes = append(classes, props.Offset)
 		}
 	}}
-	 @elements.BaseElement(
+	@elements.BaseElement(
 		elements.BaseElementProps{
 			Tag:         "div",
 			BaseClasses: classes,

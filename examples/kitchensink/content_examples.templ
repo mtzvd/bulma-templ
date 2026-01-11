@@ -21,9 +21,7 @@
 
 package kitchensink
 
-import (
-	el "github.com/mtzvd/bulma-templ/elements"
-)
+import el "github.com/mtzvd/bulma-templ/elements"
 
 // ContentExample1 demonstrates Content with various HTML elements.
 // Content automatically styles headings, paragraphs, lists, emphasis, links, and blockquotes.
@@ -77,13 +75,11 @@ func ContentExample1Code() string {
 // Demonstrates automatic styling of various HTML elements.
 templ ContentExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Content")})
-	
 	{{
 		examples := []ComponentItem{
 			{ID: "content-html", Code: ContentExample1Code(), Component: ContentExample1()},
 		}
 	}}
-	
 	for _, example := range examples {
 		@ExampleWithCode(example.ID, example.Code, example.Component)
 	}

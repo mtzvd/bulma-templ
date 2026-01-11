@@ -28,7 +28,7 @@ type TagProps struct {
 // Tag renders a Bulma tag.
 templ Tag(props TagProps, content Items) {
 	{{
-		classes:= []string{"tag"}
+		classes := []string{"tag"}
 		if props.Color != "" {
 			classes = append(classes, props.Color)
 		}
@@ -41,14 +41,13 @@ templ Tag(props TagProps, content Items) {
 	}}
 	@BaseElement(
 		BaseElementProps{
-			Tag: "span",
+			Tag:         "span",
 			BaseClasses: classes,
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // Tags — Bulma tags container.
 // Atomic level: ORGANISM
@@ -67,16 +66,16 @@ type TagsProps struct {
 // Tags renders a Bulma tags container.
 templ Tags(props TagsProps, content Items) {
 	{{
-		classes:= []string{"tags"}
+		classes := []string{"tags"}
 		if props.HasAddons {
 			classes = append(classes, "has-addons")
 		}
 	}}
 	@BaseElement(
 		BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: classes,
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)

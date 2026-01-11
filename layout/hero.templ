@@ -26,17 +26,15 @@ type HeroProps struct {
 
 // Hero renders a Bulma `.hero` container.
 templ Hero(props HeroProps, content elements.Items) {
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "section",
+			Tag:         "section",
 			BaseClasses: []string{"hero", props.Color, props.Size},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // HeroHead — top section of Hero.
 // Atomic level: MOLECULE
@@ -51,17 +49,15 @@ type HeroHeadProps struct {
 
 // HeroHead renders a Bulma `.hero-head` container.
 templ HeroHead(props HeroHeadProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"hero-head"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // HeroBody — main content section of Hero.
 // Atomic level: MOLECULE
@@ -76,17 +72,15 @@ type HeroBodyProps struct {
 
 // HeroBody renders a Bulma `.hero-body` container.
 templ HeroBody(props HeroBodyProps, content elements.Items) {
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"hero-body"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-
 
 // HeroFoot — bottom section of Hero.
 // Atomic level: MOLECULE
@@ -101,14 +95,12 @@ type HeroFootProps struct {
 
 // HeroFoot renders a Bulma `.hero-foot` container.
 templ HeroFoot(props HeroFootProps, content elements.Items) {
-	
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"hero-foot"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

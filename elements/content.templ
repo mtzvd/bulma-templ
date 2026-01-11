@@ -23,9 +23,9 @@ type ContentProps struct {
 templ Content(props ContentProps, content Items) {
 	@BaseElement(
 		BaseElementProps{
-			Tag: "div",
+			Tag:         "div",
 			BaseClasses: []string{"content", props.Size},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)

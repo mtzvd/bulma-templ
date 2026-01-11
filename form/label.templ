@@ -20,8 +20,7 @@ type LabelProps struct {
 // This component defines pure typographic atom and
 // should not be extended with layout logic.
 templ Label(props LabelProps) {
-	<label class={"label", props.Attr["class"]} { props.Attr... }>
+	<label class={ "label", props.Attr["class"] } { props.Attr... }>
 		{ props.Text }
 	</label>
 }
-

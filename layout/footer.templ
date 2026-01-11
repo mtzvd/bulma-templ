@@ -18,14 +18,12 @@ type FooterProps struct {
 
 // Footer renders a Bulma `.footer` element.
 templ Footer(props FooterProps, content elements.Items) {
-
 	@elements.BaseElement(
 		elements.BaseElementProps{
-			Tag: "footer",
+			Tag:         "footer",
 			BaseClasses: []string{"footer"},
-			Attr: props.Attr,
+			Attr:        props.Attr,
 		},
 		content,
 	)
 }
-

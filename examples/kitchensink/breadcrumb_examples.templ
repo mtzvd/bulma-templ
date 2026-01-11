@@ -1,13 +1,12 @@
 package kitchensink
 
 import (
-	el "github.com/mtzvd/bulma-templ/elements"
 	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
 )
 
 templ BreadcrumbExamples() {
 	@el.Block(el.BlockProps{}, el.Items{TitleH3("is-4", "Breadcrumb")})
-	
 	@ExampleSubheading("Default (slash separator)")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{},
@@ -22,7 +21,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("With arrow separator")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{Separator: "has-arrow-separator"},
@@ -36,7 +34,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("With bullet separator")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{Separator: "has-bullet-separator"},
@@ -50,7 +47,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("With dot separator")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{Separator: "has-dot-separator"},
@@ -64,7 +60,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("With succeeds separator")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{Separator: "has-succeeds-separator"},
@@ -78,7 +73,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Centered alignment")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{
@@ -94,7 +88,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Right alignment")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{
@@ -110,7 +103,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Small size")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{
@@ -126,7 +118,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Medium size")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{
@@ -142,7 +133,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("Large size")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{
@@ -158,7 +148,6 @@ templ BreadcrumbExamples() {
 			`),
 		},
 	)
-	
 	@ExampleSubheading("With icons")
 	@co.Breadcrumb(
 		co.BreadcrumbProps{},
