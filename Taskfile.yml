@@ -35,3 +35,34 @@ tasks:
     cmds:
       - echo "→ Running unit tests"
       - go test ./...
+
+  changelog:
+    desc: Generate CHANGELOG.md from git history
+    cmds:
+      - echo "→ Generating CHANGELOG.md"
+      - git-chglog -o CHANGELOG.md
+
+  changelog-next:
+    desc: Preview CHANGELOG for next version (unreleased changes)
+    cmds:
+      - echo "→ Preview unreleased changes"
+      - git-chglog --next-tag {{.CLI_ARGS}} --output /dev/stdout
+
+  release:
+    desc: Create a new release (usage task release -- v1.1.0)
+    cmds:
+      - echo "→ Running tests"
+      - task test
+      - echo "→ Building project"
+      - go build ./...
+      - echo "→ Generating CHANGELOG"
+      - git-chglog -o CHANGELOG.md --next-tag {{.CLI_ARGS}}
+      - echo "→ Committing CHANGELOG"
+      - git add CHANGELOG.md
+      - git commit -m "chore: Update CHANGELOG for {{.CLI_ARGS}}"
+      - echo "→ Creating tag {{.CLI_ARGS}}"
+      - git tag {{.CLI_ARGS}}
+      - echo "→ Pushing changes and tag"
+      - git push origin main
+      - git push origin {{.CLI_ARGS}}
+      - echo "✅ Release {{.CLI_ARGS}} created! Now run: gh release create {{.CLI_ARGS}}"
