@@ -138,7 +138,7 @@ func Checkbox(props CheckboxProps, content elements.Items) templ.Component {
 }
 
 // Checkboxes — Bulma checkboxes container.
-// Atomic level: ORGANISM
+// Atomic level: MOLECULE
 //
 // Checkboxes renders the Bulma `.checkboxes` wrapper,
 // which groups multiple Checkbox components

@@ -2,13 +2,13 @@
 title: "Checkboxes"
 description: "Bulma checkboxes container."
 category: "Form"
-atomicLevel: "ORGANISM"
+atomicLevel: "MOLECULE"
 bulmaClass: ".checkboxes"
 ---
 
 # Checkboxes
 
-**Atomic Level:** `ORGANISM`
+**Atomic Level:** `MOLECULE`
 
 Bulma checkboxes container.
 

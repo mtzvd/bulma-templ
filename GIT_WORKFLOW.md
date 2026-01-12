@@ -2,76 +2,76 @@
 
 ## Branch Structure
 
-- **`develop`** — Основная ветка разработки (default branch)
-- **`staging`** — Тестирование перед релизом
-- **`main`** — Только стабильные релизы (защищена)
+- **`develop`** — Main development branch (default branch)
+- **`staging`** — Testing before release
+- **`main`** — Stable releases only (protected)
 
 ## Workflow
 
-### Ежедневная разработка
+### Daily Development
 
 ```bash
-# Работа в develop
+# Work in develop
 git checkout develop
 git pull origin develop
 
-# Внесение изменений
+# Make changes
 git add .
 git commit -m "feat: Add new feature"
 git push origin develop
 ```
 
-### Подготовка к релизу
+### Release Preparation
 
 ```bash
-# 1. Merge develop в staging для тестирования
+# 1. Merge develop into staging for testing
 git checkout staging
 git pull origin staging
 git merge develop
 git push origin staging
 
-# 2. Тестирование на staging
+# 2. Test on staging
 # ...
 
-# 3. Если всё OK, создаём PR: staging -> main
-# Через GitHub UI создаём Pull Request
+# 3. If all OK, create PR: staging -> main
+# Create Pull Request via GitHub UI
 ```
 
-### Создание релиза
+### Creating a Release
 
 ```bash
-# После merge в main через PR:
+# After merge to main via PR:
 git checkout main
 git pull origin main
 
-# Создаём релиз (автоматизировано)
+# Create release (automated)
 task release -- v1.1.0
 
-# Или вручную:
+# Or manually:
 git tag v1.1.0
 git push origin v1.1.0
 gh release create v1.1.0 --notes-file release_notes.md
 ```
 
-### Hotfix (срочное исправление в production)
+### Hotfix (urgent production fix)
 
 ```bash
-# Создаём hotfix ветку от main
+# Create hotfix branch from main
 git checkout main
 git pull origin main
 git checkout -b hotfix/critical-bug
 
-# Исправляем
+# Fix the issue
 git add .
 git commit -m "fix: Critical bug in production"
 
-# Создаём PR: hotfix/critical-bug -> main
-# После merge, также merge в develop и staging
+# Create PR: hotfix/critical-bug -> main
+# After merge, also merge into develop and staging
 ```
 
 ## Branch Protection Rules
 
-Настройте защиту веток на GitHub:
+Configure branch protection on GitHub:
 
 ### Settings → Branches → Branch protection rules
 
@@ -105,9 +105,9 @@ Set `develop` as default branch:
 
 ```bash
 # Switch branches
-git checkout develop   # для разработки
-git checkout staging   # для тестирования
-git checkout main      # только для чтения
+git checkout develop   # for development
+git checkout staging   # for testing
+git checkout main      # read-only
 
 # Sync staging with develop
 git checkout staging && git merge develop && git push

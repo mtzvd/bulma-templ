@@ -28,7 +28,6 @@ Closing behavior must be implemented externally.
 ```go
 @components.ModalClose(
     components.ModalCloseProps{},
-    components.Items{components.Html("...")},
 )
 ```
 

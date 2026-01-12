@@ -38,7 +38,6 @@ the Bulma `.icon-text` pattern.
 ```go
 @elements.Icon(
     elements.IconProps{},
-    elements.Items{elements.Html("...")},
 )
 ```
 

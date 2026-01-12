@@ -40,7 +40,6 @@ validation logic or state.
 ```go
 @form.Textarea(
     form.TextareaProps{},
-    form.Items{form.Html("...")},
 )
 ```
 

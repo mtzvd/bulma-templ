@@ -1,25 +1,33 @@
+// Package main — Development server entry point for Bulma-Templ.
+//
+// This is the main entry point for running the Bulma-Templ development server.
+// It provides three main routes:
+//   - / — Starter example page
+//   - /kitchensink — Kitchen Sink example with all components
+//   - /knowledgebase/ — Markdown documentation browser
 package main
 
 import (
-	"log"
-	"net/http"
+	"log/slog"
+	"os"
 
-	"github.com/a-h/templ"
-	"github.com/mtzvd/bulma-templ/examples/kitchensink"
-	"github.com/mtzvd/bulma-templ/examples/starter"
+	"github.com/mtzvd/bulma-templ/internal/docserver"
 )
 
 func main() {
-	mux := http.NewServeMux()
+	// Initialize structured logger.
+	logger := slog.New(slog.NewTextHandler(os.Stdout, &slog.HandlerOptions{
+		Level: slog.LevelInfo,
+	}))
+	slog.SetDefault(logger)
 
-	// Starter page (root)
-	mux.Handle("/", templ.Handler(starter.Page()))
+	// Create server with default configuration.
+	cfg := docserver.DefaultConfig()
+	server := docserver.New(cfg)
 
-	// Kitchen Sink page
-	mux.Handle("/kitchensink", templ.Handler(kitchensink.Page()))
-
-	log.Println("Listening on http://localhost:8080")
-	log.Println("  - Starter:      http://localhost:8080/")
-	log.Println("  - Kitchen Sink: http://localhost:8080/kitchensink")
-	log.Fatal(http.ListenAndServe(":8080", mux))
+	// Start the server.
+	if err := server.Start(); err != nil {
+		slog.Error("server failed", "error", err)
+		os.Exit(1)
+	}
 }
