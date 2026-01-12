@@ -1,0 +1,131 @@
+// Package layouts — Base page layouts for the docserver.
+package layouts
+
+// BaseProps defines configuration for the base HTML layout.
+type BaseProps struct {
+	// Title is the page title shown in the browser tab.
+	Title string
+
+	// AdditionalHead contains optional additional head content.
+	AdditionalHead templ.Component
+}
+
+// Base — Base HTML document layout for docserver pages.
+// Provides the standard HTML structure with Bulma CSS.
+templ Base(props BaseProps, bodyContent templ.Component) {
+	<!DOCTYPE html>
+	<html lang="en" class="has-navbar-fixed-top" x-data="{ darkMode: localStorage.getItem('theme') === 'dark' || (localStorage.getItem('theme') === null && window.matchMedia('(prefers-color-scheme: dark)').matches) }" :class="{ 'theme-dark': darkMode }">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<title>{ props.Title } - Bulma-Templ Documentation</title>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"/>
+			if props.AdditionalHead != nil {
+				@props.AdditionalHead
+			}
+		</head>
+		<body>
+			@bodyContent
+		</body>
+	</html>
+}
+
+// DocsStyles — Custom styles for documentation pages.
+templ DocsStyles() {
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', (event) => {
+			document.querySelectorAll('pre code').forEach((block) => {
+				hljs.highlightElement(block);
+			});
+		});
+	</script>
+	<style>
+		/* Menu styling */
+		.menu { 
+			position: sticky; 
+			top: 1rem; 
+		}
+		
+		/* Content spacing */
+		.content h1 { 
+			margin-top: 1rem; 
+			border-bottom: 2px solid #dbdbdb;
+			padding-bottom: 0.5rem;
+		}
+		.content h2 { 
+			margin-top: 1.5rem; 
+			border-bottom: 1px solid #dbdbdb;
+			padding-bottom: 0.25rem;
+		}
+		
+		/* Code block styling */
+		.content pre {
+			border-radius: 6px;
+			border: 1px solid #363636;
+			overflow-x: auto;
+		}
+		.content pre code {
+			padding: 0;
+			background: transparent;
+		}
+		.content code {
+			background: #2d2d2d;
+			color: #f8f8f2;
+			padding: 0.25em 0.5em;
+			border-radius: 3px;
+			font-size: 0.9em;
+		}
+		
+		/* Table styling */
+		.content table { 
+			width: 100%;
+			background: #fff;
+		}
+		.content table thead {
+			background: #f5f5f5;
+		}
+		.content table tbody tr:hover {
+			background: #fafafa;
+		}
+		
+		/* Link styling */
+		.content a {
+			color: #3273dc;
+			text-decoration: underline;
+		}
+		.content a:hover {
+			color: #363636;
+		}
+		
+		/* Dark mode support */
+		.theme-dark body {
+			background: #1a1a1a;
+			color: #e0e0e0;
+		}
+		.theme-dark .content table {
+			background: #2d2d2d;
+			color: #e0e0e0;
+		}
+		.theme-dark .content table thead {
+			background: #363636;
+		}
+		.theme-dark .content table tbody tr:hover {
+			background: #404040;
+		}
+		.theme-dark .content h1, .theme-dark .content h2 {
+			color: #f0f0f0;
+			border-color: #404040;
+		}
+		.theme-dark .content a {
+			color: #58a6ff;
+		}
+		.theme-dark .content a:hover {
+			color: #79c0ff;
+		}
+	</style>
+}

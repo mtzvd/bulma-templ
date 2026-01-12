@@ -1,0 +1,119 @@
+// Package pages — Documentation page templates for the docserver.
+package pages
+
+import (
+	"github.com/mtzvd/bulma-templ/columns"
+	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
+	"github.com/mtzvd/bulma-templ/internal/docserver/internal/web/layouts"
+	"github.com/mtzvd/bulma-templ/layout"
+)
+
+// DocsPage — Documentation page layout with navigation menu.
+templ DocsPage(title string, htmlContent string) {
+	@layouts.Base(
+		layouts.BaseProps{
+			Title:          title,
+			AdditionalHead: layouts.DocsStyles(),
+		},
+		docsPageBody(htmlContent),
+	)
+}
+
+// docsPageBody — Body content for documentation pages.
+templ docsPageBody(htmlContent string) {
+	@DocsNavbar()
+	@layout.Section(layout.SectionProps{}, el.Items{
+		layout.Container(layout.ContainerProps{}, el.Items{
+			columns.Columns(columns.ColumnsProps{}, el.Items{
+				columns.Column(columns.ColumnProps{Size: "is-3"}, el.Items{
+					DocsMenu(),
+				}),
+				columns.Column(columns.ColumnProps{Size: "is-9"}, el.Items{
+					el.Content(el.ContentProps{}, el.Items{
+						el.Html(htmlContent),
+					}),
+				}),
+			}),
+		}),
+	})
+}
+
+// DocsNavbar — Top navigation bar for documentation pages.
+templ DocsNavbar() {
+	@co.Navbar(
+		co.NavbarProps{
+			Color: "is-dark",
+			Fixed: "is-fixed-top",
+		},
+		el.Items{
+			co.NavbarBrand(
+				co.NavbarBrandProps{},
+				el.Items{
+					co.NavbarItem(
+						co.NavbarItemProps{Href: "/"},
+						el.Items{el.Html("<strong>Bulma-Templ</strong>")},
+					),
+				},
+			),
+			co.NavbarMenu(
+				co.NavbarMenuProps{},
+				el.Items{
+					co.NavbarStart(
+						co.NavbarStartProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "/"},
+								el.Items{el.Html("Starter")},
+							),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "/kitchensink"},
+								el.Items{el.Html("Kitchen Sink")},
+							),
+							co.NavbarItem(
+								co.NavbarItemProps{Href: "/knowledgebase/", Active: true},
+								el.Items{el.Html("Documentation")},
+							),
+						},
+					),
+					co.NavbarEnd(
+						co.NavbarEndProps{},
+						el.Items{
+							co.NavbarItem(
+								co.NavbarItemProps{},
+								el.Items{
+									el.Button(
+										el.ButtonProps{
+											Attr: templ.Attributes{
+												"@click":      "darkMode = !darkMode; localStorage.setItem('theme', darkMode ? 'dark' : 'light')",
+												":aria-label": "darkMode ? 'Switch to light mode' : 'Switch to dark mode'",
+											},
+										},
+										el.Items{
+											el.Icon(
+												el.IconProps{
+													IconClass: "fas fa-moon",
+													Attr: templ.Attributes{
+														"x-show": "!darkMode",
+													},
+												},
+											),
+											el.Icon(
+												el.IconProps{
+													IconClass: "fas fa-sun",
+													Attr: templ.Attributes{
+														"x-show": "darkMode",
+													},
+												},
+											),
+										},
+									),
+								},
+							),
+						},
+					),
+				},
+			),
+		},
+	)
+}
