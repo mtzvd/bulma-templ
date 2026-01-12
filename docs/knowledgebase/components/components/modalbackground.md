@@ -27,7 +27,6 @@ and capture click events to close the modal.
 ```go
 @components.ModalBackground(
     components.ModalBackgroundProps{},
-    components.Items{components.Html("...")},
 )
 ```
 

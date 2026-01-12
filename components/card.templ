@@ -10,6 +10,22 @@ import "github.com/mtzvd/bulma-templ/elements"
 //
 // Card does not impose internal structure and must be
 // composed explicitly using its subcomponents.
+//
+// Example:
+//
+//	Card(
+//	    CardProps{},
+//	    elements.Items{
+//	        CardHeader(CardHeaderProps{}, elements.Items{
+//	            CardHeaderTitle(CardHeaderTitleProps{}, elements.Items{
+//	                elements.Html("Card Title"),
+//	            }),
+//	        }),
+//	        CardContent(CardContentProps{}, elements.Items{
+//	            elements.Html("Card content"),
+//	        }),
+//	    },
+//	)
 type CardProps struct {
 	// Attr contains additional HTML attributes
 	// for the `.card` container.

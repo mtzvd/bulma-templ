@@ -1,18 +1,18 @@
-# Настройка защиты веток на GitHub
+# Branch Protection Setup on GitHub
 
-## Быстрая настройка через Web UI
+## Quick Setup via Web UI
 
-### 1. Откройте настройки репозитория
+### 1. Open Repository Settings
 https://github.com/mtzvd/bulma-templ/settings/branches
 
-### 2. Измените default branch на `develop`
-- В разделе "Default branch" нажмите ↔️
-- Выберите `develop`
-- Подтвердите
+### 2. Change Default Branch to `develop`
+- In "Default branch" section, click ↔️
+- Select `develop`
+- Confirm
 
-### 3. Защита ветки `main`
+### 3. Protect `main` Branch
 
-Нажмите **Add rule** и настройте:
+Click **Add rule** and configure:
 
 **Branch name pattern:** `main`
 
@@ -22,54 +22,54 @@ https://github.com/mtzvd/bulma-templ/settings/branches
 
 ✅ **Require status checks to pass before merging**
    - ✅ Require branches to be up to date before merging
-   - Search for status checks: `test`, `build`, `lint` (если есть CI/CD)
+   - Search for status checks: `test`, `build`, `lint` (if CI/CD is configured)
 
 ✅ **Require conversation resolution before merging**
 
-✅ **Do not allow bypassing the above settings** (для админов тоже)
+✅ **Do not allow bypassing the above settings** (applies to admins too)
 
-### 4. Защита ветки `staging`
+### 4. Protect `staging` Branch
 
-Нажмите **Add rule** и настройте:
+Click **Add rule** and configure:
 
 **Branch name pattern:** `staging`
 
 ✅ **Require a pull request before merging**
 
-✅ **Require status checks to pass before merging** (опционально)
+✅ **Require status checks to pass before merging** (optional)
    - Search for status checks: `test`, `build`
 
-### 5. Ветка `develop` (опционально)
+### 5. `develop` Branch (Optional)
 
-Можно не защищать для быстрой разработки, или добавить минимальную защиту:
+Can be left unprotected for faster development, or add minimal protection:
 
 **Branch name pattern:** `develop`
 
-✅ **Require status checks to pass before merging** (рекомендуется)
+✅ **Require status checks to pass before merging** (recommended)
 
 ---
 
-## Результат
+## Result
 
-После настройки:
-- ❌ **Нельзя** делать прямой push в `main`
-- ✅ **Только через Pull Request** с проверками
-- ✅ **Безопасно** — случайный коммит в main невозможен
-- ✅ **Code Review** — требуется одобрение перед merge
+After configuration:
+- ❌ **Cannot** push directly to `main`
+- ✅ **Only via Pull Request** with checks
+- ✅ **Safe** — accidental commits to main are impossible
+- ✅ **Code Review** — approval required before merge
 
-## Workflow после настройки
+## Workflow After Setup
 
 ```bash
-# Разработка (можно пушить напрямую)
+# Development (can push directly)
 git checkout develop
 git commit -m "feat: Something"
 git push origin develop
 
-# Попытка запушить в main (будет отклонено)
+# Trying to push to main (will be rejected)
 git checkout main
 git push origin main  # ❌ ERROR: protected branch
 
-# Правильный способ: через PR
-# 1. develop -> staging (можно через PR или merge)
-# 2. staging -> main (ТОЛЬКО через PR)
+# Correct way: via PR
+# 1. develop -> staging (can be via PR or merge)
+# 2. staging -> main (ONLY via PR)
 ```

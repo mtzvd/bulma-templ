@@ -151,9 +151,9 @@ func FileLabel(props FileLabelProps, content elements.Items) templ.Component {
 }
 
 // FileInput — native file input element.
-// Atomic level: MOLECULE
+// Atomic level: ATOM
 //
-// FileInput renders the `<input type=\"file\">` element.
+// FileInput renders the `<input type="file">` element.
 type FileInputProps struct {
 	// Disabled disables the file input.
 	Disabled bool

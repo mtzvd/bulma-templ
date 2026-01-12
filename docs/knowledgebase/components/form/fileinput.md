@@ -2,19 +2,19 @@
 title: "FileInput"
 description: "native file input element."
 category: "Form"
-atomicLevel: "MOLECULE"
+atomicLevel: "ATOM"
 bulmaClass: ".file-input"
 ---
 
 # FileInput
 
-**Atomic Level:** `MOLECULE`
+**Atomic Level:** `ATOM`
 
 native file input element.
 
 ## Description
 
-FileInput renders the `<input type=\"file\">` element.
+FileInput renders the `<input type="file">` element.
 
 ## Props
 
@@ -28,7 +28,6 @@ FileInput renders the `<input type=\"file\">` element.
 ```go
 @form.FileInput(
     form.FileInputProps{},
-    form.Items{form.Html("...")},
 )
 ```
 

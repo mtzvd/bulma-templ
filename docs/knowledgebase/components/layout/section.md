@@ -2,13 +2,13 @@
 title: "Section"
 description: "Bulma section layout wrapper."
 category: "Layout"
-atomicLevel: "ORGANISM"
+atomicLevel: "MOLECULE"
 bulmaClass: ".section"
 ---
 
 # Section
 
-**Atomic Level:** `ORGANISM`
+**Atomic Level:** `MOLECULE`
 
 Bulma section layout wrapper.
 

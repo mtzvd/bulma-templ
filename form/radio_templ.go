@@ -138,7 +138,7 @@ func Radio(props RadioProps, content elements.Items) templ.Component {
 }
 
 // Radios — Bulma radios container.
-// Atomic level: ORGANISM
+// Atomic level: MOLECULE
 //
 // Radios renders the Bulma `.radios` wrapper,
 // which groups multiple Radio components

@@ -51,7 +51,6 @@ This design matches Bulma documentation, where
 ```go
 @components.Pagination(
     components.PaginationProps{},
-    components.Items{components.Html("...")},
 )
 ```
 

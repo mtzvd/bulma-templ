@@ -81,7 +81,7 @@ func Tag(props TagProps, content Items) templ.Component {
 }
 
 // Tags — Bulma tags container.
-// Atomic level: ORGANISM
+// Atomic level: MOLECULE
 //
 // Tags groups multiple Tag components together
 // using the Bulma `.tags` wrapper.

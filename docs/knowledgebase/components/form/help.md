@@ -33,7 +33,6 @@ It does NOT perform validation or state management.
 ```go
 @form.Help(
     form.HelpProps{},
-    form.Items{form.Html("...")},
 )
 ```
 

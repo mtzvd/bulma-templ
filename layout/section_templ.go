@@ -11,7 +11,7 @@ import templruntime "github.com/a-h/templ/runtime"
 import "github.com/mtzvd/bulma-templ/elements"
 
 // Section — Bulma section layout wrapper.
-// Atomic level: ORGANISM
+// Atomic level: MOLECULE
 //
 // Section provides vertical spacing between page sections
 // using the Bulma `.section` class.

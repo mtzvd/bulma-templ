@@ -30,7 +30,6 @@ Behavior must be implemented externally.
 ```go
 @components.NavbarBurger(
     components.NavbarBurgerProps{},
-    components.Items{components.Html("...")},
 )
 ```
 

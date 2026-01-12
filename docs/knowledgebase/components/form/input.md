@@ -40,7 +40,6 @@ validation logic or value binding.
 ```go
 @form.Input(
     form.InputProps{},
-    form.Items{form.Html("...")},
 )
 ```
 

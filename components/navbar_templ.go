@@ -542,7 +542,7 @@ func NavbarDropdown(props NavbarDropdownProps, content elements.Items) templ.Com
 }
 
 // NavbarDivider — visual divider inside NavbarDropdown.
-// Atomic level: MOLECULE
+// Atomic level: ATOM
 type NavbarDividerProps struct {
 	Attr templ.Attributes
 }

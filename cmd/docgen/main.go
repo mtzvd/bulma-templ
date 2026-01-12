@@ -12,14 +12,15 @@ import (
 
 // Component represents a parsed Bulma-Templ component
 type Component struct {
-	Name        string
-	Description string
-	AtomicLevel string
-	Package     string
-	Props       []PropField
-	BulmaClass  string
-	SourceFile  string
-	FullComment string
+	Name            string
+	Description     string
+	AtomicLevel     string
+	Package         string
+	Props           []PropField
+	BulmaClass      string
+	SourceFile      string
+	FullComment     string
+	HasContentParam bool
 }
 
 // PropField represents a single prop in a Props struct
@@ -198,7 +199,7 @@ func parseTemplFile(path string) ([]Component, error) {
 
 		// Parse templ function declarations (optional, for validation)
 		if strings.HasPrefix(trimmed, "templ ") && currentComponent != nil {
-			re := regexp.MustCompile(`templ (\w+)\(`)
+			re := regexp.MustCompile(`templ (\w+)\(([^)]*)\)`)
 			matches := re.FindStringSubmatch(trimmed)
 			if len(matches) > 1 {
 				templName := matches[1]
@@ -206,6 +207,15 @@ func parseTemplFile(path string) ([]Component, error) {
 				if templName == currentComponent.Name {
 					// Extract Bulma class
 					currentComponent.BulmaClass = "." + camelToKebab(currentComponent.Name)
+
+					// Check if function has content parameter
+					if len(matches) > 2 {
+						params := matches[2]
+						// Look for second parameter - check for "Items" anywhere in params after comma
+						if strings.Contains(params, ",") && strings.Contains(params, "Items") {
+							currentComponent.HasContentParam = true
+						}
+					}
 				}
 			}
 			currentComment = nil
@@ -359,7 +369,12 @@ func generateMarkdown(component *Component) string {
 	sb.WriteString("```go\n")
 	sb.WriteString(fmt.Sprintf("@%s.%s(\n", component.Package, component.Name))
 	sb.WriteString(fmt.Sprintf("    %s.%sProps{},\n", component.Package, component.Name))
-	sb.WriteString(fmt.Sprintf("    %s.Items{%s.Html(\"...\")},\n", component.Package, component.Package))
+
+	// Only include content parameter if the component accepts it
+	if component.HasContentParam {
+		sb.WriteString(fmt.Sprintf("    %s.Items{%s.Html(\"...\")},\n", component.Package, component.Package))
+	}
+
 	sb.WriteString(")\n")
 	sb.WriteString("```\n\n")
 
