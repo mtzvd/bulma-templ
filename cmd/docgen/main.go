@@ -356,7 +356,7 @@ func generateMarkdown(component *Component) string {
 
 	// Usage section
 	sb.WriteString("## Usage\n\n")
-	sb.WriteString(fmt.Sprintf("```go\n"))
+	sb.WriteString("```go\n")
 	sb.WriteString(fmt.Sprintf("@%s.%s(\n", component.Package, component.Name))
 	sb.WriteString(fmt.Sprintf("    %s.%sProps{},\n", component.Package, component.Name))
 	sb.WriteString(fmt.Sprintf("    %s.Items{%s.Html(\"...\")},\n", component.Package, component.Package))
