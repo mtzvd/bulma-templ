@@ -39,7 +39,6 @@ element as required by Bulma.
 ```go
 @elements.Image(
     elements.ImageProps{},
-    elements.Items{elements.Html("...")},
 )
 ```
 

@@ -2,13 +2,13 @@
 title: "Select"
 description: "Bulma select form component."
 category: "Form"
-atomicLevel: "ORGANISM"
+atomicLevel: "MOLECULE"
 bulmaClass: ".select"
 ---
 
 # Select
 
-**Atomic Level:** `ORGANISM`
+**Atomic Level:** `MOLECULE`
 
 Bulma select form component.
 

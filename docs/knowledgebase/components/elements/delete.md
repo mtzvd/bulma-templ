@@ -34,7 +34,6 @@ via Attr.
 ```go
 @elements.Delete(
     elements.DeleteProps{},
-    elements.Items{elements.Html("...")},
 )
 ```
 

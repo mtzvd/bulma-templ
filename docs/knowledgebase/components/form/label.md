@@ -32,7 +32,6 @@ accessibility relations or form state.
 ```go
 @form.Label(
     form.LabelProps{},
-    form.Items{form.Html("...")},
 )
 ```
 

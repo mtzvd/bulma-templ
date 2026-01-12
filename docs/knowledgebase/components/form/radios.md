@@ -2,13 +2,13 @@
 title: "Radios"
 description: "Bulma radios container."
 category: "Form"
-atomicLevel: "ORGANISM"
+atomicLevel: "MOLECULE"
 bulmaClass: ".radios"
 ---
 
 # Radios
 
-**Atomic Level:** `ORGANISM`
+**Atomic Level:** `MOLECULE`
 
 Bulma radios container.
 

@@ -2,20 +2,20 @@
 title: "NavbarDivider"
 description: "visual divider inside NavbarDropdown."
 category: "Components"
-atomicLevel: "MOLECULE"
+atomicLevel: "ATOM"
 bulmaClass: ".navbar-divider"
 ---
 
 # NavbarDivider
 
-**Atomic Level:** `MOLECULE`
+**Atomic Level:** `ATOM`
 
 visual divider inside NavbarDropdown.
 
 ## Description
 
 NavbarDivider — visual divider inside NavbarDropdown.
-Atomic level: MOLECULE
+Atomic level: ATOM
 
 ## Props
 
@@ -28,7 +28,6 @@ Atomic level: MOLECULE
 ```go
 @components.NavbarDivider(
     components.NavbarDividerProps{},
-    components.Items{components.Html("...")},
 )
 ```
 

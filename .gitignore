@@ -46,6 +46,7 @@ Desktop.ini
 .#*
 *.swp
 ~$*
+tmp/
 
 # Logs and environment files
 *.log

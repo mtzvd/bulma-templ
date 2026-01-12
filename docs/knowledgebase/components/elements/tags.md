@@ -2,13 +2,13 @@
 title: "Tags"
 description: "Bulma tags container."
 category: "Elements"
-atomicLevel: "ORGANISM"
+atomicLevel: "MOLECULE"
 bulmaClass: ".tags"
 ---
 
 # Tags
 
-**Atomic Level:** `ORGANISM`
+**Atomic Level:** `MOLECULE`
 
 Bulma tags container.
 

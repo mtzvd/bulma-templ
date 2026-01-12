@@ -31,7 +31,6 @@ and exists solely for semantic clarity.
 ```go
 @components.BreadcrumbIcon(
     components.BreadcrumbIconProps{},
-    components.Items{components.Html("...")},
 )
 ```
 
