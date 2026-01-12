@@ -68,9 +68,9 @@ testdata/
 
 # Keep templates (*.templ) tracked in repo — do not ignore them.
 
-# Templ generated files
-*_templ.go
-**/*_templ.go
+# Templ generated files - MUST be committed for pkg.go.dev visibility
+# *_templ.go
+# **/*_templ.go
 
 # Claude Code temporary files
 .claude/

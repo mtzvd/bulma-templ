@@ -71,6 +71,18 @@ tasks:
       - git config core.hooksPath .githooks
       - echo "✓ Git hooks configured"
 
+  docs:generate:
+    desc: Generate component documentation from source code
+    cmds:
+      - echo "→ Generating documentation for all packages"
+      - go run cmd/docgen/main.go -package elements
+      - go run cmd/docgen/main.go -package components
+      - go run cmd/docgen/main.go -package form
+      - go run cmd/docgen/main.go -package layout
+      - go run cmd/docgen/main.go -package columns
+      - go run cmd/docgen/main.go -package grid
+      - echo "✓ Documentation generation complete"
+
   release:
     desc: Create a new release (usage - task release -- v1.1.0)
     cmds:

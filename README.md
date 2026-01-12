@@ -37,20 +37,11 @@ Provides 1:1 mappings of [Bulma CSS](https://bulma.io) components with explicit 
 go get github.com/mtzvd/bulma-templ
 ```
 
-**Important:** After installation, you must generate the templ files:
-
-```bash
-# Install templ CLI if not already installed
-go install github.com/a-h/templ/cmd/templ@latest
-
-# Generate templ files
-templ generate
-```
+That's it! Generated templ files are included in the repository.
 
 ### Requirements
 
 - Go 1.25+
-- [Templ CLI](https://templ.guide/quick-start/installation)
 - Bulma CSS (via CDN or bundled)
 
 ### Basic Example
@@ -242,10 +233,12 @@ type ButtonProps struct {
 
 ### Quick Start
 
-**Note:** `*_templ.go` files are generated and not tracked in git. Always run `templ generate` or `task templ` after cloning or pulling changes.
+**Note:** `*_templ.go` files are generated and tracked in git for pkg.go.dev compatibility.
+
+**For contributors:** If you modify `.templ` files, regenerate with `task templ` before committing.
 
 ```bash
-task templ   # Generate Templ files (required after clone/pull)
+task templ   # Generate Templ files (after modifying .templ files)
 task run     # Run dev server
 task test    # Run tests
 ```
