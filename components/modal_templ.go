@@ -201,7 +201,8 @@ func ModalClose(props ModalCloseProps) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		var templ_7745c5c3_Var5 = []any{"modal-close",
-			props.Size, props.Attr["class"],
+			templ.KV(props.Size, props.Size != ""),
+			props.Attr["class"],
 		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var5...)
 		if templ_7745c5c3_Err != nil {

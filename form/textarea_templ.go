@@ -79,7 +79,11 @@ func Textarea(props TextareaProps) templ.Component {
 		if props.ReadOnly {
 			attrs["readonly"] = "readonly"
 		}
-		var templ_7745c5c3_Var2 = []any{"textarea", props.Color, props.Size, props.Attr["class"]}
+		var templ_7745c5c3_Var2 = []any{"textarea",
+			templ.KV(props.Color, props.Color != ""),
+			templ.KV(props.Size, props.Size != ""),
+			props.Attr["class"],
+		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -104,7 +108,7 @@ func Textarea(props TextareaProps) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(props.Placeholder)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/textarea.templ`, Line: 58, Col: 33}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/textarea.templ`, Line: 63, Col: 33}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
@@ -117,7 +121,7 @@ func Textarea(props TextareaProps) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(props.Rows)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/textarea.templ`, Line: 59, Col: 19}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/textarea.templ`, Line: 64, Col: 19}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
@@ -138,7 +142,7 @@ func Textarea(props TextareaProps) templ.Component {
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(props.Value)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/textarea.templ`, Line: 62, Col: 15}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/textarea.templ`, Line: 67, Col: 15}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {

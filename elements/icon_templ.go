@@ -58,8 +58,8 @@ func Icon(props IconProps) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		var templ_7745c5c3_Var2 = []any{"icon",
-			props.Size,
-			props.Color,
+			templ.KV(props.Size, props.Size != ""),
+			templ.KV(props.Color, props.Color != ""),
 			props.Attr["class"],
 		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)

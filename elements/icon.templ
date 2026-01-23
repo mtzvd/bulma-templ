@@ -32,8 +32,8 @@ templ Icon(props IconProps) {
 	<span
 		class={
 			"icon",
-			props.Size,
-			props.Color,
+			templ.KV(props.Size, props.Size != ""),
+			templ.KV(props.Color, props.Color != ""),
 			props.Attr["class"],
 		}
 		{ props.Attr... }

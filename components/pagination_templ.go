@@ -27,6 +27,20 @@ import "github.com/mtzvd/bulma-templ/elements"
 // This design matches Bulma documentation, where
 // `.pagination-previous`, `.pagination-next`, and
 // `.pagination-list` may appear in any order.
+//
+// Example:
+//
+//	Pagination(
+//	    PaginationProps{
+//	        Content: elements.Items{
+//	            PaginationPrev(elements.Items{elements.Html("Previous")}),
+//	            PaginationNext(elements.Items{elements.Html("Next")}),
+//	            PaginationList(elements.Items{
+//	                PaginationLink(PaginationLinkProps{Current: true}, elements.Items{elements.Html("1")}),
+//	            }),
+//	        },
+//	    },
+//	)
 type PaginationProps struct {
 	// Content defines ordered pagination blocks.
 	//

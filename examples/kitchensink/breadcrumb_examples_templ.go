@@ -45,14 +45,47 @@ func BreadcrumbExamples() templ.Component {
 		templ_7745c5c3_Err = co.Breadcrumb(
 			co.BreadcrumbProps{},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Documents</a></li>
-					<li><a href="#">Projects</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Current</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Home")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Documents")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Projects")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Current")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -65,13 +98,38 @@ func BreadcrumbExamples() templ.Component {
 		templ_7745c5c3_Err = co.Breadcrumb(
 			co.BreadcrumbProps{Separator: "has-arrow-separator"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Products</a></li>
-					<li><a href="#">Electronics</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Laptops</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Products")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Electronics")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Laptops")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -84,13 +142,38 @@ func BreadcrumbExamples() templ.Component {
 		templ_7745c5c3_Err = co.Breadcrumb(
 			co.BreadcrumbProps{Separator: "has-bullet-separator"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Admin</a></li>
-					<li><a href="#">Users</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Settings</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Admin")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Users")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Settings")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -103,13 +186,38 @@ func BreadcrumbExamples() templ.Component {
 		templ_7745c5c3_Err = co.Breadcrumb(
 			co.BreadcrumbProps{Separator: "has-dot-separator"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Category</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Article</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Blog")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Category")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Article")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -122,13 +230,38 @@ func BreadcrumbExamples() templ.Component {
 		templ_7745c5c3_Err = co.Breadcrumb(
 			co.BreadcrumbProps{Separator: "has-succeeds-separator"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Library</a></li>
-					<li><a href="#">Books</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Fiction</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Library")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Books")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Fiction")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -143,13 +276,38 @@ func BreadcrumbExamples() templ.Component {
 				Attr: templ.Attributes{"class": "is-centered"},
 			},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Section</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Page</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Home")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Section")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Page")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -164,13 +322,38 @@ func BreadcrumbExamples() templ.Component {
 				Attr: templ.Attributes{"class": "is-right"},
 			},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Start</a></li>
-					<li><a href="#">Middle</a></li>
-					<li class="is-active"><a href="#" aria-current="page">End</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Start")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Middle")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("End")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -185,13 +368,38 @@ func BreadcrumbExamples() templ.Component {
 				Attr: templ.Attributes{"class": "is-small"},
 			},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Dashboard</a></li>
-					<li><a href="#">Reports</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Analytics</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Dashboard")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Reports")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Analytics")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -206,13 +414,38 @@ func BreadcrumbExamples() templ.Component {
 				Attr: templ.Attributes{"class": "is-medium"},
 			},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Store</a></li>
-					<li><a href="#">Products</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Details</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Store")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Products")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Details")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -227,13 +460,38 @@ func BreadcrumbExamples() templ.Component {
 				Attr: templ.Attributes{"class": "is-large"},
 			},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li><a href="#">Company</a></li>
-					<li><a href="#">Team</a></li>
-					<li class="is-active"><a href="#" aria-current="page">Members</a></li>
-				</ul>
-			`),
+				co.BreadcrumbList(
+					co.BreadcrumbListProps{},
+					el.Items{
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Company")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#"},
+									el.Items{el.Html("Team")},
+								),
+							},
+						),
+						co.BreadcrumbItem(
+							co.BreadcrumbItemProps{Active: true},
+							el.Items{
+								co.BreadcrumbLink(
+									co.BreadcrumbLinkProps{Href: "#", Current: true},
+									el.Items{el.Html("Members")},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {

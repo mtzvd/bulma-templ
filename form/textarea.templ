@@ -54,7 +54,12 @@ templ Textarea(props TextareaProps) {
 		}
 	}}
 	<textarea
-		class={ "textarea", props.Color, props.Size, props.Attr["class"] }
+		class={
+			"textarea",
+			templ.KV(props.Color, props.Color != ""),
+			templ.KV(props.Size, props.Size != ""),
+			props.Attr["class"],
+		}
 		placeholder={ props.Placeholder }
 		rows={ props.Rows }
 		{ attrs... }

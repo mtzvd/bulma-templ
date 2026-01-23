@@ -8,7 +8,11 @@ package kitchensink
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import el "github.com/mtzvd/bulma-templ/elements"
+import (
+	co "github.com/mtzvd/bulma-templ/components"
+	el "github.com/mtzvd/bulma-templ/elements"
+	fm "github.com/mtzvd/bulma-templ/form"
+)
 
 func PanelExamples() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
@@ -43,59 +47,101 @@ func PanelExamples() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = el.Html(`
-			<nav class="panel">
-				<p class="panel-heading">Repositories</p>
-				<div class="panel-block">
-					<p class="control has-icons-left">
-						<input class="input" type="text" placeholder="Search">
-						<span class="icon is-left">
-							<i class="fas fa-search"></i>
-						</span>
-					</p>
-				</div>
-				<p class="panel-tabs">
-					<a class="is-active">All</a>
-					<a>Public</a>
-					<a>Private</a>
-					<a>Sources</a>
-					<a>Forks</a>
-				</p>
-				<a class="panel-block is-active">
-					<span class="panel-icon">
-						<i class="fas fa-book"></i>
-					</span>
-					bulma
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-book"></i>
-					</span>
-					marksheet
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-book"></i>
-					</span>
-					minireset.css
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-book"></i>
-					</span>
-					jgthms.github.io
-				</a>
-				<label class="panel-block">
-					<input type="checkbox">
-					Remember me
-				</label>
-				<div class="panel-block">
-					<button class="button is-link is-outlined is-fullwidth">
-						Reset all filters
-					</button>
-				</div>
-			</nav>
-		`).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = co.Panel(
+			co.PanelProps{},
+			el.Items{
+				co.PanelHeading(
+					co.PanelHeadingProps{},
+					el.Items{el.Html("Repositories")},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{},
+					el.Items{
+						fm.Control(
+							fm.ControlProps{HasIconsLeft: true},
+							el.Items{
+								fm.Input(fm.InputProps{
+									Type:        "text",
+									Placeholder: "Search",
+								}),
+								el.Icon(el.IconProps{
+									IconClass: "fas fa-search",
+									Size:      "is-left",
+								}),
+							},
+						),
+					},
+				),
+				co.PanelTabs(
+					co.PanelTabsProps{},
+					el.Items{
+						el.Html(`<a class="is-active">All</a>`),
+						el.Html(`<a>Public</a>`),
+						el.Html(`<a>Private</a>`),
+						el.Html(`<a>Sources</a>`),
+						el.Html(`<a>Forks</a>`),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#", Active: true},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-book",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("bulma"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-book",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("marksheet"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-book",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("minireset.css"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-book",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("jgthms.github.io"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{},
+					el.Items{
+						el.Html(`<label><input type="checkbox"> Remember me</label>`),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{},
+					el.Items{
+						el.Button(
+							el.ButtonProps{
+								Color:     "is-link is-outlined",
+								FullWidth: true,
+							},
+							el.Items{el.Html("Reset all filters")},
+						),
+					},
+				),
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -111,34 +157,53 @@ func PanelExamples() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = el.Html(`
-			<article class="panel is-primary">
-				<p class="panel-heading">Primary</p>
-				<p class="panel-tabs">
-					<a class="is-active">All</a>
-					<a>Public</a>
-					<a>Private</a>
-				</p>
-				<a class="panel-block is-active">
-					<span class="panel-icon">
-						<i class="fas fa-book"></i>
-					</span>
-					bulma-templ
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-book"></i>
-					</span>
-					templ
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-book"></i>
-					</span>
-					go-templates
-				</a>
-			</article>
-		`).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = co.Panel(
+			co.PanelProps{Attr: templ.Attributes{"class": "is-primary"}},
+			el.Items{
+				co.PanelHeading(
+					co.PanelHeadingProps{},
+					el.Items{el.Html("Primary")},
+				),
+				co.PanelTabs(
+					co.PanelTabsProps{},
+					el.Items{
+						el.Html(`<a class="is-active">All</a>`),
+						el.Html(`<a>Public</a>`),
+						el.Html(`<a>Private</a>`),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#", Active: true},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-book",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("bulma-templ"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-book",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("templ"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-book",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("go-templates"),
+					},
+				),
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -154,33 +219,52 @@ func PanelExamples() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = el.Html(`
-			<article class="panel is-info">
-				<p class="panel-heading">Info</p>
-				<p class="panel-tabs">
-					<a class="is-active">Recent</a>
-					<a>Starred</a>
-				</p>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-file"></i>
-					</span>
-					document.pdf
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-file"></i>
-					</span>
-					report.docx
-				</a>
-				<a class="panel-block is-active">
-					<span class="panel-icon">
-						<i class="fas fa-file"></i>
-					</span>
-					presentation.pptx
-				</a>
-			</article>
-		`).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = co.Panel(
+			co.PanelProps{Attr: templ.Attributes{"class": "is-info"}},
+			el.Items{
+				co.PanelHeading(
+					co.PanelHeadingProps{},
+					el.Items{el.Html("Info")},
+				),
+				co.PanelTabs(
+					co.PanelTabsProps{},
+					el.Items{
+						el.Html(`<a class="is-active">Recent</a>`),
+						el.Html(`<a>Starred</a>`),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-file",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("document.pdf"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-file",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("report.docx"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#", Active: true},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-file",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("presentation.pptx"),
+					},
+				),
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -196,29 +280,45 @@ func PanelExamples() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = el.Html(`
-			<article class="panel is-success">
-				<p class="panel-heading">Success</p>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-check"></i>
-					</span>
-					Task completed
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-check"></i>
-					</span>
-					Files uploaded
-				</a>
-				<a class="panel-block is-active">
-					<span class="panel-icon">
-						<i class="fas fa-check"></i>
-					</span>
-					Tests passed
-				</a>
-			</article>
-		`).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = co.Panel(
+			co.PanelProps{Attr: templ.Attributes{"class": "is-success"}},
+			el.Items{
+				co.PanelHeading(
+					co.PanelHeadingProps{},
+					el.Items{el.Html("Success")},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-check",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Task completed"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-check",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Files uploaded"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#", Active: true},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-check",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Tests passed"),
+					},
+				),
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -234,29 +334,45 @@ func PanelExamples() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = el.Html(`
-			<article class="panel is-warning">
-				<p class="panel-heading">Warning</p>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-exclamation-triangle"></i>
-					</span>
-					Disk space low
-				</a>
-				<a class="panel-block is-active">
-					<span class="panel-icon">
-						<i class="fas fa-exclamation-triangle"></i>
-					</span>
-					Update available
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-exclamation-triangle"></i>
-					</span>
-					Maintenance scheduled
-				</a>
-			</article>
-		`).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = co.Panel(
+			co.PanelProps{Attr: templ.Attributes{"class": "is-warning"}},
+			el.Items{
+				co.PanelHeading(
+					co.PanelHeadingProps{},
+					el.Items{el.Html("Warning")},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-exclamation-triangle",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Disk space low"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#", Active: true},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-exclamation-triangle",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Update available"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-exclamation-triangle",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Maintenance scheduled"),
+					},
+				),
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -272,29 +388,45 @@ func PanelExamples() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = el.Html(`
-			<article class="panel is-danger">
-				<p class="panel-heading">Danger</p>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-ban"></i>
-					</span>
-					Service unavailable
-				</a>
-				<a class="panel-block is-active">
-					<span class="panel-icon">
-						<i class="fas fa-ban"></i>
-					</span>
-					Connection failed
-				</a>
-				<a class="panel-block">
-					<span class="panel-icon">
-						<i class="fas fa-ban"></i>
-					</span>
-					Error occurred
-				</a>
-			</article>
-		`).Render(ctx, templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = co.Panel(
+			co.PanelProps{Attr: templ.Attributes{"class": "is-danger"}},
+			el.Items{
+				co.PanelHeading(
+					co.PanelHeadingProps{},
+					el.Items{el.Html("Danger")},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-ban",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Service unavailable"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#", Active: true},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-ban",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Connection failed"),
+					},
+				),
+				co.PanelBlock(
+					co.PanelBlockProps{Href: "#"},
+					el.Items{
+						el.Icon(el.IconProps{
+							IconClass: "fas fa-ban",
+							Attr:      templ.Attributes{"class": "panel-icon"},
+						}),
+						el.Html("Error occurred"),
+					},
+				),
+			},
+		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

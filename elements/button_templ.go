@@ -22,6 +22,17 @@ import templruntime "github.com/a-h/templ/runtime"
 //   - render icons implicitly
 //
 // Icons MUST be composed explicitly via the Icon component.
+//
+// Example:
+//
+//	Button(
+//	    ButtonProps{
+//	        Color: "is-primary",
+//	    },
+//	    elements.Items{
+//	        elements.Html("Click me"),
+//	    },
+//	)
 type ButtonProps struct {
 	// Href defines the link URL.
 	// When empty, a native <button> element is rendered.

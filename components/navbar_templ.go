@@ -15,6 +15,28 @@ import "github.com/mtzvd/bulma-templ/elements"
 //
 // Navbar provides the main site navigation structure.
 // It does NOT manage state, burger behavior, or dropdown logic.
+//
+// Example:
+//
+//	Navbar(
+//	    NavbarProps{
+//	        Color: "is-primary",
+//	    },
+//	    elements.Items{
+//	        NavbarBrand(NavbarBrandProps{}, elements.Items{
+//	            NavbarItem(NavbarItemProps{}, elements.Items{
+//	                elements.Html("Logo"),
+//	            }),
+//	        }),
+//	        NavbarMenu(NavbarMenuProps{}, elements.Items{
+//	            NavbarStart(NavbarStartProps{}, elements.Items{
+//	                NavbarItem(NavbarItemProps{}, elements.Items{
+//	                    elements.Html("Home"),
+//	                }),
+//	            }),
+//	        }),
+//	    },
+//	)
 type NavbarProps struct {
 	// Color defines the Bulma color modifier
 	// (is-primary, is-dark, is-light, etc.).
@@ -542,7 +564,7 @@ func NavbarDropdown(props NavbarDropdownProps, content elements.Items) templ.Com
 }
 
 // NavbarDivider — visual divider inside NavbarDropdown.
-// Atomic level: ATOM
+// Atomic level: MOLECULE
 type NavbarDividerProps struct {
 	Attr templ.Attributes
 }

@@ -67,7 +67,12 @@ templ Input(props InputProps) {
 		type={ props.Type }
 		value={ props.Value }
 		placeholder={ props.Placeholder }
-		class={ "input", props.Color, props.Size, props.Attr["class"] }
+		class={
+			"input",
+			templ.KV(props.Color, props.Color != ""),
+			templ.KV(props.Size, props.Size != ""),
+			props.Attr["class"],
+		}
 		{ attrs... }
 	/>
 }

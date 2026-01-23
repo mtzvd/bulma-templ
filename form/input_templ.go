@@ -15,6 +15,15 @@ import templruntime "github.com/a-h/templ/runtime"
 // It is responsible only for visual appearance
 // and HTML attributes, but does not manage layout,
 // validation logic or value binding.
+//
+// Example:
+//
+//	Input(
+//	    InputProps{
+//	        Type:        "text",
+//	        Placeholder: "Enter your name",
+//	    },
+//	)
 type InputProps struct {
 	// Type defines the input type attribute
 	// (e.g. text, email, password).
@@ -80,7 +89,11 @@ func Input(props InputProps) templ.Component {
 		if props.ReadOnly {
 			attrs["readonly"] = "readonly"
 		}
-		var templ_7745c5c3_Var2 = []any{"input", props.Color, props.Size, props.Attr["class"]}
+		var templ_7745c5c3_Var2 = []any{"input",
+			templ.KV(props.Color, props.Color != ""),
+			templ.KV(props.Size, props.Size != ""),
+			props.Attr["class"],
+		}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -92,7 +105,7 @@ func Input(props InputProps) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(props.Type)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/input.templ`, Line: 58, Col: 19}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/input.templ`, Line: 67, Col: 19}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -105,7 +118,7 @@ func Input(props InputProps) templ.Component {
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(props.Value)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/input.templ`, Line: 59, Col: 21}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/input.templ`, Line: 68, Col: 21}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
@@ -118,7 +131,7 @@ func Input(props InputProps) templ.Component {
 		var templ_7745c5c3_Var5 string
 		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(props.Placeholder)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/input.templ`, Line: 60, Col: 33}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `form/input.templ`, Line: 69, Col: 33}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {

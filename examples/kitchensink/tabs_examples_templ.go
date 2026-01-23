@@ -45,14 +45,27 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active"><a>Pictures</a></li>
-					<li><a>Music</a></li>
-					<li><a>Videos</a></li>
-					<li><a>Documents</a></li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Pictures")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Music")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Videos")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Documents")})},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -65,14 +78,27 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Centered: true},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active"><a>Pictures</a></li>
-					<li><a>Music</a></li>
-					<li><a>Videos</a></li>
-					<li><a>Documents</a></li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Pictures")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Music")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Videos")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Documents")})},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -85,14 +111,27 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Right: true},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active"><a>Pictures</a></li>
-					<li><a>Music</a></li>
-					<li><a>Videos</a></li>
-					<li><a>Documents</a></li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Pictures")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Music")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Videos")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Documents")})},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -105,34 +144,59 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Centered: true},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active">
-						<a>
-							<span class="icon is-small"><i class="fas fa-image"></i></span>
-							<span>Pictures</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-music"></i></span>
-							<span>Music</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-film"></i></span>
-							<span>Videos</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="far fa-file-alt"></i></span>
-							<span>Documents</span>
-						</a>
-					</li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-image", Size: "is-small"}),
+										el.Html("<span>Pictures</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-music", Size: "is-small"}),
+										el.Html("<span>Music</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-film", Size: "is-small"}),
+										el.Html("<span>Videos</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "far fa-file-alt", Size: "is-small"}),
+										el.Html("<span>Documents</span>"),
+									},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -145,34 +209,59 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Boxed: true},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active">
-						<a>
-							<span class="icon is-small"><i class="fas fa-image"></i></span>
-							<span>Pictures</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-music"></i></span>
-							<span>Music</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-film"></i></span>
-							<span>Videos</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="far fa-file-alt"></i></span>
-							<span>Documents</span>
-						</a>
-					</li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-image", Size: "is-small"}),
+										el.Html("<span>Pictures</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-music", Size: "is-small"}),
+										el.Html("<span>Music</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-film", Size: "is-small"}),
+										el.Html("<span>Videos</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "far fa-file-alt", Size: "is-small"}),
+										el.Html("<span>Documents</span>"),
+									},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -185,34 +274,59 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Toggle: true},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active">
-						<a>
-							<span class="icon is-small"><i class="fas fa-image"></i></span>
-							<span>Pictures</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-music"></i></span>
-							<span>Music</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-film"></i></span>
-							<span>Videos</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="far fa-file-alt"></i></span>
-							<span>Documents</span>
-						</a>
-					</li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-image", Size: "is-small"}),
+										el.Html("<span>Pictures</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-music", Size: "is-small"}),
+										el.Html("<span>Music</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-film", Size: "is-small"}),
+										el.Html("<span>Videos</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "far fa-file-alt", Size: "is-small"}),
+										el.Html("<span>Documents</span>"),
+									},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -225,28 +339,47 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Toggle: true, ToggleRounded: true},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active">
-						<a>
-							<span class="icon is-small"><i class="fas fa-image"></i></span>
-							<span>Pictures</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-music"></i></span>
-							<span>Music</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-film"></i></span>
-							<span>Videos</span>
-						</a>
-					</li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-image", Size: "is-small"}),
+										el.Html("<span>Pictures</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-music", Size: "is-small"}),
+										el.Html("<span>Music</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-film", Size: "is-small"}),
+										el.Html("<span>Videos</span>"),
+									},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -259,28 +392,47 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Fullwidth: true},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li>
-						<a>
-							<span class="icon"><i class="fas fa-angle-left"></i></span>
-							<span>Left</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon"><i class="fas fa-angle-up"></i></span>
-							<span>Up</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span>Right</span>
-							<span class="icon"><i class="fas fa-angle-right"></i></span>
-						</a>
-					</li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-angle-left"}),
+										el.Html("<span>Left</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-angle-up"}),
+										el.Html("<span>Up</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Html("<span>Right</span>"),
+										el.Icon(el.IconProps{IconClass: "fas fa-angle-right"}),
+									},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -293,14 +445,27 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Size: "is-small"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active"><a>Pictures</a></li>
-					<li><a>Music</a></li>
-					<li><a>Videos</a></li>
-					<li><a>Documents</a></li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Pictures")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Music")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Videos")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Documents")})},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -313,14 +478,27 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Size: "is-medium"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active"><a>Pictures</a></li>
-					<li><a>Music</a></li>
-					<li><a>Videos</a></li>
-					<li><a>Documents</a></li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Pictures")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Music")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Videos")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Documents")})},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -333,14 +511,27 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Size: "is-large"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active"><a>Pictures</a></li>
-					<li><a>Music</a></li>
-					<li><a>Videos</a></li>
-					<li><a>Documents</a></li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Pictures")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Music")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Videos")})},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{co.TabsLink(co.TabsLinkProps{}, el.Items{el.Html("Documents")})},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -353,34 +544,59 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Centered: true, Boxed: true, Size: "is-medium"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active">
-						<a>
-							<span class="icon is-small"><i class="fas fa-image"></i></span>
-							<span>Pictures</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-music"></i></span>
-							<span>Music</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="fas fa-film"></i></span>
-							<span>Videos</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon is-small"><i class="far fa-file-alt"></i></span>
-							<span>Documents</span>
-						</a>
-					</li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-image", Size: "is-small"}),
+										el.Html("<span>Pictures</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-music", Size: "is-small"}),
+										el.Html("<span>Music</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-film", Size: "is-small"}),
+										el.Html("<span>Videos</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "far fa-file-alt", Size: "is-small"}),
+										el.Html("<span>Documents</span>"),
+									},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
@@ -393,34 +609,59 @@ func TabsExamples() templ.Component {
 		templ_7745c5c3_Err = co.Tabs(
 			co.TabsProps{Toggle: true, Fullwidth: true, Size: "is-large"},
 			el.Items{
-				el.Html(`
-				<ul>
-					<li class="is-active">
-						<a>
-							<span class="icon"><i class="fas fa-image"></i></span>
-							<span>Pictures</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon"><i class="fas fa-music"></i></span>
-							<span>Music</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon"><i class="fas fa-film"></i></span>
-							<span>Videos</span>
-						</a>
-					</li>
-					<li>
-						<a>
-							<span class="icon"><i class="far fa-file-alt"></i></span>
-							<span>Documents</span>
-						</a>
-					</li>
-				</ul>
-			`),
+				co.TabsList(
+					co.TabsListProps{},
+					el.Items{
+						co.TabsItem(
+							co.TabsItemProps{Active: true},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-image"}),
+										el.Html("<span>Pictures</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-music"}),
+										el.Html("<span>Music</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "fas fa-film"}),
+										el.Html("<span>Videos</span>"),
+									},
+								),
+							},
+						),
+						co.TabsItem(
+							co.TabsItemProps{},
+							el.Items{
+								co.TabsLink(
+									co.TabsLinkProps{},
+									el.Items{
+										el.Icon(el.IconProps{IconClass: "far fa-file-alt"}),
+										el.Html("<span>Documents</span>"),
+									},
+								),
+							},
+						),
+					},
+				),
 			},
 		).Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
